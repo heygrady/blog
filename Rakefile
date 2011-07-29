@@ -18,8 +18,8 @@ deploy_dir   = "_deploy"   # deploy directory (for Github pages deployment)
 stash_dir    = "_stash"    # directory to stash posts for speedy generation
 posts_dir    = "_posts"    # directory for blog files
 themes_dir   = ".themes"   # directory for blog files
-new_post_ext = "markdown"  # default new post file extension when using the new_post task
-new_page_ext = "markdown"  # default new page file extension when using the new_page task
+new_post_ext = "html"  # default new post file extension when using the new_post task
+new_page_ext = "html"  # default new page file extension when using the new_page task
 
 
 desc "Initial setup for Octopress: copies the default theme into the path of Jekyll's generator. Rake install defaults to rake install[classic] to install a different theme run rake install[some_theme_name]"
@@ -43,6 +43,13 @@ desc "Generate jekyll site"
 task :generate do
   puts "## Generating Site with Jekyll"
   system "jekyll"
+  system "compass compile --trace"
+end
+
+desc "Generate compass CSS"
+task :css do
+  puts "## Generating css with compass"
+  system "compass compile --trace"
 end
 
 desc "Watch the site and regenerate when it changes"
@@ -52,7 +59,7 @@ end
 
 desc "preview the site in a web browser"
 task :preview do
-  system "trap 'kill $jekyllPid $compassPid' Exit; jekyll --auto --server & jekyllPid=$!; compass watch & compassPid=$!; wait"
+  system "trap" "'kill $jekyllPid $compassPid' Exit; jekyll --auto --server & jekyllPid=$!; compass watch & compassPid=$!; wait"
 end
 
 # usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
@@ -64,7 +71,7 @@ task :new_post, :title do |t, args|
   filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.downcase.gsub(/&/,'and').gsub(/[,'":\?!\(\)\[\]]/,'').gsub(/[\W\.]/, '-').gsub(/-+$/,'')}.#{new_post_ext}"
   puts "Creating new post: #{filename}"
   open(filename, 'w') do |post|
-    system "mkdir -p #{source_dir}/#{posts_dir}";
+    system "mkdir" "-p #{source_dir}/#{posts_dir}";
     post.puts "---"
     post.puts "layout: post"
     post.puts "title: \"#{title.gsub(/&/,'&amp;').titlecase}\""
@@ -131,7 +138,7 @@ task :update_style, :theme do |t, args|
     puts "removed existing sass.old directory"
     system "rm -r sass.old"
   end
-  system "mv sass sass.old"
+  system "mv" "sass sass.old"
   puts "## Moved styles into sass.old/"
   system "mkdir -p sass; cp -R #{themes_dir}/"+theme+"/sass/ sass/"
   cp_r "sass.old/custom/.", "sass/custom"
@@ -143,13 +150,13 @@ task :update_source, :theme do |t, args|
   theme = args.theme || 'classic'
   if File.directory?("#{source_dir}.old")
     puts "removed existing #{source_dir}.old directory"
-    system "rm -r #{source_dir}.old"
+    system "rm" "-r #{source_dir}.old"
   end
-  system "mv #{source_dir} #{source_dir}.old"
+  system "mv" "#{source_dir} #{source_dir}.old"
   puts "moved #{source_dir} into #{source_dir}.old/"
-  system "mkdir -p #{source_dir}; cp -R #{themes_dir}/"+theme+"/source/. #{source_dir}"
-  system "cp -Rn #{source_dir}.old/. #{source_dir}"
-  system "cp -f #{source_dir}.old/_includes/navigation.html #{source_dir}/_includes/navigation.html"
+  system "mkdir" "-p #{source_dir}; cp -R #{themes_dir}/"+theme+"/source/. #{source_dir}"
+  system "cp" "-Rn #{source_dir}.old/. #{source_dir}"
+  system "cp" "-f #{source_dir}.old/_includes/navigation.html #{source_dir}/_includes/navigation.html"
   puts "## Updated #{source_dir} ##"
 end
 
@@ -164,23 +171,23 @@ end
 desc "Deploy website via rsync"
 task :rsync do
   puts "## Deploying website via Rsync"
-  ok_failed system("rsync -avz --delete #{public_dir}/ #{ssh_user}:#{document_root}")
+  ok_failed system("rsync", "-avz --delete #{public_dir}/ #{ssh_user}:#{document_root}")
 end
 
 desc "deploy public directory to github pages"
 task :push do
   puts "## Deploying branch to Github Pages "
   (Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
-  system "cp -R #{public_dir}/* #{deploy_dir}"
+  system "cp" "-R #{public_dir}/* #{deploy_dir}"
   puts "\n## copying #{public_dir} to #{deploy_dir}"
   cd "#{deploy_dir}" do
-    system "git add ."
-    system "git add -u"
+    system "git" "add ."
+    system "git" "add -u"
     puts "\n## Commiting: Site updated at #{Time.now.utc}"
     message = "Site updated at #{Time.now.utc}"
-    system "git commit -m '#{message}'"
+    system "git" "commit -m '#{message}'"
     puts "\n## Pushing generated #{deploy_dir} website"
-    system "git push origin #{deploy_branch}"
+    system "git" "push origin #{deploy_branch}"
     puts "\n## Github Pages deploy complete"
   end
 end
@@ -225,12 +232,12 @@ task :config_deploy, :branch do |t, args|
   puts "!! Please provide a deploy branch, eg. rake init_deploy[gh-pages] !!" unless args.branch
   puts "## Creating a clean #{args.branch} branch in ./#{deploy_dir} for Github pages deployment"
   cd "#{deploy_dir}" do
-    system "git symbolic-ref HEAD refs/heads/#{args.branch}"
-    system "rm .git/index"
-    system "git clean -fdx"
-    system "echo 'My Octopress Page is coming soon &hellip;' > index.html"
-    system "git add ."
-    system "git commit -m 'Octopress init'"
+    system "git" "symbolic-ref HEAD refs/heads/#{args.branch}"
+    system "rm" ".git/index"
+    system "git" "clean -fdx"
+    system "echo" "'My Octopress Page is coming soon &hellip;' > index.html"
+    system "git" "add ."
+    system "git" "commit -m 'Octopress init'"
     rakefile = IO.read(__FILE__)
     rakefile.sub!(/deploy_branch(\s*)=(\s*)(["'])[\w-]*["']/, "deploy_branch\\1=\\2\\3#{args.branch}\\3")
     rakefile.sub!(/deploy_default(\s*)=(\s*)(["'])[\w-]*["']/, "deploy_default\\1=\\2\\3push\\3")
