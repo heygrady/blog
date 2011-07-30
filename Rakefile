@@ -43,7 +43,6 @@ desc "Generate jekyll site"
 task :generate do
   puts "## Generating Site with Jekyll"
   system "jekyll"
-  system "compass compile --trace"
 end
 
 desc "Generate compass CSS"
