@@ -49,6 +49,14 @@ twitter_tweet_button: true
 google_plus_one: true
 google_plus_one_size: medium
 
+#facebook
+facebook_like: true
+
+# add this
+addthis: true
+addthis_profile_id: ra-4e36356d678f4976
+addthis_counter: true
+
 # Pinboard
 pinboard_user:
 pinboard_count: 3
