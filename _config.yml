@@ -20,6 +20,9 @@ email: blog@heygrady.net
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
 root: /
+css_dir: css
+images_dir: i
+javascripts_dir: js
 port: 4000
 permalink: /blog/:year/:month/:day/:title/
 source: source

@@ -2,7 +2,6 @@
 require 'html5-boilerplate'
 project_type = :stand_alone
 
-http_path = "/"
 css_dir = "public/css"
 sass_dir = "sass"
 images_dir = "source/i"

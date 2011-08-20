@@ -53,7 +53,7 @@ h5, section h4, section section h3 {
 h6, section h5, section section h4, section section section h3 {
   font-size: .8em;
 }
-p, blockquote, ul, ol { margin-bottom: 1.5em; }
+p, blockquote, ul, ol, dl { margin-bottom: 1.5em; }
 
 ul { list-style-type: disc;
   ul { list-style-type: circle;
@@ -65,6 +65,10 @@ ol { list-style-type: decimal;
 
 ul, ol { &, ul, ol { margin-left: 1.3em; }}
 
+dl {
+  dt { font-weight: bold; }
+  dd { margin-left: 1.5em; }
+}
 strong { font-weight: bold; }
 
 em { font-style: italic; }
