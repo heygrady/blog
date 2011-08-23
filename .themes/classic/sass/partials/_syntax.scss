@@ -1,4 +1,6 @@
-.highlight, html .gist .gist-file .gist-syntax .gist-highlight {
+.highlight,
+html .gist .gist-file .gist-syntax .gist-highlight,
+html .gist .gist-file .gist-syntax .highlight {
   .line-numbers {
     text-align: right;
     font-size: 13px;
@@ -31,7 +33,7 @@ html .gist .gist-file {
     } @else if $solarized == light {
       border-bottom: 0px;
     }
-    .gist-highlight{
+    .gist-highlight, .hightlight{
       background: $base03 !important;
       pre {
         @extend .pre-code;

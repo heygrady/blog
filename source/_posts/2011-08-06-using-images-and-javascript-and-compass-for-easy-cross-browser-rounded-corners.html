@@ -26,7 +26,7 @@ categories: js sass compass polyfill plugin
 	<figcaption>Absolute Position using a Sprite<br>(<a href="http://assets.heygrady.com/corners/position-box-sprite.html" target="_blank">view live example</a>)</figcaption>
 </figure>
 <h3>Basic Markup</h3>
-<p>The absolute positioning technique requires some additional markup to be added to the page for the corners and sides of the box. Below the initial box is show with no additional markup.</p>
+<p>The absolute positioning technique requires some additional markup to be added to the page for the corners and sides of the box. Below the initial <code>.box</code> is shown with no additional markup.</p>
 {% gist 1161561 box.html %}
 <p>In order to create the illusion of corners, some additional markup must be added to the page. First the content is wrapped in a <code>.ui-corners-content</code> that is used with <code>z-index</code> to <a href="http://jsfiddle.net/heygrady/3YbNk/">ensure that the corners never cover up the content</a> of our <code>.box</code> &mdash; <a href="http://www.w3.org/TR/css3-background/#corner-clipping"
 ><code>border-radius</code> doesn't clip content</a> unless <code>overflow: hidden;</code> is set. Next, eight <code>span</code>s are added; one for each corner and side. Below is the markup used for creating the rounded corner illusion.</p>
@@ -38,6 +38,11 @@ categories: js sass compass polyfill plugin
 {% gist 1161561 base.css %}
 <p>Although absolutely positioned background images can look like a native <code>border-radius</code>, they don't actually affect the sizing of the box like a real border does. It's easy to fake the presence of a border by adding <code>padding</code> to the <code>.box</code> equal to the width of the border. While it's possible to simply set a transparent border &mdash; <code>border: 10px solid transparent;</code> &mdash; setting a border will require additional calculations for the corner and side <code>span</code>s because <a href="http://jsfiddle.net/heygrady/HVNEJ/">border appears outside the box</a>.</p>
 <h2>Using the jQuery Corners Plug-in</h2>
+<p>The jQuery Corners plug-in is very straightforward. Exactly as described in the basic markup section above, it wraps the content of the container in a <code>div</code> and adds eight <code>span</code>s to the container. Again, starting with the basic box.html file in the basic markup section above, the additional markup can be added as shown below.</p>
+{% gist 1161561 usage.js %}
+<p>Currently the plug-in takes no arguments and does not apply any styling to the page. This is intentional because the styling should be controlled using CSS, similar to most jQuery UI widgets.</p>
+<h3>The Actual Plug-In</h3>
+{% github_code https://github.com/heygrady/corners/blob/master/js/jquery-corners.js %}
 <figure>
 	<iframe width="202" height="202" scrolling="no" frameborder="0" src="http://assets.heygrady.com/corners-2/simple.html"></iframe>
 	<figcaption>jQuery Corners Basic Usage<br>(<a href="http://assets.heygrady.com/corners-2/simple.html" target="_blank">view live example</a>)</figcaption>

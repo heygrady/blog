@@ -10,6 +10,14 @@ figure {
   @include box-shadow(rgba(#000, .15) 0 1px 4px);
   @include box-sizing(border-box);
   margin: 0 auto 1.5em;
+  &[role=code] {
+    display: block;
+    border: none;
+    max-width: auto;
+    @include border-radius(none);
+    @include box-shadow(none);
+    @include box-sizing(content-box);
+  }
   img, video, .flash-video {
     border: none;
     @include border-radius(0);
@@ -25,6 +33,9 @@ figcaption {
   line-height: 1.2em;
   padding-top: 9px;
   margin: 0;
+  figure[role=code] & {
+    padding-top: 0;
+  }
 }
 p, li {
   img {
