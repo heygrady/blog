@@ -13,7 +13,7 @@ categories: sass compass grid css
 	<li><a href="http://sass-lang.com/tutorial.html">SASS</a> and <a href="http://compass-style.org/docs/">Compass</a>.</li>
 </ul>
 <!--more-->
-<h2>Basic CSS</h2>
+{% h2 Basic CSS %}
 {% gist 702760 grid.css %}
 <p>
 	The above CSS is very similar to the <a href="http://www.usabilitypost.com/2009/05/29/the-1kb-css-grid-part-1/">original source</a> with a few stylistic differences (dashes instead of underscores) and the removal of the <code>overflow: hidden</code>
@@ -44,7 +44,7 @@ categories: sass compass grid css
 		Rely on <a href="http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/">HTML5 Boilerplate</a> and <a href="http://www.modernizr.com/docs/">Modernizr</a> for clearfix and browser targeting
 	</li>
 </ul>
-<h2>Basic Example Using Only CSS</h2>
+{% h2 Basic Example Using Only CSS %}
 <p>
 	It's not immediately obvious how to piece this all together but the concepts are pretty simple.
 </p>
@@ -92,13 +92,13 @@ categories: sass compass grid css
 	and <code>grid-6</code>
 	, etc. This is barely different than hard-coding the width with an inline style. I prefer to use SASS mixins to remove those class names from the markup altogether and control it directly from the CSS.
 </p>
-<h2>Rewritten in SASS</h2>
+{% h2 Rewritten in SASS %}
 {% gist 702760 grid.scss %}
 
 <p>
 	Writing the same thing in SASS opens up a world of possibilities. Using <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#defining_a_mixin">mixins</a> allows the column measurements to be easily changed and opens up the possibility of removing the extra class names from the markup. This SASS file was used to generate the CSS at the top of the article.
 </p>
-<h3>Default Variables</h3>
+{% h3 Default Variables %}
 <ul>
 	<li>
 		<code>$column-width: 60px;</code>
@@ -116,7 +116,7 @@ categories: sass compass grid css
 		(60px + 20px) * 12 = 960px
 	</li>
 </ul>
-<h3>Grid Mixins</h3>
+{% h3 Grid Mixins %}
 <p>
 	<code>grid</code>
 	and <code>grid-plus</code>
@@ -175,7 +175,7 @@ categories: sass compass grid css
 		</ul>
 	</li>
 </ul>
-<h2>Basic Example Using SASS</h2>
+{% h2 Basic Example Using SASS %}
 <p>
 	Using the ID's and class names already in the markup, it's possible to utilize the mixins that were created earlier to achieve the exact same effect. I typically do this in a layout file that contains all of the column layouts for the various templates in the site.
 </p>
@@ -224,14 +224,14 @@ categories: sass compass grid css
 <p>
 	From the above example it should be clear how to use mixins to apply the grid styles directly through CSS without needing to hard-code the grid related class names into the markup.
 </p>
-<h3>Compiled to CSS</h3>
+{% h3 Compiled to CSS %}
 <p>
 	Because SASS must be compiled to CSS for it to work in a browser, it's useful to see what CSS is being generated. The file below is what the layout.scss example file generated.
 </p>
 
 {% gist 702760 layout.css %}
 
-<h3>HTML Without the Hard-coded Class Names</h3>
+{% h3 HTML Without the Hard-coded Class Names %}
 
 {% gist 702760 grid-layout.html %}
 

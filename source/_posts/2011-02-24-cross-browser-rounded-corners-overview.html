@@ -3,7 +3,7 @@ layout: post
 title: "Cross-Browser Rounded Corners Overview"
 date: 2011-02-24 11:51
 comments: true
-categories: css
+categories: css polyfill
 ---
 <p>Theres no shortage of techniques for achieving cross-browser rounded corners. Most of the techniques involve taking an otherwise simple box and adding markup and CSS until all browsers (IE 6+, Firefox, Safari, Chrome) agree to round the corners. Of course the great hope today is to use CSS3 techniques such as <code>border-radius</code> or multiple backgrounds and of course those approaches won't work in Internet Explorer 8 or below. Ironically, one of the best places to find some of the old school CSS solutions is on the <a href="http://msdn.microsoft.com/en-us/library/bb250413(v=vs.85).aspx">MSDN page describing <code>border-radius</code> </a>. For modern browsers, the <a href="https://developer.mozilla.org/en/css/-moz-border-radius"><code>border-radius</code> </a> property will do a good job of rounding corners. To support all browsers some clever techniques will need to be used.</p>
 <h4>For the uninitiated</h4>
@@ -14,7 +14,7 @@ categories: css
 	<li><a href="http://css3pie.com/">CSS3 PIE</a></li>
 </ul>
 <!--more-->
-<h3>Goals</h3>
+{% h3 Goals %}
 <p>To successfully approximate <code>border-radius</code>, the content of the box should appear as it does in a regular box with a border applied.</p>
 <figure>
 	<iframe width="202" height="202" scrolling="no" frameborder="0" src="http://assets.heygrady.com/corners/box.html"></iframe>
@@ -32,7 +32,7 @@ categories: css
 	</li>
 	<li>Bonus Points: easy to implement</li>
 </ul>
-<h2>A Simple Box</h2>
+{% h2 A Simple Box %}
 <p>As mentioned above, <a href="http://caniuse.com/border-radius"><code>border-radius</code> is supported in roughly 50% of browsers</a> globally (as of February, 2011). The other 50% of browsers are IE 8 and below.</p>
 {% gist 834700 box.html %}
 <p>Above is the simple box that we want to give rounded corners. The goal is to have it look something like the picture below.</p>
@@ -50,9 +50,9 @@ categories: css
 </figure>
 {% gist 834700 border-radius-box.css %}
 <p>Again, in all browsers (except IE 8 and below) the above CSS will add rounded corners to any <code>.box</code>. According to the <a href="https://developer.mozilla.org/en/css/-moz-border-radius">Mozilla <code>border-radius</code> documentation</a> the <code>-moz-</code> and <code>-webkit-</code> prefixes are for older versions of Firefox and Safari respectively. IE 9, Firefox 4, Safari 5 and Chrome 4+ all support the standard W3C <code>border-radius</code> property without the <a href="http://www.quirksmode.org/blog/archives/2010/03/css_vendor_pref_1.html">vendor prefix</a>.</p>
-<h2>Polyfills</h2>
+{% h2 Polyfills %}
 <p>With the above goals in mind a straight-forward solution might be to force IE 8 and below into line using some creative JavaScript-based technique that won't require any images to be created.</p>
-<h3>CSS3 PIE</h3>
+{% h3 CSS3 PIE %}
 <p><a href="http://css3pie.com/">CSS3 PIE</a> an extremely clever <a href="http://remysharp.com/2010/10/08/what-is-a-polyfill/">polyfill</a> technique that reads and processes the CSS file using a <a href="http://msdn.microsoft.com/en-us/library/ms531079(v=vs.85).aspx">DHTML behavior</a> in Internet Explorer to find the <code>border-radius</code>rules and then generates a <a href="http://msdn.microsoft.com/en-us/library/bb263898(v=vs.85).aspx">VML object</a>, placing it behind the target element. A tool like CSS3 PIE can be used to support rounded corners in IE 8 and below. The big drawback to CSS3 PIE is that it works best on static content and is slow to render. Because the VML object is placed behind the box, it must remove all of the visible styles from the box including border and background images. Those visible styles are then applied to the VML object.</p>
 <figure>
 	<iframe width="202" height="202" scrolling="no" frameborder="0" src="http://assets.heygrady.com/corners/css3-pie-box.html"></iframe>
@@ -80,7 +80,7 @@ categories: css
 		</ul>
 	</li>
 </ul>
-<h3>jQuery Corner</h3>
+{% h3 jQuery Corner %}
 <p>There are also tools like <a href="http://jquery.malsup.com/corner/">jQuery Corner</a> and <a href="http://www.curvycorners.net/">Curvy Corners</a> that will use native <code>border-radius</code> in supported browsers and use a series of 1px tall <code>div</code> elements to polyfill in other browsers. This is a popular solution to the problem that works by adding in extra <code>div</code> elements. Each <code>div</code> is given a right and left border the same color as the page behind the element and the border widths are altered to create appearance of a rounded corner.</p>
 <h4>Pros:</h4>
 <ul>
@@ -94,7 +94,7 @@ categories: css
 	<li>No anti-aliasing in Internet Explorer. Each pixel of the rounding is a solid color due to the way the rounding effect is achieved</li>
 	<li>Over a dozen other virtually useless corner templates included in the package</li>
 </ul>
-<h2>Background Images</h2>
+{% h2 Background Images %}
 <p>If native <code>border-radius</code>isn't an option (and polyfills aren't stable enough), then it will take several images to do the trick. In some cases a <a href="http://css-tricks.com/css-sprites/">sprite</a> can be used. For the examples below we'll try to create the same 1px red border with a 12px <code>border-radius</code>from above. Rounded corner images can easily be created at a number of on-line generators. My favorite is the <a href="http://www.generateit.net/rounded-corner/index.htm?r=12&amp;fg=ffffff&amp;bgt=1&amp;fgt=1&amp;f=png&amp;w=200&amp;bg=ffffff&amp;h=200&amp;bc=ff0000&amp;aa=1&amp;bw=1&amp;submit=Generate+It">Rounded Corner Image Generator</a>.</p>
 <ul>
 	<li><img src="http://assets.heygrady.com/corners/corner-tl.png" alt="" /> corner-tl.png &mdash; top left corner</li>
@@ -108,14 +108,14 @@ categories: css
 	<li><img src="http://assets.heygrady.com/corners/corners.png" alt="" /> corners.png  &mdash; a rounded corner sprite. All of the corners and borders are combined into one image.</li>
 </ul>
 <p>As is evident by the top, bottom, left and right images, when the border is a simple 1px solid color, those images may not be necessary and could be replaced by actual borders. For these examples images were used anyway because it's more common that the borders are complex and need to be images &mdash; particularly when shadows are involved.</p>
-<h2>Onion Skinning And Sliding Doors</h2>
+{% h2 Onion Skinning And Sliding Doors %}
 <p>Most rounded corner techniques are a variation on the classic <a href="http://www.alistapart.com/articles/onionskin/">Onion Skinned Drop Shadow</a> article or the <a href="http://www.alistapart.com/articles/slidingdoors/">Sliding Doors</a> article (<a href="http://www.alistapart.com/articles/slidingdoors2/">part 2</a>). For instance, <a href="http://www.schillmania.com/projects/dialog2/">one of the techniques</a> from the <a href="http://msdn.microsoft.com/en-us/library/bb250413(v=vs.85).aspx">MSDN article</a> uses a variant of the sliding doors technique. These techniques are effective but they're not particularly easy to implement. They're also limited because they try to accommodate IE6 which has a fair share of <a href="http://haslayout.net/css/">documented CSS issues</a>. There is no shortage of <a href="http://www.google.com/search?aq=f&amp;sourceid=chrome&amp;ie=UTF-8&amp;q=cross+browser+rounded+corner">cross browser rounded corner</a> articles. The majority mention either using a method similar to CSS3 PIE or jQuery Corner above or they recommend using an image + HTML + CSS solution like the ones below.</p>
 <ul>
 	<li>Typing out multiple nesting <code>div</code> tags can be tedious and difficult to replicate across many pages on a large site.</li>
 	<li>The most bullet-proof solutions would require as many as 8 wrapping <code>div</code>s (top, bottom, left, right, top-left, top-right, bottom-right, bottom-top) to properly imitate the capabilities of <code>border-radius</code>.</li>
 	<li>Specifying complicated HTML and CSS layouts limits the situations in which it can be used.</li>
 </ul>
-<h3>Using Onion Skinning</h3>
+{% h3 Using Onion Skinning %}
 <p>Onion skinning is the process of adding multiple wrapping <code>div</code> elements to a <code>.box</code> element and then applying a different background image to each of the layers. This technique was originally developed for creating drop shadows but can easily be adapted to creating rounded corners.</p>
 <figure>
 	<iframe width="202" height="202" scrolling="no" frameborder="0" src="http://assets.heygrady.com/corners/onion-box.html"></iframe>
@@ -146,7 +146,7 @@ categories: css
 	<li>To account for how <a href="http://reference.sitepoint.com/css/collapsingmargins">collapsing margins</a> would interact with a real border, <code>padding-top</code> and <code>padding-bottom</code> need to be set on the <code>.content</code></li>
 </ul>
 
-<h3>Using Sliding Doors</h3>
+{% h3 Using Sliding Doors %}
 <p>The sliding doors technique uses a content area sandwiched between a top and a bottom element. The top and a bottom each contain elements for left and right corners. This technique allows for great flexibility with using image sprites and allows the corners to be fully alpha transparent if desired. The markup appears to be much more sensible but the CSS is much more complicated.</p>
 <figure>
 	<iframe width="202" height="202" scrolling="no" frameborder="0" src="http://assets.heygrady.com/corners/sliding-door-box.html"></iframe>
@@ -175,7 +175,7 @@ categories: css
 <p>The <code>.left</code> and <code>.right</code> wrappers wrap the <code>.content</code> and operate more like the onion skinning techniques. The right <code>div</code> is given a 1px top and bottom padding to account for <a href="http://reference.sitepoint.com/css/collapsingmargins">collapsing margins</a> and the <code>.content</code> is given a negative margin to pull its edges to the edge of the box. Adding position relative and a z-index ensures that the <code>.content</code> is above the top and bottom <code>div</code> containers to avoid content clipping.</p>
 <p>The left and right wrappers are particularly challenging because of the need to apply a 100% height to ensure they are the correct height in conjunction with the 1px top and bottom border applied to prevent collapsing margins from affecting the layout. This isn't an issue in IE 6 and 7 because they collapse the top margin even when there's a border. But for the other browsers the 1px border combined with a 100% height on the <code>.right</code> wrapper makes it 2px too tall. By using an alternate method for spacing in IE 6 and IE 7, the padding can be negated by adjusting the <a href="https://developer.mozilla.org/en/CSS/box-sizing"><code>box-sizing</code></a>.</p>
 
-<h2>Using Absolute Positioning</h2>
+{% h2 Using Absolute Positioning %}
 <p>A solution that is not often posited is using absolute positioning to place all of the corners and sides on the box. This solution takes advantage of how most browsers (except IE 6) handle conflicting <code>right</code> and <code>left</code> properties on an element. For instance, a rule like <code>.top {position: absolute; left: 12px; right: 12px;}</code> effectively stretches <code>.top</code> across the full width of its nearest positioned parent. IE 6 ignores the conflicting rules which makes it more difficult to support that browser with this technique.</p>
 <h4>Pros:</h4>
 <ul>
@@ -201,11 +201,11 @@ categories: css
 {% gist 834700 position-box.css %}
 <p>The CSS for absolute positioning is really straight-forward. The sides and corners are all set to be <code>position: absolute</code> and given <code>z-index: 1</code> while the <code>.box</code> and <code>.content</code> are set to <code>position: relative</code> and the <code>.content</code> is given <code>z-index: 2</code>. The corner <code>span</code>s are positioned in the appropriate corner and the sides are positioned on the appropriate side. The key trick is giving, for instance, the <code>.top</code> a <code>left: 12px</code> and a <code>right: 12px</code>. The apparently conflicting riles actually stretch the <code>span</code> the full width of the <code>.box</code>. The same is done with the <code>.left</code> and <code>.right</code>sides, giving them both <code>top</code> and <code>bottom</code> properties to stretch them the full height of the <code>.box</code>. The 12px is to allow space for the corners to avoid overlap.</p>
 
-<h2>Ignoring Legacy Browsers</h2>
-<h3>Using Border Radius</h3>
+{% h2 Ignoring Legacy Browsers %}
+{% h3 Using Border Radius %}
 <p>As mentioned at the start of this article, <code>border-radius</code> can be used to add rounded corners to a <code>.box</code>.</p>
 
-<h3>Using Multiple Backgrounds</h3>
+{% h3 Using Multiple Backgrounds %}
 <p>It's now possible to use multiple backgrounds in newer browsers including Firefox 3.6+, IE 9, Safari and Chrome. Multiple backgrounds are layered in in the order they are added in the CSS with the first image being the top-most layer. Using this technique for corners might seem slightly silly given the existence of <code>border-radius</code> in every browser that supports multiple backgrounds, however there are times when the native <code>border-radius</code> cannot accomplish the same thing as images.</p>
 <figure>
 	<iframe width="202" height="202" scrolling="no" frameborder="0" src="http://assets.heygrady.com/corners/background-box.html"></iframe>
@@ -226,7 +226,7 @@ categories: css
 </ul>
 {% gist 834700 background-box.css %}
 
-<h2>Conclusion</h2>
+{% h2 Conclusion %}
 <p>While CSS3 PIE is promising, it is still difficult to use on large scale sites. The JavaScript-based polyfill techniques don't seem to work very well in IE 8 and below at the moment (this is extremely unfortunate). Most of the techniques for applying backgrounds require ugly markup or intensely difficult CSS to accomplish. I personally prefer the Absolute Positioning technique as it is the easiest to implement and offers some support of Legacy browsers. The fact that IE 6 is not supported is not a huge issue given that IE 6 is no longer necessary to support for most projects (4.6% globally, 2% in the US and Europe as of February 2011).</p>
 <p>In the future I intend to create a simple jQuery plug-in that will apply the absolute positioning technique to a <code>.box</code>.</p>
 <ul>

@@ -3,11 +3,11 @@ layout: post
 title: "CSS Text Shadows in Internet Explorer"
 date: 2011-03-10 11:50
 comments: true
-categories: css polyfill ie plugin
+categories: css polyfill ie plug-in
 ---
 <p>CSS3 introduced a new <a href="http://www.w3.org/TR/css3-text/#text-shadow"><code>text-shadow</code> property</a> that allows for, well, shadows to be placed on text. As of February 2011, <a href="http://caniuse.com/css-textshadow"><code>text-shadow</code> is only supported in 48% of browsers</a> in use. Internet Explorer 8 and below do not support <code>text-shadow</code>; surprisingly Internet Explorer 9 doesn't either. Because the majority (90%) of non-IE browsers already supports <code>text-shadow</code>s natively, it's most interesting to try and <a href="http://remysharp.com/2010/10/08/what-is-a-polyfill/">polyfill</a> IE. I've created a <a href="https://github.com/heygrady/textshadow">Textshadow jQuery plug-in</a> for just this purpose. Read below for an overly thorough explanation of hacking IE filters to get a convincing text shadow.</p>
 
-<h3>Goals</h3>
+{% h3 Goals %}
 <p>The goal is to create a <code>text-shadow</code> polyfill for IE 9 and below and other <a href="https://developer.mozilla.org/en/CSS/text-shadow#Browser_compatibility">browsers that lack support</a>. It must look close to the implementation in supported browsers and follow the W3C specification as closely as possible.</p>
 <ul>
 	<li>Shouldn't affect content layout</li>
@@ -16,7 +16,7 @@ categories: css polyfill ie plugin
 </ul>
 <!--more-->
 
-<h2>Text Shadow</h2>
+{% h2 Text Shadow %}
 <p>Below is the example of the goal: the native text-shadow as rendered in Chrome 9. The shadow is red to add the greatest contrast between the black text and the white background.</p>
 <figure>
 	<img src="http://assets.heygrady.com/shadow/textshadow-chrome-9.png" alt="text-shadow Image" />
@@ -28,7 +28,7 @@ categories: css polyfill ie plugin
 {% gist 863419 textshadow.css %}
 <p>None of the browsers that support <code>text-shadow</code> require a vendor prefix making <a href="http://www.css3.info/preview/text-shadow/"><code>text-shadow</code> extremely easy to implement</a>. As noted above, this will not work in IE including version 9.</p>
 
-<h2>Using IE Filters</h2>
+{% h2 Using IE Filters %}
 <p>While IE doesn't directly support the CSS3 <code>text-shadow</code> property, it does support proprietary filters. Of course these filters have drawbacks; namely IE 8 and below <a href="http://developer.yahoo.com/performance/rules.html#no_filters">apply them very slowly</a> and they have poorly documented features. For instance, the IE filters will apply to text unless the element has a background applied; the filters will also apply to borders if they are present. Another issue that will become clear later is that IE renders the text with alpha-transparent artifacts that make the text harder to read.</p>
 <p>There are a few IE filters that seem promising. Most often the shadow filter is proposed as an alternative to native <code>text-shadow</code> although the most compelling articles use a <a href="http://kilianvalkhof.com/2008/design/almost-cross-browser-text-shadow/">combination of blur and glow</a> to achieve a <code>text-shadow</code> effect (<a href="http://placenamehere.com/article/384/css3boxshadowininternetexplorerblurshadow/">another great example only uses blur</a>).</p>
 <ul>
@@ -38,7 +38,7 @@ categories: css polyfill ie plugin
 	<li><a href="http://msdn.microsoft.com/en-us/library/ms532979(v=vs.85).aspx">Blur Filter</a></li>
 </ul>
 
-<h3>Shadow</h3>
+{% h3 Shadow %}
 <figure>
 	<img src="http://assets.heygrady.com/shadow/shadow-ie8.png" alt="Shadow Filter Image" />
 	<figcaption>Shadow Filter in IE 8
@@ -67,7 +67,7 @@ categories: css polyfill ie plugin
 	<li>The artifacting is distracting and makes the text harder to read.</li>
 </ul>
 
-<h3>DropShadow</h3>
+{% h3 DropShadow %}
 <figure>
 	<img src="http://assets.heygrady.com/shadow/dropshadow-ie8.png" alt="Dropshadow Filter Image" />
 	<figcaption>Dropshadow Filter in IE 8
@@ -95,7 +95,7 @@ categories: css polyfill ie plugin
 	<li>The artifacting is distracting and makes the text harder to read.</li>
 </ul>
 
-<h3>Glow</h3>
+{% h3 Glow %}
 <figure>
 	<img src="http://assets.heygrady.com/shadow/glow-ie8.png" alt="Glow Filter Image" />
 	<figcaption>Glow in IE 8
@@ -124,7 +124,7 @@ categories: css polyfill ie plugin
 	<li>The artifacting is distracting and makes the text harder to read.</li>
 </ul>
 
-<h3>Blur</h3>
+{% h3 Blur %}
 <figure>
 	<img src="http://assets.heygrady.com/shadow/blur-ie8.png" alt="Blur Filter Image" />
 	<figcaption>Blur in IE 8
@@ -145,7 +145,7 @@ categories: css polyfill ie plugin
 	<li>Blur doesn't allow for color to be set directly although it does have a useless setting that will turn the text black.</li>
 </ul>
 
-<h2>Making Blur Work</h2>
+{% h2 Making Blur Work %}
 <figure>
 	<img src="http://assets.heygrady.com/shadow/blur-span-ie8.png" alt="Blur Filter with SPAN Image" />
 	<figcaption>Blur Filter in IE 8 with SPAN
@@ -155,11 +155,11 @@ categories: css polyfill ie plugin
 <p>Using a few <code>span</code> tags and duplicating the text allows for the blurred text to be placed behind the original text. By wrapping the original text in a <code>span</code>, duplicating the original text and adding it as a second <code>span</code>, and wrapping both in a third <code>span</code>, it becomes simple to position the blurred text as a shadow. As is shown above, using absolute positioning for the shadow can have undesired results. The absolute positioned <code>span</code> is collapsed to be as wide as the longest word. However, it is clear that the word "Some" has an appropriate text shadow. It is possible to support shadow color simply by setting the <code>color</code> property on the blurred text.</p>
 {% gist 863419 blurspan.html %}
 <p>The <code>.shadow</code> wrapper is given a <code>position: relative</code> to allow for proper positioning of the <code>.shadow-copy</code>. The <code>.shadow-copy</code> is given absolute positioning and a <code>z-index</code> of 1. The <code>.shadow-orig</code> is given <code>position: relative</code> and a <code>z-index</code> of 2 in order to place it above the <code>.shadow-copy</code>. The <code>top</code> and <code>left</code> properties can be applied to <code>.shadow-copy</code> to approximate the X and Y <code>text-shadow</code> offsets. In this case, <code>top</code> and <code>left</code> are set to zero because the blur filter already shifts the shadow by 2px as described above.</p>
-<h3>Fixing the Wrapping Issues</h3>
+{% h3 Fixing the Wrapping Issues %}
 <p>Instead of wrapping a long string of text in the <code>span</code> elements, it is more reliable to wrap individual words. This ensures that the <code>.shadow-copy</code> is always an appropriate width without having to set a hard <code>width</code> property in the CSS. Setting a hard width on the <code>span</code> would cause issues if the <code>text-size</code> were to change or the containing block changed size dynamically.</p>
 {% gist 863419 textshadow-plugin.html %}
 <p>The above is an example where the simple threesome of <code>span</code>s has been applied to every individual word. Note that in the word "shadow", a <code>span</code> is nested inside each <code>b</code> and <code>i</code> element as well.</p>
-<h2>Turning it into a jQuery Plugin</h2>
+{% h2 Turning it into a jQuery Plugin %}
 <figure>
 	<img src="http://assets.heygrady.com/shadow/textshadow-plugin-ie-8.png" alt="Textshadow Plugin Image" />
 	<figcaption>Textshadow Plugin in IE 8
@@ -168,7 +168,7 @@ categories: css polyfill ie plugin
 </figure>
 <p>I have created a simple jQuery plugin called <a href="https://github.com/heygrady/textshadow">jQuery Textshadow</a> that automatically wraps each word in the <code>span</code>s as shown above and applies the appropriate blur filter and positioning for the shadow. It even supports <a href="http://www.css3.info/preview/rgba/">RGBA</a> and <a href="http://www.css3.info/preview/hsla/">HSLA</a> by converting the values to a hex color and applying the alpha filter to the shadow. The plugin requires that a small CSS file also be included on the page in order to set up some base styles for the spans.</p>
 {% gist 863419 jquery.textshadow.css %}
-<h3>Interesting Notes</h3>
+{% h3 Interesting Notes %}
 <p>Currently the plug-in assumes it is being applied in IE only and doesn't do any feature detection. It should be applied using a tool like <a href="http://www.modernizr.com/">Modernizr</a> or <a href="http://msdn.microsoft.com/en-us/library/ms537512(v=vs.85).aspx">IE conditional comments</a>. It's not particularly speedy, especially if there are dozens of tags that need the shadow applied. The slowest part is actually wrapping the text nodes with the replacement HTML. It's acceptably fast in Internet Explorer 9 and noticeably slow in Internet Explorer 8.</p>
 <p>Curiously Internet Explorer 9 also applies a cleaner shadow that is closer to text shadow in other browsers. The blur in IE 8 is noticeably muddier than the browsers that support <code>text-shadow</code>. See the images below for comparison.</p>
 <figure>
