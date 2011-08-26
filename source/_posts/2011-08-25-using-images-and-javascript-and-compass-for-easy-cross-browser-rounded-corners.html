@@ -5,7 +5,7 @@ date: 2011-08-25 13:14
 comments: true
 categories: js sass compass polyfill plug-in
 ---
-<p>In a previous <a href="{% post_url 2011-02-24-cross-browser-rounded-corners-overview %}">post exploring rounded corner methods</a>, I covered a technique using absolute positioning for faking rounded corners in browsers greater than IE6. One issue with faking rounded corners is the amount of HTML markup required as well as the hassle of crafting the accompanying CSS. I have created a jQuery plug-in for adding the required markup and a complementary Sass/Compass @mixin for generating the required CSS. The markup generated utilizes jQuery UI theming for the CSS class names.</p>
+<p>In a previous <a href="{% post_url 2011-02-24-cross-browser-rounded-corners-overview %}">post exploring rounded corner methods</a>, I covered a technique using absolute positioning for faking rounded corners in browsers greater than IE6. One issue with faking rounded corners is the amount of HTML markup required as well as the hassle of crafting the accompanying CSS. I have created a jQuery plug-in for adding the required markup and a complementary Sass/Compass @mixin for generating the required CSS. The markup generated utilizes jQuery UI theming for the CSS class names. The code is <a href="https://github.com/heygrady/corners" title="jQuery corners">available on GitHub</a></p>
 <!--more-->
 {% h2 Summary of the Technique %}
 <p><a href="{% post_url 2011-02-24-cross-browser-rounded-corners-overview %}#using-absolute-positioning">As covered before</a>, the idea is to use extra markup and CSS to create rounded corners even without support for <code>border-radius</code>. Of course the technique is also useful for creating fancy corners that <code>border-radius</code> wouldn't support. The two examples below show a normal <code>div</code> using <code>border-radius</code> and a box that is using the absolutely positioned <code>span</code> technique from the previous article.</p>
@@ -59,22 +59,25 @@ categories: js sass compass polyfill plug-in
 <h5><code>@include corner-images( [$tl], [$t], [$tr], [$r], [$br], [$b], [$bl], [$l] )</code></h5>
 <ul>
 	<li><code>$tl</code> &mdash; [background-image] [width] [height] [background-position-x] [background-position-y] [left] [top] </li>
-	<li><code>$t</code> &mdash; [background-image] [height] [background-position-x] [background-position-y] [left] [right] [top]</li>
+	<li><code>$t</code> &mdash; [background-image] [height] [background-position-x] [background-position-y] [top] [left] [right]</li>
 	<li><code>$tr</code> &mdash; [background-image] [width] [height] [background-position-x] [background-position-y] [right] [top]</li>
 	<li><code>$r</code> &mdash; [background-image] [width] [background-position-x] [background-position-y] [right] [top] [bottom]</li>
 	<li><code>$br</code> &mdash; [background-image] [width] [height] [background-position-x] [background-position-y] [right] [bottom]</li>
-	<li><code>$b</code> &mdash; [background-image] [height] [background-position-x] [background-position-y] [left] [right] [bottom]</li>
+	<li><code>$b</code> &mdash; [background-image] [height] [background-position-x] [background-position-y] [bottom] [left] [right]</li>
 	<li><code>$bl</code> &mdash; [background-image] [width] [height] [background-position-x] [background-position-y] [left] [bottom]</li>
 	<li><code>$l</code> &mdash; [background-image] [width] [background-position-x] [background-position-y] [left] [top] [bottom]</li>
 </ul>
 {% h4 Using @mixin corner-border-width %}
-<p>The <code>corner-border-width</code> <code>@mixin</code> mimics a real border on the <code>box</code> using padding. As discussed above, setting a transparent border will cause some positioning issues because the <a href="<a href="http://jsfiddle.net/heygrady/HVNEJ/">">border appears outside of the element</a>. This issues is overcome by simply using <code>padding</code>. For convenience, if real padding is needed it can be passed as the second argument which will be added to the first argument. Both arguments are <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#lists">Sass lists</a> taking the same values as the <a href="http://reference.sitepoint.com/css/padding">CSS padding property</a>. Similar to <code>padding</code>, each argument can take a list of one, two, three or four values.</p>
+<p>The <code>corner-border-width</code> <code>@mixin</code> mimics a real border on the <code>box</code> using padding. As discussed above, setting a transparent border will cause some positioning issues because <a href="http://jsfiddle.net/heygrady/HVNEJ/">borders appears outside of the element</a>. This issues is overcome by simply using <code>padding</code>. For convenience, if real padding is needed it can be passed as the second argument which will be added to the first argument. Both arguments are <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#lists">Sass lists</a> taking the same values as the <a href="http://reference.sitepoint.com/css/padding">CSS padding property</a>. Similar to <code>padding</code>, each argument can take a list of one, two, three or four values.</p>
 <h5><code>@include corner-border-width( $border-width, [$padding] )</code></h5>
 <ul>
 	<li><code>$border-width</code> &mdash; [top-width] [right-width] [bottom-width] [left-width]</li>
 	<li><code>$padding</code> &mdash; [top-width] [right-width] [bottom-width] [left-width]</li>
 </ul>
-{% h3 Basic Fake <code>border-radius</code> Example %}
+{% h3 The Actual @mixin %}
+<p>Below is the entire <code>@mixin</code> that is used for generating the CSS. There are the two mixins mentioned above as well as a number of helper functions for manipulation all of the list values. Close inspection reveals that there are a number over default variables available. Passing "default" instead of "auto" for any value will favor the default value if it exists. Auto values are based on the other passed values while default values rely blindly on the default variables. The <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#variable_defaults_">default variables can be easily overridden</a>. At the bottom of the file, the default styles are visible. Simply including this plugin will generate the default styles as shown in the base.css above.</p>
+{% github_code https://github.com/heygrady/corners/blob/master/sass/_ui-corners.scss  400px %}
+{% h2 Basic Fake <code>border-radius</code> Example %}
 <p>In order to mimic <code>border-radius</code> we'll need some images. For this example we'll use eight separate images as described in the <a href="{% post_url 2011-02-24-cross-browser-rounded-corners-overview %}#background-images">previous article</a>. Using the <code>@mixin</code> this becomes very simple as shown below.</p>
 {% gist 1161561 box.scss %}
 <p>Above is a <code>.box</code> where an image is used for each corner and side. The <code>.box</code> also has a <code>border-width</code> of 1px and <code>padding</code> of 10px. Below is the CSS code that is generated. Only the code that is distinct form the basic CSS is generated. The "?1313871969" after the images is a cache busting artifact caused by the <code>@mixin</code>s reliance on <a href="http://compass-style.org/reference/compass/helpers/urls/#image-url">Compass's <code>image-url</code> <code>@function</code></a> and can be turned off by setting the global <code>$ui-corners-cache-buster</code> variable to false.</p>
@@ -84,7 +87,7 @@ categories: js sass compass polyfill plug-in
 	<iframe width="202" height="202" scrolling="no" frameborder="0" src="http://assets.heygrady.com/corners-2/box.html"></iframe>
 	<figcaption>Mimicking <code>border-radius</code><br>(<a href="http://assets.heygrady.com/corners-2/box.html" target="_blank">view live example</a>)</figcaption>
 </figure>
-{% h3 Basic Sprite Example %}
+{% h2 Basic Sprite Example %}
 <p>Of course include eight separate images just to mimic <code>border-radius</code> isn't most appealing thing in the world &mdash; <a href="http://css-tricks.com/158-css-sprites/">sprites are a good thing</a>. Currently the sprite needs to be produced beforehand and cannot be generated with <a href="http://compass-style.org/reference/compass/utilities/sprites/">Compass's excellent sprite functions</a>. The sprite image from the <a href="{% post_url 2011-02-24-cross-browser-rounded-corners-overview %}#background-images">previous article</a> will be used.</p>
 {% gist 1161561 box-sprite.scss %}
 <p>In the example above the same image is passed in for each of the corners and sides. For each corner a <code>width</code>, <code>height</code>, <code>background-position-x</code> and <code>background-position-y</code> are supplied. For the sides the respective <code>height</code> or <code>width</code> is specified as "auto" and then <code>background-position-x</code> and <code>background-position-y</code> are supplied. The above example will generate the CSS below.</p>
@@ -95,3 +98,26 @@ categories: js sass compass polyfill plug-in
 	<figcaption>Sprite Example<br>(<a href="http://assets.heygrady.com/corners-2/box-sprite.html" target="_blank">view live example</a>)</figcaption>
 </figure>
 <p>Using a sprite in this example will significantly reduce the file sizes. The eight images together total 4.4KB while the sprite image is only 1.1KB. Of course this also removes eight HTTP requests which is always a good thing &mdash; <a href="http://code.google.com/speed/page-speed/docs/rtt.html#SpriteImages">ask Google</a>.</p>
+{% h2 Fancy Sprite Example %}
+<p>Of course, this technique is not limited by simply mimicking <code>border-radius</code>. It's also possible to apply fancier borders that CSS could never do. For instance, imagine creating a box where nearly every Photoshop Layer Style has been applied &mdash; Drop Shadow, Inner Shadow, Outer Glow, Inner Glow, Bevel and Emboss and Color Overlay. It would be hard to mimick that without using images.</p>
+<figure>
+<img src="http://assets.heygrady.com/corners-2/i/box-fancy.png" alt="">
+<figcaption>Super Fancy Border</figcaption>
+</figure>
+<figure>
+<img src="http://assets.heygrady.com/corners-2/i/corner-fancy-sprite.png" alt="">
+<figcaption>Super Fancy Sprite</figcaption>
+</figure>
+<figure>
+<img src="http://assets.heygrady.com/corners-2/i/corner-fancy-sprite-sides.png" alt="">
+<figcaption>Super Fancy Sides</figcaption>
+</figure>
+<p>Above is an image created using the list of Photoshop filters listed above. It has been turned into two different sprites. It's not possible to use a single sprite for all eight corners and sides when the sides are more that 1px solid colors. The top and bottom sides are repeated above and below the corners in the sprite.</p>
+{% gist 1161561 box-fancy.scss %}
+<p>In the above Sass, the positioning values are also used to move the shadow and glow outside the original box. For instance, the top-left corner is the first argument in <code>corner-images</code> and the first item in the list is the fancy sprite. The top left corner image is 18px by 18px and starts at 0px by 18px within the sprite. The first 8px of the corner are actually shadow as are the top 4px. The similar measurements are done for all of the corners and sides. The right and left sides get their own sprite because they didn't fit in the other one. This generates the CSS below.</p>
+{% gist 1161561 box-fancy.css %}
+<p>Below you can see the fancy sprite corners in a live example. It is important to note that the CSS will scale with the box as its content grows. The generated CSS would apply to any size box without any alterations.</p>
+<figure>
+	<iframe width="214" height="213" scrolling="no" frameborder="0" src="http://assets.heygrady.com/corners-2/box-fancy.html"></iframe>
+	<figcaption>Fancy Example<br>(<a href="http://assets.heygrady.com/corners-2/box-fancy.html" target="_blank">view live example</a>)</figcaption>
+</figure>
