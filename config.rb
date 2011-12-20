@@ -2,7 +2,7 @@
 require 'html5-boilerplate'
 project_type = :stand_alone
 
-css_dir = "public/css"
+css_dir = "source/css"
 sass_dir = "sass"
 images_dir = "source/i"
 javascripts_dir = "source/js"
