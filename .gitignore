@@ -1,14 +1,17 @@
 .bundle
 .DS_Store
 .sass-cache
-_gist_cache
-_code_cache
+.gist-cache
+.pygments-cache
 _deploy
 public
+sass.old
+source.old
 source/_stash
 source/stylesheets/screen.css
 source/css/screen.css
 vendor
+node_modules
 
 /.project
 /blog.sublime-project
