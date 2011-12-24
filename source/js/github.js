@@ -18,8 +18,10 @@ var github = (function(){
           if (!data || !data.repositories) { return; }
           for (var i = 0; i < data.repositories.length; i++) {
             if (options.skip_forks && data.repositories[i].fork) { continue; }
+            if (options.skip_regex && options.skip_regex.test(data.repositories[i].name)) { continue; }
             repos.push(data.repositories[i]);
           }
+          console.log(repos);
           repos.sort(function(a, b) {
             var aDate = new Date(a.pushed_at).valueOf(),
                 bDate = new Date(b.pushed_at).valueOf();
