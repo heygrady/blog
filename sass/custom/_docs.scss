@@ -1,0 +1,39 @@
+// set font
+.function, .constant, .variable, .key, .value, .type, .unit, .default {
+	font-family: $mono !important;
+}
+
+// colors and styles
+.function { color: $solar-blue !important; font-weight: bold !important; }
+.constant { color: $solar-blue !important; }
+.variable { color: $solar-blue !important; font-weight: normal !important; }
+.optional { font-style: italic !important; }
+.key { color: $solar-blue !important; }
+.value { color: $solar-yellow !important; }
+.type { color: $solar-green !important; }
+.unit { color: $solar-cyan !important; }
+.default { color: $base01 !important; font-style: italic !important; }
+
+// blocks
+h3.function, h3.constant {
+  background-color: #F2F2F2;
+  border: 0.5em solid #fff;
+  @include border-radius(.3em);
+  @include box-shadow(rgba(#000, 0.15) 0 1px 4px);
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+}
+.documentation {
+  background-color: #F2F2F2;
+  border: 0.5em solid #fff;
+  @include border-radius(.3em);
+  @include box-shadow(rgba(#000, 0.15) 0 1px 4px);
+  padding: 0.5em;
+  margin-bottom: 1.5em;
+
+  ul {
+  	margin-left: 1.3em;
+  }
+}
+ul.arguments {
+}
