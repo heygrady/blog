@@ -1,0 +1,123 @@
+---
+layout: post
+title: "Building jQuery on Windows"
+date: 2012-01-04 13:02
+comments: true
+categories: jquery windows
+---
+<p>Like many things involving open source development, the jQuery project is designed to be worked on in a Unix-like environment such as OS X. Most regular people have a Windows machine (<a href="http://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8">around 90%</a>) but <a href="http://sixrevisions.com/infographics/web-designers-vs-web-developers-infographic/">developers aren't regular people</a>. Regardless, I primarily develop on Windows and I recently wanted to work with the jQuery code base and found the instructions for setting up your environment on Windows to be a little outdated. Thankfully the open source world is getting much friendlier for Windows developers. This article covers the official jQuery instructions and my preferred setup.</p>
+<!--more-->
+{% h2 Existing Instructions %}
+<p>Likely because the jQuery developers are busy with more important things, the documentation for actually setting up your environment to properly develop for jQuery is a little sparse. In the case of a Windows setup the documentation is also a little outdated and possibly overkill.</p>
+{% h4 The Instructions jQuery Provides %}
+<ul>
+	<li>From the <a href="https://github.com/jquery/jquery">Readme on the jQuery GitHub</a>
+		<ul>
+			<li>Option 1: Install <a href="https://code.google.com/p/msysGit/downloads/list">msysGit</a>, <a href="http://gnuwin32.sourceforge.net/packages/make.htm">GNU Make</a> and <a href="http://nodejs.org/">Node.js</a>.</li>
+			<li>Option 2: Install <a href="http://cygwin.com/">Cygwin</a> and <a href="http://nodejs.org/">Node.js</a>.</li>
+		</ul>
+	</li>
+	<li>from the <a href="http://docs.jquery.com/Tips_for_jQuery_Bug_Patching">Tips for jQuery Bug Patching</a>
+		<ul>
+			<li>Use <a href="http://www.wampserver.com/en/">WAMP</a>.</li>
+		</ul>
+	</li>
+</ul>
+{% h3 What's Outdated %}
+{% h4 Node.js %}
+<p>The links provided to Node.js on the jQuery GitHub page are to <a href="http://node-js.prcn.co.cc/">old binary builds of Node.js for Windows</a>. Node.js was recently updated with a <a href="http://blog.nodejs.org/2011/06/23/porting-node-to-windows-with-microsoft%E2%80%99s-help/">full installer for Windows thanks to Microsoft</a>. You can <a href="http://nodejs.org/#download">download Node.js for Widows here</a>.</p>
+{% h3 What's Overkill %}
+{% h4 GNU Make %}
+<p>If you install the full version of msysGit you shouldn't need to also install GNU Make (<a href="#msysgit-and-tortoisegit">more details below</a>). More importantly, When you install GNU Make by itself it actually doesn't work. The jQuery make file is filled with Linux-specific shell commands that Windows doesn't support natively so the build will always fail. It's actually not possible to fix it by re-writing the Makefile to be Windows compatible because Windows batch files aren't as full-featured as a Linux shell script.</p>
+{% h4 Cygwin %}
+<p>Cygwin is a "collection of tools which provide a Linux look and feel environment for Windows." It's nothing too magical; it basically ports common command-line programs to Windows. For instance, normally in a Windows command prompt to get a director listing you'd have to type <code>dir</code> but on Linux you type <code>ls</code> and the results looks different. What Cygwin does is makes the <code>ls</code> command (and many others) work correctly on Windows. It doesn't, however, make Windows magically become Linux. The primary benefit is that programs that rely on Linux command-line tools (but don't require Linux specifically) can run on Windows using Cygwin. However, <a href="http://stackoverflow.com/questions/771756/what-is-the-difference-between-cygwin-and-mingw">Cygwin is a bit overkill for our purposes</a>. We don't need a "complete UNIX/POSIX environment on Windows."</p>
+<p>Cygwin isn't necessary if you install the full version of msysGit (<a href="#msysgit-and-tortoisegit">more details below</a>).</p>
+{% h4 WAMP %}
+<p>WAMP is a great tool for getting up and running with Apache, MySQL and PHP very quickly. There's no doubt that WAMP is extremely popular. However, for the sole purpose of running the jQuery unit tests it's a bit overkill. For instance, there's no need for MySQL at all and Apache is just <em>one</em> way to run PHP in Windows.</p>
+{% h2 Better Instructions %}
+<ol>
+	<li>Install <a href="https://code.google.com/p/msysGit/downloads/list">msysGit-netinstall</a> (<a href="https://code.google.com/p/msysgit/downloads/detail?name=msysGit-netinstall-1.7.8-preview20111206.exe&amp;can=2&amp;q=">msysGit-netinstall-1.7.8-preview20111206.exe</a> as of 1/4/2012)</li>
+	<li>Install <a href="http://code.google.com/p/tortoisegit/downloads/list">TortoiseGIT</a> (optional)</li>
+	<li>Install <a href="http://nodejs.org/#download">Node.js for Widows</a></li>
+	<li>Configure your environment path.</li>
+	<li>Install <a href="http://technet.microsoft.com/en-us/library/cc731911.aspx">IIS for Widows 7</a></li>
+	<li>Install <a href="http://windows.php.net/download/">PHP for Windows</a> (installer)</li>
+	<li>Edit the jQuery Makefile.</li>
+</ol>
+{% h2 Installing MsysGit and TortoiseGIT %}
+<p>The msysGit download page is needlessly confusing with a range of different packages available. The two important versions are the "Full installer for official Git for Windows" and the "Full installer (self-contained) if you want to hack on Git." The primary difference between the two is that the self-contained version is "complete, in the sense that you just need to install msysGit, and then you can build Git without installing any 3rd-party software." The differences are explained in <a href="https://git.wiki.kernel.org/articles/i/n/s/MSysGit~InstallMSysGit_1a31.html">the msysGit wiki</a>.</p>
+<p>The part about being "complete" is key because, similar to Cygwin, the developers of msysGit have re-created a handful of required Linux commands and made them compatible with Windows (actually the <a href="http://www.mingw.org/">MinGW</a> guys did it). This essentially means that installing msysGit gives you something similar to what Cygwin offers. More importantly, you can use those commands for building jQuery on Windows without installing anything as large or complex as Cygwin. MsysGit actually includes a full version of GNU Make as well so there's no reason to download GNU Make separately.</p>
+<p>The net install version is different than the version used in the <a href="http://help.github.com/win-set-up-git/">Github Instructions for installing Git on Windows</a>. If you've already installed that version it's ok. You can leave it in place and install this version as well. What we're really after is the GNU Make that comes with the netinstall of msysGit.</p>
+<ol>
+	<li>Download the netinstall version of msysGit</li>
+	<li>Install msysGit to the recommended location.<br>
+		<img src="/i/1/msysgit-1.png"></li>
+	<li>It will open a command prompt and start downloading and compiling stuff for a while. At the end you can safely close the window.<br>
+		<img src="/i/1/msysgit-2.png"></li>
+</ol>
+{% h4 TortoiseGIT %}
+<p>TortoiseGIT is totally optional but it is nearly as full-featured as TortoiseSVN and is an extremely easy way to work with Git on Windows. I would highly recommend it for anyone new to Git, particularly if you've used SVN in the past.</p>
+{% h2 Installing Node.js %}
+<p>The Node.js installer is really straight-forward. After installing you may need to restart your command prompt to make the <code>node</code> command available.</p>
+{% h2 Configuring Your Environment Path %}
+<p>Both Git and Node.js need to be added to the your windows environment paths.</p>
+<ol>
+	<li>Open the Control Panel and search for "environment." Then choose "Edit the system environment variables."<br>
+		<img src="/i/1/control-panel-1.png">
+	</li>
+	<li>Click the "Environment Variables..." button.<br>
+		<img src="/i/1/control-panel-2.png">
+	</li>
+	<li>Locate and highlight the "Path" system variable and click the "Edit..." button.<br>
+		<img src="/i/1/control-panel-3.png">
+	</li>
+	<li>Verify that the correct paths have been set in text field. <strong>HINT:</strong> it's useful to copy all of the paths into Notepad or a similar tool to make it easier to read. The following entries should exist in your path. The Node.js entries likely exist already.
+		<ul>
+			<li>C:\Users\<em>{your user name}</em>\AppData\Roaming\npm;</li>
+			<li>C:\Program Files (x86)\nodejs\;</li>
+			<li>C:\msysgit\mingw\bin;</li>
+			<li>C:\msysgit\bin;</li>
+		</ul>
+		<img src="/i/1/control-panel-4.png">
+	</li>
+</ol>
+{% h2 Installing IIS and PHP for Windows 7 %}
+<p>IIS comes with Windows and can be easily installed by following the <a href="http://technet.microsoft.com/en-us/library/cc731911.aspx">IIS instructions provided by Microsoft</a>. However, Microsoft also offers a <a href="http://learn.iis.net/page.aspx/375/set-up-fastcgi-for-php/">video tutorial for configuring FastCGI with IIS and PHP</a> and even has a <a href="http://www.microsoft.com/web/gallery/install.aspx?appid=PHP53">quick install program available to install PHP with IIS</a>.</p>
+<p>Once PHP is installed in IIS, all that's left is to create a new site in the "Internet Information Services (IIS) Manager" that points to the jQuery source directory.</p>
+<ol>
+	<li>Install PHP in IIS as described (look up one paragraph).</li>
+	<li>Check out the jQuery source of jQuery as described in the "Build a Local Copy of jQuery" section of <a href="http://docs.jquery.com/Tips_for_jQuery_Bug_Patching">Tips for jQuery Bug Patching</a>.</li>
+	<li>You can open IIS by searching for it in the start menu.<br>
+		<img src="/i/1/iis-0.png"></li>
+	<li>Rick-click on the sites tab and choose "Add Web Site..." from the menu.<br>
+		<img src="/i/1/iis-1.png"></li>
+	<li>Fill-in your site details. The Site name is arbitrary. The Physical path is where you checked out the jQuery source code to. The Port is also arbitrary. It's common to specify a non-standard port number for security reasons. Below a port number of 8000 was specified. With that configuration, visiting "localhost:8000/test/" in your browser will begin executing the jQuery unit tests.<br>
+		<img src="/i/1/iis-2.png"></li>
+</ol>
+{% h2 Editing the jQuery Makefile %}
+<p>The MinGW binaries will enable the `make` command and allow the Linux-specific shell commands to work flawlessly on Windows. However, the jQuery Makefile has a line that tries to find Node.js which causes the build script to think that Node.js is missing from your system. This is easy enough to correct.</p>
+{% codeblock Original Makefile %}
+SRC_DIR = src
+TEST_DIR = test
+BUILD_DIR = build
+
+PREFIX = .
+DIST_DIR = ${PREFIX}/dist
+
+JS_ENGINE ?= `which node nodejs 2>/dev/null`
+...
+{% endcodeblock %}
+{% codeblock Windows Friendly Makefile %}
+SRC_DIR = src
+TEST_DIR = test
+BUILD_DIR = build
+
+PREFIX = .
+DIST_DIR = ${PREFIX}/dist
+
+JS_ENGINE = node
+...
+{% endcodeblock %}
+{% h2 Conclusion %}
+<p>After following the steps above you should be able to execute commands in the Windows Command Prompt similar to Unix-like environments. This should make it trivial to work with the jQuery source code. The basic steps above could be used to make development of almost any Linux-centric project easier on Windows.</p>
+<p>The following shows Node.js, GNU Make, Git and PHP available from the windows command-prompt.<br><img src="/i/1/final.png"></p>
