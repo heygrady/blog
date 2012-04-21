@@ -37,8 +37,31 @@ figcaption {
     padding-top: 0;
   }
 }
+p.fine-print {
+  font-style: italic;
+  font-size: 0.7em;
+  line-height: 1.2em;
+  margin-top: -1.5em;
+}
 p, li {
   img {
     margin: 0;
+  }
+}
+dl {
+  margin-bottom: 1em;
+  dt {
+    font-weight: bold;
+  }
+  dd {
+    padding-left: 1em;
+  }
+}
+p, li {
+  code {
+    display: inline;
+  }
+  a code {
+    color: inherit;
   }
 }

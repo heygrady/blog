@@ -14,4 +14,4 @@ vendor
 node_modules
 
 /.project
-/blog.sublime-project
+/*.sublime-*

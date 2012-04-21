@@ -1,17 +1,41 @@
 ---
 layout: post
-title: "Length and Angle Unit Conversion in JavaScript"
+title: "Length Unit Conversion in JavaScript"
 date: 2011-12-21 10:18
 comments: true
 categories: css javascript
 ---
-<p>When creating JavaScript libraries, it's difficult to support the full range of units and most developers settle on just supporting pixels. CSS supports several <a href="https://developer.mozilla.org/en/CSS/length">units for length as explained is this <abbr title="Mozilla Developer Network">MDN</abbr> article</a> but supporting them with JavaScript can be tricky. This post explains CSS length units, the basic technique for converting units, the inherent browser bugs that need to be overcome and walks through a new <a href="https://github.com/heygrady/Units">Units library</a> I've created on GitHub.</p>
+<p>When creating JavaScript libraries, it's difficult to support the full range of units and most developers settle on just supporting pixels. CSS supports several <a href="https://developer.mozilla.org/en/CSS/length">units for length as explained in this <abbr title="Mozilla Developer Network">MDN</abbr> article</a> but supporting them with JavaScript can be tricky. This post explains the basic technique for converting units and the inherent browser bugs that need to be overcome. This post also introduces a new <a href="https://github.com/heygrady/Units">Units library</a> I've created and posted to GitHub.</p>
+<p>If you have some weird reason to handle arbitrary units in your JavaScript library, the code demonstrated below should offer the most complete solution possible in the smallest possible package.</p>
 <!--more-->
+{% h2 What We're Trying to Do %}
+<p>The basic goal is to create a small library that will make it possible to convert any valid value to pixels. This makes it possible to do further calculations using that pixel value.</p>
+{% codeblock example.js %}
+// find our target element
+var elem = document.getElementById('#some-elem');
+
+// find an arbitrary value in pixels
+Length.toPx(elem, '10%'); // depends on parent width
+Length.toPx(elem, '96px'); // 96px
+Length.toPx(elem, '25.4mm'); // 96px
+Length.toPx(elem, '2.54cm'); // 96px
+Length.toPx(elem, '1in'); // 96px
+Length.toPx(elem, '72pt'); // 96px
+Length.toPx(elem, '6pc'); // 96px
+Length.toPx(elem, '25.4mozmm'); // around 96px
+Length.toPx(elem, '10vh'); // depends on viewport
+Length.toPx(elem, '10vw'); // depends on viewport
+Length.toPx(elem, '10vm'); // depends on viewport
+Length.toPx(elem, '6em'); // 96px with default font styles
+Length.toPx(elem, '6rem'); // 96px with default font styles
+Length.toPx(elem, '13.4ex'); // around 96px with default font styles
+Length.toPx(elem, '12ch'); // around 96px with default font styles
+{% endcodeblock %}
 {% h2 The Trouble with Units %}
-<p>Converting between length units is particularly difficult because all of the units means something different based on factors such as font and font-size (em, ch, ex), the operating system settings for your monitor (in, cm, mm, pt) or even the dimensions of the browser (vh, vw, vm). Because there is no direct conversion available to JavaScript it's necessary to rely on manipulating the <code>style</code> attribute on the element to trick the browser into doing the conversion for you.</p>
-{% h3 Absolute Length Units %}
-<p>The easiest units to convert are the absolute units. These are units that presumably represent real, fixed lengths. In the the real world there is no such thing as a relative inch &mdash; an inch is always an inch. On computers it's a little different; the absolute lengths are based on the operating system <abbr title="Dots Per Inch">DPI</abbr> setting. On the vast majority of computers this is set to 96, which means that 1 inch usually equals 96 pixels. However, this can sometimes change: it's not entirely uncommon for the DPI to be set to 120 which would make 1 inch equal to 120 pixels.</p>
-<p>Because DPI is the deciding factor in absolute lengths, it's useful to define the conversions relative to the inch; this makes all of the other conversions easier (thankfully a pixel is always a pixel). If you know the pixels in an inch, you can easily know the pixels in a pica.</p>
+<p>Converting between length units is not exactly straight-forward because each unit can have different pixel value based on a variety of uncontrollable conditions. Factors such as font properties (em, ch, ex), the <abbr title="Operating System">OS</abbr> settings for your display <abbr title="Dots Per Inch">DPI</abbr> (in, mm, cm, pt, pc) or even the dimensions of the browser (vh, vw, vm) can change the pixel value of a unit. Because there is no direct conversion function available to JavaScript it's necessary to rely on manipulating the <code>style</code> attribute on the element in-order-to trick the browser into doing the conversion for you.</p>
+{% h3 Absolute Units %}
+<p>The easiest units to convert are the absolute units. These are units that presumably represent real, fixed lengths (but actually don't). In the the real world there is no such thing as a relative inch &mdash; an inch is always an inch regardless of the settings on your monitor. On computers it's a little different; the absolute lengths are based on the DPI setting. On the vast majority of computers this is set to 96, which means that 1 inch usually equals 96 pixels. However, this can sometimes change: it's not entirely uncommon for the DPI to be set to 120 which would make 1 inch equal to 120 pixels. This is also already different on mobile devices like <a href="http://www.theregister.co.uk/2010/06/25/retina_display_claims_upheld/">the iPhone 4 or newer</a> (although the <a href="http://www.mobilexweb.com/blog/iphone4-ios4-detection-safari-viewport">iPhone currently lies and claims to be 163DPI</a>).</p>
+<p>Because DPI is the deciding factor in absolute lengths, it's useful to define the conversions relative to the inch; this makes all of the other conversions easier (thankfully a pixel is always a pixel &mdash; except on iPhones). If you know the pixels in an inch, you can easily know the pixels in a pica.</p>
 <dl>
 	<dt>inches</dt>
 	<dd>relative to OS DPI, usually 96px</dd>
@@ -23,98 +47,65 @@ categories: css javascript
 	<dd>1pt = 1in/72</dd>
 	<dt>picas</dt>
 	<dd>1pc = 1in/6</dd>
+    <dt>Mozilla millimeters</dt>
+    <dd>1mozmm = whatever Mozilla feels like</dd>
 </dl>
-{% h3 Font-relative Length Units %}
-<p>As the name might suggest, font-relative units are dependent on the font and font-size of the element itself. The most commonly used is the em unit. One em equals the font-size of the element (except in the case of the font-size property where it means the font-size of the parent element). The ex and ch units are rarely used and equal the height of lower-case "x" and the width of a "0" respectively. New to CSS3 &mdash; and much more useful than ex &mdash; is the rem unit which equals the em of the html element. Converting rem and em to pixels is relatively straight-forward &mdash; all you really need is the element's (or the html element's) font-size &mdash; but ex and ch require using the <code>style</code> attribute as we'll see later.</p>
-{% h3 Viewport-relative Length Units %}
-<p>Presumably useful for flexible layouts, these units are relative to the browser size and are currently only supported in IE9 and Opera. The three units are vh (viewport height/100) vw (viewport width/100) and vm (the smaller of vh or vw). These units change every time the browser is resized.</p>
+{% h3 Font-relative Units %}
+<p>As the name might suggest, font-relative units are dependent on the font settings of the element itself. The most commonly used is the em unit. One em equals the <code>font-size</code> of the element (except in the case of the <code>font-size</code> property where it means the <code>font-size</code> of the parent element). The ex and ch units are rarely used and equal the height of lower-case "x" and the width of a "0" respectively. New to CSS3 &mdash; and much more useful than ex &mdash; is the rem unit which equals the em of the <code>html</code> element. Converting rem and em to pixels is relatively straight-forward &mdash; all you really need is the element's (or the parent or <code>html</code> element's) <code>font-size</code> &mdash; but ex and ch require using the <code>style</code> attribute as we'll see later.</p>
+{% h3 Viewport-relative Units %}
+<p>Presumably useful for flexible layouts, these units are calculated relative to the browser dimensions and are currently only supported in IE9 and Opera. The three units are vh (viewport height/100) vw (viewport width/100) and vm (the smaller of vh or vw). These units change every time the browser is resized.</p>
 {% h3 Percentage Lengths %}
-<p>Perhaps the most complex unit to convert is percentage. The relative length for a percentage can differ based on the CSS property but it is usually based on the width parent element. For instance, a width of 50% means 50% of the width of the parent element. For things like padding and margin it can get confusing because these also always mean the width of the parent; counter-intuitively, padding-top of 50% means 50% of the width of the parent element, not the height. The best way to figure out what percentage is referring to is to <a href="https://developer.mozilla.org/en/CSS/padding">look up the property up on the MDN website</a>.</p>
+<p>Perhaps the most complex unit to convert is percentage. The relative length for a percentage can differ based on the CSS property but it is usually based on the width of the parent element. For instance, a <code>width</code> of 50% means 50% of the width of the parent element. For things like <code>padding</code> and <code>margin</code> it can get confusing because these also always mean the width of the parent; counter-intuitively, <code>padding-top</code> of 50% means 50% of the width of the parent element as well, not the height. The best way to figure out what percentage is referring to is to <a href="https://developer.mozilla.org/en/CSS/padding">look the property up on the MDN website</a>.</p>
 {% h2 Converting Units %}
-<p>As mentioned above, converting units can be done reliably by setting the value using the <code>style</code> property and reading it back using <code>getCurrentStyle</code>. The <code>getCurrentStyle</code> function always returns values using pixels.</p>
-{% codeblock Converting units with the style property lang:js %}
-(function(window, document, undefined){
-"use strict";
-// convert a value to pixels
-function toPx(elem, value, prop) {
-    // use width as the default property, or specify your own
-    prop = prop || 'width';
-
-    // remember the current style
-    var style = elem.style,
-        inlineValue = style[prop],
-        ret;
-    
-    // set the style on the target element
-    try {
-        style[prop] = value;
-    } catch(e) {
-        // IE 8 and below throw an exception when setting unsupported units
-        return 0;
-    }
-
-    // read the computed value
-    // if style is nothing we probably set an unsupported unit
-    ret = !style[prop] ? 0 : currCSS(elem, prop);
-
-    // reset the style back to what it was or blank it out
-    style[prop] = inlineValue !== undefined ? inlineValue : null;
-
-    // remove the unit and return a number
-    return parseFloat(ret);
-}
-
-// return the computed value of a CSS property
-function currCSS(elem, prop) {
-    var value,
-        pixel,
-        getComputedStyle = document.defaultView && document.defaultView.getComputedStyle,
-        unit;
-    if (getComputedStyle) {
-        // FireFox, Chrome/Safari, Opera and IE9+
-        value = getComputedStyle(elem)[prop];
-    } else if (pixel = elem.style['pixel' + prop.charAt(0).toUpperCase() + prop.slice(1)]) {
-        // IE and Opera support pixel shortcuts for top, bottom, left, right, height, width
-        // Chrome supports pixel shortcuts for those properties only when an absolute unit is used
-        value = pixel + 'px';
-    } else {
-        // IE 8 and below won't convert units for us
-        value = elem.currentStyle[prop];
-
-        // check the unit
-        unit = (value.match(/^(-?[\d+\.\-]+)([a-z]+|%)$/i)||[])[2];
-        if (unit && unit !== 'px') {
-            // try to convert using a prop that will return pixels
-            // this will be accurate for everything (except font-size and some percentages)
-            value = toPx(elem, value, 'width') + 'px';
-        }
-    }
-    return value;
-}
-
-// expose the conversion function to the window object
-window.Length = {
-    toPx: toPx
-}
-}(this, this.document));
-
-// use our function
-Length.toPx(elem, '10em'); //--> 160
-{% endcodeblock %}
+<p>As mentioned above, converting units can be done reliably* by setting the value using the <code>style</code> property and reading it back using <code>getComputedStyle</code>**. The <code>getComputedStyle</code> function always*** returns values using pixels.</p>
+<p class="fine-print">*sometimes **in supported browsers ***usually</p>
+{% gist 1516965 Simple.js %}
 {% h3 How Conversion Works %}
-<p>The code above is the bare minimum necessary to convert pixel units but it has a few problems that will be discussed below. But first, lets look at what we're doing in the code. In the the <code>toPx</code> function, we can convert any unit by assigning the unconverted value to the elements <code>style</code> property, reading that value back as using the <code>currCSS</code> function (which uses <code>getCurrentStyle</code>) and then changing the element's <code>style</code> back. This method of checking a property, changing it, measuring it and changing it back is commonly referred to as the "<a href="http://erik.eae.net/archives/2007/07/27/18.54.15/#comment-102291">awesome hack by Dean Edwards</a>. The Dean Edwards hack relies on the IE-proprietary <a href="http://msdn.microsoft.com/en-us/library/ms535889(v=VS.85).aspx">runtimeStyle</a> property because his comment was originally meant to address an IE-specific issue.</p>
-<p>Using <code>getCurrentStyle</code> isn't suppoerted in IE 8 and below. Those versions of IE use <code>currentStyle</code> instead, and it works slightly differently. Specifically, <code>currentStyle</code> won't convert anything to pixels; it just returns raw values (known as the specified value or cascaded value). For instance, if the <code>fontSize</code> is set to 10mm, IE8 and below will return it as 10mm instead of 254px. This problem is discussed in more detail below.</p>
-<p>In the example above the default property is set to <code>width</code> (the awesome hack by Dean Edwards uses the <code>left</code> property) because in non-IE browsers <code>left</code> cannot be set on a <code>position: static</code> element. Width will reliably return pixel results even when the element is <code>display: inline</code> although in IE 8 and below, <code>left</code> can be reliably set and retrieved on any element regardless of its <code>display</code> property.</p>
+<p>The code above is the bare minimum necessary to convert pixel units but it has a few problems that will be discussed later. But first, let's look at what we're doing in the code. In the the <code>toPx</code> function, we can convert any unit to pixels by assigning the value to the elements <code>style</code> property, reading that value back as using the <code>curCSS</code> function (which uses <code>getComputedStyle</code>) and then changing the element's <code>style</code> back.</p>
+<p>This method of checking a property, changing it, measuring it and changing it back is commonly referred to as the <a href="http://erik.eae.net/archives/2007/07/27/18.54.15/#comment-102291">"awesome hack by Dean Edwards"</a>. (The Dean Edwards hack relies on the proprietary <code><a href="http://msdn.microsoft.com/en-us/library/ms535889(v=VS.85).aspx">runtimeStyle</a></code> property because his comment was originally meant to address an IE-specific issue).</p>
+<p>Using <code>getComputedStyle</code> isn't supported in IE 8 and below; they use <code>currentStyle</code> instead, and it works slightly differently. Specifically, <code>currentStyle</code> won't convert anything to pixels; it just returns raw values (known as the <em>specified value</em>). For instance, if the <code>fontSize</code> is set to 10mm, IE8 and below will return it as 10mm instead of 37.795276px. This problem is discussed in more detail below.</p>
+<p>In the example above the default property is set to <code>width</code> ("the awesome hack by Dean Edwards" uses the <code>left</code> property) because in non-IE browsers <code>left</code> cannot be set on a <code>position: static</code> element. Width will reliably return pixel results even when the element is <code>display: inline</code> in any browser. It should be noted that in IE 8 and below, <code>left</code> can be reliably set and retrieved on any element regardless of its <code>position</code> property.</p>
 {% h3 Problems with this Method %}
-<p>If browsers were perfect, the code above would work perfectly. However there are a number of bugs that need to be accounted for. Surprisingly, most of the bugs occur in WebKit not IE.</p>
+<p>If browsers were perfect, the code above would work perfectly. However there are a number of bugs that need to be accounted for. Surprisingly, most of these bugs occur in WebKit, not IE.</p>
 {% h4 WebKit and Computed Value and Used Value %}
-<p>WebKit will not convert percentages when they are applied to <code>margin</code>, <code>top</code>, <code>bottom</code>, <code>left</code>, or <code>right</code>. There is a <a href="https://bugs.webkit.org/show_bug.cgi?id=29084">bug report for the position properties</a> but it isn't clear that the WebKit team intends to fix it. The <a href="https://developer.mozilla.org/en/DOM/window.getComputedStyle">MDN page for getComputedStyle</a> explains that the function should report the <a href="https://developer.mozilla.org/en/CSS/used_value">used value</a> and not the <a href="https://developer.mozilla.org/en/CSS/computed_value">computed value</a> (which is confusing to say the least). The primary difference between the two is that a computed value can sometimes be a percentage in the case of <code>margin</code>, <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>, <code>text-indent</code> and <code>line-height</code>. WebKit is apparently using the computed value in <code>getComputedStyle</code> which the bug tracker suggests is due to a disagreement about the spec. All other browsers are using the used value.</p>
-<p>A ticket in the jQuery bug tracker proposes a <a href="http://bugs.jquery.com/ticket/10639">fix for WebKet returning a percentage for margin</a>. However, as noted above, this bug also applies to positioning properties as well. The <a href="https://github.com/jquery/jquery/commit/7f6a991313380b74d5fb18782fb6b99fd6c4a22d">commit for fixing percentage margins in jQuery</a> specifically addresses margins but it could easily be extended to support the other affected properties.</p>
+<p>WebKit will not convert percentages when they are applied to <code>margin</code>, <code>top</code>, <code>bottom</code>, <code>left</code>, or <code>right</code>. There is a <a href="https://bugs.webkit.org/show_bug.cgi?id=29084">bug report for the position properties</a> but it isn't clear that the WebKit team intends to fix it. The <a href="https://developer.mozilla.org/en/DOM/window.getComputedStyle">MDN page for <code>getComputedStyle</code></a> explains that the function should report the <a href="https://developer.mozilla.org/en/CSS/used_value"><em>used value</em></a> and not the <a href="https://developer.mozilla.org/en/CSS/computed_value"><em>computed value</em></a> (which is confusing to say the least). The primary difference between the two is that a <em>computed value</em> can sometimes be a percentage (in the case of <code>margin</code>, <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>, <code>text-indent</code> and others). WebKit is apparently using the <em>computed value</em> in <code>getComputedStyle</code> which the bug tracker suggests is due to a disagreement about the spec. All other browsers are using the <em>used value</em>.</p>
+<p>A ticket in the jQuery bug tracker proposes a <a href="http://bugs.jquery.com/ticket/10639">fix for WebKet returning a percentage for margin</a>. However, as noted above, this bug also applies to positioning properties as well (and <code>text-indent</code>). The <a href="https://github.com/jquery/jquery/commit/7f6a991313380b74d5fb18782fb6b99fd6c4a22d">commit for fixing percentage margins in jQuery</a> specifically addresses margins but it could easily be extended to support the other affected properties.</p>
 {% h4 IE 8 and Below and Specified Value %}
-<p>IE8 and below don't support the <code>getComputedStyle</code> function so the non-standard <code><a href="http://msdn.microsoft.com/en-us/library/ms535231(v=vs.85).aspx">currentStyle</a></code> property must be used. Unlike <code>getComputedStyle</code>, which is supposed to return the <a href="https://developer.mozilla.org/en/CSS/used_value">used value</a>, <code>currentStyle</code> returns the <a href="https://developer.mozilla.org/en/CSS/specified_value">specified value</a> (the <abbr title="Microsoft Developer Network">MSDN</abbr> manual calls this the "cascaded value"). The specified value is the value that should be assigned to the property but before it has been converted to an absolute unit. This is more useful than the <a href="https://developer.mozilla.org/en/DOM/element.style">style property</a>, which only shows the inline styles for the element; currentStyle will return values specified in CSS as well as inherited values.</p>
+<p>IE8 and below don't support the <code>getComputedStyle</code> function so the non-standard <code><a href="http://msdn.microsoft.com/en-us/library/ms535231(v=vs.85).aspx">currentStyle</a></code> property must be used. Unlike <code>getComputedStyle</code>, which is supposed to return the <em>used value</em>, <code>currentStyle</code> returns the <a href="https://developer.mozilla.org/en/CSS/specified_value"><em>specified value</em></a> (the <abbr title="Microsoft Developer Network">MSDN</abbr> manual calls this the "cascaded value"). The <em>specified value</em> is the value that should be assigned to the property but before it has been converted to an absolute unit. This is more useful than the <a href="https://developer.mozilla.org/en/DOM/element.style"><code>style</code> property</a>, which only exposes the inline values for the element; <code>currentStyle</code> will return values specified in CSS as well as inherited values.</p>
 <p>Thankfully IE 8 and below support a few non-standard properties that always return pixel values. The most commonly used property is <a href="http://msdn.microsoft.com/en-us/library/ms531129(v=VS.85).aspx">pixelLeft</a> (this is used in "the awesome hack"), however <a href="http://msdn.microsoft.com/en-us/library/ms531135(v=VS.85).aspx">pixelWidth</a> and <a href="http://msdn.microsoft.com/en-us/library/ms531127(v=VS.85).aspx">pixelHeight</a> work just as well. Opera also supports the non-standard pixel properties. WebKit supports them only for absolute units and Firefox doesn't support them at all. Interestingly, IE9 doesn't support them anymore because they were deprecated in an earlier version of IE.</p>
-<p>Every unit (except percentages) is the same pixel value on an element no matter which property it is applied to (except <code>fontSize</code>). For instance, a <code>marginLeft</code> of 1em is the same length as a <code>lineHeight</code> of 1em. Because of this fact, it is reasonably safe to use the special pixel values to convert units in IE 8 and below. There is no direct way to convert the <code>fontSize</code> because it could be relative to the parent elements <code>fontSize</code> in the case of em and percentages. A <a href="http://bugs.jquery.com/ticket/760">jQuery bug about differing values for fontSize</a> points to a fix where using a <a href="https://github.com/jquery/jquery/commit/449e099b97d823ed0252d8821880bc0e471701ea">left of 1em will always equal the elements current fontSise</a>.</p>
-{% h4 What runtimeStyle Does %}
-<p>As noted above, "the awesome hack by Dean Edwards" uses <code>runtimeStyle</code>. This IE-specific property is above the style property in the <a href="https://developer.mozilla.org/en/CSS/Getting_Started/Cascading_and_inheritance">CSS cascade</a> which means that a runtimeStyle value supersedes a style value. By copying the currentStyle value to the runtimeStyle, "the awesome hack" avoids any potential for a <abbr title="Flash of Unstyled Content">FOUC</abbr>. This works because changes to the style property aren't rendered in the browser when a runtimeStyle is set and the special pixel properties don't pay attention to the runtimeStyle. The runtimeStyle is only available in IE and isn't exactly necessary to use beyond trying to fix FOUC issues if they appear in IE 8 or below.</p>
+<p>Every unit (except percentages) is the same pixel value on an element no matter which property it is applied to (except <code>fontSize</code>). For instance, a <code>marginLeft</code> of 1em is the same length as a <code>lineHeight</code> of 1em. Because of this fact, it is reasonably safe to use the special pixel values to convert units in IE 8 and below.</p>
+<p>There is no direct way to convert the <code>fontSize</code> because it could be relative to the parent elements <code>fontSize</code> in the case of em and percentages. A <a href="http://bugs.jquery.com/ticket/760">jQuery bug about differing values for <code>fontSize</code></a> points to a fix where using a <a href="https://github.com/jquery/jquery/commit/449e099b97d823ed0252d8821880bc0e471701ea"><code>left</code> of 1em will always equal the element's current <code>fontSize</code></a>.</p>
+{% h4 What <code>runtimeStyle</code> Does %}
+<p>As noted above, "the awesome hack by Dean Edwards" uses <code>runtimeStyle</code> for pixel conversions in IE. This IE-specific property is higher than the <code>style</code> property in the <a href="https://developer.mozilla.org/en/CSS/Getting_Started/Cascading_and_inheritance">CSS cascade</a> which means that a <code>runtimeStyle</code> value supersedes a <code>style</code> value. By copying the <code>currentStyle</code> value to the <code>runtimeStyle</code>, "the awesome hack" avoids any potential for a <abbr title="Flash of Unstyled Content">FOUC</abbr>. This works because changes to the <code>style</code>  property aren't rendered in the browser when a <code>runtimeStyle</code> is set and the special pixel properties don't pay attention to the <code>runtimeStyle</code> (because they belong to the <code>style</code> object), so they can still be used to return the pixel value of the <code>style</code> property. The <code>runtimeStyle</code> is only available in IE and isn't useful for unit conversion beyond trying to fix FOUC issues if they appear in IE 8 or below.</p>
 {% h2 Fixing the Bugs %}
-<p>Now that we understand the problems, we need to set about fixing them! </p>
+<p>Now that we understand the problems, we need to set about fixing them! The code below contains a patched <code>curCSS</code> function.</p>
+{% gist 1516965 Patched.js %}
+<p>The code above adds several fixes to the <code>curCSS</code> function to correct for the issues mentioned above. It also adds a check to see if the browser is incorrectly returning the <em>current value</em> instead of the <em>used value</em>.</p>
+{% h4 Changes to the curCSS Function %}
+<ul>
+    <li>Correct for IE being unable to reconcile the <code>fontSize</code> property by converting the <code>left</code> of 1em to pixels.</li>
+    <li>Check for percentage units in WebKit.
+        <ul>
+            <li>For <code>top</code> and <code>bottom</code>, compute the parent element's inner height and return the percentage.</li>
+            <li>For other properties (<code>margin</code>, <code>left</code>, <code>right</code>, <code>text-indent</code>) convert to pixels using the <code>width</code> property.</li>
+        </ul>
+    </li>
+    <li>Correct for WebKit and Opera returning the <em>computed value</em> "auto" in cases <code>top</code> on an element that is <code>position: static</code>.</li>
+    <li>Correct for Firefox returning the <em>specified value</em> when it can't be set in cases like <code>top</code> on an element that is <code>position: static</code>.</li>
+</ul>
+{% h2 Finishing the Job %}
+<p>Now that we've fixed all of the bugs with <code>curCSS</code>, it's time to make <code>toPx</code> a little smarter. For instance, absolute units will never change under any circumstances once they've been calculated. This means that once you know how many pixels are in an inch, converting an inch unit requires only simple algebra and you can skip "the awesome hack" altogether. The same goes for em and rem: once you know the correct <code>fontSize</code> in pixels, a little algebra finishes the job, no "the awesome hack" necessary. This actually covers the majority of cases for units and leaves only percentages as the primary need for mucking with the element's <code>style</code> property.</p>
+{% gist 1516965 Final.js %}
+{% h4 What Just Happened? %}
+<p>The final code above makes a few changes to the <code>toPx</code> function as well as pre-computing all of the conversions for the absolute units.</p>
+<ul>
+    <li>Pre-calculate the absolute units by converting mozmm and in to pixels using the <code>toPx</code> function and then using using the pixels-per-inch value to store the other conversions.</li>
+    <li>Look for a pre-calculated conversion or a rem or em unit to convert the value to pixels immediately.</li>
+    <li>For rem and em, choose the correct element to get the <code>fontSize</code> from and get the <code>fontSize</code> in pixels using the <code>curCSS</code> function and use that as the conversion.</li>
+</ul>
+{% h2 What Is This Good For? %}
+<p>Nothing? It depends.</p>
+<p>Anyone familiar with jQuery knows that <code><a href="http://api.jquery.com/css/">$.css</a></code> will return the correct value for a property on an element but jQuery doesn't directly expose a method for converting units arbitrarily on an element. jQuery will convert units when calculating the start and end values for an animation (and it uses a version of "the awesome hack" to do it) but the conversion performed is limited in scope.</p>
+<p>It's not possible to rely on jQuery (1.7.1 as of this writing) to handle unit conversion because it doesn't expose those methods to the API. Further, the optimizations for converting absolute, rem and em units without using "the awesome hack" should provide some speed improvements on any code that needs to rely on conversions. If you are writing a plugin, particularly a polyfill that requires some calculations to be done on a CSS property, properly converting units will allow users to specify values using the units that make sense to them instead of forcing everything to be specified in pixels.</p>
+<p>JavaScript plug-ins don't usually do full-featured unit conversions because the code is typically too large to justify inclusion. However, the <a href="https://raw.github.com/gist/1516965/95dbb99b80b135fca5bb3ec5a5a397b26ded6e2c/Final.js">Final.js</a> file above will minify to around 1.24KB (774 bytes gzipped) using <a href="http://www.refresh-sf.com/yui/">YUI Compressor</a>, 1.2KB (758 bytes gzipped) using <a href="http://marijnhaverbeke.nl/uglifyjs">uglify.js</a> or 1.16KB (745 bytes gzipped) using <a href="http://closure-compiler.appspot.com/home">Google Closure Compiler</a>. The Google Closure Compiler <a href="https://raw.github.com/gist/1516965/7acdffc8a35aa66597bfabd280c26f116a6d4efe/Final.min.js">minified version can be downloaded here</a>.</p>
+<p>The <a href="https://github.com/heygrady/Units">GitHub repo for Length and Angle units</a> will hold the latest code and also contains a straight-forward Angle conversion library.</p>

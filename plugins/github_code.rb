@@ -15,7 +15,7 @@ module Jekyll
       super
       @text, @height  = text.split
       @cache_disabled = false
-      @cache_folder   = File.expand_path "../.gist_cache", File.dirname(__FILE__)
+      @cache_folder   = File.expand_path "../.gist-cache", File.dirname(__FILE__)
       FileUtils.mkdir_p @cache_folder
     end
 
@@ -33,7 +33,7 @@ module Jekyll
         @filetype = 'perl' if @filetype == 'pl'
         title = @title ? "#{@title} #{File.basename(file)}" : File.basename(file)
         
-        source = "<div><div class=\"gist\"><div class=\"gist-file\"><div class=\"gist-data gist-syntax\"" + (@height ? "style=\"height:#{@height}\"" : '') + ">#{highlight(code, @filetype)}</div><div class=\"gist-meta\"><a href='#{url}'>view raw</a><a href=\"#{@text}#file\" style=\"float:right;margin-right:10px;color:#666\">#{File.basename(file)}</a><a href=\"#{repo_url}\">From #{repo}</a> by <a href=\"#{user_url}\">#{user}</a></div></div></div></div>"
+        source = "<div class=\"gist\"><div class=\"gist-file\"><div class=\"gist-data gist-syntax\"" + (@height ? "style=\"height:#{@height}\"" : '') + ">#{highlight(code, @filetype)}</div><div class=\"gist-meta\"><a href='#{url}'>view raw</a><a href=\"#{@text}#file\" style=\"float:right;margin-right:10px;color:#666\">#{File.basename(file)}</a><a href=\"#{repo_url}\">From #{repo}</a> by <a href=\"#{user_url}\">#{user}</a></div></div></div>"
         source = source.sub('highlight','gist-highlight').sub(' #file"', '#file"')
         partial = Liquid::Template.parse(source)
         context.stack do
