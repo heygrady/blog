@@ -54,6 +54,8 @@ $ compass create my_project -r compass-grid -u compass-grid
 
 {% h2 Introducing Fluid Grid %}
 
+- Documentation is available in the [readme on Github](https://github.com/heygrady/1KB-SCSS-Grid/blob/master/README.md)
+
 While the original grid was pointedly **not** fluid, this new version does support fluid, percentage-based grids. The original 1KB CSS Grid series by [Tyler Tate](http://tylertate.com/) pointed out that [nesting fluid grids can be difficult](http://www.usabilitypost.com/2009/06/19/the-1kb-css-grid-part-3/). Very similar to [Susy](http://susy.oddbird.net/) and [Columnal](http://www.columnal.com/), the fluid grid requires context in order to nest columns. This is because of the relative nature of percentages: 25% is a totally meaningless number by itself.
 
 {% h3 Basic HTML %}
@@ -79,6 +81,37 @@ Below is the SCSS for a normal fixed grid similar to the example from the [previ
 
 - [Fluid grid example](/assets/compass-grid-example/fluid.html)
 
-The fluid grid is set up virtually the exact same as the fixed grid. 
+The fluid grid is set up virtually the exact same as the fixed grid except the word "grid" is replaced by the word "fluid" in all of the mixins and functions. The fluid grid relied on the fixed grid for most of the calculations and it also uses the same configuration options. The nested columns, `#right-column` and `#content` require additional parameters to provide context.
 
 {% gist 2460901 fluid.scss %}
+
+####Notes:
+
+- Measurements that affect horizontal spacing, like `width`, `margin-left/right` and `padding-left/right` should be provided in percentages as well to make sure everything scales well with the browser.
+- The `fluid-gutters` mixin returns left and right margins for a column.
+	- The `fluid-width` function, combined with the `grid-column-width` function can be used to calculate margins as well.
+	- Example: `margin: 0 fluid-width($grid-gutter-width/2, grid-column-width(9, $grid-gutter-width));`
+	- Fluid gutters are different for rows and columns. Columns are relative to the parent row (a row is wider by the width of the gutter). Rows are relative to the parent column which is narrower than a row by the width of the gutter.
+- When calculating percentages on a child of a row, like `.row > *`, it's important to remember that a row's width is width of it's containing column *plus* the `$grid-gutter-width`.
+	- A nine-columns-wide column: `grid-column-width(9)`
+	- A nine-columns-wide row: `grid-column-width(9, $grid-gutter-width)`
+- There's no need to account for border or padding because all rows and columns have `box-sizing: border-box` applied. You can read more about [box-sizing on MDN](https://developer.mozilla.org/En/CSS/Box-sizing).
+	- [Box-sizing requires a prefix on Mozilla](https://bugzilla.mozilla.org/show_bug.cgi?id=243412) which is being handled by the [Compass Box Sizing mixin](http://compass-style.org/reference/compass/css3/box_sizing/)
+	- [Box-sizing isn't supported in IE7 or below](http://caniuse.com/#feat=css3-boxsizing)
+- Chrome/Safari/Opera, Firefox/IE8/IE9 and IE6/IE7 all disagree on how to handle fractional pixels.
+	- Firefox and IE8/9 re-balance the columns so that some column may be 1px too wide but the total of the columns is exact.
+	- Chrome/Safari/Opera simply round down, resulting in all columns being 1px too narrow. This gets really messy when working with deeply nested columns.
+	- IE6/7 rounds *up* making all of the columns too wide and causing one to wrap.
+- For now the fluid grid is designed for IE8 and above. Adding fixes for IE6 and IE7 may come later although there'll never be a way to bring in box-sizing support.
+
+{% h3 Generated CSS %}
+
+The CSS from the examples above looks like this.
+
+{% h4 Fixed Grid Generated CSS %}
+
+{% gist 2460901 fixed.css %}
+
+{% h4 Fluid Grid Generated CSS %}
+
+{% gist 2460901 fluid.css %}
