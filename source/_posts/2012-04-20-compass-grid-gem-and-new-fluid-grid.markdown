@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Compass Grid Gem and New Fluid Grid"
+title: "Compass Grid Plugin and A New Fluid Grid Option"
 date: 2012-04-20 23:17
 comments: true
 categories: sass compass grid css
 ---
-In a previous post on [using Sass with the 1KB CSS Grid]({% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}) I reviewed in depth the concept of using Sass and Compass to remove unnecessary classes from your HTML markup and use mixins instead. After using this grid on my own projects for the past year I've finally created a Ruby Gem for called [compass-grid-plugin](http://rubygems.org/gems/compass-grid-plugin) and I've updated the [GitHub repository](https://github.com/heygrady/1KB-SCSS-Grid) to include a fluid grid option as well. The fluid grid will be documented her in depth.
+In a previous post on [using Sass with the 1KB CSS Grid]({% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}) I reviewed in depth the concept of using Sass and Compass to remove unnecessary classes from your HTML markup and use mixins instead. After using this grid on my own projects for the past year I've finally created a Ruby Gem for called [compass-grid-plugin](http://rubygems.org/gems/compass-grid-plugin) and I've updated the [GitHub repository](https://github.com/heygrady/1KB-SCSS-Grid) to include a fluid grid option as well. For now I'm calling it "Grid" because that's what I've been calling it. The fluid grid will be documented in-depth below.
 
 - [Grid on Github](https://github.com/heygrady/1KB-SCSS-Grid)
 - [Grid on Ruby Gems](http://rubygems.org/gems/compass-grid-plugin)
@@ -14,20 +14,20 @@ In a previous post on [using Sass with the 1KB CSS Grid]({% post_url 2011-02-17-
 
 {% h2 Introducing Grid %}
 
-Although this grid plugin is inspired by the 1KB CSS Grid, it's not simply the Sass version of that grid. So I've opted to rename the grid to simply "Grid" and gobbled up the "compass-grid-plugin" gem name because some [Austrian guy](http://wizzart.at/about.html) already has "[compass-grid](http://rubygems.org/gems/compass-grid)". That's the nondescript name I'm working with until someone asks me to rename it something less confusingly generic. I could maybe be convinced to call it "Pancakes."
+Although this grid plugin is inspired by the 1KB CSS Grid, it's not simply the Sass version of that grid. So I've opted to rename the grid to simply "Grid" and gobbled up the "compass-grid-plugin" gem name because some [Austrian guy](http://wizzart.at/about.html) already has "[compass-grid](http://rubygems.org/gems/compass-grid)" &mdash; it's helpful that all of the other Compass grids use "-plugin" in the gem name also. That's the unimaginative name I'm going with until someone asks me to rename it something less confusingly generic. I could maybe be convinced to call it "Pancakes" or "Simple."
 
 {% h3 What does Grid do? %}
 
-The point of Compass Grid is to make grid math easier and make working with grids much more flexible. Old-school CSS-only grids require classes to be added to the markup and do not make working with the grid very easy. What happens when you need padding or a border on your column? What happens when the designer needs to cheat the grid in a few places? Compass Grid makes all of these situations much easier to handle because the measurements are not baked into the CSS and don't require hard-coded classes in the markup.
+The point of Grid is to make grid math easier and make working with grids much more flexible. Old-school CSS-only grids require classes to be added to the markup and do not make working with the grid very easy. What happens when you need padding or a border on your column? What happens when the designer needs to cheat the grid in a few places? Compass Grid makes all of these situations much easier to handle because the measurements are not baked into the CSS and don't require hard-coded classes in the markup.
 
 {% h3 How is Grid different than other Compass grids? %}
 
 There's a few other notable Compass grids. Of course Compass has always shipped with [Blueprint](http://compass-style.org/reference/blueprint/grid/) pre-installed. There's also a port of [960.gs](https://github.com/nextmat/compass-960-plugin) as well as a relatively new entrant, [Susy](https://github.com/ericam/compass-susy-plugin). Someone has also ported [Columnal](https://github.com/diogob/compass-columnal-plugin) to Compass. The original author of the 1KB CSS Grid has created [The Semantic Grid System](http://semantic.gs/) to take advantage of Sass/Less and remove the need for classes in the markup. All of these Compass-powered grids are great and you should use them! But they all are a little more complicated than "just a grid" (with the exception of The Semantic Grid System). At a glance, I think the main differences between most other grids and Grid are as follows:
 
-- Grid does not require Alpha and Omega.
+- Grid does not require Alpha and Omega. This is actually a big win for simplicity. Grid uses negative margins on the rows to accomplish the same thing.
 - Grid is designed specifically for cheating the grid using the `$plus` argument.
 - Grid is designed specifically to support row nesting.
-- Grid is designed to be as simple and flexible as possible.
+- Grid only does grid measurements and has no other capabilities.
 
 {% h2 Installing Grid %}
 
@@ -68,7 +68,7 @@ Just like the [previous article]({% post_url 2011-02-17-using-sass-with-the-1kb-
 
 - [Fixed grid example](/assets/compass-grid-example/fixed.html)
 
-Below is the SCSS for a normal fixed grid similar to the example from the [previous post]({% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}). Borders have been added to some of the elements to demonstrate how to use the grid correction features using the `$plus` argument available in all of the functions. 
+Before diving into the fl;uid grid, it's important to see how it works with the static grid because they're highly related. Below is the SCSS for a normal fixed grid similar to the example from the [previous post]({% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}). Borders have been added to some of the elements to demonstrate how to use the grid correction features using the `$plus` argument available in all of the functions. 
 
 {% gist 2460901 fixed.scss %}
 
@@ -81,7 +81,7 @@ Below is the SCSS for a normal fixed grid similar to the example from the [previ
 
 - [Fluid grid example](/assets/compass-grid-example/fluid.html)
 
-The fluid grid is set up virtually the exact same as the fixed grid except the word "grid" is replaced by the word "fluid" in all of the mixins and functions. The fluid grid relied on the fixed grid for most of the calculations and it also uses the same configuration options. The nested columns, `#right-column` and `#content` require additional parameters to provide context.
+The fluid grid is set up virtually the exact same as the fixed grid except the word "grid" is replaced by the word "fluid" in all of the mixins and functions. The fluid grid relies on the fixed grid for most of the width calculations and it also uses the same configuration options. The nested columns, `#right-column` and `#content` require additional parameters to provide context because they are nested in the `#main-column`.
 
 {% gist 2460901 fluid.scss %}
 
@@ -106,7 +106,7 @@ The fluid grid is set up virtually the exact same as the fixed grid except the w
 
 {% h3 Generated CSS %}
 
-The CSS from the examples above looks like this.
+For those that are curious, the CSS from the examples above looks like this.
 
 {% h4 Fixed Grid Generated CSS %}
 
