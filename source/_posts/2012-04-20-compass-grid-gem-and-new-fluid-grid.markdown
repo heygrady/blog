@@ -5,9 +5,9 @@ date: 2012-04-20 23:17
 comments: true
 categories: sass compass grid css
 ---
-In a previous post on [using Sass with the 1KB CSS Grid]({% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}) I reviewed in depth the concept of using Sass and Compass to remove unnecessary classes from your HTML markup and use mixins instead. After using this grid on my own projects for the past year I've finally created a Ruby Gem for called [compass-grid-plugin](http://rubygems.org/gems/compass-grid-plugin) and I've updated the [GitHub repository](https://github.com/heygrady/1KB-SCSS-Grid) to include a fluid grid option as well. For now I'm calling it "Grid" because that's what I've been calling it. The fluid grid will be documented in-depth below.
+In a previous post on [using Sass with the 1KB CSS Grid]({% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}) I reviewed in depth the concept of using Sass and Compass to remove unnecessary classes from your HTML markup and use mixins instead. After using this grid on my own projects for the past year I've finally created a Ruby Gem for called [compass-grid-plugin](http://rubygems.org/gems/compass-grid-plugin) and I've updated the [GitHub repository](https://github.com/heygrady/compass-grid-plugin) to include a fluid grid option as well. For now I'm calling it "Grid" because that's what I've been calling it. The fluid grid will be documented in-depth below.
 
-- [Grid on Github](https://github.com/heygrady/1KB-SCSS-Grid)
+- [Grid on Github](https://github.com/heygrady/compass-grid-plugin)
 - [Grid on Ruby Gems](http://rubygems.org/gems/compass-grid-plugin)
 
 <!--more-->
@@ -54,7 +54,7 @@ $ compass create my_project -r compass-grid -u compass-grid
 
 {% h2 Introducing Fluid Grid %}
 
-- Documentation is available in the [readme on Github](https://github.com/heygrady/1KB-SCSS-Grid/blob/master/README.md)
+- Documentation is available in the [readme on Github](https://github.com/heygrady/compass-grid-plugin/blob/master/README.md)
 
 While the original grid was pointedly **not** fluid, this new version does support fluid, percentage-based grids. The original 1KB CSS Grid series by [Tyler Tate](http://tylertate.com/) pointed out that [nesting fluid grids can be difficult](http://www.usabilitypost.com/2009/06/19/the-1kb-css-grid-part-3/). Very similar to [Susy](http://susy.oddbird.net/) and [Columnal](http://www.columnal.com/), the fluid grid requires context in order to nest columns. This is because of the relative nature of percentages: 25% is a totally meaningless number by itself.
 

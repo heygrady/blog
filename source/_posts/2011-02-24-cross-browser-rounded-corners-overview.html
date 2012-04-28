@@ -6,6 +6,7 @@ comments: true
 categories: css polyfill
 ---
 <p>Theres no shortage of techniques for achieving cross-browser rounded corners. Most of the techniques involve taking an otherwise simple box and adding markup and CSS until all browsers (IE 6+, Firefox, Safari, Chrome) agree to round the corners. Of course the great hope today is to use CSS3 techniques such as <code>border-radius</code> or multiple backgrounds and of course those approaches won't work in Internet Explorer 8 or below. Ironically, one of the best places to find some of the old school CSS solutions is on the <a href="http://msdn.microsoft.com/en-us/library/bb250413(v=vs.85).aspx">MSDN page describing <code>border-radius</code> </a>. For modern browsers, the <a href="https://developer.mozilla.org/en/css/-moz-border-radius"><code>border-radius</code> </a> property will do a good job of rounding corners. To support all browsers some clever techniques will need to be used.</p>
+<!--more-->
 <h4>For the uninitiated</h4>
 <ul>
 	<li><a href="http://msdn.microsoft.com/en-us/library/bb250413(v=vs.85).aspx">Rounded Corners in Internet Explorer</a></li>
@@ -13,7 +14,6 @@ categories: css polyfill
 	<li><code><a href="https://developer.mozilla.org/en/CSS/background">background</a></code></li>
 	<li><a href="http://css3pie.com/">CSS3 PIE</a></li>
 </ul>
-<!--more-->
 {% h3 Goals %}
 <p>To successfully approximate <code>border-radius</code>, the content of the box should appear as it does in a regular box with a border applied.</p>
 <figure>

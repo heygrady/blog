@@ -7,6 +7,7 @@ categories: css polyfill ie plug-in
 ---
 <p>CSS3 introduced a new <a href="http://www.w3.org/TR/css3-text/#text-shadow"><code>text-shadow</code> property</a> that allows for, well, shadows to be placed on text. As of February 2011, <a href="http://caniuse.com/css-textshadow"><code>text-shadow</code> is only supported in 48% of browsers</a> in use. Internet Explorer 8 and below do not support <code>text-shadow</code>; surprisingly Internet Explorer 9 doesn't either. Because the majority (90%) of non-IE browsers already supports <code>text-shadow</code>s natively, it's most interesting to try and <a href="http://remysharp.com/2010/10/08/what-is-a-polyfill/">polyfill</a> IE. I've created a <a href="https://github.com/heygrady/textshadow">Textshadow jQuery plug-in</a> for just this purpose. Read below for an overly thorough explanation of hacking IE filters to get a convincing text shadow.</p>
 
+<!--more-->
 {% h3 Goals %}
 <p>The goal is to create a <code>text-shadow</code> polyfill for IE 9 and below and other <a href="https://developer.mozilla.org/en/CSS/text-shadow#Browser_compatibility">browsers that lack support</a>. It must look close to the implementation in supported browsers and follow the W3C specification as closely as possible.</p>
 <ul>
@@ -14,7 +15,6 @@ categories: css polyfill ie plug-in
 	<li>Should flow with content</li>
 	<li>Should follow W3C specification</li>
 </ul>
-<!--more-->
 
 {% h2 Text Shadow %}
 <p>Below is the example of the goal: the native text-shadow as rendered in Chrome 9. The shadow is red to add the greatest contrast between the black text and the white background.</p>
