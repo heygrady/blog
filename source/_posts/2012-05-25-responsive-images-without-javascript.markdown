@@ -11,9 +11,9 @@ The current hot topic for web development right now is how to gracefully handle 
 
 {% h2 Basic Markup %}
 
-The basic markup below relies on some shared styles that will be shown further down. The idea is that, since CSS has such excellent support for media queries, it's probably best to use CSS for swapping out the image source. This is the method used for background images in CSS stylesheets and it works fine inline as well. First there's an optional `.image-scope` that can supply the bounding scope to the inline `<style>`. Since `scoped` isn't supported in any browser, it's not strictly necessary and is rendered even more useless by prefixing the styles with an id.
+The basic markup below relies on some shared styles that will be shown further down. The idea is that, since CSS has such excellent support for media queries, it's probably best to use CSS for swapping out the image source. This is the method used for background images in CSS stylesheets and it works fine inline as well. First there's an optional `.image-scope` that can supply the bounding scope to the inline `<style>`. Since `scoped` isn't supported in any browser, it's not strictly necessary and is rendered even more useless by prefixing the styles with an `id`.
 
-Next is the style tag that contains our styles. The image itself is loaded as a background image on a `<span>` that's been set to `display: inline-block`. The 
+Next is the `<style>` tag that contains our styles. The image itself is loaded as a background image on a `<span>` that's been set to `display: inline-block`. The height and width need to be set as well. If the image needs alt text, it can be added as text inside the `<span>`.
 
 ```html
 <span class="image-scope">
@@ -36,4 +36,35 @@ Next is the style tag that contains our styles. The image itself is loaded as a 
   </style>
   <span id="image-1" class="image">Alt text goes here.</span>
 </span>
+```
+
+{% h2 Basic Styles %}
+
+In order to properly emulate a real image using a background image, some basic styles need to be set for each `.image`.
+
+```css
+.image {
+  /* inline block */
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+
+  /* squish text */
+  font: 0/0 serif;
+  text-shadow: none;
+  color: transparent;
+
+  /* background-size */
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+.image { *display: inline; } /* inline block for IE6/7 */
+.image .inner { display: block; height: 100%; }
 ```
