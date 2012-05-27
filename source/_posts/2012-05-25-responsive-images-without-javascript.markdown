@@ -10,13 +10,33 @@ The current hot topic for web development right now is how to gracefully handle 
 If you [don't like the `srcset`](http://timkadlec.com/2012/05/wtfwg/) solution being offered, or you simply need something that works in today's browsers and doesn't use JavaScript, read below for a potential solution to the adaptive image problem.
 
 <!--more-->
+{% h2 Jumping Ahead %}
+
+To help get a handle on where this is going, here's a quick preview of what is going to be discussed in more detail below. This method of adaptive uses CSS in a `<style>` tag to make a `<span>` behave like an image. This method has broad browser support and does not require JavaScript.
+
+First is some generic CSS that belongs in a global stylesheet and can be used for all adaptive images. The CSS is for making the `<span>` behave more like a native `<img>`. The key to this is `display: inline-block` and `background-resize: 100%`.
+
+{% gist 2815664 final.css %}
+
+Second is the base HTML for all adaptive images. Essentially the HTML below will replace each `<img>` tag that needs to respond to media queries. Of course the media queries themselves should be placed inside the `<style>` tag.
+
+{% gist 2815664 final.html %}
+
 {% h2 Using Fake Images and Inline CSS %}
 
 There are many [good articles about handling responsive images](http://css-tricks.com/on-responsive-images/) and they all have the same goal of supporting the types of media query wizardry that can be accomplished in CSS for swapping out images. While most of those solutions utilize JavaScript to swap the `src` of an `<img>`, I'm proposing that using CSS background images is probably good enough and avoids most of the pitfalls of the other techniques. It's fairly easy to make a `<span>` with a background image behave exactly like a real `<img>` with some basic CSS, primarily relying on [`display: inline-block`](https://developer.mozilla.org/en/CSS/display) and [`background-size: 100%`](https://developer.mozilla.org/en/CSS/background-size).
 
 Of course, moving every in-page image on an entire site to your stylesheets is impractical and ill-advised. The images we're talking about are part of the content and have no place in your sites global styles; they're very likely to be managed by a CMS. The solution is to embed the styles in the HTML by placing a `<style>` tag in the `<body>` instead of in the global stylesheet.
 
-The HTML5 spec now allows for `<style>` tags in the `<body>` as long as they carry a `scoped` attribute (although this currently won't validate). Using a `<style>` tag this way is only marginally different than usage of `<source>` as proposed in [the picturefill method](http://www.w3.org/community/respimg/2012/03/07/14/) and it's certainly less confusing than the [srcset proposal](http://lists.w3.org/Archives/Public/public-whatwg-archive/2012May/0247.html). Using CSS carries with it the benefit of a familiar, flexible syntax and broad browser support. It's a matter of following an already established (virtually unsupported) specification &mdash; `<style scoped>` &mdash; instead of relying on an [emerging, speculative and contentious standard](http://blog.cloudfour.com/the-real-conflict-behind-picture-and-srcset/) &mdash; `<picture>` or `<img srcset>`. 
+The HTML5 spec now allows for `<style>` tags in the `<body>` as long as they carry a `scoped` attribute (although this currently won't validate). Using a `<style>` tag this way is only marginally different than usage of `<source>` as proposed in [the picturefill method](http://www.w3.org/community/respimg/2012/03/07/14/) and it's certainly less confusing than the [srcset proposal](http://lists.w3.org/Archives/Public/public-whatwg-archive/2012May/0247.html). Using CSS carries with it the benefit of a familiar, flexible syntax and broad browser support. This also avoids relying on an [emerging, speculative and contentious standard](http://blog.cloudfour.com/the-real-conflict-behind-picture-and-srcset/) &mdash; `<picture>` or `<img srcset>`. 
+
+{% h3 Start with a Regular Image %}
+
+To start, we need a regular `<img>` that we wish was responsive. The example below is just that: a boring old image that doesn't do anything special.
+
+{% gist 2815664 step-0.html %}
+
+**Example:** *[See a live example](/assets/adaptive-image-example/step-0.html) even though this isn't responsive and is just a regular image.*
 
 {% h3 Step 1: Use a SPAN %}
 
@@ -24,21 +44,21 @@ In order to fake an image using CSS, we need to start with a `<span>`. Because a
 
 Below you can see a simple span with an `.image` class ready to be styled.
 
-```html
-<span class="image">Alt text goes here.</span>
-```
+{% gist 2815664 step-1.html %}
+
+**Example:** *[See a live example](/assets/adaptive-image-example/step-1.html) although there's not much to see yet.*
 
 **NOTE:** You could use a fictional tag like `<picture>` instead of `<span>` but that would require a [shim for IE6, IE7 and IE8](http://ejohn.org/blog/html5-shiv/).
 
-{% h3 Step 2: Add an Aria Role %}
+{% h3 Step 2: Add an ARIA Role %}
 
-Aria supplies [a `role="img"` for a container that visually represents an image](http://www.w3.org/TR/wai-aria/roles#img). Applying this will help Aria enabled browsers understand what this `<span>` is used for. Aria also specifies that the img role is not labeled by its contents so we need to move the alt text to the `aria-label` attribute.
+[ARIA](http://www.w3.org/WAI/intro/aria.php) supplies [a `role="img"` for a container that visually represents an image](http://www.w3.org/TR/wai-aria/roles#img). Applying this will help ARIA enabled browsers understand what this `<span>` is used for. Aria also specifies that the img role is not labeled by its contents so we need to move the alt text to the `aria-label` attribute.
 
 Below you can see the `<span>` with an Aria role applied and the alt text moved to an aria label.
 
-```html
-<span class="image" role="img" aria-label="Alt text goes here."></span>
-```
+{% gist 2815664 step-2.html %}
+
+**Example:** *[See a live example](/assets/adaptive-image-example/step-2.html) although there's still not much to see.*
 
 {% h3 Step 3: Generic Styles for All Images %}
 
@@ -54,43 +74,13 @@ First we'll use [Compass](http://compass-style.org/) to generate our generic sty
 
 Below is the example SCSS code that was used to generate the generic CSS needed for this technique. Again, generating styles with Compass is an unnecessary step in this case but it was included as a shortcut explanation as to how and why all of the crazy styles shown below were created.
 
-```scss
-@import "compass/css3/inline-block";
-@import "compass/typography/text/replacement";
-@import "compass/css3/background-size";
-
-.image {
-  @include inline-block;
-  @include squish-text;
-  @include background-size(100%);
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-}
-```
+{% gist 2815664 generic.scss %}
 
 Once compiled, the SCSS code above looks like the following CSS. The generic styles for `.image` can be shared for all responsive images on the page. That helps make the specific styles for the individual responsive images more compact and readable. The code below is ready to use and should be placed in your site's global stylesheets.
 
-```css
-.image {
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  font: 0/0 serif;
-  text-shadow: none;
-  color: transparent;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  -o-background-size: 100%;
-  background-size: 100%;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-}
-.image {
-  *display: inline;
-}
-```
+{% gist 2815664 generic.css %}
+
+**Example:** *[See a live example](/assets/adaptive-image-example/step-3.html) although there's yet again not much to see.*
 
 **NOTE:** IE6, IE7 and IE8 (and some other legacy browsers) don't support `background-size`. This only affects those browser's ability to scale the image. It will work just fine for a fixed-dimension image that is shown at its default size. See [background-size support on When Can I Use](http://caniuse.com/background-img-opts). It's important to note that [support for media queries](http://caniuse.com/css-mediaqueries) closely matches support for `background-size`. Basically it's safe to assume that a browser that doesn't support media queries also doesn't support background-size and vice-versa. So your fall back styles in the next step should take that limitation into account.
 
@@ -107,45 +97,9 @@ The example below shows the `<style>` element just above our `<span>` with all o
 - Other necessary styles like `display: inline-block` and `background-size: 100%` are handled by the global CSS styles described in [step 3 above](#step-3-generic-styles-for-all-images).
 - The `<span>` must be given a unique ID to ensure that styles are applied correctly.
 
-```html
-<!-- inline styles for our responsive image -->
-<style>
-  /* fall back styles for browsers without media query support (IE6-8) */
-  #my-responsive-image {
-    background-image: url('images/my-responsive-image.jpg');
-    height: 200px;
-    width: 600px;
-  }
+{% gist 2815664 step-4.html %}
 
-  /* small image for mobile */
-  @media (min-width: 0px) {
-    #my-responsive-image {
-      background-image: url('images/my-responsive-image-small.jpg');
-      height: 75px;
-      width: 200px;
-    }
-  }
-
-  /* medium image for tablets */
-  @media (min-width: 600px) {
-    #my-responsive-image {
-      background-image: url('images/my-responsive-image-medium.jpg');
-      height: 150px;
-      width: 400px;
-    }
-  }
-
-  /* large image for desktop */
-  @media (min-width: 1000px) {
-    #my-responsive-image {
-      background-image: url('images/my-responsive-image.jpg');
-      height: 225px;
-      width: 600px;
-    }
-  }
-</style>
-<span id="my-responsive-image" class="image" role="img" aria-label="Alt text goes here."></span>
-```
+**Example:** *[See a live example](/assets/adaptive-image-example/step-4.html); now we're in business.*
 
 **NOTE:** Although the vast majority of examples on the web recommend adding the smallest, mobile optimized image as the fall back, I prefer to supply the default desktop image to the browsers that don't support media queries. The only browsers that get the fall back image are browsers that don't support media queries, and those browsers are almost exclusively IE6, IE7 and IE8. Supplying the mobile image as the fall back is silly considering that there aren't any mobile browsers with any noticeable marketshare that require the fall back. The mobile browsers we're targeting all support media queries.
 
@@ -161,92 +115,11 @@ Scoped `<style>` elements need a wrapper element to define&hellip; the scope. If
 
 Below you can see the identical markup from step 4 with the addition of the `scoped` attribute and a new `.image-scope` element. The `.image-scope` element doens't require any additional styles because it is a `<span>` and is `display: inline` already.
 
-```html
-<span class="image-scope">
-  <style scoped>
-    /* fall back styles for browsers without media query support (IE6-8) */
-    #my-responsive-image {
-      background-image: url('images/my-responsive-image.jpg');
-      height: 200px;
-      width: 600px;
-    }
+{% gist 2815664 step-5.html %}
 
-    /* small image for mobile */
-    @media (min-width: 0px) {
-      #my-responsive-image {
-        background-image: url('images/my-responsive-image-small.jpg');
-        height: 75px;
-        width: 200px;
-      }
-    }
-
-    /* medium image for tablets */
-    @media (min-width: 600px) {
-      #my-responsive-image {
-        background-image: url('images/my-responsive-image-medium.jpg');
-        height: 150px;
-        width: 400px;
-      }
-    }
-
-    /* large image for desktop */
-    @media (min-width: 1000px) {
-      #my-responsive-image {
-        background-image: url('images/my-responsive-image.jpg');
-        height: 225px;
-        width: 600px;
-      }
-    }
-  </style>
-  <span id="my-responsive-image" class="image" role="img" aria-label="Alt text goes here."></span>
-</span>
-```
+**Example:** *[See a live example](/assets/adaptive-image-example/step-4.html) that looks exactly the same as step 4.*
 
 **NOTE:** Because of the lack of browser support, this step is completely optional and only serves to make the mark-up slightly more compliant.
-
-{% h2 Full Example %}
-
-For clarity and context, below is the full example from above placed in the context of an HTML5 document. In this example the generic styles from step 3 have been added to the global stylesheet and the adaptive image has been added to the contextual right column. The adaptive styles have been minified to save space and make the additional markup appear more compact.
-
-```html
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>My Responsive Image</title>
-  <meta name="description" content="Example Responsive Image">
-  <meta name="author" content="Me!">
-  <!-- put the generic styles from step 3 in your global stylesheet -->
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-
-<body>
-  <!-- a 3-column layout -->
-  <div class="column-wrapper">
-    <div class="column left">
-      <!-- maybe side-nav goes here -->
-    </div>
-    <div class="column center">
-      <!-- maybe content goes here -->
-    </div>
-    <div class="column right">
-      <!-- maybe contextual stuff goes here -->
-      <!-- our adaptive image -->
-      <span class="image-scope">
-        <style scoped>
-          /* minified styles to save space */
-          #my-responsive-image{background-image:url('images/my-responsive-image.jpg');height:200px;width:600px}
-          @media(min-width:0){#my-responsive-image{background-image:url('images/my-responsive-image-small.jpg');height:75px;width:200px}}
-          @media(min-width:600px){#my-responsive-image{background-image:url('images/my-responsive-image-medium.jpg');height:150px;width:400px}}
-          @media(min-width:1000px){#my-responsive-image{background-image:url('images/my-responsive-image.jpg');height:225px;width:600px}}
-        </style>
-        <span id="my-responsive-image" class="image" role="img" aria-label="Alt text goes here."></span>
-      </span>
-    </div>
-  </div>
-</body>
-</html>
-```
 
 {% h2 Supporting Proportional Scaling %}
 
@@ -256,98 +129,39 @@ When working with responsive design, it's becoming increasingly popular to use f
 
 Below is an example of how this is handled with a normal image. The `<img>` will scale proportionally where the width will always match the width of the `.column` and the height will always be the appropriate height so that the image will never appear distorted. This trick is useful for fluid layouts where you don't know the exact width of the column.
 
-```html
-<div class="column">
-  <!-- This image will scale proportionally to be the full width of the column -->
-  <img src="my-scalable-image.jpg" width="100%">
-</div>
-```
+{% gist 2815664 proportional-step-0.html %}
 
-{% h3 Adding an Inner Element %}
+**Example:** *[See a live example](/assets/adaptive-image-example/proportional-step-0.html) even though this isn't responsive and is just a regular image.*
+
+{% h3 Step 1: Adding an Inner Element %}
 
 Background images can't affect layout which forces use to define a fixed height and width to use the adaptive techniques outlined above. So it's not immediately obvious how to proportionally scale the height of the `<span>`. The solution is to use a percentage `padding-top` on an inner element to provide the proportional height (see [padding on MDN](https://developer.mozilla.org/en/CSS/padding)). For `padding`, percentages are defined relative to the parent element's width. Somewhat counter-intuitively, `padding-top` is *also* defined a percentage of the parent element's width. Using `padding-top` on an inner element allows the height to be proportionally scaled.
 
 Below is the `.image` as described above with an additional `.inner` element.
 
-```html
-<span id="my-responsive-image" class="image" role="img" aria-label="Alt text goes here."><span class="inner"></span></span>
-```
+{% gist 2815664 proportional-step-1.html %}
 
-{% h3 Adding More Generic Styles %}
+**Example:** *[See a live example](/assets/adaptive-image-example/proportional-step-1.html) although it doesn't scale yet.*
+
+{% h3 Step 2: Adding More Generic Styles %}
 
 The `.inner` element needs to be set to `display: block` so that it can have dimensions applied. The `height: 0` is required because it gets its height from padding that is applied in the `<style>` element. The CSS below should be added to the generic CSS created in [step 3 above](#step-3-generic-styles-for-all-images).
 
-```css
-/* additional generic styles to be added to the styles from step 3 above */
-.image .inner {
-  display: block;
-  height: 0;
-}
-```
+{% gist 2815664 proportional.css %}
 
-{% h3 Responsive, Proportionally-Scaled Images %}
+**Example:** *[See a live example](/assets/adaptive-image-example/proportional-step-2.html) although it still doesn't scale.*
+
+{% h3 Step 3: Responsive, Proportionally-Scaled Images %}
 
 As mentioned above, the height of the `.inner` element comes from a percentage applied to `padding-top`. The percentage is calculated by dividing the height of the source image by the width. For instance, if an image is 200 pixels wide and 100 pixels tall, the `padding-top` would be 50% (100px / 200px * 100% = 50%).
 
 The example below allows the responsive image to scale proportionally.
 
-```html
-<div class="column">
-  <!-- This image will scale proportionally to be the full width of the column -->
-  <span class="image-scope">
-    <style scoped>
-      /* fall back styles for browsers without media query support (IE6-8) */
-      #my-responsive-image {
-        background-image: url('images/my-responsive-image.jpg');
-        width: 100%;
-        /* don't define a height on the .image */
-      }
-      #my-responsive-image .inner {
-        padding-top: 37.5%; /* 225px / 600px = 0.375 */
-      }
+{% gist 2815664 proportional-step-3.html %}
 
-      /* small image for mobile */
-      @media (min-width: 0px) {
-        #my-responsive-image {
-          background-image: url('images/my-responsive-image-small.jpg');
-          /* width of 100% is inherited from the fall back styles */
-          /* don't define a height on the .image */
-        }
-        #my-responsive-image .inner {
-          padding-top: 37.5%; /* 75px / 200px = 0.375 */
-        }
-      }
+**Example:** *[See a live example](/assets/adaptive-image-example/proportional-step-3.html) that should scale proportionally as expected in browsers that support `background-size`.*
 
-      /* medium image for tablets */
-      @media (min-width: 600px) {
-        #my-responsive-image {
-          background-image: url('images/my-responsive-image-medium.jpg');
-          /* width of 100% is inherited from the fall back styles */
-          /* don't define a height on the .image */
-        }
-        #my-responsive-image .inner {
-          padding-top: 37.5%; /* 150px / 400px = 0.375 */
-        }
-      }
-
-      /* large image for desktop */
-      @media (min-width: 1000px) {
-        #my-responsive-image {
-          background-image: url('images/my-responsive-image.jpg');
-          /* width of 100% is inherited from the fall back styles */
-          /* don't define a height on the .image */
-        }
-        #my-responsive-image .inner {
-          padding-top: 37.5%; /* 225px / 600px = 0.375 */
-        }
-      }
-    </style>
-    <span id="my-responsive-image" class="image" role="img" aria-label="Alt text goes here."><span class="inner"></span></span>
-  </span>
-</div>
-```
-
-**NOTE:** As mentioned above, proportional scaling will only work in browsers that support `background-size`. Unsupported browsers will simply show the background at full-size.
+**NOTE:** As mentioned above, proportional scaling will only work in browsers that support `background-size`. Unsupported browsers will simply show the background at full-size, centered inside the `<span>`. If the `<span>` is smaller that the image in IE8 and below the image will appear clipped.
 
 {% h2 Conclusion %}
 

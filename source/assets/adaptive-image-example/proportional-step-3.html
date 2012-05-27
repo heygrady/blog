@@ -1,0 +1,110 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Step 3: Adaptive, Proportionally Scaled Images with CSS</title>
+  <meta name="description" content="">
+
+  <!-- Mobile viewport optimized: h5bp.com/viewport -->
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* place these styles in your global stylesheet */
+    .image {
+      display: -moz-inline-box;
+      -moz-box-orient: vertical;
+      display: inline-block;
+      vertical-align: middle;
+      *vertical-align: auto;
+      font: 0/0 serif;
+      text-shadow: none;
+      color: transparent;
+      -webkit-background-size: 100%;
+      -moz-background-size: 100%;
+      -o-background-size: 100%;
+      background-size: 100%;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+    }
+    .image {
+      *display: inline;
+    }
+    .image .inner {
+      display: block;
+      height: 0;
+    }
+  </style>
+  <script src="js/vendor/modernizr-2.5.3.min.js"></script>
+</head>
+<body>
+<h1>Adaptive Images, Scaled Proportionally with CSS</h1>
+<h2>Step 3: Using Padding Top on the Inner Element for the Proportional Height</h2>
+<p>Return to the <a href="/blog/2012/05/25/responsive-images-without-javascript/">original article</a></p>
+<span class="image-scope">
+  <style scoped>
+    /* fall back styles for browsers without media query support (IE6-8) */
+    #road {
+      background-image: url('http://farm1.staticflickr.com/47/108362686_1d82c05914_b.jpg');
+      width: 100%;
+    }
+    #road .inner {
+      padding-top: 66.5039%; /* 681px / 1024px * 100% = 66.5039% */
+    }
+
+    /* small image for mobile */
+    @media (min-width: 0px) {
+      #road {
+        background-image: url('http://farm1.staticflickr.com/47/108362686_1d82c05914_n.jpg');
+      }
+      #road .inner {
+        padding-top: 66.5625%; /* 213px / 320px * 100% = 66.5625% */
+      }
+    }
+
+    /* medium image for retina displays */
+    @media
+    (min-width: 0px) and (-webkit-min-device-pixel-ratio: 1.5),
+    (min-width: 0px) and (-o-min-device-pixel-ratio: 3/2),
+    (min-width: 0px) and (min--moz-device-pixel-ratio: 1.5),
+    (min-width: 0px) and (min-device-pixel-ratio: 1.5) {
+      #road {
+        background-image: url('http://farm1.staticflickr.com/47/108362686_1d82c05914_z.jpg');
+      }
+      #road .inner {
+        padding-top: 66.5625%; /* 213px / 320px * 100% = 66.5625% */
+      }
+    }
+
+    /* medium image for tablets */
+    @media (min-width: 640px) {
+      #road {
+        background-image: url('http://farm1.staticflickr.com/47/108362686_1d82c05914_z.jpg');
+      }
+      #road .inner {
+        padding-top: 66.5625%; /* 426px / 640px * 100% = 66.5625% */
+      }
+    }
+
+    /* large image for desktop */
+    @media (min-width: 1024px) {
+      #road {
+        background-image: url('http://farm1.staticflickr.com/47/108362686_1d82c05914_b.jpg');
+      }
+      #road .inner {
+        padding-top: 66.5039%; /* 681px / 1024px * 100% = 66.5039% */
+      }
+    }
+  </style>
+  <span id="road" class="image" role="img" aria-label="A road in Sweden during winter."><span class="inner"></span></span>
+</span>
+<p>This is a pretty picture from <a href="http://www.flickr.com/photos/hepp/108362686/">Flickr</a></p>
+</body>
+</html>
