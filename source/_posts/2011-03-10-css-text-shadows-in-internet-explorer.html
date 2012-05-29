@@ -10,7 +10,7 @@ categories: css polyfill ie plug-in
 <!--more-->
 
 {% h3 Goals %}
-<p>The goal is to create a <code>text-shadow</code> polyfill for IE 9 and below and other <a href="https://developer.mozilla.org/en/CSS/text-shadow#Browser_compatibility">browsers that lack support</a>. It must look close to the implementation in supported browsers and follow the W3C specification as closely as possible.</p>
+<p>The goal is to create a <code>text-shadow</code> polyfill for IE 9 and below and other <a href="https://developer.mozilla.org/en/CSS/text-shadow#Browser_compatibility">browsers that lack support</a>. It must look similar to the implementation in supported browsers and follow the W3C specification as closely as possible.</p>
 <ul>
 	<li>Shouldn't affect content layout</li>
 	<li>Should flow with content</li>
@@ -27,10 +27,10 @@ categories: css polyfill ie plug-in
 {% gist 863419 textshadow.html %}
 <p>For these examples the simple HTML above is used. The <code>.box</code> is used for forcing the text to wrap and the funky <code>b</code> and <code>i</code> elements in the word "shadow" are for testing how shadows are applied to child content.</p>
 {% gist 863419 textshadow.css %}
-<p>None of the browsers that support <code>text-shadow</code> require a vendor prefix making <a href="http://www.css3.info/preview/text-shadow/"><code>text-shadow</code> extremely easy to implement</a>. As noted above, this will not work in IE including version 9.</p>
+<p>None of the browsers that support <code>text-shadow</code> require a vendor prefix, making <a href="http://www.css3.info/preview/text-shadow/"><code>text-shadow</code> extremely easy to implement</a>. As noted above, this will not work in IE including version 9.</p>
 
 {% h2 Using IE Filters %}
-<p>While IE doesn't directly support the CSS3 <code>text-shadow</code> property, it does support proprietary filters. Of course these filters have drawbacks; namely IE 8 and below <a href="http://developer.yahoo.com/performance/rules.html#no_filters">apply them very slowly</a> and they have poorly documented features. For instance, the IE filters will apply to text unless the element has a background applied; the filters will also apply to borders if they are present. Another issue that will become clear later is that IE renders the text with alpha-transparent artifacts that make the text harder to read.</p>
+<p>While IE doesn't directly support the CSS3 <code>text-shadow</code> property, it does support proprietary filters. Of course these filters have drawbacks; namely, IE 8 and below <a href="http://developer.yahoo.com/performance/rules.html#no_filters">apply them very slowly</a> and they have poorly documented features. For instance, the IE filters will apply to text unless the element has a background applied; the filters will also apply to borders if they are present. Another issue that will become clear later is that IE renders the text with alpha-transparent artifacts that make the text harder to read.</p>
 <p>There are a few IE filters that seem promising. Most often the shadow filter is proposed as an alternative to native <code>text-shadow</code> although the most compelling articles use a <a href="http://kilianvalkhof.com/2008/design/almost-cross-browser-text-shadow/">combination of blur and glow</a> to achieve a <code>text-shadow</code> effect (<a href="http://placenamehere.com/article/384/css3boxshadowininternetexplorerblurshadow/">another great example only uses blur</a>).</p>
 <ul>
 	<li><a href="http://msdn.microsoft.com/en-us/library/ms533086(v=vs.85).aspx">Shadow Filter</a></li>
@@ -59,7 +59,7 @@ categories: css polyfill ie plug-in
 	<br />
 	(<a href="http://assets.heygrady.com/shadow/shadow-white.html" target="_blank">view live example</a>)</figcaption>
 </figure>
-<p>Changing the text to white will reveal some of the artifacting issues mentioned above. There are partially black pixels dotted around the perimeter of the text. This is the result of IE using a black matte behind the alpha transparent pixels in the text. I haven't fully experimented with how to remove this artifacting but it will likely involve turning of font smoothing in IE if it's possible.</p>
+<p>Changing the text to white will reveal some of the artifacting issues mentioned above. There are partially black pixels dotted around the perimeter of the text. This is the result of IE using a black matte behind the alpha transparent pixels in the text. I haven't fully experimented with how to remove this artifacting but it will likely involve turning off font smoothing in IE if it's possible.</p>
 <h4>Results</h4>
 <ul>
 	<li>The shadow gradient produced is not a blur.</li>
@@ -103,8 +103,8 @@ categories: css polyfill ie plug-in
 	<br />
 	(<a href="http://assets.heygrady.com/shadow/glow.html" target="_blank">view live example</a>)<figcaption>
 </figure>
-<p>Glow is yet another filter that is could be used to replace <code>text-shadow</code> however it's obvious that glow isn't very much like <code>text-shadow</code> at all. But it could be used to make text stand out from a background which is essentially what <code>text-shadow</code> is used for. The color gradient effect is similar to the shadow filter but for glow the color is omni-directional.</p>
-<p>It should be noted that the glow affects the positioning of the text. A 2px glow pushes the text down 2px and to the right 2px. A 20px glow pronounces the issue, predictably pushing the text 20px down and to the right. The other filters, shadow and dropshadow exhibit the same behavior when the shadow is projected up or to the left. This can cause unexpected cross-browser display issues.</p>
+<p>Glow is yet another filter that could be used to replace <code>text-shadow</code>; however, it's obvious that glow isn't very much like <code>text-shadow</code> at all. But it could be used to make text stand out from a background, which is essentially what <code>text-shadow</code> is used for. The color gradient effect is similar to the shadow filter but for glow, the color is omni-directional.</p>
+<p>It should be noted that the glow affects the positioning of the text. A 2px glow pushes the text down 2px and to the right 2px. A 20px glow pronounces the issue, predictably pushing the text 20px down and to the right. The other filters, shadow and dropshadow, exhibit the same behavior when the shadow is projected up or to the left. This can cause unexpected cross-browser display issues.</p>
 <ul>
 	<li><code>color</code>- hex color without leading hash (#) character.</li>
 	<li><code>strength</code>- length in pixels without any units.</li>
@@ -132,7 +132,7 @@ categories: css polyfill ie plug-in
 	<br />
 	(<a href="http://assets.heygrady.com/shadow/blur.html" target="_blank">view live example</a>)</figcaption>
 </figure>
-<p>Blur is perhaps the most frustrating filter because it is both exactly what is needed and not at all appropriate. The blur effect is very similar to the blur other browsers use for <code>text-shadow</code>. But of course the text is rendered unreadable. It should also be noted that the blur offsets the text similarly to glow. For this example the text is shifted 2 pixels down and to the right by the blur. The larger the <code>pixelRadius</code> is the larger the unintended offset will be, similar to the glow filter.</p>
+<p>Blur is perhaps the most frustrating filter because it is both exactly what is needed and not at all appropriate. The blur effect is very similar to the blur other browsers use for <code>text-shadow</code>. But of course, the text is rendered unreadable. It should also be noted that the blur offsets the text the same way glow does. For this example the text is shifted 2 pixels down and to the right by the blur. The larger the <code>pixelRadius</code> is, the larger the unintended offset will be, similar to the glow filter.</p>
 <ul>
 	<li><code>pixelRadius</code>- length in pixels without any units. This is equivalent to the blur-radius argument for <code>text-shadow</code>.</li>
 	<li><code>makeShadow</code>- turns the text black no matter what color it was originally. Never use this.</li>
@@ -143,7 +143,7 @@ categories: css polyfill ie plug-in
 <ul>
 	<li>Blur creates the desired blur effect.</li>
 	<li>Blur obscures the original text which isn't exactly desirable.</li>
-	<li>Blur doesn't allow for color to be set directly although it does have a useless setting that will turn the text black.</li>
+	<li>Blur doesn't allow for color to be set directly, although it does have a useless setting that will turn the text black.</li>
 </ul>
 
 {% h2 Making Blur Work %}
@@ -159,7 +159,7 @@ categories: css polyfill ie plug-in
 {% h3 Fixing the Wrapping Issues %}
 <p>Instead of wrapping a long string of text in the <code>span</code> elements, it is more reliable to wrap individual words. This ensures that the <code>.shadow-copy</code> is always an appropriate width without having to set a hard <code>width</code> property in the CSS. Setting a hard width on the <code>span</code> would cause issues if the <code>text-size</code> were to change or the containing block changed size dynamically.</p>
 {% gist 863419 textshadow-plugin.html %}
-<p>The above is an example where the simple threesome of <code>span</code>s has been applied to every individual word. Note that in the word "shadow", a <code>span</code> is nested inside each <code>b</code> and <code>i</code> element as well.</p>
+<p>The above is an example where the simple threesome of <code>span</code> elements has been applied to every individual word. Note that in the word "shadow", a <code>span</code> is nested inside each <code>b</code> and <code>i</code> element as well.</p>
 {% h2 Turning it into a jQuery Plugin %}
 <figure>
 	<img src="http://assets.heygrady.com/shadow/textshadow-plugin-ie-8.png" alt="Textshadow Plugin Image" />
@@ -170,8 +170,8 @@ categories: css polyfill ie plug-in
 <p>I have created a simple jQuery plugin called <a href="https://github.com/heygrady/textshadow">jQuery Textshadow</a> that automatically wraps each word in the <code>span</code>s as shown above and applies the appropriate blur filter and positioning for the shadow. It even supports <a href="http://www.css3.info/preview/rgba/">RGBA</a> and <a href="http://www.css3.info/preview/hsla/">HSLA</a> by converting the values to a hex color and applying the alpha filter to the shadow. The plugin requires that a small CSS file also be included on the page in order to set up some base styles for the spans.</p>
 {% gist 863419 jquery.textshadow.css %}
 {% h3 Interesting Notes %}
-<p>Currently the plug-in assumes it is being applied in IE only and doesn't do any feature detection. It should be applied using a tool like <a href="http://www.modernizr.com/">Modernizr</a> or <a href="http://msdn.microsoft.com/en-us/library/ms537512(v=vs.85).aspx">IE conditional comments</a>. It's not particularly speedy, especially if there are dozens of tags that need the shadow applied. The slowest part is actually wrapping the text nodes with the replacement HTML. It's acceptably fast in Internet Explorer 9 and noticeably slow in Internet Explorer 8.</p>
-<p>Curiously Internet Explorer 9 also applies a cleaner shadow that is closer to text shadow in other browsers. The blur in IE 8 is noticeably muddier than the browsers that support <code>text-shadow</code>. See the images below for comparison.</p>
+<p>Currently, the plug-in assumes it is being applied in IE only and doesn't do any feature detection. It should be applied using a tool like <a href="http://www.modernizr.com/">Modernizr</a> or <a href="http://msdn.microsoft.com/en-us/library/ms537512(v=vs.85).aspx">IE conditional comments</a>. It's not particularly speedy, especially if there are dozens of tags that need the shadow applied. The slowest part is actually wrapping the text nodes with the replacement HTML. It's acceptably fast in Internet Explorer 9 and noticeably slow in Internet Explorer 8.</p>
+<p>Curiously, Internet Explorer 9 also applies a cleaner shadow that is closer to text shadow in other browsers. The blur in IE 8 is noticeably muddier than the browsers that support <code>text-shadow</code>. See the images below for comparison.</p>
 <figure>
 	<img src="http://assets.heygrady.com/shadow/textshadow-plugin-ie-8.png" alt="Textshadow Plugin IE 8 Image" />
 	<figcaption>Textshadow in IE 8</figcaption>

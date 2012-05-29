@@ -5,7 +5,7 @@ date: 2011-08-06 13:10
 comments: true
 categories: compass sass css
 ---
-<p>A challenge all web developers face is converting Photoshop documents into real, functioning web pages. Often this is a simple matter of measuring things and picking colors but in the case of drop shadows recreating them in CSS3 can be challenging. For some reason I have yet to find a tool that will simply translate the settings from the Photoshop Layer Style Drop Shadow dialog into proper CSS3 &mdash; so I decided to create one in Compass. I created a Sass <code>@mixin</code> that relies on Compass to easily create CSS3 <code>box-shadow</code>s from the values found in Photoshop.</p>
+<p>A challenge all web developers face is converting Photoshop documents into real, functioning web pages. Often this is a simple matter of measuring things and picking colors, but in the case of drop shadows recreating them in CSS3 can be challenging. For some reason I have yet to find a tool that will simply translate the settings from the Photoshop Layer Style Drop Shadow dialog into proper CSS3 &mdash; so I decided to create one in Compass. I created a Sass <code>@mixin</code> that relies on Compass to easily create CSS3 <code>box-shadow</code>s from the values found in Photoshop.</p>
 <p><strong>UPDATE:</strong> a <a href="https://github.com/heygrady/compass-photoshop-drop-shadow">Github repo</a> and <a href="https://rubygems.org/gems/compass-photoshop-drop-shadow">Ruby Gem</a> have been created.</p>
 <!--more-->
 {% h2 Photoshop Layer Style Drop Shadow Dialog %}
@@ -13,24 +13,24 @@ categories: compass sass css
 <img src="http://www.zetaprints.com/help/wp-content/uploads/2009/12/photoshop_drop_shadow_settings1.png" alt="Photoshop Layer Style Drop Shadow Dialog">
 <figcaption>Photoshop Drop Shadow Dialog (<a href="http://www.google.com/search?q=photoshop+drop+shadow+dialog&tbm=isch&biw=1293&bih=1255">Internet</a>)</figcaption>
 </figure>
-<p>Above you can see the Drop Shadow dialog in Photoshop. There is an article online that does a great job of breaking down <a href="http://garymgordon.com/misc/tutorials/photoshop_tutorial/effects1/dropshadow.htm">what each of the properties do</a>. Once it's understood how Photoshop uses the values it's easy to translate those values into <a href="https://developer.mozilla.org/en/css/box-shadow">CSS3 <code>box-shadow</code> values</a></p>
+<p>Above you can see the Drop Shadow dialog in Photoshop. There is an article online that does a great job of breaking down <a href="http://garymgordon.com/misc/tutorials/photoshop_tutorial/effects1/dropshadow.htm">what each of the properties does</a>. Once it's understood how Photoshop uses the values it's easy to translate those values into <a href="https://developer.mozilla.org/en/css/box-shadow">CSS3 <code>box-shadow</code> values</a>.</p>
 <dl>
-	<dt>Blend Mode:</dt>
-	<dd>Blends the shadow color with the background. CSS does not offer a similar property; this makes it difficult to match the colors exactly. CSS approximates a blend mode of Normal, however Photoshop uses Multiply by default. Using black (<code>#000</code>) will produce the same shadow in Normal and Multiply.</dd>
+	<dt>Blend Mode</dt>
+	<dd>Blends the shadow color with the background. CSS does not offer a similar property; this makes it difficult to match the colors exactly. CSS approximates a blend mode of "Normal", but Photoshop uses "Multiply" by default. Using black (<code>#000</code>) will produce the same shadow in "Normal" and "Multiply".</dd>
 
-	<dt>Opacity:</dt>
+	<dt>Opacity</dt>
 	<dd>Sets the opacity of the shadow. This is similar to using <code>rgba()</code>. <br><em>Note: <code>rgba()</code> is currently <a href="http://css3pie.com/documentation/supported-css3-features/#rgba">not supported in CSS3PIE</a> for <code>box-shadow</code></em>.</dd>
 
-	<dt>Angle:</dt>
+	<dt>Angle</dt>
 	<dd>Controls the directions of the shadow. The <em>Angle</em> can be replicated using the <code>&lt;offset-x&gt;</code> and <code>&lt;offset-y&gt;</code> values of <code>box-shadow</code> and can be calculated with a little trigonometry.</dd>
 
-	<dt>Distance:</dt>
+	<dt>Distance</dt>
 	<dd>Controls the shadow offset in the direction of the <em>Angle</em>. This combines with the <em>Angle</em> for calculating the <code>&lt;offset-x&gt;</code> and <code>&lt;offset-y&gt;</code>.</dd>
 
-	<dt>Spread:</dt>
+	<dt>Spread</dt>
 	<dd>Determines the portion of the shadow (percentage of the <em>Size</em>) that is a solid color; the rest of the shadow is blurred. <em>Spread</em> is analogous to the <code>&lt;spread-radius&gt;</code> value of <code>box-shadow</code>.</dd>
 
-	<dt>Size:</dt>
+	<dt>Size</dt>
 	<dd>Sets the radius of the shadow in pixels. In CSS3 the <em>Size</em> is the <code>&lt;spread-radius&gt;</code> plus the <code>&lt;blur-radius&gt;</code>.</dd>
 
 	<dt>Contour &amp; Noise:</dt>
@@ -40,7 +40,7 @@ categories: compass sass css
 {% h2 CSS3 Box Shadow %}
 <p>Now that we have a basic understanding of what Photoshop is doing, let's look at the <a href="https://developer.mozilla.org/En/CSS/Box-shadow#Values">values that <code>box-shadow</code> accepts</a> and see how they compare.</p>
 <dl>
-	<dt><code>&lt;offset-x&gt;</code> and <code>&lt;offset-y&gt;</code>:</dt>
+	<dt><code>&lt;offset-x&gt;</code> and <code>&lt;offset-y&gt;</code></dt>
 	<dd>Moves the shadow on the x and y axis. These values are required and are always the first two length properties. These are calculated using the <em>Angle</em> and <em>Distance</em> in Photoshop.</dd>
 
 	<dt><code>&lt;blur-radius&gt;</code></dt>
@@ -55,7 +55,7 @@ categories: compass sass css
 {% h2 Generating the CSS3 Values from the Photoshop Values %}
 <p>As mentioned before, although Photoshop and CSS3 represent the values differently, they are actually analogous to each other.</p>
 {% h3 Calculating the Offsets %}
-<p>Photoshop uses <em>Angle</em> and <em>Distance</em> which can be used to calculate the <code>&lt;offset-x&gt;</code> and <code>&lt;offset-y&gt;</code>. Imagine a right triangle where the <code>&lt;offset-x&gt;</code> and the <code>&lt;offset-y&gt;</code> formed the right angle. The <em>Distance</em> would be the hypotenuse and the <em>Angle</em> is the inner angle. There are <a href="http://easycalculation.com/trigonometry/triangle-angles.php">online triangle calculators</a> for this basic trigonometry. Again, the <code>&lt;offset-y&gt;</code> and <code>&lt;offset-x&gt;</code> are the opposite and adjacent sides, the <em>Distance</em> is the hypotenuse.</p>
+<p>Photoshop uses <em>Angle</em> and <em>Distance</em>, which can be used to calculate the <code>&lt;offset-x&gt;</code> and <code>&lt;offset-y&gt;</code>. Imagine a right triangle where the <code>&lt;offset-x&gt;</code> and the <code>&lt;offset-y&gt;</code> formed the right angle. The <em>Distance</em> would be the hypotenuse and the <em>Angle</em> is the inner angle. There are <a href="http://easycalculation.com/trigonometry/triangle-angles.php">online triangle calculators</a> for this basic trigonometry. Again, the <code>&lt;offset-y&gt;</code> and <code>&lt;offset-x&gt;</code> are the opposite and adjacent sides, the <em>Distance</em> is the hypotenuse.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="210" height="210">
   <line x1="20" x2="20" y1="10" y2="190" stroke="red" fill="transparent" stroke-width="3"/>
@@ -78,7 +78,7 @@ categories: compass sass css
 	<li><code>&lt;offset-x&gt;</code> == Adjacent;</li>
 </ul>
 {% h3 Calculating the Blur and Spread %}
-<p> The <code>&lt;blur-radius&gt;</code> and <code>&lt;spread-radius&gt;</code> are not quite as straight-forward but are equally easy to calculate. In Photoshop, the <em>Size</em> attribute represents the total length of the shadow and the <em>Spread</em> represents the percentage of the shadow that is a solid color &mdash; the rest is blurred. In CSS the spread is added to the blur for the total shadow size. With this in mind, <code>&lt;blur-radius&gt;</code> is equal to the Photoshop <em>Size</em> minus the <code>&lt;spread-radius&gt;</code> and the <code>&lt;spread-radius&gt;</code> equals the Photoshop <em>Size</em> multiplied by the Photoshop <em>Spread</em> percentage. Again, the code example above bears this out.</p>
+<p> The <code>&lt;blur-radius&gt;</code> and <code>&lt;spread-radius&gt;</code> are not quite as straightforward but are equally easy to calculate. In Photoshop, the <em>Size</em> attribute represents the total length of the shadow and the <em>Spread</em> represents the percentage of the shadow that is a solid color &mdash; the rest is blurred. In CSS the spread is added to the blur for the total shadow size. With this in mind, <code>&lt;blur-radius&gt;</code> is equal to the Photoshop <em>Size</em> minus the <code>&lt;spread-radius&gt;</code> and the <code>&lt;spread-radius&gt;</code> equals the Photoshop <em>Size</em> multiplied by the Photoshop <em>Spread</em> percentage. Again, the code example above bears this out.</p>
 {% h3 The <code>@mixin</code> %}
 <p> Below is a Sass <code>@mixin</code> that takes values from Photoshop, converts them, and creates a CSS3 <code>box-shadow</code>.</p>
 {% gist 1039282 photoshop-drop-shadow.scss %}
@@ -93,7 +93,7 @@ categories: compass sass css
 	<iframe src="http://assets.heygrady.com/photoshop-drop-shadow/photoshop-drop-shadow.html" height="200" width="200" scrolling="no" frameborder="0"></iframe>
 	<figcaption>A red box with a <code>box-shadow</code> <br>(<a href="http://assets.heygrady.com/photoshop-drop-shadow/photoshop-drop-shadow.html" target="_blank">view live example</a>).</figcaption>
 </figure>
-<p>Using the <code>@mixin</code> is quite simple. Assume that we want to recreate the above Photoshop image in CSS. This image was created with the default <em>Blend Mode</em>, <em>Color</em> and <em>Opacity</em>. The <em>Angle</em> is 120&deg;, the <em>Distance</em> is 10px, the <em>Spread</em> is 50% and the <em>Size</em> is 10px. As the example below shows, all that is needed is plugging in the values as they appear in Photoshop into the <code>@mixin</code>.</p>
+<p>Using the <code>@mixin</code> is quite simple. Assume that we want to recreate the above Photoshop image in CSS. This image was created with the default <em>Blend Mode</em>, <em>Color</em> and <em>Opacity</em>. The <em>Angle</em> is 120&deg;, the <em>Distance</em> is 10px, the <em>Spread</em> is 50% and the <em>Size</em> is 10px. As the example below shows, all that is needed is to plug in the values as they appear in Photoshop into the <code>@mixin</code>.</p>
 {% gist 1039282 example.scss %}
 <p>The <code>@mixin</code> will automatically convert the values and create the corresponding CSS rules as shown in the example below. It is important to note that the <em>Angle</em> and <em>Spread</em> values should always be unitless while the <em>Distance</em> and <em>Size</em> values require px as the unit.</p>
 {% gist 1039282 example.css %}

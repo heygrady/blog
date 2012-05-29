@@ -12,7 +12,7 @@ If you [don't like the `srcset`](http://timkadlec.com/2012/05/wtfwg/) solution b
 <!--more-->
 {% h2 Jumping Ahead: CSS-Only Apaptive Images %}
 
-To help get a handle on where this is going, here's a quick preview of the technique. This method of adaptive uses CSS in a `<style>` tag to make a `<span>` behave like an image. This method has broad browser support, is accessible and does not require JavaScript.
+To help get a handle on where this is going, here's a quick preview of the technique. This method for adaptive images uses CSS in a `<style>` tag to make a `<span>` behave like an image. This method has broad browser support, is accessible and does not require JavaScript.
 
 First is some generic CSS that belongs in a global stylesheet and can be used for all adaptive images. The CSS is for making the `<span>` behave more like a native `<img>`. The key to this is `display: inline-block` and `background-size: 100%`.
 
