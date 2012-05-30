@@ -5,34 +5,43 @@ date: 2012-05-25 15:44
 comments: true
 categories: css adaptive images responsive design
 ---
-The hot topic in web development right now is how to gracefully handle images when building a responsive website. Images that change based on media queries are known as responsive or [adaptive images](http://html5doctor.com/html5-adaptive-images-end-of-round-one/). The W3C is currently trying to sort out competing [specifications](http://www.whatwg.org/specs/web-apps/current-work/multipage/embedded-content-1.html#attr-img-srcset) and [ideas from the community](http://www.w3.org/community/respimg/). While the debate continues, many clever developers are coming up with [JavaScript-based solutions](https://github.com/scottjehl/picturefill). But there's a way to provide adaptive images without using any JavaScript at all.
+The hot topic in web development right now is how to gracefully handle images when building a responsive website. Images that change based on media queries are known as responsive or [adaptive images](http://html5doctor.com/html5-adaptive-images-end-of-round-one/). The W3C is currently trying to sort out competing [specifications](http://www.whatwg.org/specs/web-apps/current-work/multipage/embedded-content-1.html#attr-img-srcset) and [ideas from the community](http://www.w3.org/community/respimg/). While the debate continues, many clever developers are coming up with [JavaScript-based solutions](https://github.com/scottjehl/picturefill). But there's a way to provide responsive images without using any JavaScript at all.
 
-If you [don't like the `srcset`](http://timkadlec.com/2012/05/wtfwg/) solution being proposed, or you simply need something that works in today's browsers and doesn't use JavaScript, read below for a potential solution to the adaptive image problem.
+If you [don't like the `srcset`](http://timkadlec.com/2012/05/wtfwg/) solution being proposed, or you simply need something that works in today's browsers and doesn't use JavaScript, read below for a potential solution to the responsive image problem.
 
 <!--more-->
-{% h2 Jumping Ahead: CSS-Only Apaptive Images %}
 
-To help get a handle on where this is going, here's a quick preview of the technique. This method for adaptive images uses CSS in a `<style>` tag to make a `<span>` behave like an image. This method has broad browser support, is accessible and does not require JavaScript.
+{% h2 TL;DR %}
 
-First is some generic CSS that belongs in a global stylesheet and can be used for all adaptive images. The CSS is for making the `<span>` behave more like a native `<img>`. The key to this is `display: inline-block` and `background-size: 100%`.
+This article covers a method for using CSS to handle responsive images instead of using JavaScript. There are two use-cases discussed in-depth below. [Part 1](#part-1-responsive-images-using-css) covers how to create an responsive image using only CSS. [Part 2](#part-2-proportionally-scaling-responsive-images) covers how to create a proportionally scaled responsive images using only CSS.
+
+**Example:** *See a live example of a [CSS-only responsive image](/assets/adaptive-image-example/step-5.html).*
+
+**Example:** *See a live example of a [CSS-only responsive image that scales proportionally](/assets/adaptive-image-example/proportional-step-3.html).*
+
+{% h3 CSS-Only Responsive Images %}
+
+Here's a quick preview of the technique. This method for responsive images uses CSS in a `<style>` tag to make a `<span>` behave like an image. This method has broad browser support, is accessible and does not require JavaScript.
+
+First is some generic CSS that belongs in a global stylesheet and can be used for all responsive images. The CSS is for making the `<span>` behave more like a native `<img>`. The key to this is `display: inline-block` and `background-size: 100%`.
 
 {% gist 2815664 final.css %}
 
-Second is the base HTML for all adaptive images. Essentially the HTML below will replace each `<img>` tag that needs to respond to media queries. Of course the media queries themselves should be placed inside the `<style>` tag.
+**NOTE:** please [see below for an explanation of this CSS](#step-3-generic-styles-for-all-images).
+
+Second is the base HTML for all responsive images. Essentially the HTML below will replace each `<img>` tag that needs to respond to media queries. Of course the media queries themselves should be placed inside the `<style>` tag.
 
 {% gist 2815664 final.html %}
 
-**Example:** *[See a live example](/assets/adaptive-image-example/step-5.html) of a CSS-only adaptive image.*
+**NOTE:** The media queries are explained in [step 4](#step-4-specific-styles-for-the-individual-image) below.
 
-**Example:** *[See a live example](/assets/adaptive-image-example/proportional-step-3.html) of a CSS-only adaptive image that scales proportionally.*
-
-{% h2 Diving in: Using Fake Images and Inline CSS %}
+{% h2 Part 1: Responsive Images Using CSS %}
 
 There are many [good articles about handling responsive images](http://css-tricks.com/on-responsive-images/) and they all have the same goal of supporting the types of media query wizardry that can be accomplished in CSS for swapping out images. While most of those solutions utilize JavaScript to swap the `src` of an `<img>`, I'm proposing that using CSS background images is probably good enough and avoids most of the pitfalls of the other techniques. It's fairly easy to make a `<span>` with a background image behave exactly like a real `<img>` with some basic CSS, primarily relying on [`display: inline-block`](https://developer.mozilla.org/en/CSS/display) and [`background-size: 100%`](https://developer.mozilla.org/en/CSS/background-size).
 
 Of course, moving every in-page image on your site to your global stylesheets is impractical and ill-advised. The images we're talking about are part of the content and have no place in your site's global styles; they're very likely to be managed by a CMS. The solution is to embed the styles in the HTML by placing a `<style>` tag in the `<body>` instead of in the global stylesheet.
 
-The HTML5 spec now allows for `<style>` tags in the `<body>` as long as they carry a `scoped` attribute (although this currently won't validate). Using a `<style>` tag this way is only marginally different than the usage of `<source>` as proposed in [the picturefill method](http://www.w3.org/community/respimg/2012/03/07/14/) and it's certainly less confusing than the [srcset proposal](http://lists.w3.org/Archives/Public/public-whatwg-archive/2012May/0247.html). Using CSS carries with it the benefit of a familiar, flexible syntax and broad browser support. This also avoids relying on an [emerging and contentious standard](http://blog.cloudfour.com/the-real-conflict-behind-picture-and-srcset/).
+A recent draft of HTML5 spec would allow for `<style>` tags in the `<body>` as long as they carry a `scoped` attribute ([although this currently won't validate](http://stackoverflow.com/questions/6751922/what-practice-to-use-for-html5-scoped-attribute)). Using a `<style>` tag this way is only marginally different than the usage of `<source>` as proposed in [the picturefill method](http://www.w3.org/community/respimg/2012/03/07/14/) and it's certainly less confusing than the [srcset proposal](http://lists.w3.org/Archives/Public/public-whatwg-archive/2012May/0247.html). Using CSS carries with it the benefit of a familiar, flexible syntax and broad browser support. This also avoids relying on an [emerging and contentious standard](http://blog.cloudfour.com/the-real-conflict-behind-picture-and-srcset/).
 
 {% h3 Start with a Regular Image %}
 
@@ -94,7 +103,7 @@ Now it's time to apply the background image to our `<span>`. We don't want to pl
 
 For each media query we need to provide a background image and a height and width. The result is very similar to the mark-up for [the Picturefill solution proposed for the `<picture>` tag](https://github.com/scottjehl/picturefill#markup-pattern-and-explanation). Although using a `<style>` tag is decidedly more verbose &mdash; CSS is not known for brevity &mdash; it doesn't require the weird duplicative HTML comments `<picture>` requires for full browser support. Plus, a pure CSS method doesn't require any JavaScript whatsoever.
 
-The example below shows the `<style>` element just above our `<span>` with all of the styles for our adaptive image. In this example the fall-back is the desktop version but otherwise a [mobile first approach](http://www.stuffandnonsense.co.uk/blog/about/this_is_the_new_320_and_up) is used in the media queries. The media queries below are simple examples and your project will undoubtedly require [different break points](http://www.palantir.net/re-thinking-breakpoints).
+The example below shows the `<style>` element just above our `<span>` with all of the styles for our responsive image. In this example the fall-back is the desktop version but otherwise a [mobile first approach](http://www.stuffandnonsense.co.uk/blog/about/this_is_the_new_320_and_up) is used in the media queries. The media queries below are simple examples and your project will undoubtedly require [different break points](http://www.palantir.net/re-thinking-breakpoints).
 
 - The fall-back should probably be the default desktop image.
 - Each media query should supply a `background-image` as well as the `height` and `width` because the browser can't guess the size of a background image the way it can with regular `<img>` elements.
@@ -107,27 +116,27 @@ The example below shows the `<style>` element just above our `<span>` with all o
 
 **NOTE:** Although the vast majority of examples on the web recommend adding the smallest, mobile optimized image as the fall-back, I prefer to supply the default desktop image to the browsers that don't support media queries. The only browsers that get the fall-back image are browsers that don't support media queries, and those browsers are almost exclusively IE6, IE7 and IE8. Supplying the mobile image as the fall-back is silly considering that there aren't any mobile browsers with any noticeable marketshare that require the fall-back. The mobile browsers we're targeting all support media queries.
 
-The fact that virtually every mobile browser now fully supports media queries has been the primary driver behind the current responsive design fervor! There's probably a few outlying mobile browsers that are not media-query-friendly but they're of little interest because they don't make up a large enough percentage of the mobile devices. Just as most developers don't develop for IE6 anymore &mdash; because of its low market share &mdash; there's little point in targeting the minority out-of-date mobile browsers.
-
-In general, I'm of the opinion that browsers that don't natively support responsive design should simply be served the vanilla 960px desktop experience, since that's almost certainly what those users were expecting anyway.
+In general, I'm of the opinion that browsers that don't natively support responsive design should simply be served the vanilla desktop experience, since that's almost certainly what those users were expecting anyway.
 
 {% h3 Step 5: Add in Scoped %}
 
-To make ourselves feel better about using invalid markup, let's add `scoped` to our style tag to at least [conform to the new HTML5 standard](http://www.impressivewebs.com/scoped-styles-html5/). This won't make our code validate any better than it would have otherwise and support for the `scoped` attribute is currently non-existent. The lack of support for `scoped` means that we'll have to keep using the `id` in our styles instead of being able to use more generic `.image` to add the background image and dimensions. That's ok though; we're only adding in the scoped attribute to appear to be writing valid markup and to hopefully prepare for future compatibility and validity. WebKit already has experimental support and other browsers are sure to follow.
+To make ourselves feel better about using invalid markup, let's add `scoped` to our style tag to at least [conform to the new HTML5 standard](http://html5doctor.com/the-scoped-attribute/). This won't make our code validate any better than it would have otherwise and support for the `scoped` attribute is currently non-existent.
 
-Scoped `<style>` elements need a wrapper element to define, well&hellip;the scope. If we use an inline element like a `<span>` as the wrapper it will automatically shrink-wrap our responsive image and not have any negative effect on our layout.
+The lack of support for `scoped` means that we'll have to keep using the `id` in our styles instead of being able to use more generic `.image` to add the background image and dimensions. That's ok though; we're only adding in the scoped attribute to appear to be writing valid markup and to hopefully prepare for future compatibility and validity. WebKit already has experimental support and other browsers are sure to follow.
 
-Below you can see the identical markup from step 4 with the addition of the `scoped` attribute and a new `.image-scope` element. The `.image-scope` element doesn't require any additional styles because it is a `<span>` and is `display: inline` already.
+Scoped `<style>` elements need a wrapper element to define, well&hellip;the scope. If we use an inline element like a `<span>` as the wrapper it will automatically shrink-wrap our responsive image and not have any negative effect on our layout. (**UPDATE:** It appears that [inline elements are not valid style scopes](http://validator.w3.org/check?uri=http%3A%2F%2Fheygrady.com%2Fassets%2Fadaptive-image-example%2Fproportional-step-3.html&charset=%28detect+automatically%29&doctype=HTML5&group=0))
+
+Below you can see the identical markup from [step 4](#step-4-specific-styles-for-the-individual-image) with the addition of the `scoped` attribute and a new `.image-scope` element. The `.image-scope` element doesn't require any additional styles because it is a `<span>` and is `display: inline` already.
 
 {% gist 2815664 step-5.html %}
 
-**Example:** *[See a live example](/assets/adaptive-image-example/step-4.html) that looks exactly the same as step 4.*
+**Example:** *[See a live example](/assets/adaptive-image-example/step-5.html) that looks exactly the same as [step 4](#step-4-specific-styles-for-the-individual-image).*
 
-**NOTE:** Because of the lack of browser support for `scoped`, this step is completely optional and only serves to make the mark-up slightly more compliant.
+**NOTE:** Because of the lack of browser support for `scoped`, this step is completely optional and only serves to make the mark-up slightly more compliant. Even then, using `scoped` is pretty controversial &mdash; there's severe backwards compatibility issues &mdash; and you may wish to skip it altogether.
 
-{% h2 Supporting Proportional Scaling %}
+{% h2 Part 2: Proportionally Scaling Responsive Images %}
 
-When working with responsive design, it's becoming increasingly popular to use fluid layouts to ensure that the content is fitting the screen properly. When using a normal `<img>` it's easy to support scalable dimensions by defining only the width of the image with a percentage and letting the browser proportionally scale the image height. Although it requires some ingenuity, the adaptive image techniques described above can also be combined with [proportional scaling](http://haslayout.net/css-tuts/CSS-Proportional-Image-Scale).
+When working with responsive design, it's becoming increasingly popular to use fluid layouts to ensure that the content is fitting the screen properly. When using a normal `<img>` it's easy to support scalable dimensions by defining only the width of the image with a percentage and letting the browser proportionally scale the image height. Although it requires some ingenuity, the responsive image techniques described above can also be combined with [proportional scaling](http://haslayout.net/css-tuts/CSS-Proportional-Image-Scale).
 
 {% h3 Normal Example %}
 
@@ -139,7 +148,7 @@ Below is an example of how this is handled with a normal image. The `<img>` will
 
 {% h3 Step 1: Adding an Inner Element %}
 
-Background images can't affect layout, which forces us to define a fixed height and width to use the adaptive techniques outlined above. So it's not immediately obvious how to proportionally scale the height of the `<span>`. The solution is to use a percentage `padding-top` on an inner element to provide the proportionate height (see [padding on MDN](https://developer.mozilla.org/en/CSS/padding)).
+Background images can't affect layout, which forces us to define a fixed height and width to use the responsive techniques outlined above. So it's not immediately obvious how to proportionally scale the height of the `<span>`. The solution is to use a percentage `padding-top` on an inner element to provide the proportionate height (see [padding on MDN](https://developer.mozilla.org/en/CSS/padding)).
 
 For `padding`, percentages are defined relative to the parent element's width. Somewhat counter-intuitively, `padding-top` is *also* defined as a percentage of the parent element's width &mdash; not the height as you might expect. Using `padding-top` on an inner element allows the height to be proportionally scaled.
 
@@ -171,8 +180,8 @@ The example below allows the responsive image to scale proportionally.
 
 {% h2 Conclusion %}
 
-This idea is in its infancy right now but I think it may be a good alternative to the many JavaScript-based solutions out there. The positive side is that it makes it simple to supply media queries for creating responsive/adaptive images and it doesn't use any JavaScript at all. The negative side is that the markup isn't 100% valid and the CSS can get a little verbose. At the same time, none of the other proposed solutions have a particularly clean syntax either. The `<picture>` tag requires multiple `<source>` tags, each with their own media query and relies on JavaScript. The `srcset` proposal uses an alternate syntax to media queries, is not easy to understand and also will require JavaScript to function cross-browser.
+This idea is in its infancy right now but I think it may be a good alternative to the many JavaScript-based solutions out there. The positive side is that it makes it simple to supply media queries for creating responsive/responsive images and it doesn't use any JavaScript at all. The negative side is that the markup isn't 100% valid and the CSS can get a little verbose. At the same time, none of the other proposed solutions have a particularly clean syntax either. The `<picture>` tag requires multiple `<source>` tags, each with their own media query and relies on JavaScript. The `srcset` proposal uses an alternate syntax to media queries, is not easy to understand and also will require JavaScript to function cross-browser.
 
-The biggest concern is how to roll out adaptive images over a large organization. What happens if a large corporation upgrades their website with a new responsive design to take full advantage of the rapidly growing mobile market? Should they roll out the `<picture>` tag or the `srcset` solutions? Should they roll out a complicated `<style scoped>` solution like what's proposed above? No matter what path is chosen, the result is going to be slightly messy because there are no CMS that currently provide a nice solution for managing adaptive images across a large organization.
+The biggest concern is how to roll out responsive images over a large organization. What happens if a large corporation upgrades their website with a new responsive design to take full advantage of the rapidly growing mobile market? Should they roll out the `<picture>` tag or the `srcset` solutions? Should they roll out a complicated `<style scoped>` solution like what's proposed above? No matter what path is chosen, the result is going to be slightly messy because there are no CMS that currently provide a nice solution for managing responsive images across a large organization.
 
-Although most people are probably not going to be comfortable faking images using a `<span>` and an embedded `<style>` tag, I believe the immediate browser support and predictable behavior of this solution make it a compelling addition to the adaptive image conversation.
+Although most people are probably not going to be comfortable faking images using a `<span>` and an embedded `<style>` tag, I believe the immediate browser support and predictable behavior of this solution make it a compelling addition to the responsive image conversation.
