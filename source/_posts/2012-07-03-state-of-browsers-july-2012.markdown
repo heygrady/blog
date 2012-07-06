@@ -1,0 +1,93 @@
+---
+layout: post
+title: "State of Browsers, July 2012"
+date: 2012-07-03 11:51
+comments: true
+categories: browsers
+---
+There's been some big changes in the browser world in the last year. Google's Chrome has continued to gain tremendously in popularity, and Internet Explorer 9 has started to supplant the older versions of Microsoft's much-maligned brower. Mobile browsers have also started to take a big bite of the overall browser market.
+
+Web developers need to know about browser usage in order to make rational choices for browser testing and for choosing which features they can rely on it browsers. With [jQuery's recent choice to phase out legacy IE support](http://blog.jquery.com/2012/07/01/jquery-1-9-and-2-0-tldr-edition/), there's a renewed focus on what browsers make sense to support.
+
+<!--more-->
+{% h2 About the Data %}
+The following stats are culled from the [StatCounter Global Stats](http://gs.statcounter.com/#browser_version_partially_combined-US-monthly-201106-201206). Their data isn't perfect ([read the FAQ](http://gs.statcounter.com/faq)), but it's a good starting point for understanding the current browser landscape. Ultimately, your own Google Analytics data should be used for analyzing the right browsers to test for your site.
+
+{% h3 Choosing a Region %}
+All of the stats below are for the United States region. Many [articles using StatCounter stats](http://www.sitepoint.com/browser-trends-july-2012/) use the worldwide stats but those can be very misleading. For instance, [Europe](http://gs.statcounter.com/#browser_version_partially_combined-eu-monthly-201206-201206-bar) is very different from [Africa](http://gs.statcounter.com/#browser_version_partially_combined-af-monthly-201206-201206-bar), which is very different from [Asia](http://gs.statcounter.com/#browser_version_partially_combined-as-monthly-201206-201206-bar), and so on.
+
+The whole point of browser stats is to know what browsers your site's visitors are using. To that end, most sites visitors overwhelming coming from a specific region. Mixing all of them together as "worldwide" isn't actually useful for any specific project.
+
+I live in the US and the majority of the sites I work on are for a US audience. If you live somewhere else, you can easily pull the data from StatCounter for your country.
+
+{% h3 Combining Desktop and Mobile %}
+I've combined the desktop and the mobile data into one chart. The resulting [spreadsheet has been published](https://docs.google.com/spreadsheet/pub?key=0Ajlnzthl1cAzdDdYM3VQUG5CTjVqdy1OVEkxLU4tZWc&output=html) so that you can see the raw data. StatCounter keeps mobile and desktop browsers separate, so combining them means multiplying the percentages by the [Mobile vs. Desktop](http://gs.statcounter.com/#mobile_vs_desktop-US-monthly-201106-201206) ratios. Because of this, the values shown below will differ slightly from the [Partially Combined Browser Versions](http://gs.statcounter.com/#browser_version_partially_combined-US-monthly-201106-201206) on the StatCounter site.
+
+{% h3 Combining iPhone and iPod Touch %}
+To the best of my knowledge these devices are extremely similar and, as far as the browser is concerned, they are identical devices. For the purposes of browser market share, these two devices should be combined.
+
+{% h2 Market Share as of July 2012 %}
+<figure>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/static/modules/gviz/1.0/chart.js"> {"dataSourceUrl":"//docs.google.com/spreadsheet/tq?key=0Ajlnzthl1cAzdDdYM3VQUG5CTjVqdy1OVEkxLU4tZWc&transpose=1&headers=1&range=A1%3AN12&gid=0&pub=1","options":{"vAxes":[{"useFormatFromData":false,"formatOptions":{"source":"inline","suffix":"%"},"viewWindowMode":"pretty","format":"0.##'%'","viewWindow":{}},{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}],"series":{"1":{"color":"#3c78d8"},"2":{"color":"#6d9eeb"},"3":{"color":"#a4c2f4"},"4":{"color":"#ff9900"},"5":{"color":"#f6b26b"},"6":{"color":"#109618"},"7":{"color":"#990099"},"8":{"color":"#b82e2e"},"9":{"color":"#0099c6"},"10":{"color":"#b7b7b7"}},"title":"Browser Market Share, July 2011 - June 2012","curveType":"","booleanRole":"certainty","height":389,"animation":{"duration":0},"width":618,"lineWidth":2,"hAxis":{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}},"state":{},"chartType":"LineChart","chartName":"Browse Market Share, July 2012"} </script>
+</figure>
+
+Since the beginning of the year, IE9 has been making up a lot of ground while IE8 has been plummeting. This is probably due to a combination of [Microsoft's much touted update policy](http://paulirish.com/2012/the-skinny-on-ies-update-policy/) and the [continued success of Windows 7](http://gs.statcounter.com/#os-US-monthly-201106-201206). Meanwhile, Chrome has continued to see tremendous growth. As usual, [Firefox, Safari and Opera have remained fairly static](http://gs.statcounter.com/#browser-US-monthly-201106-201206). Overall, Firefox has dropped a few percentage points, likely due to users switching to Chrome.
+
+Mobile is the other major success story of the last year. Adding iPad to the mobile statistics, mobile has grown more than 3% in the last year and continues to grow.
+
+{% h3 Combining Browser Versions %}
+All versions of Chrome are combined because that browser auto-updates and the differences between versions are negligible. The same is true of Firefox 4+, Safari and Opera. All of these browsers have aggressive updating policies and the differences between the versions is largely irrelevant because the majority of users upgrade their browsers quickly.
+
+The different versions of IE are called out because of the significant differences between each release. IE also lacks a comprehensive updating policy, which means older browsers keep their market share for much longer.
+
+Older versions of Firefox (below version 4) are also lumped together because they also lacked an aggressive auto-update feature.
+
+{% h3 Market Share in June 2012 %}
+
+<figure>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/static/modules/gviz/1.0/chart.js"> {"dataSourceUrl":"//docs.google.com/spreadsheet/tq?key=0Ajlnzthl1cAzdDdYM3VQUG5CTjVqdy1OVEkxLU4tZWc&transpose=0&headers=1&merge=COLS&range=A1%3AA12%2CN1%3AN12&gid=0&pub=1","options":{"vAxes":[{"title":null,"useFormatFromData":true,"minValue":null,"viewWindowMode":"pretty","viewWindow":{"min":null,"max":null},"maxValue":null},{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}],"pieHole":0,"booleanRole":"certainty","title":" Browser Market Share, June 2012","animation":{"duration":0},"colors":["#3366CC","#3c78d8","#6d9eeb","#6d9eeb","#ff9900","#f6b26b","#109618","#990099","#B82E2E","#0099c6","#b7b7b7","#22AA99","#AAAA11","#6633CC","#E67300","#8B0707","#651067","#329262","#5574A6","#3B3EAC","#B77322","#16D620","#B91383","#F4359E","#9C5935","#A9C413","#2A778D","#668D1C","#BEA413","#0C5922","#743411"],"is3D":false,"annotations":{"domain":{}},"hAxis":{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}},"width":618,"height":389},"state":{},"chartType":"PieChart","chartName":"Chart 3"} </script>
+</figure>
+
+The pie-chart above shows the combined mobile and desktop browser market share for June 2012. The top browsers in the US are Chrome, IE9, Firefox, and IE8. When combined together, mobile has a greater market share than Safari, Opera, old Firefox and IE6/7 combined. We're now in an interesting period where it makes more sense to focus developer resources on mobile platforms rather than legacy versions of IE.
+
+{% h4 IE6 is Gone Forever; IE7 Is Hot On Its Heels %}
+The good news is that IE6 is nearly invisible in the United States now. Above you can see it has around 0.3% market share. Even [NetMarketshare](http://www.netmarketshare.com/browser-market-share.aspx?qprid=2&qpcustomd=0&qptimeframe=M&qpsp=161) data that's used on [IE6 Countdown](http://www.ie6countdown.com/) shows IE6 at 0.6%. By this time next year IE will likely be an afterthought in every market except China. Even in [China](http://gs.statcounter.com/#browser_version_partially_combined-CN-monthly-201106-201206), IE6 has been taking a severe nosedive in the past 12 months. 
+
+In the past 12 months IE7 has lost 4% or it's market share, a 60% reduction overall. IE7's downward trend has been fairly constant and predicable. IE7 lost an average of 0.33% market share in the previous twelve months. By this time next year IE7 will undoubtedly be well below the 1% mark.
+
+{% h2 Choosing A-Grade Browsers %}
+<figure>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/static/modules/gviz/1.0/chart.js"> {"dataSourceUrl":"//docs.google.com/spreadsheet/tq?key=0Ajlnzthl1cAzdDdYM3VQUG5CTjVqdy1OVEkxLU4tZWc&transpose=1&headers=1&merge=ROWS&range=A1%3AN4%2CA6%3AN6%2CA8%3AN9%2CA23%3AN24%2CA20%3AN20&gid=0&pub=1","options":{"vAxes":[{"useFormatFromData":false,"minorGridlines":{"count":"0"},"formatOptions":{"source":"inline","prefix":"","suffix":"%"},"viewWindowMode":"pretty","format":"0.##'%'","viewWindow":{}},{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}],"series":{"1":{"color":"#3c78d8"},"2":{"color":"#6fa8dc"},"3":{"color":"#ff9900"},"4":{"color":"#109618"},"5":{"color":"#990099"},"6":{"color":"#8e7cc3"},"7":{"color":"#0099c6"},"8":{"color":"#dd4477"}},"curveType":"","booleanRole":"certainty","title":"A-Grade Browser's Market Share, July 2011 - June 2012","height":389,"animation":{"duration":0},"width":618,"lineWidth":2,"hAxis":{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}},"state":{},"chartType":"LineChart","chartName":"Chart 2"} </script>
+</figure>
+
+Yahoo! keeps an updated [Graded Browser Support](http://yuilibrary.com/yui/docs/tutorials/gbs/) document that lists the browsers that YUI supports. It's a good starting point for any solid testing strategy. Above you can see how some of the browsers that I consider A-grade have trended for the past 12 months.
+
+With the exception of IE7/8 (and Safari), every other browser in the list is trending upwards. While Safari is staying relatively stagnant, IE8 has been declining rapidly. Since December, it has lost an average of 2% market share every month. It seems to have leveled off temporarily but it would be reasonable to expect IE8 to drop below 10% in the next 6 months.
+
+{% h3 Dropping IE7; Picking up iOS, Android %}
+Now is the time to start dropping IE7. It's below 2% nationally and it's continuing to fall. Meanwhile, iPhone, iPad and Android have gained enough market share to start trending as top-shelf browsers. 
+
+Already, these mobile browsers are outperforming desktop browsers like Opera, and IE6/7. This is significant because the other mobile browsers, like Blackberry at 0.33%, have abysmal market share in the US. Even Opera Mobile, which has a [good worldwide market share](http://gs.statcounter.com/#mobile_browser-ww-monthly-201106-201206), has only a 0.16% market share in the US.
+
+A safe rule is that any browser under 2% is on its way out, and any browser under 1% is too small to focus on. The amount of developer effort doesn't match the size of the audience. In essence, these are platforms that are safe to ignore.
+
+However, iPad, iPhone and Android are fully capable browsers on fully capable devices. With the rise of responsive design, now is the time to start testing each of these platforms as A-Grade browsers.
+
+{% h3 A-Grade Browsers, July 2012 %}
+The chart below shows how all of the A-grade browsers measure up. With the inclusion of IE7, the A-grade browsers below cover nearly 95% of browsers.
+
+<figure>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/static/modules/gviz/1.0/chart.js"> {"dataSourceUrl":"//docs.google.com/spreadsheet/tq?key=0Ajlnzthl1cAzdDdYM3VQUG5CTjVqdy1OVEkxLU4tZWc&transpose=1&headers=1&range=A1%3AB15&gid=19&pub=1","options":{"vAxes":[{"useFormatFromData":false,"minorGridlines":{"count":"2"},"formatOptions":{"source":"inline","suffix":"%"},"viewWindowMode":"pretty","format":"0.##'%'","viewWindow":{}},{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}],"series":{"0":{"color":"#109618"},"1":{"color":"#3366cc"},"3":{"color":"#3c78d8"},"5":{"color":"#0099c6"},"7":{"color":"#8e7cc3"},"8":{"color":"#6d9eeb"},"9":{"color":"#b7b7b7"}},"booleanRole":"certainty","title":"Browser Market Share, July 2012","animation":{"duration":0},"hAxis":{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}},"isStacked":false,"width":618,"height":389},"state":{},"view":{"columns":[{"calc":"stringify","type":"string","sourceColumn":0},1,2,3,4,5,6,7,8,9,10]},"chartType":"ColumnChart","chartName":"Chart 4"} </script>
+</figure>
+
+{% h2 Conclusion; Predictions %}
+The above data shows a few exciting things. First, the majority of the A-grade browsers are "modern" browsers with good HTML5/CSS3 support. The only "legacy" browsers on the list are IE8, which is in rapid decline, and IE7, which is nearly dead.
+
+Second, Mobile browsers have arrived and are no longer easy to ignore. While the national data shows mobile at nearly 13%, I've seen Google Analytics for clients with mobile usage approaching 30%!
+
+{%h3 Predictions %}
+- IE7 will drop well below 1% in the next 12 months
+- IE8 will drop well below 10% in the next 12 months
+- IE9 will start beating Chrome relatively soon (next 3 months); Although IE10 will decimate IE9 once it comes out.
+- Legacy Firefox will be well below 1% in the next 12 months
+- Combined, mobile will cross 15% really soon
