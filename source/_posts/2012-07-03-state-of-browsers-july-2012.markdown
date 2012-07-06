@@ -13,26 +13,29 @@ Web developers need to know about browser usage in order to make rational choice
 {% h2 Market Share for Past 12 Months; As of July 2012 %}
 <figure>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/static/modules/gviz/1.0/chart.js"> {"dataSourceUrl":"//docs.google.com/spreadsheet/tq?key=0Ajlnzthl1cAzdDdYM3VQUG5CTjVqdy1OVEkxLU4tZWc&transpose=1&headers=1&range=A1%3AN12&gid=0&pub=1","options":{"vAxes":[{"useFormatFromData":false,"formatOptions":{"source":"inline","suffix":"%"},"viewWindowMode":"pretty","format":"0.##'%'","viewWindow":{}},{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}],"series":{"1":{"color":"#3c78d8"},"2":{"color":"#6d9eeb"},"3":{"color":"#a4c2f4"},"4":{"color":"#ff9900"},"5":{"color":"#f6b26b"},"6":{"color":"#109618"},"7":{"color":"#990099"},"8":{"color":"#b82e2e"},"9":{"color":"#0099c6"},"10":{"color":"#b7b7b7"}},"title":"Browser Market Share, July 2011 - June 2012","curveType":"","booleanRole":"certainty","height":389,"animation":{"duration":0},"width":618,"lineWidth":2,"hAxis":{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}},"state":{},"chartType":"LineChart","chartName":"Browse Market Share, July 2012"} </script>
-	<figcaption>A line graph showing major browser's market share from June 2011 through June 2012. Read <a href="#about-the-data">about the data below</a>.</figcaption>
 </figure>
 
-Since the beginning of the year, IE9 has been making up a lot of ground while IE8 has been plummeting. This is probably due to a combination of [Microsoft's much touted update policy](http://paulirish.com/2012/the-skinny-on-ies-update-policy/) and the [continued success of Windows 7](http://gs.statcounter.com/#os-US-monthly-201106-201206). Meanwhile, Chrome has continued to see tremendous growth, gaining 7% more market share. 
+Since the beginning of the year, IE9 has been making up a lot of ground while IE8 has been plummeting. This is probably due to a combination of [Microsoft's much touted update policy](http://paulirish.com/2012/the-skinny-on-ies-update-policy/) and the [continued success of Windows 7](http://gs.statcounter.com/#os-US-monthly-201106-201206). Meanwhile, Chrome has continued to see tremendous growth, growing by nearly 7% in only a year. 
 
 Mobile is the other major success story of the last year. Adding iPad to the mobile statistics, mobile has grown more than 3% in the last year and continues to grow.
+
+Read [about the data](#about-the-data) below.
 
 {% h3 Comparing June 2011 vs. June 2012 %}
 <figure>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/static/modules/gviz/1.0/chart.js"> {"dataSourceUrl":"//docs.google.com/spreadsheet/tq?key=0Ajlnzthl1cAzdDdYM3VQUG5CTjVqdy1OVEkxLU4tZWc&transpose=0&headers=1&range=A1%3AC8&gid=20&pub=1","options":{"vAxes":[{"useFormatFromData":false,"formatOptions":{"source":"inline","suffix":"%"},"viewWindowMode":"pretty","format":"0.##'%'","viewWindow":{}},{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}],"title":"Browser Market Share, June 2011 vs. June 2012","booleanRole":"certainty","animation":{"duration":0},"hAxis":{"useFormatFromData":true,"title":"","slantedTextAngle":30,"slantedText":true,"viewWindowMode":"pretty","viewWindow":{}},"isStacked":false,"width":600,"height":371},"state":{},"chartType":"ColumnChart","chartName":"Chart 6"} </script>
 </figure>
-As usual, [Firefox, Safari and Opera have remained fairly static](http://gs.statcounter.com/#browser-US-monthly-201106-201206). Overall, Firefox has dropped a few percentage points, likely due to users switching to Chrome. Firefox has been hovering around 20% for several years and has bounced back from slumps before. Safari's market  share seems to be linked to the market share of OSX, which also tends not to fluctuate much.
+As usual, [Firefox, Safari and Opera have remained fairly static](http://gs.statcounter.com/#browser-US-monthly-201106-201206). Overall, Firefox has dropped a few percentage points, likely due to users switching to Chrome. Firefox has been hovering around 20% for several years and has bounced back from slumps before. Safari's market  share seems to be linked to the [market share of OSX](http://gs.statcounter.com/#os-US-monthly-201106-201206), which also tends not to fluctuate much.
 
 The only two browser segments that are seeing positive trending are Chrome and Mobile. While Chrome continues to steal from Firefox, the bigger victim appears to be IE. It's reasonable to assume that mobile is stealing market share equally from all browsers.
 
-{% h4 Individual Versions; June 2011 vs. June 2012 %}
+{% h3 Individual Versions; June 2011 vs. June 2012 %}
 <figure>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/static/modules/gviz/1.0/chart.js"> {"dataSourceUrl":"//docs.google.com/spreadsheet/tq?key=0Ajlnzthl1cAzdDdYM3VQUG5CTjVqdy1OVEkxLU4tZWc&transpose=0&headers=1&range=A11%3AC22&gid=20&pub=1","options":{"vAxes":[{"useFormatFromData":false,"title":null,"formatOptions":{"source":"inline","suffix":"%"},"minValue":null,"viewWindowMode":"pretty","format":"0.##'%'","viewWindow":{"min":null,"max":null},"maxValue":null},{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}],"booleanRole":"certainty","title":"Browser Market Share, June 2011 vs. June 2012","animation":{"duration":0},"hAxis":{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}},"isStacked":false,"width":600,"height":371},"state":{},"chartType":"ColumnChart","chartName":"Chart 6"} </script>
 </figure>
-While IE overall has seen a large decline, IE9 has seen huge gains. In fact, all of the "modern" browsers have seen dramatic increases, while all of the "legacy" browsers have started to decline. IE6, IE7 and IE8 have all seen their market share drop by half in the last year. Legacy Firefox has plummeted nearly 7%.
+While IE overall has seen a large decline, IE9 has seen huge gains. In fact, all of the "modern" browsers have seen dramatic increases, while all of the "legacy" browsers have started to decline. IE6, IE7 and IE8 have all seen their market share drop by half in the last year.
+
+Legacy Firefox has plummeted nearly 7%. The modern versions of Firefox have made modest gains, although not enough to offset the decline of the legacy versions, causing an overall decline (as shown above).
 
 This is all great news for web developers. Not only are modern browsers releasing great new technologies, users are actually adopting these browsers en masse.
 
