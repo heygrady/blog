@@ -103,6 +103,7 @@ The above data shows a few exciting things. First, the majority of the A-grade b
 Second, mobile browsers have arrived and are no longer easy to ignore. While the national data shows mobile at nearly 13%, I've seen the Google Analytics for clients with mobile usage approaching 30%!
 
 {% h3 Predictions for the Next 12 Months %}
+- Combined, Mobile will overtake IE8 in the next 3 months.
 - IE7 will drop well below 1% in the next 12 months.
 - IE8 will drop below 5% in the next 12 months.
 - IE9 will start beating Chrome relatively soon (next 3 months); Although IE10 will severely impact IE9 once it comes out.
