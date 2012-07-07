@@ -47,9 +47,9 @@ This is all great news for web developers. Not only are modern browsers releasin
 The pie-chart above shows the combined mobile and desktop browser market share for June 2012. The top browsers in the US are Chrome, IE9, Firefox, and IE8. When combined together, mobile has a greater market share than Safari, Opera, legacy Firefox and IE6/7 combined. We're now in an interesting period where it makes more sense to focus developer resources on mobile platforms rather than legacy versions of IE.
 
 {% h4 IE6 Is Gone Forever; IE7 Is Hot On Its Heels %}
-The good news is that IE6 is nearly invisible in the United States now. Above you can see it has around 0.3% market share. Even the [NetMarketshare](http://www.netmarketshare.com/browser-market-share.aspx?qprid=2&qpcustomd=0&qptimeframe=M&qpsp=161) data that's used on [IE6 Countdown](http://www.ie6countdown.com/) shows IE6 at 0.6% in the US. By this time next year IE will likely be an afterthought in every market except China. Even in [China](http://gs.statcounter.com/#browser_version_partially_combined-CN-monthly-201106-201206), IE6 has been taking a severe nosedive in the past 12 months.
+The good news is that IE6 is nearly invisible in the United States now. Above you can see it has around 0.3% market share. Even the [NetMarketshare](http://www.netmarketshare.com/browser-market-share.aspx?qprid=2&qpcustomd=0&qptimeframe=M&qpsp=161) data &mdash; NetMarketshare is typically more generous to IE than StatCounter Global Stats &mdash; that's used on [IE6 Countdown](http://www.ie6countdown.com/) shows IE6 at 0.6% in the US. By this time next year IE will likely be an afterthought in every market except China. Even in [China](http://gs.statcounter.com/#browser_version_partially_combined-CN-monthly-201106-201206), IE6 has been taking a severe nosedive in the past 12 months.
 
-In the past 12 months IE7 has lost more than half of it's market share. IE7's downward trend has been fairly constant and predictable. IE7 lost an average of 0.33% market share in the previous twelve months. By this time next year IE7 will undoubtedly be well below the 1% mark.
+IE7's downward trend has been fairly constant and predictable, losing an average of 0.33% per month &mdash; more than half of its market share in the last 12 months. By this time next year IE7 will undoubtedly be well below the 1% mark.
 
 {% h4 Mobile Is Here to Stay %}
 Mobile devices have made great strides in the past few years. The mobile browsers are just as capable as any of the other modern browsers. And the devices feel just as snappy as a regular (budget) computer. The days of crappy, Java-based browsers and cumbersome experiences are long gone and users have taken notice. It's fast becoming a requirement to consider mobile devices as first-class citizens. In the [debate over responsive design](http://www.webdesignerdepot.com/2012/07/insider-views-on-responsive-design-the-debate-continues/) vs. m-dot websites, usage trends are pointing towards responsive design.
@@ -61,6 +61,11 @@ Mobile devices have made great strides in the past few years. The mobile browser
 
 The chart above shows how all of the A-grade browsers measure up. With the inclusion of IE7, the A-grade browsers above cover nearly 95% of browsers. I consider an A-grade browser to be the browsers that you'll promise a client that you'll test against. For my money, the most obvious choices are browsers that real people are using. It's sensible to ignore browsers with a negligible market share (less than 1%) and once a browser drops below 5%, it should be marked for removal. It's usually really obvious where to draw the line.
 
+With the exception of IE7/8 (and Safari), every other browser in the list is trending upwards. While Safari is staying relatively stagnant, IE8 has been declining rapidly. Since December, it has lost an average of 2% market share every month. It seems to have leveled off temporarily but it would be reasonable to expect IE8 to drop to around 5% in the next 12 months.
+
+A safe rule is that any browser under 2% is on its way out, and any browser under 1% is too small to focus on. The amount of developer effort doesn't match the size of the audience. And, usually the less popular browsers have enough in common with the A-grade browsers that users will still be able to use the site (although that's not the case for IE6). For instance, even though you shouldn't really ever bother testing in Opera in the US, Opera is highly likely to render your site perfectly. Similarly, legacy versions of Firefox typically look just fine even if you only test in the latest Firefox. In essence, these B-grade platforms can be safely ignored without having any major impact on the overall site experience.
+
+{% h4 My GBS for Clients %}
 Here's what I've been giving my clients:
 
 - IE9, IE8, IE7
@@ -72,10 +77,6 @@ Here's what I've been giving my clients:
   - iPad (latest iOS)
   - iPhone (latest iOS)
   - Android (latest OS, 2.3)
-
-With the exception of IE7/8 (and Safari), every other browser in the list is trending upwards. While Safari is staying relatively stagnant, IE8 has been declining rapidly. Since December, it has lost an average of 2% market share every month. It seems to have leveled off temporarily but it would be reasonable to expect IE8 to drop to around 5% in the next 12 months.
-
-A safe rule is that any browser under 2% is on its way out, and any browser under 1% is too small to focus on. The amount of developer effort doesn't match the size of the audience. And, usually the less popular browsers have enough in common with the A-grade browsers that users will still be able to use the site (although that's not the case for IE6). For instance, even though you shouldn't really ever bother testing in Opera in the US, Opera is highly likely to render your site perfectly. Similarly, legacy versions of Firefox typically look just fine even if you only test in the latest Firefox. In essence, these B-grade platforms can be safely ignored without having any major impact on the overall site experience.
 
 {% h4 Other GBS Lists %}
 Yahoo! keeps an updated [Graded Browser Support](http://yuilibrary.com/yui/docs/tutorials/gbs/) document that lists the browsers that YUI supports. It's a good starting point for any solid testing strategy. [jQuery Mobile also keeps a <abbr title="Graded Browser Support">GBS</abbr>](http://jquerymobile.com/gbs/), but I would advise against relying on this mobile-oriented GBS unless you're on a mobile-only project.
