@@ -106,7 +106,7 @@ The above data shows a few exciting things. First, the majority of the A-grade b
 Second, mobile browsers have arrived and are no longer easy to ignore. While the national data shows mobile at nearly 13%, I've seen the Google Analytics for clients with mobile usage approaching 30%!
 
 {% h3 Predictions for the Next 12 Months %}
-- Combined, Mobile will overtake IE8 in the next 3 months.
+- Combined, mobile will overtake IE8 in the next 3 months.
 - IE7 will drop well below 1% in the next 12 months.
 - IE8 will drop below 5% in the next 12 months.
 - IE9 will start beating Chrome relatively soon (next 3 months); Although IE10 will severely impact IE9 once it comes out.
@@ -114,7 +114,6 @@ Second, mobile browsers have arrived and are no longer easy to ignore. While the
 - Corporations that standardized on Vista/IE7 in the last few years as an "upgrade" from XP/IE6 will become a major nuisance!
 - Corporations will begin to standardize on Win7/IE8 just to be spiteful.
 - Legacy Firefox will be well below 1% in the next 12 months
-- Combined, mobile will cross 15% really soon
 
 {% h2 About the Data %}
 The above stats are culled from the [StatCounter Global Stats](http://gs.statcounter.com/#browser_version_partially_combined-US-monthly-201106-201206). Their data isn't perfect ([read the FAQ](http://gs.statcounter.com/faq)), but it's a good starting point for understanding the current browser landscape. Ultimately, your own Google Analytics data should be used for analyzing the right browsers to test for your site.
