@@ -77,6 +77,8 @@ Here's what I've been giving my clients:
   - iPad (latest iOS)
   - iPhone (latest iOS)
   - Android (latest OS, 2.3)
+  - No [Blackberry](http://www.reuters.com/article/2012/07/03/us-rim-ceo-idUSBRE8620NL20120703) (it certainly *isn't* in a "death spiral")
+  - No non-native mobile browsers
 
 {% h4 Other GBS Lists %}
 Yahoo! keeps an updated [Graded Browser Support](http://yuilibrary.com/yui/docs/tutorials/gbs/) document that lists the browsers that YUI supports. It's a good starting point for any solid testing strategy. [jQuery Mobile also keeps a <abbr title="Graded Browser Support">GBS</abbr>](http://jquerymobile.com/gbs/), but I would advise against relying on this mobile-oriented GBS unless you're on a mobile-only project.
