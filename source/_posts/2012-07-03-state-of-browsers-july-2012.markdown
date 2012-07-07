@@ -91,7 +91,7 @@ Already, these mobile browsers are outperforming desktop browsers like Opera, an
 However, iPad, iPhone and Android are fully capable browsers on fully capable devices. Now is the time to start testing each of these platforms as A-Grade browsers.
 
 {% h3 Dropping Legacy IE Altogether %}
-As I mentioned in the intro, [jQuery has announced](http://blog.jquery.com/2012/07/01/jquery-1-9-and-2-0-tldr-edition/) that the next major release of jQuery will come in two flavors &mdash; one flavor will drop legacy IE altogether. For most people this is a non-starter, and jQuery knows better than to leave regular folks out in the cold &mdash; the other flavor supports IE6/7/8. However, the jQuery team is likely reading the same tea-leaves that I am and can see that before next major version of jQuery releases (early 2013), IE7 will like be passing the 1% threshold and IE8 will have continued to rapidly shed market share.
+As I mentioned in the intro, [jQuery has announced](http://blog.jquery.com/2012/07/01/jquery-1-9-and-2-0-tldr-edition/) that the next major release of jQuery will come in two flavors &mdash; one flavor will drop legacy IE altogether. For most people this is a non-starter, and jQuery knows better than to leave regular folks out in the cold &mdash; the other flavor supports IE6/7/8. However, the jQuery team is likely reading the same tea-leaves that I am and can see that before next major version of jQuery releases (early 2013), IE7 will like be passing the 1% threshold and IE8 will have a greatly diminished market share.
 
 Between now and 2013 there's some major things happening. First, there'll be a <a href="http://www.electoral-vote.com/">presidential election</a>. Second, [Windows 8 will be shipping](http://windowsteamblog.com/windows/b/bloggingwindows/archive/2012/07/02/upgrade-to-windows-8-pro-for-39-99.aspx). And Windows 8 will ship with IE 10 pre-installed. Windows 7 users are also likely to get IE 10 as an automatic update. This will make 2013 another exciting transition year for IE, where users of legacy XP and Vista computers upgrade to the new OS, and IE10.
 
@@ -112,6 +112,7 @@ Second, mobile browsers have arrived and are no longer easy to ignore. While the
 - IE9 will start beating Chrome relatively soon (next 3 months); Although IE10 will severely impact IE9 once it comes out.
 - Windows 8 + IE10 will clear out any remaining pockets of [non-corporate] IE7 users and speed the decline of IE8.
 - Corporations that standardized on Vista/IE7 in the last few years as an "upgrade" from XP/IE6 will become a major nuisance!
+- Corporations will begin to standardize on Win7/IE8 just to be spiteful.
 - Legacy Firefox will be well below 1% in the next 12 months
 - Combined, mobile will cross 15% really soon
 
