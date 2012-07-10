@@ -7,7 +7,7 @@ categories: browsers
 ---
 There have been some big changes in the browser world in the last year. Google's Chrome has continued to make tremendous gains, and IE9 has started to supplant the older versions of Microsoft's much-maligned browser. Mobile browsers have also started to take a big bite of the overall browser market.
 
-Web developers need to know about browser usage in order to make rational choices for browser testing and for choosing which features to rely on. With [jQuery's recent choice to phase out legacy IE support](http://blog.jquery.com/2012/07/01/jquery-1-9-and-2-0-tldr-edition/) and the continued mainstreaming of mobile browsers, there's a renewed focus on what browsers make sense to support.
+Web developers need to know about browser usage in order to make rational choices for browser testing and for choosing which features to rely on. With [jQuery's recent choice to phase out legacy IE support](http://blog.jquery.com/2012/07/01/jquery-1-9-and-2-0-tldr-edition/) and the continued mainstreaming of mobile browsers, there's a renewed focus on which browsers it makes sense to support.
 
 <!--more-->
 {% h2 Market Share for Past 12 Months; As of July 2012 %}
@@ -15,9 +15,9 @@ Web developers need to know about browser usage in order to make rational choice
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/static/modules/gviz/1.0/chart.js"> {"dataSourceUrl":"//docs.google.com/spreadsheet/tq?key=0Ajlnzthl1cAzdDdYM3VQUG5CTjVqdy1OVEkxLU4tZWc&transpose=1&headers=1&range=A1%3AN12&gid=0&pub=1","options":{"vAxes":[{"useFormatFromData":false,"formatOptions":{"source":"inline","suffix":"%"},"viewWindowMode":"pretty","format":"0.##'%'","viewWindow":{}},{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}],"series":{"1":{"color":"#3c78d8"},"2":{"color":"#6d9eeb"},"3":{"color":"#a4c2f4"},"4":{"color":"#ff9900"},"5":{"color":"#f6b26b"},"6":{"color":"#109618"},"7":{"color":"#990099"},"8":{"color":"#b82e2e"},"9":{"color":"#0099c6"},"10":{"color":"#b7b7b7"}},"title":"Browser Market Share, July 2011 - June 2012","curveType":"","booleanRole":"certainty","height":389,"animation":{"duration":0},"width":618,"lineWidth":2,"hAxis":{"useFormatFromData":true,"viewWindowMode":"pretty","viewWindow":{}}},"state":{},"chartType":"LineChart","chartName":"Browse Market Share, July 2012"} </script>
 </figure>
 
-Since the beginning of the year, IE9 has been making up a lot of ground while IE8 has been plummeting. This is probably due to a combination of [Microsoft's much-touted update policy](http://paulirish.com/2012/the-skinny-on-ies-update-policy/) and the [continued success of Windows 7](http://gs.statcounter.com/#os-US-monthly-201106-201206). Meanwhile, Chrome has continued to see tremendous growth &mdash; nearly 7% in only a year. But, in the past 12 months, IE9 was the big winner with a 13% increase.
+Since the beginning of the year, IE9 has been gaining ground while IE8 has been plummeting. This is probably due to a combination of [Microsoft's much-touted update policy](http://paulirish.com/2012/the-skinny-on-ies-update-policy/) and the [continued success of Windows 7](http://gs.statcounter.com/#os-US-monthly-201106-201206). Meanwhile, Chrome has continued to see tremendous growth &mdash; nearly 7% in only a year. But, in the past 12 months, IE9 was the big winner with a 13% increase.
 
-Mobile is the other major success story of the last year. Adding iPad to the mobile statistics, mobile has grown more than 3% in the last year.
+Mobile is the other major success story of the last year. Combining iPad with the mobile statistics, mobile has grown more than 3% in the last year.
 
 Read [about the data](#about-the-data) below.
 
