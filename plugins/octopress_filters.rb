@@ -8,15 +8,8 @@ require 'rubypants'
 module OctopressFilters
   include BacktickCodeBlock
   include TemplateWrapper
-  def pre_filter(input)
-    input = render_code_block(input)
-    input.gsub /(<figure.+?>.+?<\/figure>)/m do
-      safe_wrap($1)
-    end
-  end
-  def post_filter(input)
-    input = unwrap(input)
-    RubyPants.new(input).to_html
+  def pre_filter(input, ext)
+    input = render_code_block(input, ext)
   end
 end
 
@@ -25,12 +18,7 @@ module Jekyll
     include OctopressFilters
     def pre_render(post)
       if post.ext.match('html|textile|markdown|md|haml|slim|xml')
-        post.content = pre_filter(post.content)
-      end
-    end
-    def post_render(post)
-      if post.ext.match('html|textile|markdown|md|haml|slim|xml')
-        post.content = post_filter(post.content)
+        post.content = pre_filter(post.content, post.ext)
       end
     end
   end
@@ -63,13 +51,6 @@ module OctopressLiquidFilters
     end
   end
 
-  # Extracts raw content DIV from template, used for page description as {{ content }}
-  # contains complete sub-template code on main page level
-  def raw_content(input)
-    /<div class="entry-content">(?<content>[\s\S]*?)<\/div>\s*<(footer|\/article)>/ =~ input
-    return (content.nil?) ? input : content
-  end
-
   # Escapes CDATA sections in post content
   def cdata_escape(input)
     input.gsub(/<!\[CDATA\[/, '&lt;![CDATA[').gsub(/\]\]>/, ']]&gt;')
@@ -78,8 +59,19 @@ module OctopressLiquidFilters
   # Replaces relative urls with full urls
   def expand_urls(input, url='')
     url ||= '/'
-    input.gsub /(\s+(href|src)\s*=\s*["|']{1})(\/[^\"'>]*)/ do
+    input.gsub /(\s+(href|src)\s*=\s*["|']{1})(\/(?!\/)[^\"'>]*)/ do
       $1+url+$3
+    end
+  end
+
+  # Prepend a local url with a file path
+  # remote urls and urls beginning with ! will be ignored
+  def prepend_url(input, path='')
+    path += '/' unless path.match /\/$/
+    if input.match /^!/
+      input.gsub(/^(!)(.+)/, '\2')
+    else
+      input.gsub(/^(\/)?([^:]+?)$/, "#{path}"+'\2')
     end
   end
 
@@ -105,17 +97,9 @@ module OctopressLiquidFilters
     end
   end
 
-  # Condenses multiple spaces and tabs into a single space
-  def condense_spaces(input)
-    input.gsub(/\s{2,}/, ' ')
-  end
-
   # Removes trailing forward slash from a string for easily appending url segments
   def strip_slash(input)
-    if input =~ /(.+)\/$|^\/$/
-      input = $1
-    end
-    input
+    input.sub(/\/\s*$/, '')
   end
 
   # Returns a url without the protocol (http://)
@@ -127,9 +111,8 @@ module OctopressLiquidFilters
 
   # Returns a title cased string based on John Gruber's title case http://daringfireball.net/2008/08/title_case_update
   def titlecase(input)
-    input.titlecase
+    input.titlecase unless input.nil?
   end
 
 end
 Liquid::Template.register_filter OctopressLiquidFilters
-

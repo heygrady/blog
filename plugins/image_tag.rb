@@ -8,31 +8,36 @@
 # Examples:
 # {% img /images/ninja.png Ninja Attack! %}
 # {% img left half http://site.com/images/ninja.png Ninja Attack! %}
-# {% img left half http://site.com/images/ninja.png 150 150 "Ninja Attack!" "Ninja in attack posture" %}
+# {% img left half http://site.com/images/ninja.png 150 150 alt:"Ninja in attack posture" title:"Ninja Attack!" %}
 #
 # Output:
 # <img src="/images/ninja.png">
-# <img class="left half" src="http://site.com/images/ninja.png" title="Ninja Attack!" alt="Ninja Attack!">
-# <img class="left half" src="http://site.com/images/ninja.png" width="150" height="150" title="Ninja Attack!" alt="Ninja in attack posture">
+# <img class="left half" src="http://site.com/images/ninja.png" alt="Ninja Attack!">
+# <img class="left half" src="http://site.com/images/ninja.png" width="150" height="150" alt="Ninja in attack posture" title="Ninja Attack!">
 #
 
 module Jekyll
 
   class ImageTag < Liquid::Tag
-    @img = nil
 
     def initialize(tag_name, markup, tokens)
-      attributes = ['class', 'src', 'width', 'height', 'title']
+      @img  = nil
+      title = nil
+      alt   = nil
+      attributes = ['class', 'src', 'width', 'height', 'alt']
 
-      if markup =~ /(?<class>\S.*\s+)?(?<src>(?:https?:\/\/|\/|\S+\/)\S+)(?:\s+(?<width>\d+))?(?:\s+(?<height>\d+))?(?<title>\s+.+)?/i
+      markup =~ /alt:(".+?")\s*/i
+        alt = $1
+        markup.sub! /alt:".+?"\s*/i, ''
+
+      markup =~ /title:(".+?")\s*/i
+        title = $1
+        markup.sub! /title:".+?"\s*/i, ''
+
+      if markup =~ /(?<class>[\S\s]*?)?\s*?(?<src>\S+\.\S+)(?:\s+(?<width>\d+))?(?:\s+(?<height>\d+))?\s*("?(?<alt>[^"]+)"?)?/i
         @img = attributes.reduce({}) { |img, attr| img[attr] = $~[attr].strip if $~[attr]; img }
-        if /(?:"|')(?<title>[^"']+)?(?:"|')\s+(?:"|')(?<alt>[^"']+)?(?:"|')/ =~ @img['title']
-          @img['title']  = title
-          @img['alt']    = alt
-        else
-          @img['alt']    = @img['title'].gsub!(/"/, '&#34;') if @img['title']
-        end
-        @img['class'].gsub!(/"/, '') if @img['class']
+        @img['alt'] = alt unless alt.nil?
+        @img['title'] = title unless title.nil?
       end
       super
     end
@@ -41,7 +46,7 @@ module Jekyll
       if @img
         "<img #{@img.collect {|k,v| "#{k}=\"#{v}\"" if v}.join(" ")}>"
       else
-        "Error processing input, expected syntax: {% img [class name(s)] [http[s]:/]/path/to/image [width [height]] [title text | \"title text\" [\"alt text\"]] %}"
+        "Error processing input, expected syntax: {% img [class name(s)] path/to/image [width [height]] [alt:\"alt text\"] [title:\"title text\"] %}"
       end
     end
   end

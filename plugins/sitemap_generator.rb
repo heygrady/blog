@@ -4,7 +4,7 @@
 # How To Use:
 #   1) Copy source file into your _plugins folder within your Jekyll project.
 #   2) Change modify the url variable in _config.yml to reflect your domain name.
-#   3) Run Jekyll: jekyll --server to re-generate your site.
+#   3) Run Jekyll: jekyll build to re-generate your site.
 #
 # Variables:
 #   * Change SITEMAP_FILE_NAME if you want your sitemap to be called something
@@ -36,6 +36,7 @@
 #
 # Modified for Octopress by John W. Long
 #
+require File.expand_path('../../lib/colors.rb', __FILE__)
 require 'rexml/document'
 require 'fileutils'
 
@@ -46,7 +47,7 @@ module Jekyll
   SITEMAP_FILE_NAME = "sitemap.xml"
 
   # Any files to exclude from being included in the sitemap.xml
-  EXCLUDED_FILES = ["atom.xml"]
+  EXCLUDED_FILES = ["atom.xml", "404.markdown"]
 
   # Any files that include posts, so that when a new post is added, the last
   # modified date of these pages should take that into account
@@ -193,7 +194,7 @@ module Jekyll
           changefreq.text = change_frequency
           url.add_element(changefreq)
         else
-          puts "ERROR: Invalid Change Frequency In #{page_or_post.name}"
+          $stderr.puts "ERROR: Invalid Change Frequency In #{page_or_post.name}".red
         end
       end
 
@@ -204,7 +205,7 @@ module Jekyll
           priority.text = page_or_post.data[PRIORITY_CUSTOM_VARIABLE_NAME]
           url.add_element(priority)
         else
-          puts "ERROR: Invalid Priority In #{page_or_post.name}"
+          $stderr.puts "ERROR: Invalid Priority In #{page_or_post.name}".red
         end
       end
 
@@ -270,11 +271,7 @@ module Jekyll
     #
     # Returns latest of two dates
     def greater_date(date1, date2)
-      if (date1 >= date2)
-        date1
-      else
-        date2
-      end
+      [date1, date2].max
     end
 
     # Is the page or post listed as something we want to exclude?
@@ -309,4 +306,3 @@ module Jekyll
     end
   end
 end
-

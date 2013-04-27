@@ -1,0 +1,46 @@
+---
+# --------------------------- #
+#      User Configuration     #
+# --------------------------- #
+
+url: http://heygrady.com
+title: Heygrady
+subtitle: I don't get It.
+author: Grady Kuhnline
+
+email: blog@heygrady.net
+
+use_comments: true
+
+# ----------------------- #
+#   3rd Party Settings    #
+# ----------------------- #
+
+# Github repositories
+github_repos:
+  user: heygrady
+  count: 4
+  skip_forks: true # Don't show repos you've forked from others
+  sort_by_watchers: true # Show your top watched projects, set to false to sort by last update
+
+
+# Twitter
+twitter:
+  user: heygrady
+  tweet_button: true
+
+# Google +1
+googleplus:
+  user: heygrady
+  hidden: false
+  image_size: 32
+  plus_one: true
+
+# Disqus Comments
+disqus:
+  short_name: heygrady
+  show_comment_count: false
+  developer: 0
+
+# Google Analytics
+google_analytics_tracking_id: UA-24826747-1

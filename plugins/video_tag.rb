@@ -22,7 +22,7 @@ module Jekyll
     @width = ''
 
     def initialize(tag_name, markup, tokens)
-      if markup =~ /(https?:\S+)(\s+(https?:\S+))?(\s+(https?:\S+))?(\s+(\d+)\s(\d+))?(\s+(https?:\S+))?/i
+      if markup =~ /(\S+\.\S+)(\s+(\S+\.\S+))?(\s+(\S+\.\S+))?(\s+(\d+)\s(\d+))?(\s+(\S+\.\S+))?/i
         @video  = [$1, $3, $5].compact
         @width  = $7
         @height = $8
@@ -38,7 +38,7 @@ module Jekyll
         'ogv' => "type='video/ogg; codecs=theora, vorbis'",
         'webm' => "type='video/webm; codecs=vp8, vorbis'"
       }
-      if @video.size > 0
+      if @video && @video.size > 0
         video =  "<video width='#{@width}' height='#{@height}' preload='none' controls poster='#{@poster}'>"
         @video.each do |v|
           t = v.match(/([^\.]+)$/)[1]
@@ -53,4 +53,3 @@ module Jekyll
 end
 
 Liquid::Template.register_tag('video', Jekyll::VideoTag)
-

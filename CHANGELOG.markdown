@@ -1,5 +1,20 @@
 # Octopress Changelog
 
+## 2.1
+
+- Gist plugin now uses raw text instead of the Gist JS
+- Improvements to SCSS which styles `<sup>` and `<sub>` tags (#426)
+- Added list of categories into atom.xml (#421)
+- Added default support for guag.es analytics (#827)
+- `rake preview` binds to IP and HOST, which can be set through OCTOPRESS_IP and OCTOPRESS_HOST, respectively (#780)
+- New configuration structure (#958)
+- Improved draft management options
+  - rake list_drafts shows current drafts.
+  - Rake generate, watch, and preview can compile future dated posts (defaults to false).
+- FIX: `full_configuration` in Rakefile was uninitialized (#1021)
+- Site Enhancements
+- Development fixes
+
 ## 2.0
 
 - Now based on [mojombo/jekyll](http://github.com/mojombo/jekyll)
@@ -27,3 +42,5 @@
 - **No longer supported.**
 - Jekyll Matured, but Henrik's Jekyll fork did not.
 - Thanks for all your pull requests, I learned a lot.
+
+# HEAD

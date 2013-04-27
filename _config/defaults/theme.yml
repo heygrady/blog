@@ -1,0 +1,54 @@
+---
+# ------------------------------- #
+#   Classic Theme Configuration   #
+# ------------------------------- #
+
+theme:
+  name: classic
+  # path to theme stylesheets directory
+  stylesheets_dir: assets/stylesheets
+  # path to theme javascripts directory
+  javascripts_dir: assets/javascripts
+
+
+url: http://yoursite.com
+title: My Octopress Blog
+subtitle: A blogging framework for hackers.
+author: Your Name
+simple_search: http://google.com/search
+description:
+
+# Default date format is "ordinal" (resulting in "July 22nd 2007")
+# You can customize the format as defined in
+# http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime
+# Additionally, %o will give you the ordinal representation of the day
+date_format: "ordinal"
+
+# RSS / Email (optional) subscription links (change if using something like Feedburner)
+subscribe_rss: /atom.xml
+subscribe_email:
+category_feeds: false
+# RSS feeds can list your email address if you like
+email:
+
+titlecase: true       # Converts page and post titles to titlecase
+
+# To change the layout's default sidebar Add a new sidebar source/_includes/sidebars/your_sidebar.html
+# then make changes below, eg. post_sidebar: your_sidebar.html
+blog_index_sidebar: blog_index_default.html
+page_sidebar: page_default.html
+post_sidebar: post_default.html
+
+recent_posts: 5            # Posts in the sidebar Recent Posts section
+excerpt_link: "Read on →"  # "Continue reading" link text at the bottom of excerpted articles
+excerpt_in_feed: false     # Truncate excerpted articles in the atom feed
+permalink_label: "Permalink"
+permalink_label_feed: "★ Permalink"
+linklog_marker: "→"
+linklog_marker_position: after
+linklog_marker_position_feed: after
+standard_post_marker:
+
+# Disable all comments by default.  If you're using Disqus, or a custom comment system, add
+# "use_comments: true" to your site.yml.
+use_comments: false

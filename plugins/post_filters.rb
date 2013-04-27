@@ -5,7 +5,6 @@ module Jekyll
   #
   # Examples:
   # https://github.com/tedkulp/octopress/blob/master/plugins/post_metaweblog.rb
-  # https://github.com/tedkulp/octopress/blob/master/plugins/post_twitter.rb
   class PostFilter < Plugin
 
     #Called before post is sent to the converter. Allows
@@ -38,11 +37,7 @@ module Jekyll
     # Instantiates all of the post_filter plugins. This is basically
     # a duplication of the other loaders in Site#setup.
     def load_post_filters
-      self.post_filters = Jekyll::PostFilter.subclasses.select do |c|
-        !self.safe || c.safe
-      end.map do |c|
-        c.new(self.config)
-      end
+      self.post_filters = instantiate_subclasses(Jekyll::PostFilter)
     end
   end
 

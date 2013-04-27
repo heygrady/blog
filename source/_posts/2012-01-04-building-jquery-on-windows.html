@@ -51,9 +51,9 @@ categories: jquery windows
 <ol>
 	<li>Download the netinstall version of msysGit</li>
 	<li>Install msysGit to the recommended location.<br>
-		<img src="/i/1/msysgit-1.png"></li>
+		<img src="/assets/building-jquery-example/msysgit-1.png"></li>
 	<li>It will open a command prompt and start downloading and compiling stuff for a while. At the end you can safely close the window.<br>
-		<img src="/i/1/msysgit-2.png"></li>
+		<img src="/assets/building-jquery-example/msysgit-2.png"></li>
 </ol>
 {% h4 TortoiseGIT %}
 <p>TortoiseGIT is totally optional but it is nearly as full-featured as TortoiseSVN and is an extremely easy way to work with Git on Windows. I would highly recommend it for anyone new to Git, particularly if you've used SVN in the past.</p>
@@ -63,13 +63,13 @@ categories: jquery windows
 <p>Both Git and Node.js need to be added to the your windows environment paths.</p>
 <ol>
 	<li>Open the Control Panel and search for "environment." Then choose "Edit the system environment variables."<br>
-		<img src="/i/1/control-panel-1.png">
+		<img src="/assets/building-jquery-example/control-panel-1.png">
 	</li>
 	<li>Click the "Environment Variables..." button.<br>
-		<img src="/i/1/control-panel-2.png">
+		<img src="/assets/building-jquery-example/control-panel-2.png">
 	</li>
 	<li>Locate and highlight the "Path" system variable and click the "Edit..." button.<br>
-		<img src="/i/1/control-panel-3.png">
+		<img src="/assets/building-jquery-example/control-panel-3.png">
 	</li>
 	<li>Verify that the correct paths have been set in text field. <strong>HINT:</strong> it's useful to copy all of the paths into Notepad or a similar tool to make it easier to read. The following entries should exist in your path. The Node.js entries likely exist already.
 		<ul>
@@ -78,7 +78,7 @@ categories: jquery windows
 			<li>C:\msysgit\mingw\bin;</li>
 			<li>C:\msysgit\bin;</li>
 		</ul>
-		<img src="/i/1/control-panel-4.png">
+		<img src="/assets/building-jquery-example/control-panel-4.png">
 	</li>
 </ol>
 {% h2 Installing IIS and PHP for Windows 7 %}
@@ -88,11 +88,11 @@ categories: jquery windows
 	<li>Install PHP in IIS as described (look up one paragraph).</li>
 	<li>Check out the jQuery source of jQuery as described in the "Build a Local Copy of jQuery" section of <a href="http://docs.jquery.com/Tips_for_jQuery_Bug_Patching">Tips for jQuery Bug Patching</a>.</li>
 	<li>You can open IIS by searching for it in the start menu.<br>
-		<img src="/i/1/iis-0.png"></li>
+		<img src="/assets/building-jquery-example/iis-0.png"></li>
 	<li>Rick-click on the sites tab and choose "Add Web Site..." from the menu.<br>
-		<img src="/i/1/iis-1.png"></li>
+		<img src="/assets/building-jquery-example/iis-1.png"></li>
 	<li>Fill-in your site details. The Site name is arbitrary. The Physical path is where you checked out the jQuery source code to. The Port is also arbitrary. It's common to specify a non-standard port number for security reasons. Below a port number of 8000 was specified. With that configuration, visiting "localhost:8000/test/" in your browser will begin executing the jQuery unit tests.<br>
-		<img src="/i/1/iis-2.png"></li>
+		<img src="/assets/building-jquery-example/iis-2.png"></li>
 </ol>
 {% h2 Editing the jQuery Makefile %}
 <p>The MinGW binaries will enable the `make` command and allow the Linux-specific shell commands to work flawlessly on Windows. However, the jQuery Makefile has a line that tries to find Node.js which causes the build script to think that Node.js is missing from your system. This is easy enough to correct.</p>
@@ -120,4 +120,4 @@ JS_ENGINE = node
 {% endcodeblock %}
 {% h2 Conclusion %}
 <p>After following the steps above you should be able to execute commands in the Windows Command Prompt similar to Unix-like environments. This should make it trivial to work with the jQuery source code. The basic steps above could be used to make development of almost any Linux-centric project easier on Windows.</p>
-<p>The following shows Node.js, GNU Make, Git and PHP available from the windows command-prompt.<br><img src="/i/1/final.png"></p>
+<p>The following shows Node.js, GNU Make, Git and PHP available from the windows command-prompt.<br><img src="/assets/building-jquery-example/final.png"></p>
