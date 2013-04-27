@@ -1,13 +1,14 @@
 require 'sass-globbing'
 
 # Require any additional compass plugins here.
-require 'html5-boilerplate'
+#require 'html5-boilerplate'
+
 project_type = :stand_alone
 
-css_dir = "source/css"
+css_dir = "source/stylesheets"
 sass_dir = "sass"
-images_dir = "source/i"
-javascripts_dir = "source/js"
+images_dir = "source/images"
+javascripts_dir = "source/javascripts"
 fonts_dir = "source/fonts"
 
 # web paths

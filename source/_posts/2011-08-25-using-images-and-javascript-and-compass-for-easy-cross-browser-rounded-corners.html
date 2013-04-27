@@ -43,7 +43,7 @@ categories: js sass compass polyfill plug-in
 <p>Currently the plug-in takes no arguments and does not apply any styling to the page. This is intentional because the styling should be controlled using CSS, similar to most jQuery UI widgets.</p>
 {% h3 The Actual Plug-In %}
 <p>Below is the actual plug-in that adds the markup to the page. As noted above, the plug-in wraps the contents of the target element in a <code>.ui-corners-content</code> and then appends all of the side and corner <code>span</code>s.</p>
-{% github_code https://github.com/heygrady/corners/blob/master/js/jquery-corners.js %}
+{% github_code https://github.com/heygrady/corners/blob/master/jquery-corners.js %}
 <p>Special care is taken to avoid adding the extra markup to elements that have already been processed. The <code>.ui-corners</code> class is detected and those elements are skipped. Also, repeated strings are saved in variables to <a href="http://yuiblog.com/blog/2008/02/11/helping-the-yui-compressor">aid in compressing</a>. The script is only 402 characters after running it through <a href="http://www.refresh-sf.com/yui/">YUI Compressor</a> and 267 bytes after gzipping.</p>
 {% h3 Seeing the Plug-in In Action %}
 <p>Below you can see a <code>.box</code> that has had the corners applied. The base.css file shown above is used for the styling. Background colors have been applied to the side and corner <code>span</code>s to make them visible. It's also clear that the corners and sides are not overlapping the content.</p>

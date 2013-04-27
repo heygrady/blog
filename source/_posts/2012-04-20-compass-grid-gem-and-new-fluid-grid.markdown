@@ -5,7 +5,7 @@ date: 2012-04-20 23:17
 comments: true
 categories: sass compass grid css
 ---
-In a previous post on [using Sass with the 1KB CSS Grid]({% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}), I reviewed in depth the concept of using Sass and Compass to remove unnecessary classes from your HTML markup, and recommended usimg mixins instead. After using this grid on my own projects for the past year I've finally created a Ruby Gem called [compass-grid-plugin](http://rubygems.org/gems/compass-grid-plugin) and I've updated the [GitHub repository](https://github.com/heygrady/compass-grid-plugin) to include a fluid grid option as well. For now I'm calling it "Grid" because that's what I've been calling it. The fluid grid will be documented below.
+In a previous post on <a href="{% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}">using Sass with the 1KB CSS Grid</a>, I reviewed in depth the concept of using Sass and Compass to remove unnecessary classes from your HTML markup, and recommended usimg mixins instead. After using this grid on my own projects for the past year I've finally created a Ruby Gem called [compass-grid-plugin](http://rubygems.org/gems/compass-grid-plugin) and I've updated the [GitHub repository](https://github.com/heygrady/compass-grid-plugin) to include a fluid grid option as well. For now I'm calling it "Grid" because that's what I've been calling it. The fluid grid will be documented below.
 
 - [Grid on Github](https://github.com/heygrady/compass-grid-plugin)
 - [Grid on Ruby Gems](http://rubygems.org/gems/compass-grid-plugin)
@@ -33,23 +33,23 @@ There's a few other notable Compass grids. Of course Compass has always shipped 
 
 ####Install the Ruby Gem.
 
-```
-$ gem install compass-grid-plugin
+``` bash
+gem install compass-grid-plugin
 ```
 
 ####Existing Compass Projects
 
 You can include it in any existing Compass project by adding it to your config.rb file.
 
-```
+``` ruby
 # Require any additional compass plugins here.
 require 'compass-grid'
 ```
 
 ####New Compass Projects
 
-```
-$ compass create my_project -r compass-grid -u compass-grid
+``` bash
+compass create my_project -r compass-grid -u compass-grid
 ```
 
 You can install the grid plugin as part of a new Compass project.
@@ -62,7 +62,7 @@ While the original grid was pointedly **not** fluid, this new version does suppo
 
 {% h3 Basic HTML %}
 
-Just like the [previous article]({% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}), we'll use a relatively simple 3-column layout for our page. The HTML below is a basic web page with a `header`, `footer`, and main area. For this example only the main area will contain columns. The `.main-column` will have two columns nested inside of it.
+Just like the <a href="{% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}">previous article</a>, we'll use a relatively simple 3-column layout for our page. The HTML below is a basic web page with a `header`, `footer`, and main area. For this example only the main area will contain columns. The `.main-column` will have two columns nested inside of it.
 
 {% gist 2460901 layout.html %}
 
@@ -70,7 +70,7 @@ Just like the [previous article]({% post_url 2011-02-17-using-sass-with-the-1kb-
 
 - [Fixed grid example](/assets/compass-grid-example/fixed.html)
 
-Before diving into the fluid grid, it's important to see how it works with the static grid because the two are highly related. Below is the SCSS for a normal fixed grid similar to the example from the [previous post]({% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}). Borders have been added to some of the elements to demonstrate how to use the grid correction features using the `$plus` argument available in all of the functions. 
+Before diving into the fluid grid, it's important to see how it works with the static grid because the two are highly related. Below is the SCSS for a normal fixed grid similar to the example from the <a href="{% post_url 2011-02-17-using-sass-with-the-1kb-grid-system %}">previous post]</a>. Borders have been added to some of the elements to demonstrate how to use the grid correction features using the `$plus` argument available in all of the functions. 
 
 {% gist 2460901 fixed.scss %}
 

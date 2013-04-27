@@ -1,12 +1,12 @@
 module Jekyll
 
   class PostComparer
-    MATCHER = /^(.+\/)*(\d+-\d+-\d+)-(.*)$/
+    POST_URL_MATCHER = /^(.+\/)*(\d+-\d+-\d+)-(.*)$/
 
     attr_accessor :date, :slug
 
     def initialize(name)
-      who, cares, date, slug = *name.match(MATCHER)
+      who, cares, date, slug = *name.match(POST_URL_MATCHER)
       @slug = slug
       @date = Time.parse(date)
     end
