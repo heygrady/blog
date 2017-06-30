@@ -86,6 +86,7 @@ Once the DNS propagates and the certificates are issued, the site should work ju
 - Connect heygrady.com and www.heygrady.com to the new site (www should forward to heygrady.com)
 - Update Google Domains to point `@` and `www` A records to the Firebase IP addresses
 - Wait for everything to propagate
+- When everything is working, configure "new" to forward to heygrady.com in Firebase console.
 
 ## What's next?
 - Automatically deploy when changes are pushed to master
