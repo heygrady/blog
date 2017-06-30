@@ -1,7 +1,7 @@
 ---
 title: "First launch: Firebase"
 date: "2017-06-30T11:15:30"
-readNext: "/fix-me/"
+readNext: "/migrating-old-site/"
 path: "/first-launch/"
 ---
 
@@ -65,7 +65,7 @@ We need to update the `deploy` script to use firebase instead of gh-pages.
 }
 ```
 
-#### Where does it deploy
+#### Where does it deploy?
 Because I haven't changed any firebase settings from the default, it publishes the `public/` folder to a funky URL. My site currently goes to `https://blog-8a5b7.firebaseapp.com/`
 
 ## Fixing the URL
@@ -78,4 +78,7 @@ For now I need to create `new.heygrady.com` and point it to my firebase hosting.
 - At first your site will throw a security error
 - In an hour or so it will be "all good"
 
+## What's next?
 Now my blog is live! But not on the final domain. I need to set up some redirects for the old site.
+
+- [Migrate the old site](../migrating-old-site)

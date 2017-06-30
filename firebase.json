@@ -10,7 +10,17 @@
     "redirects": [
       {
         "source" : "/blog/:post*",
-        "destination" : "http://heygrady.com/blog/:post*",
+        "destination" : "https://2012.heygrady.com/blog/:post*",
+        "type" : 302
+      },
+      {
+        "source" : "/archives/:post*",
+        "destination" : "https://2012.heygrady.com/archives/:post*",
+        "type" : 302
+      },
+      {
+        "source" : "/categories/:post*",
+        "destination" : "https://2012.heygrady.com/categories/:post*",
         "type" : 302
       }
     ]
