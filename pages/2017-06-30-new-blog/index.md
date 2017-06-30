@@ -2,18 +2,18 @@
 title: "Updating blog to Gatsby"
 date: "2017-06-30T10:58:49"
 readNext: "/first-launch/"
-path: "/migrating-old-site/"
+path: "/new-blog/"
 ---
 
 This is my updated blog. The old content will be kept around for posterity but it hasn't really be updated in at least 5 years. The old blog was built with Octopress. This new blog is built with Gatsby (for now).
 
 ## I want a new blog
-A lot has changed since 2012. This blog will be an experimental place for me to make posts. Mostly I'm just trying to reduce my barrier to making posts to near-zero and giving myself a more stable place to make notes. Choosing Gatsby is a way to get up and running quickly in a format that's more familiar -- markdown or React. It's nice to have a choice!
+A lot has changed since 2012. This blog will be an experimental place for me to make posts. Mostly I'm just trying to reduce my barrier to making posts to near-zero and giving myself a more stable place to make notes. Choosing Gatsby is a way to get up and running quickly, bonus points for being built on top of the React stack.
 
 ## More practical posts
 I going to try and document my adventures of trying to get things done using modern tooling. This is mostly about capturing my own notes. Who knows. At this very moment I'm just dumping text into a markdown file to get a feel for it.
 
-## What did do?
+## What did I do?
 - Made a new `gatsby` branch
 - Cleaned out all of the old files
 - Installed a Gatsby starter blog
@@ -59,6 +59,6 @@ Here's my starter script for making new posts. It creates a timestamped folder i
 ## What's next?
 This blog has two main goals that I will try to cover in two upcoming posts.
 
-- Launching this blog on Firebase
-- Moving the old blog and setting up redirects to the old content
-- Setting up continuous deployment for the blog
+- [Launching this blog on Firebase](../first-launch)
+- [Moving the old blog and setting up redirects](../migrating-old-site)
+- Setting up continuous deployment for the new blog

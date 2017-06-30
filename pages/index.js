@@ -41,6 +41,7 @@ class BlogIndex extends React.Component {
               </li>
           ))}
         </ul>
+        <p>Looking for <a href="https://2012.heygrady.com">older posts?</a></p>
       </div>
     )
   }
