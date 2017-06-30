@@ -22,11 +22,13 @@ firebase login
 firebase init
 ```
 
-If you already have a project, firebase will cause you some troubles. I created an empty test folder, initialized my project, and then copied the `firebase.json` and `.firebaserc` files into my gatsby root (where your `package.json` lives).
+If you already have a project, firebase may cause you some troubles and throw errors because of existing files. I created an empty test folder, initialized my project, and then copied the `firebase.json` and `.firebaserc` files into my Gatsby root (where your `package.json` lives).
 
 ## firebase.json
 
-The ultimate goal is to create a firebase.json file. I got stuck on `firebase init` (it just froze without any errors). Turned out that I needed to [update my Node](https://github.com/firebase/firebase-tools/issues/370) because of a regression.
+The ultimate goal is to create a firebase.json file.
+
+**Note:** I got stuck on `firebase init` (it just froze without any errors). Turned out that I needed to [update my Node](https://github.com/firebase/firebase-tools/issues/370) because of a regression.
 
 I ended up with this `firebase.json` file:
 
@@ -53,9 +55,7 @@ yarn build && firebase deploy
 ```
 
 #### Better deploys
-Gatsby initializes projects with a few scripts in the `package.json` file. This makes it easy to collect scripts that are important to your project. For instance, you can see that `yarn dev` will execute the `dev` script, which is just an alias for `gatsby dev`. It's pretty handy.
-
-We need to update the `deploy` script to use firebase instead of gh-pages.
+Gatsby initializes projects with a few scripts in the `package.json` file. We need to update the `deploy` script to use `firebase deploy` instead of gh-pages.
 
 ```json
 {
@@ -66,17 +66,19 @@ We need to update the `deploy` script to use firebase instead of gh-pages.
 ```
 
 #### Where does it deploy?
-Because I haven't changed any firebase settings from the default, it publishes the `public/` folder to a funky URL. My site currently goes to `https://blog-8a5b7.firebaseapp.com/`
+Because I haven't changed any firebase settings from the default, it publishes the `public/` folder to a funky URL. My default firebase site is https://blog-7e7a6.firebaseapp.com/. If you want a custom domain you need to configure it in the Firebase Hosting console and update your DNS records.
 
 ## Fixing the URL
-I need to get my new blog hosted on my website. Because I'm migrating my blog, I will set up a temporary subdomain. Later I will replace the current [heygrady.com](http://heygrady.com) with the new site. If you are viewing this blog post on heygrady.com you are living in the future -- hello from the past!
+I need to get my new blog hosted on my website. Because I'm migrating my blog, I will set up a temporary subdomain. Later I will replace the current [heygrady.com](https://heygrady.com) with the new site.
+
+**Note:** If you are viewing this blog post on `heygrady.com` you are living in the future -- hello from the past!
 
 For now I need to create `new.heygrady.com` and point it to my firebase hosting. I recently switched my domains from Godaddy to Google Domains to make with process much simpler.
 
 - In Firebase, choose to "[connect domain](https://firebase.google.com/docs/hosting/custom-domain)"
 - In Google Domains, configure DNS, add an A record for `new` with the two addresses specified by Firebase
 - At first your site will throw a security error
-- In an hour or so it will be "all good"
+- In an hour or so it will all propagate and work as expected
 
 ## What's next?
 Now my blog is live! But not on the final domain. I need to set up some redirects for the old site.
