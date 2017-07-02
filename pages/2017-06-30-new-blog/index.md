@@ -1,14 +1,14 @@
 ---
-title: "Updating blog to Gatsby"
+title: "Updating my blog to Gatsby"
 date: "2017-06-30T10:58:49"
 readNext: "/first-launch/"
 path: "/new-blog/"
 ---
 
-This is my updated blog. The old content will be kept around for posterity but it hasn't really be updated in at least 5 years. The old blog was built with Octopress. This new blog is built with Gatsby (for now).
+This is my updated blog. The old content will be [kept around](https://2012.heygrady.com) for posterity but it hasn't really be updated in the least 5 years. The old blog was built with [Octopress](http://octopress.org/). This new blog is built with [Gatsby](https://github.com/gatsbyjs/gatsby) (for now).
 
 ## I want a new blog
-A lot has changed since 2012. This blog will be an experimental place for me to make posts. Mostly I'm just trying to reduce my barrier to making posts to near-zero and giving myself a more stable place to make notes. Choosing Gatsby is a way to get up and running quickly, bonus points for being built on top of the React stack.
+A lot has changed since 2012. Publishing static content on the web has gotten much easier. This blog will be an experimental place for me to make posts. Mostly I'm just trying to reduce my barrier to making posts to near-zero and giving myself a more stable place to make notes. Choosing Gatsby is a way to get up and running quickly, bonus points for being built on top of the React stack.
 
 ## More practical posts
 I going to try and document my adventures of trying to get things done using modern tooling. This is mostly about capturing my own notes. Who knows. At this very moment I'm just dumping text into a markdown file to get a feel for it.
@@ -16,7 +16,7 @@ I going to try and document my adventures of trying to get things done using mod
 ## What did I do?
 - Made a new `gatsby` branch
 - Cleaned out all of the old files
-- Installed a Gatsby starter blog
+- Installed the Gatsby [starter blog](https://github.com/gatsbyjs/gatsby-starter-blog)
 - Did some basic configuration
 
 ### Make a new branch
