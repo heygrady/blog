@@ -44,22 +44,25 @@ Gatsby ships with a test script that essentially throws an error stating we shou
 Of course, this isn't a permanent solution. At the very least we should run the linting command that's included with Gatsby. Of course, that can wait. Right now we need to get Travis to deploy our blog. Right now we've set our tests to emit a warning about "no tests" and exiting with a success code so that Travis will continue.
 
 ### Adding a `.travis.yml`
-We need to add a `.travis.yml` file for building our project. This Gatsby project was generated with a Travis file but it is for building Gatsby itself, not our project. We can get by with a much simpler configuration.
+We need to add a `.travis.yml` file for building our project. This Gatsby project was generated with a Travis file but it is for building Gatsby itself, not our project. We can get by with a much simpler configuration. I ended up having to follow [these instructions](https://marlosoft.net/posts/automatic-deploy-firebase-github-travis.html) because the [Firebase deployment documentation](https://docs.travis-ci.com/user/deployment/firebase/) provided by Travis doesn't seem to work.
+
+**NOTE** I kept getting an error during the deploy phase. "Error: Specified public directory does not exist, can't deploy hosting"
 
 ```yaml
 language: node_js
 node_js:
   - "8"
 cache: yarn
-before_deploy:
-- "npm install -g gatsby"
-- "yarn build:prod"
-deploy:
-  provider: firebase
-  project: blog-7e7a6
-  token:
-    secure:
-
+branches:
+  only:
+    - master
+before_script:
+  - npm install -g firebase-tools
+  - npm install -g gatsby
+script:
+  - yarn build:prod
+after_success:
+  - firebase deploy --token=${FIREBASE_API_TOKEN}
 ```
 
 ### Secure firebase deploy token for Travis
