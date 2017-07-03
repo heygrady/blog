@@ -5,6 +5,7 @@ readNext: "/fix-me/"
 path: "/enable-linting/"
 ---
 
+In the previous post about [automating deployments with Travis](../deploying-travis/)
 ```bash
 yarn add --dev babel-eslint \
   eslint \

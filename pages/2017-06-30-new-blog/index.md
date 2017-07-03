@@ -59,6 +59,6 @@ Here's my starter script for making new posts. It creates a timestamped folder i
 ## What's next?
 This blog has two main goals that I will try to cover in two upcoming posts.
 
-- [Launching this blog on Firebase](../first-launch)
-- [Moving the old blog and setting up redirects](../migrating-old-site)
-- Setting up continuous deployment for the new blog
+- [Launching this blog on Firebase](../first-launch/)
+- [Moving the old blog and setting up redirects](../migrating-old-site/)
+- [Setting up continuous deployment for the new blog](../deploying-travis/)

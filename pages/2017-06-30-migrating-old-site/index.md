@@ -93,4 +93,4 @@ Once the DNS propagates and the certificates are issued, the site should work ju
 - When everything is working, edit `new` to redirect to `heygrady.com` in Firebase console.
 
 ## What's next?
-- Automatically deploy when changes are pushed to master
+- [Automatically deploy when changes are pushed to master](../deploying-travis/)
