@@ -2,13 +2,13 @@ language: node_js
 node_js:
 - '8'
 cache: yarn
-before_deploy:
+after_install:
 - npm install -g gatsby
 - yarn build:prod
-- pwd
-- ls -al public
 deploy:
   provider: firebase
   project: blog-7e7a6
+  on:
+    branch: master
   token:
     secure: BhfrYIrsvRiI+BxCflsYF727fYkDZ4XlP/0XWMm2HyuhIU2FSNr7dfhq3vkgSnBwiVdYFlXYxJ86WmJ1QDBJXbTKiuDkV+3YNnl26ONJybwcw1bQ2kqF+foeWQeqaX9bPhTZs4nfdNWuA3M8vZ0hJCa5JSd+F5w8Y1Nt5LyA1TSIeLS6Xsy8OPpp1vyyCGUe+n64MyUrhoWfUb+GFub1KbygVakXUFKEfqc+enH2aYGZ1MCeKAf6Yd7outnhPenPQoD7+8artwYD1TWUsonuZ327i4jJ7LkATAw+ECLRUhYn0ka9hWaObul4nhhos4lES8No0osEQOHpdXvdfUFrf3dEK02+pTDoLmuaGi+MKHNf45E1jmA6ou1DsJu49LfQNEDtmiB5gkMC/BhnRchHGL6XxtZV3Qg8+m3Ooeb1FA3MKjbTAUfOjnF4AtQ4knbJiOqQvK3Lk+nnDcDn5YVyTMUnju9OFGs9Gbi4tGD2T7NfP/ZixPed+wfDwqNxRVqoudfUGFtP1ok98CoabWQmpMydbc6G5t/DfIlzTpH/7IF0xVSh0Bz1EGqLK8OrTEWlgceAjFKn93lGsFCjmOPSYdZVMwkuDqe6NvbxMDpLGcHt31upw8QDiO0VY5WKKRrLM8Ly/bAeYLT/nFxKlzFBPxU5NmfDZduJ1F30z+zp9Vg=
