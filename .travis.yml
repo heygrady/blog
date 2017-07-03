@@ -1,39 +1,17 @@
-# back to language cpp to try to bypass osx node failure
-language: cpp
-sudo: false
-env:
-  - export NODE_VERSION="0.10"
-  - export NODE_VERSION="0.12"
-  - export NODE_VERSION="4"
-  - export NODE_VERSION="5"
-os:
-  - linux
-  - osx
-# pre-install to bring in the correct version of node via nvm
+language: node_js
+node_js:
+  - "6"
+cache: yarn
 before_install:
-  - git submodule update --init --recursive
-  - git clone https://github.com/creationix/nvm.git ./.nvm
-  - source ./.nvm/nvm.sh
-  - nvm install $NODE_VERSION
-  - nvm use $NODE_VERSION
-  - npm config set python `which python`
-  - if [ $TRAVIS_OS_NAME == "linux" ]; then
-      export CC="gcc-4.8";
-      export CXX="g++-4.8";
-      export LINK="gcc-4.8";
-      export LINKXX="g++-4.8";
-    fi
-  - gcc --version
-  - g++ --version
-# node 4 depends on gcc 4.8
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
-    - gcc-4.8
-# script needed to test, because defaults don't work on osx
-script:
-  - npm install
-  - npm run lint
+- "npm install -g gatsby"
+before_deploy:
+- "yarn build:prod"
+deploy:
+  provider: firebase
+  project: blog-7e7a6
+  token:
+    secure: "dVYQzfZr8ot34fttUfMMrunoT5I99USWdeni3XgDJyp4uhlANzGwe45oES+gmbrkqcmoRiPlCa2ruKaAk7V+vfrMnwVjhUyI9cpWIhFbRDvsdSZu72r2BO7LBuOHYRN2eLj7h/o8xpEjhOH84eB5Y5r
+2DTvUhX7se3yZ1mDYWUJjtopEcA4Pf8HdHwJW25Qtg7wOwBZl1MJu2j6t0kBIaFd7/6R7ixep8GU8/hrcqrZ21g6EwJw8wjuNbsHf2cL6G/v9vuuPwGfnQ/2wwY3Jm0OjHrpP/0MHCQGWXfF/Ul9CqTg6tmN4I4YNC
+bhyG6uko+tU7vP+qFavTWmxji6YfgPyI/Q4XFR8/yiaeMm51JUJ8sEnEQWNYf9kUJiD8LUDyPYmKotQOORFVv8QvFngGsTnYhGZFoFiTpnhhYx3UsucBS47gZ04kkzyETrFfi3RUhUFSd3lVRvKYcen7RekbmgN3my
+G0Q3eGODj5BFO0mkgj1+tymicAVoQCRXvxt2MOz4wCVaqAmkk3jBLocUqwoYi1MKlLYY0DKGGUYlgpDzj7PqnJXv3F1bdvlrtcMRoxsNxJteI5iqDIjAY+Vas/it5SIXHIMQkqJNX/vI+mw9XL/suDjCNOjoKzwg35
+3nysPoF5ZfktRY8P5bmFamdIDDw+szLGUJ4ShYn4V8VCx4="
