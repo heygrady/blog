@@ -51,7 +51,7 @@ Here's my starter script for making new posts. It creates a timestamped folder i
 ```json
 {
   "scripts": {
-    "page": "DATE=\"$(date '+%Y-%m-%d')\" FOLDER=\"pages/$DATE-title\" FILE=\"$FOLDER/index.md\" && mkdir $FOLDER && touch $FILE && echo \"---\ntitle: Title\ndate: \\\"$(date '+%Y-%m-%dT%H:%M:%S')\\\"\nreadNext: \\\"/fix-me/\\\"\npath: \\\"/title/\\\"\n---\" >> $FILE"
+    "page": "DATE=\"$(date '+%Y-%m-%d')\" FOLDER=\"pages/$DATE-title\" FILE=\"$FOLDER/index.md\" && mkdir $FOLDER && touch $FILE && echo \"---\ntitle: \"Title\"\ndate: \\\"$(date '+%Y-%m-%dT%H:%M:%S')\\\"\nreadNext: \\\"/fix-me/\\\"\npath: \\\"/title/\\\"\n---\" >> $FILE"
   }
 }
 ```
