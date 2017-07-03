@@ -1,5 +1,5 @@
 ---
-title: Enable linting: eslint
+title: "Enable linting: eslint"
 date: "2017-07-03T11:59:28"
 readNext: "/fix-me/"
 path: "/enable-linting/"
@@ -23,7 +23,7 @@ yarn remove gh-pages
 ```json
 {
   "scripts": {
-    "test": "yarn lint && echo \"Warn: no test specified\" && exit 0",
+    "test": "yarn lint && echo \"Warn: no test specified\" && exit 0"
   }
 }
 ```

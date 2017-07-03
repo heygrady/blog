@@ -1,22 +1,21 @@
 language: node_js
 node_js:
-- '8'
+  - "8"
+#cache: yarn
 addons:
   apt:
-    sources:
-    - ubuntu-toolchain-r-test
     packages:
-    - g++-4.8
-cache:
-  yarn: true
+      - g++-4.8
+    sources:
+      - ubuntu-toolchain-r-test
 branches:
   only:
-  - master
+    - master
 before_script:
-- npm install -g https://github.com/firebase/firebase-tools
-- npm install -g gatsby
+  - "npm install -g https://github.com/firebase/firebase-tools"
+  - "npm install -g gatsby"
 script:
-- yarn test
-- yarn build:prod
+  - "yarn test"
+  - "yarn build:prod"
 after_success:
-- firebase deploy --token=${FIREBASE_API_TOKEN}
+  - "firebase deploy --token=${FIREBASE_API_TOKEN}"

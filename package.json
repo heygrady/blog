@@ -13,10 +13,11 @@
     "test": "echo \"Warning: no test specified\" && exit 0",
     "develop": "yarn dev",
     "build": "gatsby build",
-    "build:prod": "gatsby build --prefix-links",
+    "build:prod": "yarn build -- --prefix-links",
     "deploy": "yarn lint && yarn test && yarn build:prod && firebase deploy"
   },
   "dependencies": {
+    "caniuse-db": "^1.0.30000696",
     "gatsby": "^0.12.41",
     "lodash": "^4.17.2",
     "moment": "^2.18.1",

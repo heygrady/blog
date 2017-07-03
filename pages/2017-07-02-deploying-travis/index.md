@@ -61,7 +61,7 @@ Gatsby comes with a build script and a deploy script. We're going to be manually
   "scripts": {
     "test": "echo \"Warn: no test specified\" && exit 0",
     "build": "gatsby build",
-    "build:prod": "yarn build -- --prefix-links",
+    "build:prod": "gatsby build --prefix-links",
     "deploy": "yarn build:prod && firebase deploy"
   }
 }
@@ -81,32 +81,27 @@ My Gatsby project was generated with a Travis file but it is for building Gatsby
 ```yaml
 language: node_js
 node_js:
-- '8'
-env:
-  - CXX=g++-4.8
+  - "8"
+cache: yarn
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-cache:
-  yarn: true
-  directories:
-    - node_modules
+    sources:
+      - ubuntu-toolchain-r-test
 branches:
   only:
     - master
 before_script:
   # If you're have troubles with firebase/firebase-tools#382
-  # - npm install -g https://github.com/firebase/firebase-tools
-  - npm install -g firebase-tools
-  - npm install -g gatsby
+  # - "npm install -g https://github.com/firebase/firebase-tools"
+  - "npm install -g firebase-tools"
+  - "npm install -g gatsby"
 script:
-  - yarn test # run our useless tests
-  - yarn build:prod # build the project
+  - "yarn test"
+  - "yarn build:prod"
 after_success:
-  - firebase deploy --token=${FIREBASE_API_TOKEN}
+  - "firebase deploy --token=${FIREBASE_API_TOKEN}"
 ```
 
 ### Add firebase deploy token for Travis
