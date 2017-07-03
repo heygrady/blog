@@ -13,7 +13,7 @@
     "test": "echo \"Warning: no test specified\" && exit 0",
     "develop": "yarn dev",
     "build": "gatsby build",
-    "build:prod": "yarn build -- --prefix-links",
+    "build:prod": "gatsby build --prefix-links",
     "deploy": "yarn lint && yarn test && yarn build:prod && firebase deploy"
   },
   "dependencies": {
