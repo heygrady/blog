@@ -2,9 +2,8 @@ language: node_js
 node_js:
   - "6"
 cache: yarn
-before_install:
-- "npm install -g gatsby"
 before_deploy:
+- "npm install -g gatsby"
 - "yarn build:prod"
 deploy:
   provider: firebase
