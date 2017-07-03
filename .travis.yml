@@ -17,7 +17,7 @@ branches:
   only:
     - master
 before_script:
-  - npm install -g firebase-tools
+  - npm install -g https://github.com/firebase/firebase-tools
   - npm install -g gatsby
 script:
   - yarn test
