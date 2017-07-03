@@ -1,8 +1,8 @@
 ---
-title: Linting the blog with eslint
+title: Enable linting: eslint
 date: "2017-07-03T11:59:28"
 readNext: "/fix-me/"
-path: "/linting-the-blog/"
+path: "/enable-linting/"
 ---
 
 ```bash

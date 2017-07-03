@@ -1,20 +1,24 @@
 ---
 title: Automatically deploying my blog with Travis
 date: "2017-07-02T20:48:32"
-readNext: "/fix-me/"
+readNext: "/enable-linting/"
 path: "/deploying-travis/"
 ---
 
-I've gotten my blog deployed on Firebase. Now I can deploy changes as easily as running `firebase deploy` from the terminal in the root folder of my blog. But I would prefer to only publish changes to my blog when I push to Github. Or, rather, I want to consider that a commit to `master` on Github should be considered the latest stable version -- this is the code that needs to be live on Firebase. I need automated deployments. This is something that Travis does very well.
+I've gotten my blog [deployed on Firebase](../first-launch/). Now I can deploy changes as easily as running `firebase deploy` from the terminal in the root folder of my blog. But I would prefer to only publish changes to my blog when I push to Github. Or, rather, I want to consider `master` on Github as the latest stable version -- this is the code that needs to be live on Firebase.
 
-Travis is a continuous integration tool. It watches your Github repository and tries to build and test your code every time you commit a change. It works well for public and private repositories. It's free for public repositories. They aren't alone in this space. Many companies use Jenkins internally. Other notable competitors are Codeship and Circle CI. There are likely dozens more. You could probably build your own service on your development laptop using Docker in about day (if you had a tutorial to follow).
+I need automated deployments. This is something that [Travis](https://travis-ci.org/) does very well.
 
-We're using Travis for this project because it is the most obvious choice. Many popular open source projects use Travis, likely because their free tier is brazenly open source friendly. They support Github public repos for free specifically to support open source software developers. Codeship also has a generous free tier and in a future project I intend to try out a competitor.
+Travis is a continuous integration tool. It watches your Github repository and tries to build and test your code every time you commit a change. It works well for public and private repositories. It's free for public repositories. They aren't alone in this space. Many companies use [Jenkins](https://jenkins.io/) internally. Other notable competitors are [Codeship](https://codeship.com/) and [Circle CI](https://circleci.com/). There are likely dozens more. You could probably build your own service on your development laptop using Docker in about day (if you had a tutorial to follow).
+
+We're using Travis for this project because it is the most obvious choice. Many popular open source projects use Travis, likely because their free tier is open source friendly. They support Github public repos for free specifically to support open source software developers. In a future project I intend to try out a competitor. For now, we're going with Travis.
 
 ## Let's go with Travis
-You need an account. I already had one. You have to give them permission to see your Github account -- this gives them broad access to your account. They list your Github repositories on Travis and allow you to switch on the repositories you want watched.
+You need an account. I already had one. You have to give them permission to see your Github account -- this gives them broad access. Travis allows you to choose the repositories you want watched.
 
-The default settings are just fine. There are very few settings, mostly for experimental features, so it's not really necessary at all. One of the annoying things about Travis is that there isn't a "go" button. It will *only* start when a new commit is made to your master branch on Gitub. This can make it difficult to get started and test your initial configuration.
+The default settings on Travis are just fine. There are very few settings, mostly for experimental features, so it's not really necessary at all. We will be setting an environment variable in the settings a little later.
+
+One of the annoying things about Travis is that there isn't a "go" button. It will *only* start when a new commit is made to your master branch on Gitub. This can make it difficult to get started and test your initial configuration.
 
 - Sign up for Travis
 - Give them access to your Github
@@ -22,44 +26,51 @@ The default settings are just fine. There are very few settings, mostly for expe
 - Make a test commit to kick off the project.
 
 ## Making a test commit
+In order to make a deploy, we need to make a commit.
+
 Travis offers almost no configuration online because you are supposed to add a `.travis.yml` file to your project. This file is pretty easy to make but it can get quite complicated. Under the hood, Travis is is standing up a brand new virtual machine for your project, running a fresh build from the latest code master on Github, and running tests. Thankfully for us, you can also configure a deploy step that runs after tests have been completed.
 
-Travis is designed for pretty serious teams that need strict and predictable build environments. Projects with a large audience need to ensure that the code that is live on their website is the right code, and that it passes at least some kind of smell test.
+Travis is designed for pretty serious teams that need strict and predictable build environments. Projects with a large audience need to ensure that the code that is lives on their website is the right code, and that it passes at least some kind of smell test.
 
-In some ways Travis and it's competitors are overkill for a little blog like mine. But it's free and offers a feature we're after -- automomatic deployments of Github master to Firebase. For now, we won't need to run any tests.
+In some ways Travis and it's competitors are overkill for a little blog like mine. But it's free and offers a feature we're after -- automomatic deployments of Github master to Firebase.
 
 ### Fix our tests
-There are probably some rudimentary tests that we should run to ensure that our latest code isn't totally borked. However, that is outside the scope of what we're trying to accomplish. Without tests, we are making the bold assumption that the code we commit to master will build correctly. For the case of a personal Gatsby blog, the tests can wait for another day.
+For now, we won't need to run any tests.
 
-Gatsby ships with a test script that essentially throws an error stating we should add some tests. This will prevent Travis from deploying our project. So we're going to have to soften that restriction.
+There are probably some rudimentary tests that we should run to ensure that our latest code isn't totally broken. However, that is outside the scope of what we're trying to accomplish. Without tests, we are making the bold assumption that the code we commit to master will build correctly. For the case of a personal Gatsby blog, the tests can wait for another day.
+
+Gatsby ships with a test script that essentially throws an error stating we should add some tests. This will prevent Travis from deploying our project. So we're going to have to soften that restriction. We'll change the message from "Error" to "Warning" and change the exit code from '1' to '0'.
 
 Edit the "test" script in your `package.json`:
 
 ```json
 {
   "scripts": {
-    "test": "echo \"Warn: no test specified\" && exit 0"
+    "test": "echo \"Warning: no test specified\" && exit 0"
   }
 }
 ```
 
-Of course, this isn't a permanent solution. At the very least we should run the linting command that's included with Gatsby. But that can wait. Right now we need to get Travis to deploy our blog. We've set our tests to emit a warning about "no tests" and exit with a success code so that Travis will continue.
+Of course, this isn't a permanent solution. At the very least we should run the `lint` command that's included with Gatsby. But that can wait ([enable linting](../enable-linting/) next). Right now we need to get Travis to deploy our blog. We've set our tests to emit a warning about "no tests" and exit with a success code so that Travis will continue.
 
 ### Add a prod build script
-Gatsby comes with a build script and a deploy script. We're going to be manually deploying with a firebase deploy command in our `.travis.yml`. Before we can deploy we need to build. So we'll copy the build step from the existing deploy script and call it `deploy:prod`.
+Gatsby comes with a build script and a deploy script. We're going to be manually deploying with a firebase deploy command in our `.travis.yml`. But before we can deploy, we need to build. So we'll copy the build step from the existing deploy script and call it `deploy:prod`.
 
 ```json
 {
   "scripts": {
     "test": "echo \"Warn: no test specified\" && exit 0",
-    "build:prod": "gatsby build --prefix-links",
-    "deploy": "gatsby build --prefix-links && firebase deploy"
+    "build": "gatsby build",
+    "build:prod": "yarn build -- --prefix-links",
+    "deploy": "yarn build:prod && firebase deploy"
   }
 }
 ```
 
 ### Adding a `.travis.yml`
-We need to add a `.travis.yml` file for building and deploying our project. This Gatsby project was generated with a Travis file but it is for building Gatsby itself, not our project. We can get by with a much simpler configuration. I ended up having to follow [these instructions](https://marlosoft.net/posts/automatic-deploy-firebase-github-travis.html) because the [Firebase deployment documentation](https://docs.travis-ci.com/user/deployment/firebase/) provided by Travis doesn't seem to work.
+We need to add a `.travis.yml` file for building and deploying our project.
+
+My Gatsby project was generated with a Travis file but it is for building Gatsby itself, not our project. We can get by with a much simpler configuration. I ended up having to follow [these instructions](https://marlosoft.net/posts/automatic-deploy-firebase-github-travis.html) because the [Firebase deployment documentation](https://docs.travis-ci.com/user/deployment/firebase/) provided by Travis doesn't seem to work.
 
 **NOTE:** I kept getting an error during the deploy phase when following [the official docs](https://docs.travis-ci.com/user/deployment/firebase/). `Error: Specified public directory does not exist, can't deploy hosting`
 
@@ -101,7 +112,7 @@ after_success:
 ### Add firebase deploy token for Travis
 In order for Travis to deploy on your behalf you need to generate a [Firebase CI token](https://github.com/firebase/firebase-tools#using-with-ci-systems) for [use with Travis](https://docs.travis-ci.com/user/deployment/firebase/#Generating-your-Firebase-token).
 
-Running the following script will force you to log in. Then it will output a token in the terminal. This should be a secret token -- anyone who can see your token can deploy as you.
+Running the following script will force you to log in. Then it will output a token in the terminal. This should be a secret token -- anyone who knows your token can deploy as you.
 
 ```bash
 firebase login:ci
@@ -109,10 +120,24 @@ firebase login:ci
 
 For now, go to your project in Travis and add the token as a environment variable, `FIREBASE_API_TOKEN`. This is outlined in more detail in [these instructions](https://marlosoft.net/posts/automatic-deploy-firebase-github-travis.html#getting-started) or in the [Travis environment variable docs](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings). Make sure you leave "display value in build log" off.
 
-If you're feeling adventurous, you can put this deploy token your `.travis.yml` file as an encrypted secret. This would not give your secret away but it would allow anyone with access to your Github access to the encrypted version of your secret. Given that this is a public repository I'm choosing to store it at Travis for now.
+If you're feeling adventurous, you can put this deploy token in your `.travis.yml` file as an encrypted secret. This would not give your secret away but it would allow anyone with access to your Github access to the encrypted version of your secret. Given that this is a public repository I'm choosing to store it in my online Travis settings for now.
 
 ```bash
 # only if you're adventurous... everyone will be able to see your secure token
 # probably better to add the token to your Travis settings online
 travis encrypt FIREBASE_API_TOKEN="the generated token" --add env
 ```
+
+### Deploy by committing to Github
+With all of this in place, we're finally ready to push a change to our Github master.
+
+```bash
+git add .
+git commit -m "Adding travis config"
+git push origin master
+```
+
+At this point, Travis should pick up your changes, test, build and deploy your project.
+
+## What's next?
+- [Enabling and requiring proper linting](../enable-linting)
