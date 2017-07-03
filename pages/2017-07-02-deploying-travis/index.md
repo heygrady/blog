@@ -20,9 +20,9 @@ The default settings on Travis are just fine. There are very few settings -- mos
 
 One of the annoying things about Travis is that there isn't a "go" button. It will *only* start when a new commit is made to your master branch on Gitub. This can make it difficult to get started and test your initial configuration.
 
-- Sign up for Travis
-- Give them access to your Github
-- Activate travis for your blog
+- Sign up for Travis ([getting started](https://docs.travis-ci.com/user/getting-started/))
+- Give Travis access to your Github
+- Activate Travis for your repo
 - Make a test commit to kick off the build and deploy
 
 ## Configure travis
