@@ -33,40 +33,86 @@ There are probably some rudimentary tests that we should run to ensure that our 
 
 Gatsby ships with a test script that essentially throws an error stating we should add some tests. This will prevent Travis from deploying our project. So we're going to have to soften that restriction.
 
+Edit the "test" script in your `package.json`:
+
 ```json
 {
   "scripts": {
-    "test": "echo \"Warn: no test specified\" && exit 0",
+    "test": "echo \"Warn: no test specified\" && exit 0"
   }
 }
 ```
 
-Of course, this isn't a permanent solution. At the very least we should run the linting command that's included with Gatsby. Of course, that can wait. Right now we need to get Travis to deploy our blog. Right now we've set our tests to emit a warning about "no tests" and exiting with a success code so that Travis will continue.
+Of course, this isn't a permanent solution. At the very least we should run the linting command that's included with Gatsby. But that can wait. Right now we need to get Travis to deploy our blog. We've set our tests to emit a warning about "no tests" and exit with a success code so that Travis will continue.
+
+### Add a prod build script
+Gatsby comes with a build script and a deploy script. We're going to be manually deploying with a firebase deploy command in our `.travis.yml`. Before we can deploy we need to build. So we'll copy the build step from the existing deploy script and call it `deploy:prod`.
+
+```json
+{
+  "scripts": {
+    "test": "echo \"Warn: no test specified\" && exit 0",
+    "build:prod": "gatsby build --prefix-links",
+    "deploy": "gatsby build --prefix-links && firebase deploy"
+  }
+}
+```
 
 ### Adding a `.travis.yml`
-We need to add a `.travis.yml` file for building our project. This Gatsby project was generated with a Travis file but it is for building Gatsby itself, not our project. We can get by with a much simpler configuration. I ended up having to follow [these instructions](https://marlosoft.net/posts/automatic-deploy-firebase-github-travis.html) because the [Firebase deployment documentation](https://docs.travis-ci.com/user/deployment/firebase/) provided by Travis doesn't seem to work.
+We need to add a `.travis.yml` file for building and deploying our project. This Gatsby project was generated with a Travis file but it is for building Gatsby itself, not our project. We can get by with a much simpler configuration. I ended up having to follow [these instructions](https://marlosoft.net/posts/automatic-deploy-firebase-github-travis.html) because the [Firebase deployment documentation](https://docs.travis-ci.com/user/deployment/firebase/) provided by Travis doesn't seem to work.
 
-**NOTE** I kept getting an error during the deploy phase. "Error: Specified public directory does not exist, can't deploy hosting"
+**NOTE:** I kept getting an error during the deploy phase when following [the official docs](https://docs.travis-ci.com/user/deployment/firebase/). `Error: Specified public directory does not exist, can't deploy hosting`
+
+**NOTE:** I was getting *another* error with the [manual deploy](https://marlosoft.net/posts/automatic-deploy-firebase-github-travis.html) below because of an [issue with firebase-tools on Travis](https://github.com/firebase/firebase-tools/issues/382). I fixed it by installing firebase-tools directly from master. You might not need to do that if you're living in the future.
+
+**NOTE:** I had to follow [these instructions](https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Node.js-v4-%28or-io.js-v3%29-compiler-requirements) because I'm using Node 8 and it requires a more recent compiler to install native extensions like node-sass.
 
 ```yaml
 language: node_js
 node_js:
-  - "8"
-cache: yarn
+- '8'
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+cache:
+  yarn: true
+  directories:
+    - node_modules
 branches:
   only:
     - master
 before_script:
+  # If you're have troubles with firebase/firebase-tools#382
+  # - npm install -g https://github.com/firebase/firebase-tools
   - npm install -g firebase-tools
   - npm install -g gatsby
 script:
-  - yarn build:prod
+  - yarn test # run our useless tests
+  - yarn build:prod # build the project
 after_success:
   - firebase deploy --token=${FIREBASE_API_TOKEN}
 ```
 
-### Secure firebase deploy token for Travis
+### Add firebase deploy token for Travis
+In order for Travis to deploy on your behalf you need to generate a [Firebase CI token](https://github.com/firebase/firebase-tools#using-with-ci-systems) for [use with Travis](https://docs.travis-ci.com/user/deployment/firebase/#Generating-your-Firebase-token).
+
+Running the following script will force you to log in. Then it will output a token in the terminal. This should be a secret token -- anyone who can see your token can deploy as you.
 
 ```bash
 firebase login:ci
+```
+
+For now, go to your project in Travis and add the token as a environment variable, `FIREBASE_API_TOKEN`. This is outlined in more detail in [these instructions](https://marlosoft.net/posts/automatic-deploy-firebase-github-travis.html#getting-started) or in the [Travis environment variable docs](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings). Make sure you leave "display value in build log" off.
+
+If you're feeling adventurous, you can put this deploy token your `.travis.yml` file as an encrypted secret. This would not give your secret away but it would allow anyone with access to your Github access to the encrypted version of your secret. Given that this is a public repository I'm choosing to store it at Travis for now.
+
+```bash
+# only if you're adventurous... everyone will be able to see your secure token
+# probably better to add the token to your Travis settings online
+travis encrypt FIREBASE_API_TOKEN="the generated token" --add env
 ```

@@ -14,7 +14,7 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "build:prod": "gatsby build --prefix-links",
-    "deploy": "gatsby build --prefix-links && firebase deploy"
+    "deploy": "yarn lint && yarn test && yarn build:prod && firebase deploy"
   },
   "dependencies": {
     "gatsby": "^0.12.41",
