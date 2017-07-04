@@ -81,7 +81,7 @@ If you have already run `yarn lint:fix` there should be very few errors.
 
 These are the errors I had to fix:
 
-```
+```txt
 /project/path/blog/components/Bio.js
   26:1  error  Line 26 exceeds the maximum line length of 120  max-len
 
