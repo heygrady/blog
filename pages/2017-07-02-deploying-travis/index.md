@@ -1,6 +1,6 @@
 ---
 title: "Automatically deploying my blog with Travis"
-date: "2017-07-02T20:48:32"
+date: "2017-07-02T20:48:32Z"
 readNext: "/enable-linting/"
 path: "/deploying-travis/"
 ---

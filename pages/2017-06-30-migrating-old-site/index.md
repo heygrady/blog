@@ -1,6 +1,6 @@
 ---
 title: Migrating the old site
-date: "2017-06-30T12:42:35"
+date: "2017-06-30T12:42:35Z"
 readNext: "/fix-me/"
 path: "/migrating-old-site/"
 ---

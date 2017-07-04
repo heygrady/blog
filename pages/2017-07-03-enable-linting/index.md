@@ -1,6 +1,6 @@
 ---
 title: "Enable linting: eslint"
-date: "2017-07-03T11:59:28"
+date: "2017-07-03T11:59:28Z"
 readNext: "/fix-me/"
 path: "/enable-linting/"
 ---

@@ -1,6 +1,6 @@
 ---
 title: "First launch: Firebase"
-date: "2017-06-30T11:15:30"
+date: "2017-06-30T11:15:30Z"
 readNext: "/migrating-old-site/"
 path: "/first-launch/"
 ---
