@@ -8,9 +8,10 @@
   },
   "scripts": {
     "dev": "gatsby develop",
-    "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
-    "page": "DATE=\"$(date '+%Y-%m-%d')\" FOLDER=\"pages/$DATE-title\" FILE=\"$FOLDER/index.md\" && mkdir $FOLDER && touch $FILE && echo \"---\ntitle: \"Title\"\ndate: \\\"$(date '+%Y-%m-%dT%H:%M:%S')\\\"\nreadNext: \\\"/fix-me/\\\"\npath: \\\"/title/\\\"\n---\" >> $FILE",
+    "lint": "eslint .",
+    "lint:fix": "yarn lint -- --fix",
     "test": "echo \"Warning: no test specified\" && exit 0",
+    "page": "DATE=\"$(date '+%Y-%m-%d')\" FOLDER=\"pages/$DATE-title\" FILE=\"$FOLDER/index.md\" && mkdir $FOLDER && touch $FILE && echo \"---\ntitle: \"Title\"\ndate: \\\"$(date '+%Y-%m-%dT%H:%M:%S')\\\"\nreadNext: \\\"/fix-me/\\\"\npath: \\\"/title/\\\"\n---\" >> $FILE",
     "develop": "yarn dev",
     "build": "gatsby build",
     "build:prod": "yarn build -- --prefix-links",
