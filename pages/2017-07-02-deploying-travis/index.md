@@ -9,7 +9,9 @@ I've gotten my blog [deployed on Firebase](../first-launch/). Now I can deploy c
 
 I need automated deployments. This is something that [Travis](https://travis-ci.org/) does very well.
 
-Travis is a continuous integration tool. It watches your Github repository and tries to build and test your code every time you commit a change. It works well for public and private repositories. It's free for public repositories. They aren't alone in this space. Many companies use [Jenkins](https://jenkins.io/) internally. Other notable competitors are [Codeship](https://codeship.com/) and [Circle CI](https://circleci.com/). There are likely dozens more. You could probably build your own service on your development laptop using Docker in about day (if you had a tutorial to follow).
+Travis is a continuous integration tool. It watches your Github repository and tries to build and test your code every time you commit a change. It works well for public and private repositories. It's free for public repositories.
+
+They aren't alone in this space. Many companies use [Jenkins](https://jenkins.io/) internally. Other notable competitors are [Codeship](https://codeship.com/) and [Circle CI](https://circleci.com/). There are likely dozens more. You could probably build your own service on your development laptop using Docker in about day (if you had a tutorial to follow).
 
 We're using Travis for this project because it is the most obvious choice. Many popular open source projects use Travis, likely because their free tier is open source friendly. They support Github public repos for free specifically to support open source software developers. In a future project I intend to try out a competitor. For now, we're going with Travis.
 
@@ -18,7 +20,7 @@ You need an account. I already had one. You have to give them permission to see 
 
 The default settings on Travis are just fine. There are very few settings -- mostly for experimental features -- so it's not really necessary at all. We *will* be adding an environment variable a little later.
 
-One of the annoying things about Travis is that there isn't a "go" button. It will *only* start when a new commit is made to your master branch on Gitub. This can make it difficult to get started and test your initial configuration.
+One of the annoying things about Travis is that there isn't a "go" button. It will *only* start when a new commit is made to your master branch on Github. This can make it difficult to get started and test your initial configuration.
 
 - Sign up for Travis ([getting started](https://docs.travis-ci.com/user/getting-started/))
 - Give Travis access to your Github
@@ -28,20 +30,20 @@ One of the annoying things about Travis is that there isn't a "go" button. It wi
 ## Configure travis
 In order to make a deploy, we need to make a commit. We're going to commit a travis config file to kick off our first automated build.
 
-Travis offers almost no configuration online because you are supposed to add a [`.travis.yml`](https://docs.travis-ci.com/user/customizing-the-build) file to your project. This file is pretty easy to make but it can get quite complicated. Under the hood, Travis is is standing up a brand new virtual machine for your project, running a fresh build from the latest code master on Github, and running tests.
+Travis offers almost no configuration online because you are supposed to add a [`.travis.yml`](https://docs.travis-ci.com/user/customizing-the-build) file to your project. This file is pretty easy to make but it can get quite complicated. Under the hood, Travis is is standing up a brand new virtual machine for your project, running a fresh build from the latest code on Github, and running tests.
 
-Travis is designed to test your code bey default. Thankfully for us, you can also configure a deploy step that runs after the tests.
+By default, Travis is designed to *test* your code, not deploy it. Thankfully for us, you can also configure a deploy step that runs *after* the tests.
 
 Travis is designed for pretty serious teams that need strict and predictable build environments. Projects with a large audience need to ensure that the code that is lives on their website is the right code, and that it passes at least some kind of smell test.
 
-In some ways Travis and it's competitors are overkill for a little blog like mine. But it's free and offers a feature we're after -- automomatic deployments of Github master to Firebase.
+In some ways, Travis and it's competitors are overkill for a little blog like mine. But it's free and offers a feature we're after -- automatic deployments of Github master to Firebase.
 
 ### Fix our tests
-For now, we won't need to run any tests.
+For now, we won't need to run any tests. This is a boilerplate Gatsby blog and most of the testable features live within Gatsby somewhere.
 
-There are probably some rudimentary tests that we should run to ensure that our latest code isn't totally broken. However, that is outside the scope of what we're trying to accomplish. Without tests, we are making the bold assumption that the code we commit to master will build correctly. For the case of a personal Gatsby blog, the tests can wait for another day.
+There are probably some rudimentary tests that we should run to ensure that our latest code isn't totally broken. However, that is outside the scope of what we're trying to accomplish right now. Without tests, we are making the bold assumption that the code we commit to master will build correctly. For the case of a personal Gatsby blog, the tests can wait for another day.
 
-Gatsby ships with a test script that essentially throws an error stating we should add some tests. This will prevent Travis from deploying our project. So we're going to have to soften that restriction. We'll change the message from "Error" to "Warning" and change the exit code from '1' to '0'.
+Gatsby ships with a [test script](https://github.com/gatsbyjs/gatsby-starter-blog/blob/ea66dae113dfef5c5ee85c0adecd72d70cc385c8/package.json#L38) that essentially throws an error stating we should add some tests. Failing tests will prevent Travis from deploying our project. So we're going to have to soften that restriction. We'll change the message from "Error" to "Warning" and change the exit code from '1' to '0'.
 
 Edit the "test" script in your `package.json`:
 
@@ -55,11 +57,12 @@ Edit the "test" script in your `package.json`:
 
 Of course, this isn't a permanent solution. At the very least we should run the `lint` command that's included with Gatsby. But that can wait (we'll [enable linting](../enable-linting/) next). Right now we need to get Travis to deploy our blog. We've set our tests to emit a warning about "no tests" and exit with a success code so that Travis will continue.
 
-**NOTE:** I broke my build while working on this post because the YAML frontmatter had a syntax error -- frontmatter errors make Gatsby unhappy. For me the problem was that I wasn't wrapping a string in quotes. This kept the project from deploying because the build step was failing. In that way, building the project is a good minimal test.
+**NOTE:** I broke my build while working on this post because the YAML frontmatter had a syntax error -- frontmatter errors make Gatsby unhappy. For me the problem was that I wasn't wrapping a string in quotes. In travis this showed up as a "failed" build. This kept the project from deploying because the build step was failing. In that way, building the project is a good minimal test.
 
 ### Add a prod build script
-Gatsby comes with a build script and a deploy script. We're going to be manually deploying with a firebase deploy command in our `.travis.yml`. But before we can deploy, we need to build. So we'll copy the build step from the existing deploy script and call it `deploy:prod`.
+Gatsby comes with a [build script](https://github.com/gatsbyjs/gatsby-starter-blog/blob/ea66dae113dfef5c5ee85c0adecd72d70cc385c8/package.json#L40) and a [deploy script](https://github.com/gatsbyjs/gatsby-starter-blog/blob/ea66dae113dfef5c5ee85c0adecd72d70cc385c8/package.json#L41). We're going to be manually deploying with a `firebase deploy` command in our `.travis.yml`. But before we can deploy, we need to build. So we'll copy the build step from the existing deploy script and call it `deploy:prod`.
 
+Add these relevant build and deploy scripts to your `package.json`:
 ```json
 {
   "scripts": {
@@ -74,7 +77,7 @@ Gatsby comes with a build script and a deploy script. We're going to be manually
 ### Adding a `.travis.yml`
 We need to add a `.travis.yml` file for building and deploying our project.
 
-My Gatsby project was generated with a Travis file but it is for building Gatsby itself, not our project. We can get by with a much simpler configuration. I ended up having to follow [these instructions](https://marlosoft.net/posts/automatic-deploy-firebase-github-travis.html) because the [Firebase deployment documentation](https://docs.travis-ci.com/user/deployment/firebase/) provided by Travis doesn't seem to work.
+My Gatsby project was generated with a [Travis file](https://github.com/gatsbyjs/gatsby-starter-blog/blob/ea66dae113dfef5c5ee85c0adecd72d70cc385c8/.travis.yml) but it is for building Gatsby itself, not our project. We can get by with a much simpler configuration. I ended up having to follow [these instructions](https://marlosoft.net/posts/automatic-deploy-firebase-github-travis.html) because the [Firebase deployment documentation](https://docs.travis-ci.com/user/deployment/firebase/) provided by Travis doesn't seem to work.
 
 **NOTE:** I kept getting an error during the deploy phase when following [the official docs](https://docs.travis-ci.com/user/deployment/firebase/). `Error: Specified public directory does not exist, can't deploy hosting`
 
@@ -82,6 +85,7 @@ My Gatsby project was generated with a Travis file but it is for building Gatsby
 
 **NOTE:** I had to follow [these instructions](https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Node.js-v4-%28or-io.js-v3%29-compiler-requirements) because I'm using Node 8 and it requires a more recent compiler to install native extensions like node-sass.
 
+Here's the `.travis.yml` file:
 ```yaml
 language: node_js
 node_js:
