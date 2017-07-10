@@ -97,6 +97,8 @@ addons:
       - g++-4.8
     sources:
       - ubuntu-toolchain-r-test
+env:
+  CXX=g++-4.8
 branches:
   only:
     - master
