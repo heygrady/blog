@@ -1,16 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Link from 'gatsby-link'
 import { Container } from 'react-responsive-grid'
-import { prefixLink } from 'gatsby-helpers'
-import { rhythm, scale } from 'utils/typography'
-import { config } from 'config'
+import { rhythm, scale } from '../utils/typography'
+import config from '../config'
 
-class Template extends React.Component {
+import 'prismjs/themes/prism-solarizedlight.css'
+import '../css/prism.css'
+
+class Template extends Component {
   render () {
     const { location, children } = this.props
-
+    console.log(children)
     let header
-    if (location.pathname === prefixLink('/')) {
+    if (location.pathname === '/') {
       header = (
         <h1
           style={{
@@ -25,7 +28,7 @@ class Template extends React.Component {
               textDecoration: 'none',
               color: 'inherit',
             }}
-            to={prefixLink('/')}
+            to={'/'}
           >
             {config.blogTitle}
           </Link>
@@ -37,6 +40,7 @@ class Template extends React.Component {
           style={{
             fontFamily: 'Montserrat, sans-serif',
             marginTop: 0,
+            marginBottom: rhythm(-1),
           }}
         >
           <Link
@@ -45,7 +49,7 @@ class Template extends React.Component {
               textDecoration: 'none',
               color: 'inherit',
             }}
-            to={prefixLink('/')}
+            to={'/'}
           >
             {config.blogTitle}
           </Link>
@@ -60,16 +64,15 @@ class Template extends React.Component {
         }}
       >
         {header}
-        {children}
+        {children()}
       </Container>
     )
   }
 }
 
 Template.propTypes = {
-  children: React.PropTypes.any,
-  location: React.PropTypes.object,
-  // route: React.PropTypes.object
+  children: PropTypes.func,
+  location: PropTypes.object
 }
 
 export default Template
