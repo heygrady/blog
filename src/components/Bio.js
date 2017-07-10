@@ -1,9 +1,14 @@
-import React from 'react'
-import { config } from 'config'
-import { rhythm } from 'utils/typography'
-import profilePic from './profile-pic.jpg'
+import React, { Component } from 'react'
 
-class Bio extends React.Component {
+// Import typefaces
+import 'typeface-montserrat'
+import 'typeface-merriweather'
+
+import profilePic from './profile-pic.jpg'
+import { rhythm } from '../utils/typography'
+import config from '../config'
+
+class Bio extends Component {
   render () {
     return (
       <p
@@ -13,7 +18,7 @@ class Bio extends React.Component {
       >
         <img
           src={profilePic}
-          alt={`author ${config.authorName}`}
+          alt={config.author}
           style={{
             float: 'left',
             marginRight: rhythm(1 / 4),
@@ -23,8 +28,11 @@ class Bio extends React.Component {
             borderRadius: '50%'
           }}
         />
-        Written by <strong>{config.authorName}</strong>.
+        Written by <strong>{config.author}</strong>.
+        {' '}
         <a href={`https://twitter.com/${config.twitterHandle}`}>@{config.twitterHandle}</a>
+        {' | '}
+        <a href={`https://github.com/${config.twitterHandle}`}>Github</a>
       </p>
     )
   }

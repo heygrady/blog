@@ -7,7 +7,7 @@ path: "/new-blog/"
 
 This is my updated blog. The old content will be [kept around](https://2012.heygrady.com) for posterity but it hasn't really be updated in the least 5 years. The old blog was built with [Octopress](http://octopress.org/). This new blog is built with [Gatsby](https://github.com/gatsbyjs/gatsby) (for now).
 
-**NOTE:** This was written for [Gatsby 0.12.48](https://github.com/gatsbyjs/gatsby/tree/73dcc32d0041de6057d6328f0563b4e6cfb5e160). Version 1.0 is being released soon. A later post post demonstrates [how to upgrade](../upgrading-gatsby/).
+**NOTE:** This was written for [Gatsby 0.12.48](https://github.com/gatsbyjs/gatsby/tree/73dcc32d0041de6057d6328f0563b4e6cfb5e160). Version 1.0 [has been released](https://www.gatsbyjs.org/blog/gatsby-v1/). A later post post demonstrates [how to upgrade](../upgrading-gatsby/).
 
 ## I want a new blog
 A lot has changed since 2012. Publishing static content on the web has gotten much easier. This blog will be an experimental place for me to make posts. Mostly I'm just trying to reduce my barrier to making posts to near-zero and giving myself a more stable place to make notes. Choosing Gatsby is a way to get up and running quickly, bonus points for being built on top of the React stack.
@@ -31,7 +31,7 @@ git checkout -b gatsby
 ```
 
 ### Install Gatsby
-This is covered better elsewhere, you should follow the latest [instructions for Gatsby](https://github.com/gatsbyjs/gatsby/blob/master/README.md). For posterity, this is what I did:
+This is covered better elsewhere, you should follow the latest [instructions for Gatsby](https://github.com/gatsbyjs/gatsby/blob/v0.12.48/README.md). For posterity, this is what I did:
 
 ```bash
 npm install -g gatsby

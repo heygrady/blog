@@ -1,24 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { TypographyStyle } from 'react-typography'
 import Helmet from 'react-helmet'
-import { prefixLink } from 'gatsby-helpers'
-import { GoogleFont, TypographyStyle } from 'react-typography'
+
 import typography from './utils/typography'
 
-const BUILD_TIME = new Date().getTime()
+let stylesStr
+if (process.env.NODE_ENV === `production`) {
+  try {
+    stylesStr = require(`!raw-loader!../public/styles.css`)
+  } catch (e) {
+    console.log(e)
+  }
+}
 
-module.exports = React.createClass({
-  displayName: 'HTML',
-  propTypes: {
-    body: React.PropTypes.string,
-  },
+export default class HTML extends Component {
+  static propTypes = {
+    headComponents: PropTypes.node,
+    body: PropTypes.string,
+    postBodyComponents: PropTypes.node
+  }
+
   render () {
-    const { body } = this.props
     const head = Helmet.rewind()
-
     let css
-    if (process.env.NODE_ENV === 'production') {
-      // eslint-disable-next-line import/no-webpack-loader-syntax
-      css = <style dangerouslySetInnerHTML={{ __html: require('!raw!./public/styles.css') }} />
+    if (process.env.NODE_ENV === `production`) {
+      css = (
+        <style
+          id='gatsby-inlined-css'
+          dangerouslySetInnerHTML={{ __html: stylesStr }}
+        />
+      )
     }
 
     return (
@@ -30,17 +42,18 @@ module.exports = React.createClass({
             name='viewport'
             content='width=device-width, initial-scale=1.0'
           />
-          {head.title.toComponent()}
-          {head.meta.toComponent()}
+          {this.props.headComponents}
           <TypographyStyle typography={typography} />
-          <GoogleFont typography={typography} />
           {css}
         </head>
         <body>
-          <div id='react-mount' dangerouslySetInnerHTML={{ __html: body }} />
-          <script src={prefixLink(`/bundle.js?t=${BUILD_TIME}`)} />
+          <div
+            id='___gatsby'
+            dangerouslySetInnerHTML={{ __html: this.props.body }}
+          />
+          {this.props.postBodyComponents}
         </body>
       </html>
     )
-  },
-})
+  }
+}

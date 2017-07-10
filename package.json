@@ -1,35 +1,48 @@
 {
-  "name": "gatsby-starter-blog",
-  "description": "Starter Gatsby Blog",
+  "name": "heygrady-blog",
+  "description": "Heygrady's personal blog",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Grady Kuhnline <github@heygrady.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby-starter-blog/issues"
+    "url": "https://github.com/heygrady/blog/issues"
   },
   "scripts": {
     "dev": "gatsby develop",
     "lint": "eslint .",
     "lint:fix": "yarn lint -- --fix",
     "test": "echo \"Warning: no test specified\" && exit 0",
-    "page": "DATE=\"$(date '+%Y-%m-%d')\" FOLDER=\"pages/$DATE-title\" FILE=\"$FOLDER/index.md\" && mkdir $FOLDER && touch $FILE && echo \"---\ntitle: \\\"Title\\\"\ndate: \\\"$(date '+%Y-%m-%dT%H:%M:%SZ')\\\"\nreadNext: \\\"/fix-me/\\\"\npath: \\\"/title/\\\"\n---\" >> $FILE",
+    "page": "DATE=\"$(date '+%Y-%m-%d')\" FOLDER=\"src/pages/$DATE-title\" FILE=\"$FOLDER/index.md\" && mkdir $FOLDER && touch $FILE && echo \"---\ntitle: \\\"Title\\\"\ndate: \\\"$(date '+%Y-%m-%dT%H:%M:%SZ')\\\"\nreadNext: \\\"/fix-me/\\\"\npath: \\\"/title/\\\"\n---\" >> $FILE",
     "develop": "yarn dev",
     "build": "gatsby build",
-    "build:prod": "yarn build -- --prefix-links",
-    "deploy": "yarn lint && yarn test && yarn build:prod && firebase deploy"
+    "build:prod": "yarn build -- --prefix-paths",
+    "deploy": "yarn lint && yarn test && yarn build:prod && firebase deploy",
+    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
   },
   "dependencies": {
-    "caniuse-db": "^1.0.30000696",
-    "gatsby": "^0.12.41",
-    "lodash": "^4.17.2",
-    "moment": "^2.18.1",
-    "react-addons-shallow-compare": "^15.5.2",
-    "react-dates": "^4.1.0",
-    "react-helmet": "^3.2.2",
+    "eslint-plugin-graphql": "^1.1.0",
+    "gatsby": "^1.0.0",
+    "gatsby-link": "^1.0.0",
+    "gatsby-plugin-google-analytics": "^1.0.0",
+    "gatsby-plugin-manifest": "^1.0.0",
+    "gatsby-plugin-offline": "^1.0.0",
+    "gatsby-plugin-preact": "^1.0.0",
+    "gatsby-plugin-react-helmet": "^1.0.0",
+    "gatsby-plugin-sharp": "^1.0.0",
+    "gatsby-remark-copy-linked-files": "^1.0.0",
+    "gatsby-remark-images": "^1.0.0",
+    "gatsby-remark-prismjs": "^1.0.0",
+    "gatsby-remark-responsive-iframe": "^1.0.0",
+    "gatsby-remark-smartypants": "^1.0.0",
+    "gatsby-source-filesystem": "^1.0.0",
+    "gatsby-transformer-remark": "^1.0.0",
+    "gatsby-transformer-sharp": "^1.0.0",
+    "lodash": "^4.15.0",
     "react-responsive-grid": "^0.3.3",
     "react-typography": "^0.15.0",
-    "typography": "^0.15.0",
-    "typography-theme-wordpress-2016": "^0.15.0",
-    "underscore.string": "^3.2.3"
+    "typeface-merriweather": "^0.0.25",
+    "typeface-montserrat": "^0.0.24",
+    "typography": "^0.15.8",
+    "typography-theme-wordpress-2016": "^0.15.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -43,14 +56,15 @@
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-standard": "^3.0.1"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/heygrady/blog#readme",
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "blog"
   ],
   "license": "MIT",
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/heygrady/blog.git"
   }
 }
