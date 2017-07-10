@@ -2,6 +2,8 @@ module.exports = {
   siteMetadata: {
     title: 'Heygrady',
     author: 'Grady Kuhnline',
+    linkPrefix:'link',
+    pathPrefix:'path',
     twitterHandle:'heygrady'
   },
   plugins: [
