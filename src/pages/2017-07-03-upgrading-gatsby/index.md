@@ -171,4 +171,10 @@ Load the site in your browser and see if everything looks correct.
 If you customized your old blog more heavily than I did, you may need to fix up a few more things. In cases where the new graphql functionality isn't obvious, fall back on the `src/config.js` file and leave yourself a `TODO`. At the time of this writing the [graphql documentation is incomplete](https://github.com/gatsbyjs/gatsby/blob/e4457d155840f4e08c46397cba944abd38dc5934/docs/docs/querying-with-graphql.md) ([latest](https://www.gatsbyjs.org/docs/querying-with-graphql/)) and upgrading to it may be non-trivial.
 
 ## Deploying
-Once you are happy with your upgrade, commit it to the `gatsby-upgrade` branch.
+Once you are happy with your upgrade, commit it to the `gatsby-upgrade` branch and push it to github.
+
+```bash
+git add .
+git commit -m "Upgrading to Gatsby 1.0"
+git push origin master
+```
