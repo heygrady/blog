@@ -202,6 +202,16 @@ yarn dev
 
 Load the site in your browser and see if everything looks correct.
 
+You also need to test the production build. Because we're building static files, we can easily test the build using [http-server](https://www.npmjs.com/package/http-server). This allows us to server the `public` folder locally to ensure the site is building correctly.
+
+```bash
+yarn global add http-server
+
+yarn build:prod && \
+cd public && \
+http-server -c-1
+```
+
 ## Wrapping up
 If you customized your old blog more heavily than I did, you may need to fix up a few more things. In cases where the new graphql functionality isn't obvious, fall back on the `src/config.js` file and leave yourself a `TODO`. At the time of this writing the [graphql documentation is incomplete](https://github.com/gatsbyjs/gatsby/blob/e4457d155840f4e08c46397cba944abd38dc5934/docs/docs/querying-with-graphql.md) ([latest](https://www.gatsbyjs.org/docs/querying-with-graphql/)) and upgrading may be non-trivial.
 
