@@ -165,7 +165,22 @@ cp ../upgrade-test/gatsby-config.js ./ && \
 cp ../upgrade-test/gatsby-node.js ./
 ```
 
-Remember to update the `siteMetadata` in `gatsby-config.js` to match what we added in `src/config.js`.
+Gatsby uses a new [path-prefix](https://www.gatsbyjs.org/docs/path-prefix/) functionality. We need to add this to the `gatsby-config.js`. We also need to add our `siteMetadata` to match what we added in `src/config.js`.
+
+- Add a `pathPrefix`
+- Update the `siteMetadata`
+
+```js{2,4-6}
+module.exports = {
+  pathPrefix: '/',
+  siteMetadata: {
+    title: 'Heygrady',
+    author: 'Grady Kuhnline',
+    twitterHandle:'heygrady'
+  },
+  // ...
+}
+```
 
 ### Reinstall everything
 

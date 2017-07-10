@@ -104,9 +104,9 @@ branches:
     - master
 before_script:
   # If you're have troubles with firebase/firebase-tools#382
-  # - "npm install -g https://github.com/firebase/firebase-tools"
-  - "npm install -g firebase-tools"
-  - "npm install -g gatsby"
+  # - "yarn global add https://github.com/firebase/firebase-tools"
+  - "yarn global add firebase-tools"
+  - "yarn global add gatsby"
 script:
   - "yarn test"
   - "yarn build:prod"

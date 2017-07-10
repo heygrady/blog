@@ -14,7 +14,7 @@
     "page": "DATE=\"$(date '+%Y-%m-%d')\" FOLDER=\"src/pages/$DATE-title\" FILE=\"$FOLDER/index.md\" && mkdir $FOLDER && touch $FILE && echo \"---\ntitle: \\\"Title\\\"\ndate: \\\"$(date '+%Y-%m-%dT%H:%M:%SZ')\\\"\nreadNext: \\\"/fix-me/\\\"\npath: \\\"/title/\\\"\n---\" >> $FILE",
     "develop": "yarn dev",
     "build": "gatsby build",
-    "build:prod": "yarn build",
+    "build:prod": "yarn build -- --prefix-paths",
     "deploy": "yarn lint && yarn test && yarn build:prod && firebase deploy",
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
   },
