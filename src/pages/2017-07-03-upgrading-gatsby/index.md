@@ -165,6 +165,7 @@ cp ../upgrade-test/gatsby-config.js ./ && \
 cp ../upgrade-test/gatsby-node.js ./
 ```
 
+### Update `gatsby-config.js`
 Gatsby uses a new [path-prefix](https://www.gatsbyjs.org/docs/path-prefix/) functionality. We need to add this to the `gatsby-config.js`. We also need to add our `siteMetadata` to match what we added in `src/config.js`.
 
 - Add a `pathPrefix`
