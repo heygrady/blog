@@ -176,5 +176,5 @@ Once you are happy with your upgrade, commit it to the `gatsby-upgrade` branch a
 ```bash
 git add .
 git commit -m "Upgrading to Gatsby 1.0"
-git push origin master
+git push origin gatsby-upgrade
 ```
