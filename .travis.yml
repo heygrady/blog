@@ -14,8 +14,8 @@ branches:
   only:
     - master
 before_script:
-  - "npm install -g https://github.com/firebase/firebase-tools"
-  - "npm install -g gatsby"
+  - "yarn global add https://github.com/firebase/firebase-tools"
+  - "yarn global add gatsby"
 script:
   - "yarn lint"
   - "yarn test"
