@@ -11,7 +11,6 @@ import '../css/prism.css'
 class Template extends Component {
   render () {
     const { location, children } = this.props
-    console.log(children)
     let header
     if (location.pathname === '/') {
       header = (
