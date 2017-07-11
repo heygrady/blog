@@ -7,12 +7,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: 'UA-24826747-2',
-      },
-    },
-    {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/pages`,
@@ -47,7 +41,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        // trackingId: 'ADD YOUR TRACKING ID HERE',
+        trackingId: 'UA-24826747-2',
       },
     },
     'gatsby-plugin-offline',
