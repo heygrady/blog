@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - "8"
-cache: yarn
+# cache: yarn
 addons:
   apt:
     packages:
@@ -15,7 +15,7 @@ branches:
     - master
 before_script:
   - "yarn global add https://github.com/firebase/firebase-tools"
-  - "yarn global add gatsby"
+  # - "yarn global add gatsby"
 script:
   - "yarn lint"
   - "yarn test"
