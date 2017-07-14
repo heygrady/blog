@@ -4,8 +4,6 @@ import Link from 'gatsby-link'
 import { rhythm } from '../utils/typography'
 import moment from 'moment'
 
-import './Pagelink.css'
-
 const format = (date, format = 'MMM Do YYYY') => moment(date).format(format)
 
 const PageLink = ({ title, description, date, path }) => {
