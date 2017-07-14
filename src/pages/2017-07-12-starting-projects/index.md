@@ -4,22 +4,26 @@ date: "2017-07-12T18:18:31Z"
 readNext: "/fix-me/"
 path: "/starting-projects/"
 ---
-Becoming a better developer means trying out new things. I've been trying to lower my personal barrier to starting new projects by keeping track of the steps involved in *getting started*. I learn better when I take notes, so, here are my notes. In a very real sense, programming is the art of finding the best way to solve a problem and *writing it down*.
+Becoming a better developer means trying out new things. I've been trying to lower my personal barriers to starting new projects by keeping track of the steps involved in *getting started*. Becoming prolific means becoming a master at getting started, but starting new things comes with a negative bias -- the starting boilerplate for new projects is painful. There's a lot to learn (and it always seems to change). I learn better when I take notes, so, here are my notes.
 
-I recently [started a Gatsby blog](/new-blog/) because I wanted be able to practice the art of publishing often. I've already configured my blog to [deploy every time I push to Github](/deploying-travis/). Now I can easily write down an idea and publish it!
+I recently [started a new blog](/new-blog/) because I wanted be able to practice the art of publishing often. I've already configured my blog to [deploy every time I push to Github](/deploying-travis/). Now I can easily write something down and publish it! In a very real sense, programming is the art of finding the best way to solve a problem and *writing it down*.
+
+This *always be publishing* mentality is vital for the node community, because node developers prefer [many small packages](https://www.wired.com/2015/04/npm-funding/). Although, sometimes this can [cause hassles](https://www.theregister.co.uk/2016/03/23/npm_left_pad_chaos/).
+
+The hassle of setting up and maintaining the boilerplate configuration code is why [many](https://github.com/facebookincubator/create-react-app/tree/master/packages) [maintainers](https://github.com/mozilla-neutrino/neutrino-dev/tree/master/packages) have decided to create [monorepos](https://staltz.com/setting-up-a-javascript-monorepo.html), where many packages live side-by-side and share boilerplate code for testing and building and documentation.
 
 ## Thinking small
 
 There is a reason that the Node community encourages creating *small, focused* packages. Choosing small projects that can be completed quickly is a great way to build a personal learning momentum. If you can get the code finished in a few days then you can afford lavish amenities like documentation and tests.
 
-The downside of many small packages is that you have to start lots of projects. Node doesn't come with a standard CLI beyond npm / yarn ([why yarn?](https://circleci.com/blog/why-are-developers-moving-to-yarn/)), so It's hard to know exactly where to start. Even if you're just creating a simple Node package, the process of publishing a package requires some boilerplate configuration. With the addition of Babel and Webpack it can possibly take *too long* to get your project bootstrapped.
+The downside of many small packages is that you have to start lots of projects. Node doesn't come with a standard CLI beyond npm / yarn ([why yarn?](https://circleci.com/blog/why-are-developers-moving-to-yarn/)), so it's hard to know exactly where to start. Even if you're just creating a simple Node package, the process of publishing a package requires boilerplate configuration. With the addition of Babel and Webpack it can feel like it's taking *too long* to get going.
 
-As a JavaScript enthusiast, I'm almost always making a Node-based project. Node works really well on the server and is a perfect environment for react-redux (web application) development. Because I primarily do frontend development, I'm typically starting projects with the react-redux-starter-kit (create react app is also very popular). Using a starter kit allows you to bootstrap quickly with sensible defaults -- I'll probably write about that in a future post.
+As a JavaScript enthusiast, I'm almost always starting new Node-based projects. Node works really well on the server and is a perfect environment for react-redux (web application) development. Because I primarily do frontend development, I'm typically starting projects with the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) ([create-react-app](https://github.com/facebookincubator/create-react-app) is also very popular). Using a starter kit allows you to quickly bootstrap a new app with sensible defaults -- I'll probably write about that in a future post.
+
+I find myself needing to create packages to re-use code across react-redux projects. These packages aren't web *apps*... they're web *packages*. I'm defining *web package* to mean: "an npm package that's intended to be imported into a (webpack / babel) web application." Below are the steps I take to start a new web package from scratch. Hopefully these notes will make it easier the next time I need to get started.
 
 ### A proper start
-I find myself more and more needing to create packages to re-use code across react-redux projects. These packages aren't web *apps*... they're web *packages*. I'm defining a web package to mean an npm package that's intended to be imported into a web application. Below are the steps I take to start a new web package from scratch. Hopefully these notes will make it easier the next time I need to get started.
-
-In this post I will be merging the configuration files from the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) (a web application) and [redux](https://github.com/reactjs/redux) (a web package). I'm using files from the starter-kit because I like their use of [Standard JS](https://standardjs.com/) and it's what I use to build my applications, so I prefer a common "look and feel". I'm using files from redux because it is a really popular web package that has a broad audience.
+In this post I will be merging the configuration files from the [react-redux-starter-kit](https://github.com/davezuko/react-redux-sarter-kit) (a web application) and [redux](https://github.com/reactjs/redux) (a web package). I'm using files from the starter-kit because I like their use of [Standard JS](https://standardjs.com/). Plus, it's what I use to build my applications so I prefer a common "look and feel." I'm using files from redux because it is a really popular web package that has a broad audience -- so they likely have a solid setup.
 
 **A boilerplate web package needs:**
 
@@ -33,7 +37,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
 
 ## Starting from scratch
 
-- I keep everything in a Projects folder. Create a new project folder and enter it. (Be sure to change "new-project" to the package name you intend to use.)
+- I keep everything in a Projects folder. Create a new project folder and navigate to it. Be sure to change "new-project" to the package name you intend to use.
 
   ```bash
   cd ~/Projects/heygrady/
@@ -70,7 +74,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
   atom .
   ```
 
-  **Note:** the best thing about using the terminal from within atom is that it automatically navigates you to your project directory. This makes it "free" to open the terminal and run some commands for your project (i.e. you don't have to switch contexts). And there's no pain in closing the terminal -- you never lose your place.
+  **Note:** The best thing about using the terminal from within atom is that it automatically navigates you to your project directory. This makes it "free" (in an emotional sense) to open the terminal and run some commands for your project (i.e. you don't have to switch contexts and navigate to your project). And there's no pain in closing the terminal -- you never lose your place. When you're building apps it's easier to see errors as you make them. If you `--watch` your code in the atom terminal you can see if you're breaking the build in real time.
 
 - Use a standard esnext (or whatever) directory structure. Redux places build-related files in a `build` folder. Redux calls it's "test" folder `test` while the react-redux-starter-it calls it `tests` (use your favorite).
 
@@ -126,7 +130,7 @@ It's nice to come into a project, type `yarn dev`, and have the dev environment 
   }
   ```
 
-  **Note:** We will update/replace some of these boilerplate scripts as we configure our project further down. The scripts above should be a good starting place for most JavaScript projects, even if you're not planning to use babel.
+  **Note:** We will update / replace some of these boilerplate scripts as we configure our project further down. The scripts above should be a good starting place for most JavaScript projects, even if you're not planning to use babel.
 
 - You will also need to add the relevant dev dependencies. Pretty much every JavaScript project will need at least these dependencies.
 
@@ -146,12 +150,14 @@ It's nice to come into a project, type `yarn dev`, and have the dev environment 
   wget https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.editorconfig
   ```
 
+  **Note:** You might need to [install `wget`](https://stackoverflow.com/questions/33886917/how-to-install-wget-in-macos-capitan-sierra/33902055) (or use [`curl`](https://daniel.haxx.se/docs/curl-vs-wget.html) [like this](http://www.thegeekstuff.com/2012/07/wget-curl)).
+
 ## Configure ES Lint
 
 Every project needs to be linted. Using linters can smooth over bikeshedding issues -- there are *oh so many ways* to write JavaScript -- and prevent common errors and typos. Everyone [uses eslint now](https://www.smashingmagazine.com/2015/09/eslint-the-next-generation-javascript-linter/) but there are some basic boilerplate issues that come up. I like to follow the [standard](https://github.com/standard/eslint-config-standard) linting guidelines that come with the starter-kit.
 
 ### Create boilerplate eslint files
-I typically borrow these files ([`.eslintignore`](https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.eslintignore) and [`.eslintrc`](https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.eslintrc)) from the react-redux-starter-kit, compare with redux ([`.eslintignore`](https://github.com/reactjs/redux/blob/master/.eslintignore) and [`.eslintrc`](https://github.com/reactjs/redux/blob/master/.eslintrc)).
+I typically borrow these files from the react-redux-starter-kit ([`.eslintignore`](https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.eslintignore) and [`.eslintrc`](https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.eslintrc)), compare with redux ([`.eslintignore`](https://github.com/reactjs/redux/blob/master/.eslintignore) and [`.eslintrc`](https://github.com/reactjs/redux/blob/master/.eslintrc)).
 
 We can grab them with wget and customize to our needs:
 
@@ -200,7 +206,7 @@ echo '{
 ### Install eslint dev dependencies
 The packages below are merged from the starter-kit and redux. Redux is using the [eslint-config-react-app](https://github.com/facebookincubator/create-react-app/tree/master/packages/eslint-config-react-app) package from [create-react-app](https://github.com/facebookincubator/create-react-app).
 
-If you are having trouble, try copying the eslint packages with their versions from starter-kit ([`package.json`](https://github.com/davezuko/react-redux-starter-kit/blob/master/package.json#L59-L67)) and redux ([`package.json`](https://github.com/reactjs/redux/blob/master/package.json#L96-L101)).
+If you are having trouble, try copying the eslint packages with their versions from the starter-kit ([`package.json`](https://github.com/davezuko/react-redux-starter-kit/blob/master/package.json#L59-L67)) and redux ([`package.json`](https://github.com/reactjs/redux/blob/master/package.json#L96-L101)).
 
 ```bash
 yarn add --dev \
@@ -221,10 +227,10 @@ eslint-plugin-standard
 
 **Note:** I had to downgrade `eslint-plugin-jsx-a11y` (`yarn upgrade eslint-plugin-jsx-a11y@^5.0.3`) because of [an issue](https://github.com/facebookincubator/create-react-app/pull/2690).
 
-
 **Note:** I had to downgrade `eslint` (`yarn upgrade eslint@~4.1.1`) because of [a different issue](https://github.com/eslint/eslint/issues/8908)
+
 ## Configure babel
-Above we're grabbing some configuration from rect-redux-starter-kit, which is for building web applications. We want to build a web package (like redux). So we need to borrow our build environment from somewhere else, like redux.
+Above we're grabbing some configuration from the rect-redux-starter-kit, which is for building web applications. We want to build a web package (like redux). So we need to borrow our build environment from somewhere else, namely redux.
 
 ### Create babel boilerplate files
 It easiest to just grab the [`.babelrc`](https://raw.githubusercontent.com/reactjs/redux/master/.babelrc) directly from redux.
@@ -336,7 +342,7 @@ babel-register
 ### Add in some build scripts
 Redux comes with a bunch of scripts ([`package.json`](https://github.com/reactjs/redux/blob/master/package.json#L22-L26)) for building a project.
 
-I like to add a `dev` script to projects so that I can easily build the project as I work. As you can see below, the `dev` script simply executes the `build:commonjs` script with the [`watch`](https://babeljs.io/docs/usage/cli/#babel-compile-files) option. This creates a new build every time a `src` file is saved.
+I like to add a `dev` script to projects so that I can easily build the project as I work. As you can see below, the `dev` script simply executes the `build:commonjs` script with the [`--watch`](https://babeljs.io/docs/usage/cli/#babel-compile-files) option. This creates a new build every time a `src` file is saved.
 
 Building the commonjs version as you go is particularly useful if you are [linking your package locally](http://justjs.com/posts/npm-link-developing-your-own-npm-modules-without-tears). This allows you to test the unpublished package in another local project (like an example repo).
 
@@ -578,7 +584,7 @@ error Command failed with exit code 1.
 ```
 
 ### Using `yarn test:watch`
-Before we fix the test error, it's useful to explore the `test:watch` command, which will re-run the tests everytime you update your code.
+Before we fix the test error, it's useful to explore the `test:watch` command, which will re-run the tests every time you update your code.
 
 ```bash
 yarn test:watch
@@ -721,7 +727,7 @@ Redux has a number of entries in its `package.json` that are not covered above.
 I intentionally left off the Gitbook integration that redux includes because it would make this post too long. Project documentation may be covered in a future most.
 
 ### Other missing features
-I intentionally skipped the steps for setting up travis, setting up github pages (Gitbook), configuring TypeScript and setting up examples.
+I intentionally skipped the steps for `README.md`, `docs` and publishing docs with Gitbook, travis / continuous integration, creating examples, and configuring TypeScript.
 
 ## Conclusion
-There are a lot of steps for setting up a new web package project. Hopefully this makes someone's life a little easier. It's worth keeping an eye on [Neutrino](https://neutrino.js.org/), as it tries to make this type of configuration much simpler. Currently Neutrino doesn't cover [use cases like redux](https://github.com/mozilla-neutrino/neutrino-dev/issues/84#issuecomment-283513669) very well. It's also worth watching [create-react-app](https://github.com/facebookincubator/create-react-app), which tries to make it dead-simple to get up and running with webpack (it's similar to the starter-kit).
+There are a lot of steps for setting up a new web package project. Hopefully this makes someone's life a little easier. It's worth keeping an eye on [Neutrino](https://neutrino.js.org/), as it tries to make this type of configuration much simpler. Currently Neutrino doesn't cover [use cases like redux](https://github.com/mozilla-neutrino/neutrino-dev/issues/84#issuecomment-283513669) very well. It's also worth watching [create-react-app](https://github.com/facebookincubator/create-react-app), which tries to make it dead-simple to get up and running with webpack (it's similar to the starter-kit). Also, keep an eye on [`yarn create`](https://yarnpkg.com/lang/en/docs/cli/create/) which promises to [make it easy to create](https://yarnpkg.com/blog/2017/05/12/introducing-yarn/) package bootstraps.
