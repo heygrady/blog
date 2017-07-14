@@ -7,7 +7,7 @@ import Bio from '../components/Bio'
 import PageLinks from '../components/PageLinks'
 
 import '../css/pages.css'
-import '../css/Pagelink.css'
+import '../css/page-link.css'
 
 class BlogIndex extends Component {
   render () {
