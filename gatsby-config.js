@@ -1,7 +1,7 @@
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
-    facebookAppId: false,
+    facebookAppId: '285672271907191',
     siteName: 'Heygrady.com',
     canonicalUrl: 'https://heygrady.com',
     title: 'Heygrady',
