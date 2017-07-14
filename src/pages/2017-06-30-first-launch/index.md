@@ -8,6 +8,16 @@ path: "/first-launch/"
 
 I'm going to be using [Firebase](https://firebase.google.com/) to host my blog initially. The free tier on Firebase is perfect for a project like this -- I'm using Gatsby, which generates a single page React app. [Firebase Hosting](https://firebase.google.com/docs/hosting/) is tailor made for single page web apps.
 
+##### Static site hosting competitors:
+
+There are several other competitors for static web hosting. I chose Firebase mostly because I had a good experience with their documentation. I pulled this list from the [Gatsby docs](https://www.gatsbyjs.org/docs/deploy-gatsby/#providers).
+
+- [Surge.sh](http://surge.sh/)
+- [Forge](https://getforge.com/)
+- [Netlify](https://www.netlify.com/)
+- [GitHub-Pages](https://pages.github.com/)
+- [Firebase](https://firebase.google.com/)
+
 ## Create an account, get started
 I already had an account. You can create one for yourself: https://firebase.google.com/
 

@@ -98,4 +98,4 @@ These are the errors I had to fix:
 ```
 
 ## Try to deploy
-Once you are able to run `yarn lint` on your local, try committing your files and seeing if Travis can build your project. At this point your project will need to pass the linter that we configured before it can be deployed.
+Once you are able to run `yarn lint` on your local, try committing your files and seeing if Travis can build your project. From now on your project will need to pass the linter before it can be deployed.

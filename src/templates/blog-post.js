@@ -49,14 +49,12 @@ class BlogPostTemplate extends Component {
           {image && <meta property='og:image' content={image} />}
           {facebookAppId && <meta property='fb:app_id' content={facebookAppId} />}
         </Helmet>
-        <h1 className='BlogPost__headline'>
-          {title}
-        </h1>
+        <h1 className='BlogPost__headline'>{title}</h1>
         <p
           style={{
             ...scale(-1 / 5),
             display: 'block',
-            marginBottom: rhythm(1),
+            marginBottom: rhythm(0.5),
             marginTop: rhythm(-1),
           }}
         >
@@ -64,16 +62,22 @@ class BlogPostTemplate extends Component {
         </p>
         <h2
           style={{
+            color: '#C6C8CA',
+            paddingTop: rhythm(1.5),
+            borderTop: '4px solid #FF4C3B',
             fontSize: '1.2rem',
             lineHeight: '1.4em',
             fontWeight: 'normal',
             fontStyle: 'italic',
             marginBottom: rhythm(1.5),
-            marginTop: rhythm(1.5),
+            marginTop: rhythm(0.5),
           }}>{description}</h2>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
+            background: 'none',
+            border: 'none',
+            borderTop: '4px solid #FF4C3B',
             marginBottom: rhythm(1),
           }}
         />

@@ -1,12 +1,12 @@
 ---
 title: "Automatically deploying my blog with Travis"
-description: "I configured Travis to test and deploy my blog every time I push new code to my blog's Github master branch."
+description: "I configured Travis to test and deploy my blog every time I push new code to my master branch on Github."
 date: "2017-07-02T20:48:32Z"
 readNext: "/enable-linting/"
 path: "/deploying-travis/"
 ---
 
-I've gotten my blog [deployed on Firebase](/first-launch/). Now I can deploy changes as easily as running `firebase deploy` from the terminal in the root folder of my blog. But I would prefer to only publish changes to my blog when I push to Github. Or, rather, I want to consider `master` on Github as the latest stable version -- this is the code that needs to be live on Firebase.
+I've gotten my blog [deployed on Firebase](/first-launch/). Now I can deploy changes as easily as running `firebase deploy` from the terminal. But I would prefer publish changes *when I push to Github*. Or, rather, I want to consider `master` on Github as the latest stable version -- this is the code that needs to be live on Firebase.
 
 I need automated deployments. This is something that [Travis](https://travis-ci.org/) does very well.
 
