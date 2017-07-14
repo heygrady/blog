@@ -5,15 +5,10 @@ import get from 'lodash/get'
 
 const sortPosts = (a, b) => {
   const datePath = 'node.frontmatter.date'
-  const stringA = get(a, datePath)
-  const stringB = get(b, datePath)
-  if (stringA < stringB) {
-    return -1
-  }
-  if (stringB < stringA) {
-    return 1
-  }
-
+  const dateA = Date.parse(get(a, datePath))
+  const dateB = Date.parse(get(b, datePath))
+  if (dateA < dateB) { return -1 }
+  if (dateB < dateA) { return 1 }
   return 0
 }
 
