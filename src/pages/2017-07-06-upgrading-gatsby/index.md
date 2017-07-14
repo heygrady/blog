@@ -138,7 +138,7 @@ export default Template
 ### Fix `src/pages/index.js`
 
 - Add back the [link to the old blog](https://github.com/heygrady/blog/blob/e51c732c980997043f25d3cc311c6654b073bb4f/src/pages/index.js#L46).
-- Fix [sorting](https://github.com/heygrady/blog/blob/e51c732c980997043f25d3cc311c6654b073bb4f/src/pages/index.js#L11-L14)
+- Fix [sorting](https://github.com/heygrady/blog/blob/cfbdf1815a14c1f61d7b48d9bcc6365a9a958477/src/components/PageLinks.js#L6-L18)
 - Fix PropTypes warnings
 - Fix ESLint errors
 
