@@ -1,48 +1,27 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
 import Bio from '../components/Bio'
-import { rhythm } from '../utils/typography'
-import '../css/pages.css'
+import PageLinks from '../components/PageLinks'
 
-const sortPosts = (a, b) => {
-  const path = 'node.frontmatter.date'
-  return get(a, path) > get(b, path)
-}
+import '../css/pages.css'
 
 class BlogIndex extends Component {
   render () {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
 
-    const pageLinks = posts.sort(sortPosts).map((post, key) => {
-      if (post.node.path !== '/404/') {
-        const title = get(post, 'node.frontmatter.title') || post.node.path
-        return (
-          <li
-            key={post.node.path || key}
-            style={{
-              marginBottom: rhythm(1 / 4),
-            }}
-          >
-            <Link style={{ boxShadow: 'none' }} to={post.node.frontmatter.path}>
-              {title}
-            </Link>
-          </li>
-        )
-      }
-    })
-
     return (
       <div>
-        <Helmet title={siteTitle} />
+        <Helmet>
+          <title>{siteTitle}</title>
+          <link rel='icon' type='image/png' href='favicon-32x32.png' sizes='32x32' />
+          <link rel='icon' type='image/png' href='favicon-16x16.png' sizes='16x16' />
+        </Helmet>
         <Bio />
-        <ul>
-          {pageLinks}
-        </ul>
+        <PageLinks posts={posts} />
         <p>Looking for <a href='https://2012.heygrady.com'>older posts</a>?</p>
       </div>
     )
@@ -71,6 +50,9 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+          }
+          frontmatter {
+            description
           }
           frontmatter {
             date

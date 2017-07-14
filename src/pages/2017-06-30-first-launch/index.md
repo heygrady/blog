@@ -1,5 +1,6 @@
 ---
 title: "First launch: Firebase"
+description: "I relaunched my blog on Firebase Hosting. The free tier on Firebase is perfect for single page web apps, like my Gatsby blog."
 date: "2017-06-30T11:15:30Z"
 readNext: "/migrating-old-site/"
 path: "/first-launch/"

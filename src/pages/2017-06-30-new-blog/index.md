@@ -1,5 +1,6 @@
 ---
 title: "Updating my blog to Gatsby"
+description: "I updated my old Octopress blog to Gatsby. My goal was to make it easier to post new content. Gatsby is interesting because it uses a modern React workflow."
 date: "2017-06-30T10:58:49Z"
 readNext: "/first-launch/"
 path: "/new-blog/"

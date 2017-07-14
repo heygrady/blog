@@ -1,5 +1,6 @@
 ---
 title: "Automatically deploying my blog with Travis"
+description: "I configured Travis to test and deploy my blog every time I push new code to my blog's Github master branch."
 date: "2017-07-02T20:48:32Z"
 readNext: "/enable-linting/"
 path: "/deploying-travis/"

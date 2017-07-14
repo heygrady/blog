@@ -9,13 +9,18 @@ import { rhythm, scale } from '../utils/typography'
 class BlogPostTemplate extends Component {
   render () {
     const post = this.props.data.markdownRemark
+    const title = get(post, 'frontmatter.title')
+    const date = get(post, 'frontmatter.date')
+    const description = get(post, 'frontmatter.description')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
     return (
       <div>
-        <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
+        <Helmet>
+          <title>{`${title} | ${siteTitle}`}</title>
+        </Helmet>
         <h1>
-          {post.frontmatter.title}
+          {title}
         </h1>
         <p
           style={{
@@ -25,8 +30,14 @@ class BlogPostTemplate extends Component {
             marginTop: rhythm(-1),
           }}
         >
-          {post.frontmatter.date}
+          {date}
         </p>
+        <p
+          style={{
+            ...scale(1 / 3),
+            fontStyle: 'italic',
+            marginBottom: rhythm(1),
+          }}>{description}</p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
@@ -59,6 +70,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        description
         date(formatString: "MMMM DD, YYYY")
       }
     }

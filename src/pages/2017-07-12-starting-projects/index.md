@@ -1,5 +1,6 @@
 ---
 title: "Starting projects"
+description: "I found myself needing to create lots of packages. I captured my notes on getting started on a new web package, ready to publish to NPM."
 date: "2017-07-12T18:18:31Z"
 readNext: "/fix-me/"
 path: "/starting-projects/"

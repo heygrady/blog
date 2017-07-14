@@ -1,5 +1,6 @@
 ---
-title: Migrating the old site
+title: "Migrating the old site"
+description: "I needed to move my old site to a new domain and replace it with my new blog."
 date: "2017-06-30T12:42:35Z"
 readNext: "/fix-me/"
 path: "/migrating-old-site/"

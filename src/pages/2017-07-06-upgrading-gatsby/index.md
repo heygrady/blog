@@ -1,6 +1,7 @@
 ---
 title: "Upgrading Gatsby to 1.0"
-date: "2017-07-03T18:00:01Z"
+description: "The latest version of Gatsby was somewhat different from the pre-1.0 version. I upgraded my blog manually from the old version to the new version."
+date: "2017-07-06T18:00:01Z"
 readNext: "/fix-me/"
 path: "/upgrading-gatsby/"
 ---

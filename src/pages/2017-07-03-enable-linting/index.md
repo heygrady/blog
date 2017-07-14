@@ -1,5 +1,6 @@
 ---
 title: "Enable linting: eslint"
+description: "I implemented eslint to show linting errors in my editor while I worked on my blog."
 date: "2017-07-03T11:59:28Z"
 readNext: "/fix-me/"
 path: "/enable-linting/"
