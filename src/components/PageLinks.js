@@ -31,7 +31,8 @@ const PageLinks = ({ posts }) => {
   return (
     <ul
       style={{
-        listStyleType: 'none'
+        listStyleType: 'none',
+        marginLeft: '0',
       }}
     >
       {posts && posts.sort(sortPosts).reverse().map((post, key) => {

@@ -38,3 +38,6 @@ a > code {
 a:hover > code {
   border-bottom-width: 1px;
 }
+ul, ol {
+  margin-left: 1.75rem;
+}
