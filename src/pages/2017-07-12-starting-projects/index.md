@@ -4,22 +4,22 @@ date: "2017-07-12T18:18:31Z"
 readNext: "/fix-me/"
 path: "/starting-projects/"
 ---
-Becoming a better developer means trying out new things. I've been trying to lower my personal barrier to starting new projects by keeping track of the steps involved in *getting started*. I learn better when I take notes, so, here's my notes. In a very real sense, programming is the art of finding the best way to solve a problem and *writing it down*.
+Becoming a better developer means trying out new things. I've been trying to lower my personal barrier to starting new projects by keeping track of the steps involved in *getting started*. I learn better when I take notes, so, here are my notes. In a very real sense, programming is the art of finding the best way to solve a problem and *writing it down*.
 
 I recently [started a Gatsby blog](/new-blog/) because I wanted be able to practice the art of publishing often. I've already configured my blog to [deploy every time I push to Github](/deploying-travis/). Now I can easily write down an idea and publish it!
 
 ## Thinking small
 
-There is a reason that the Node community encourages creating *small, focused* packages. Choosing small projects that can be completed quickly is a great way to build a personal learning momentum. If you can get the code finished in a few days then you can afford lavish amenities like documentation and tests. By contrast, large projects can drag on and seem never to finish.
+There is a reason that the Node community encourages creating *small, focused* packages. Choosing small projects that can be completed quickly is a great way to build a personal learning momentum. If you can get the code finished in a few days then you can afford lavish amenities like documentation and tests.
 
-The downside of many small packages is that you have to start lots of projects -- Node doesn't come with a standard CLI beyond npm / yarn. It's hard to know exactly where to start. Even if you're just creating a simple Node package, the process of publishing a package requires some boilerplate configuration. With the addition of Babel and Webpack, it can possibly take *too long* to get your project bootstrapped.
+The downside of many small packages is that you have to start lots of projects. Node doesn't come with a standard CLI beyond npm / yarn ([why yarn?](https://circleci.com/blog/why-are-developers-moving-to-yarn/)), so It's hard to know exactly where to start. Even if you're just creating a simple Node package, the process of publishing a package requires some boilerplate configuration. With the addition of Babel and Webpack it can possibly take *too long* to get your project bootstrapped.
 
 As a JavaScript enthusiast, I'm almost always making a Node-based project. Node works really well on the server and is a perfect environment for react-redux (web application) development. Because I primarily do frontend development, I'm typically starting projects with the react-redux-starter-kit (create react app is also very popular). Using a starter kit allows you to bootstrap quickly with sensible defaults -- I'll probably write about that in a future post.
 
 ### A proper start
-I find myself more and more needing to create packages to re-use across react-redux projects. These projects aren't web *apps*, they're web *packages* -- npm packages intended to be imported into a web application. Below are the steps I take to start a new web package from scratch. Hopefully these notes will make it easier the next time I need to get started.
+I find myself more and more needing to create packages to re-use code across react-redux projects. These packages aren't web *apps*... they're web *packages*. I'm defining a web package to mean an npm package that's intended to be imported into a web application. Below are the steps I take to start a new web package from scratch. Hopefully these notes will make it easier the next time I need to get started.
 
-In this post I will be merging the configuration files from the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) (a web application) and [redux](https://github.com/reactjs/redux) (a web package). I'm using files from the starter-kit because I like their use of [Standard JS](https://standardjs.com/) and it's what I use to build my applications, so I prefer a common "look and feel".
+In this post I will be merging the configuration files from the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) (a web application) and [redux](https://github.com/reactjs/redux) (a web package). I'm using files from the starter-kit because I like their use of [Standard JS](https://standardjs.com/) and it's what I use to build my applications, so I prefer a common "look and feel". I'm using files from redux because it is a really popular web package that has a broad audience.
 
 **A boilerplate web package needs:**
 
