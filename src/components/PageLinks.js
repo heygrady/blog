@@ -4,9 +4,17 @@ import PageLink from './PageLink'
 import get from 'lodash/get'
 
 const sortPosts = (a, b) => {
-  const path = 'node.frontmatter.date'
-  console.log({ a, b, pathA: get(a, path), pathB: get(b, path) })
-  return get(a, path) < get(b, path)
+  const datePath = 'node.frontmatter.date'
+  const stringA = get(a, datePath)
+  const stringB = get(b, datePath)
+  if (stringA < stringB) {
+    return -1
+  }
+  if (stringB < stringA) {
+    return 1
+  }
+
+  return 0
 }
 
 const PageLinkContainer = ({ post }) => {
@@ -31,13 +39,11 @@ const PageLinks = ({ posts }) => {
         listStyleType: 'none'
       }}
     >
-      {
-        posts.sort(sortPosts).map((post, key) => {
-          if (post.node.path !== '/404/') {
-            return (<PageLinkContainer post={post} key={key} />)
-          }
-        })
-      }
+      {posts && posts.sort(sortPosts).reverse().map((post, key) => {
+        if (post.node.path !== '/404/') {
+          return (<PageLinkContainer post={post} key={key} />)
+        }
+      })}
     </ul>
   )
 }
