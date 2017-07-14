@@ -56,7 +56,7 @@ yarn build && firebase deploy
 ```
 
 #### Better deploys
-Gatsby initializes projects with a few scripts in the `package.json` file. We need to update the `deploy` script to use `firebase deploy` instead of gh-pages.
+Gatsby initializes projects with a few scripts in the `package.json` file. We need to update the `deploy` script to use `firebase deploy` instead of `gh-pages`.
 
 ```json
 {

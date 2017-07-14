@@ -42,7 +42,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
 
 ## Starting from scratch
 
-- I keep everything in a Projects folder. Create a new project folder and navigate to it. Be sure to change "new-project" to the package name you intend to use.
+- **Create a new project folder and navigate to it.** I keep everything in a `Projects` folder. Be sure to change "new-project" to the package name you intend to use.
 
   ```bash
   cd ~/Projects/heygrady/
@@ -50,7 +50,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
   cd new-project
   ```
 
-- Initialize a Git repo and `package.json`. Publishing to NPM is covered briefly near the end of this post. I'll probably cover publishing more in depth in a future post.
+- **Initialize a Git repo and `package.json`.** Publishing to NPM is covered briefly near the end of this post. I'll probably cover publishing more in depth in a future post.
 
   **Note:** Github Desktop is an easy way to [publish new repositories](https://guides.github.com/introduction/getting-your-project-on-github/) to Github. You can open your project with `github .` and publish it easily. (Of course, you should [learn git](https://www.learnenough.com/git-tutorial))
 
@@ -73,7 +73,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
   hub create new-project
   ```
 
-- I like to open the project in Atom because I use the [terminal plugin](https://atom.io/packages/termination) when I work on projects. It's good to keep your terminal as close to your code as possible. Atom is a great editor for JavaScript because of the excellent [linting](https://medium.freecodecamp.org/how-to-set-up-eslint-in-atom-to-contribute-to-freecodecamp-3467dee86e2c) integration. (I'm not hip enough to [vim](https://www.codementor.io/mattgoldspink/best-text-editor-atom-sublime-vim-visual-studio-code-du10872i7).)
+- **Open the project in your editor.** I like to open the project in Atom because I use the [terminal plugin](https://atom.io/packages/termination) when I work on projects. It's good to keep your terminal as close to your code as possible. Atom is a great editor for JavaScript because of the excellent [linting](https://medium.freecodecamp.org/how-to-set-up-eslint-in-atom-to-contribute-to-freecodecamp-3467dee86e2c) integration. (I'm not hip enough to [vim](https://www.codementor.io/mattgoldspink/best-text-editor-atom-sublime-vim-visual-studio-code-du10872i7).)
 
   ```bash
   atom .
@@ -81,7 +81,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
 
   **Note:** The best thing about using the terminal from within atom is that it automatically navigates you to your project directory. This makes it "free" (in an emotional sense) to open the terminal and run some commands for your project (i.e. you don't have to switch contexts and navigate to your project). And there's no pain in closing the terminal -- you never lose your place. When you're building apps it's easier to see errors as you make them. If you `babel --watch` your code in the atom terminal you can see if you're breaking the build in real time.
 
-- Use a standard esnext (or whatever) directory structure. Redux places build-related files in a `build` folder. Redux calls it's "test" folder `test` while the react-redux-starter-it calls it `tests` (use your favorite).
+- **Use a standard directory structure.** Redux places build-related files in a `build` folder. Redux calls it's "test" folder `test` while the react-redux-starter-it calls it `tests` (use your favorite).
 
   ```bash
   mkdir build && \
@@ -96,7 +96,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
   mkdir _fun
   ```
 
-- Ignore some standard files. It's helpful to compare with examples from the starter-kit ([`.gitignore`](https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.gitignore)) and redux ([`.gitignore`](https://raw.githubusercontent.com/reactjs/redux/master/.gitignore)). Below is a merging of the two.
+- **Ignore some standard files.** It's helpful to compare with examples from the starter-kit ([`.gitignore`](https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.gitignore)) and redux ([`.gitignore`](https://raw.githubusercontent.com/reactjs/redux/master/.gitignore)). Below is a merging of the two.
 
   If you want an idea of more things you could/should ignore, look at the default Github file for Node ([`.gitignore`](https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore)) or compare to your favorite project's repo.
 
@@ -113,7 +113,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
   _fun' >> .gitignore
   ```
 
-- Add some useful scripts to `package.json`. [NPM is the perfect build tool](https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/). Keeping commonly used scripts in the `package.json` provides some built-in documentation on how to work with your project. This is good for you because it means you can leave a project and come back to it later and not have to look up how to "boot it up."
+- **Add some useful scripts to `package.json`.** [NPM is the perfect build tool](https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/). Keeping commonly used scripts in the `package.json` provides some built-in documentation on how to work with your project. This is good for you because it means you can leave a project and come back to it later and not have to look up how to "boot it up."
 
 It's nice to come into a project, type `yarn dev`, and have the dev environment stand itself up. It's useful to compare the scripts included with the starter-kit ([`package.json`](https://github.com/davezuko/react-redux-starter-kit/blob/master/package.json#L6)) and redux  ([`package.json`](https://github.com/reactjs/redux/blob/master/package.json#L16)) or your favorite project.
 
@@ -137,7 +137,7 @@ It's nice to come into a project, type `yarn dev`, and have the dev environment 
 
   **Note:** We will update / replace some of these boilerplate scripts as we configure our project further down. The scripts above should be a good starting place for most JavaScript projects, even if you're not planning to use babel.
 
-- You will also need to add the relevant dev dependencies. Pretty much every JavaScript project will need at least these dependencies.
+- **Add the relevant dev dependencies.** Pretty much every JavaScript project will need at least these dependencies.
 
   ```bash
   yarn add --dev \
@@ -149,7 +149,7 @@ It's nice to come into a project, type `yarn dev`, and have the dev environment 
 
   **Note:** We're using jest (like redux) in place of karma / mocha / chai (like the starter-kit) because jest is objectively simpler. If you want to, you can try to copy the testing setup from the starter-kit ([`package.json`](https://github.com/davezuko/react-redux-starter-kit/blob/master/package.json#L11)).
 
-- Add an [editor config](http://editorconfig.org/) ([atom plugin](https://atom.io/packages/editorconfig)). I like to use the one that comes with react-redux-starter-kit ([`.editorconfig`](https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.editorconfig)), compare with redux ([`.editorconfig`](https://github.com/reactjs/redux/blob/master/.editorconfig)). This can help with some bikeshedding issues and works across most text editors.
+- **Add an [editor config](http://editorconfig.org/)** ([atom plugin](https://atom.io/packages/editorconfig)). I like to use the one that comes with react-redux-starter-kit ([`.editorconfig`](https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.editorconfig)), compare with redux ([`.editorconfig`](https://github.com/reactjs/redux/blob/master/.editorconfig)). This can help with some bikeshedding issues and works across most text editors.
 
   ```bash
   wget https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.editorconfig
@@ -235,7 +235,7 @@ eslint-plugin-standard
 **Note:** I had to downgrade `eslint` (`yarn upgrade eslint@~4.1.1`) because of [a different issue](https://github.com/eslint/eslint/issues/8908)
 
 ## Configure babel
-Above we're grabbing some configuration from the rect-redux-starter-kit, which is for building web applications. We want to build a web package (like redux). So we need to borrow our build environment from somewhere else, namely redux.
+Above we're grabbing some configuration files from the react-redux-starter-kit, which is for building web applications. We want to build a web package (like redux). So we need to borrow our build environment from somewhere else, namely redux.
 
 ### Create babel boilerplate files
 It easiest to just grab the [`.babelrc`](https://raw.githubusercontent.com/reactjs/redux/master/.babelrc) directly from redux.
@@ -288,7 +288,7 @@ echo '{
 ### Borrow custom lodash babel plugin
 Redux uses a custom babel plugin for swapping references for lodash to lodash-es. This helps with tree shaking and can reduce the file-size penalty for relying on lodash in your project. We need to grab that custom plugin ([`use-lodash-es.js`](https://raw.githubusercontent.com/reactjs/redux/master/build/use-lodash-es.js)) manually, since it's not available as an NPM package.
 
-**Note:** This could be seen as an implicit endorsement of [Lodash](https://lodash.com/) by the maintainers of redux. If you don't intend to use lodash, you can skip this step and remove references to this plugin above.
+**Note:** This could be seen as an implicit endorsement of [lodash](https://lodash.com/) by the maintainers of redux. If you don't intend to use lodash, you can skip this step and remove references to this plugin above.
 
 ```bash
 wget -P build/ https://raw.githubusercontent.com/reactjs/redux/master/build/use-lodash-es.js
@@ -376,7 +376,7 @@ You can see below that `build:umd` and `build:umd:min` are using [rollup](https:
 }
 ```
 
-**Note:** You need to change the `name` in the config to match your project name. This [config](https://docs.npmjs.com/files/package.json#config) variable ([example](https://frontend.irish/npm-config-variables)) is used in `build:umd` and `build:umd:min` to name the package that goes in the `dist` folder. If you copied your scripts directly from redux, those values are hard-coded to "redux" (which isn't a good name for *your* package).
+**Note:** You need to change the `name` in the config to match your project name. This [config](https://docs.npmjs.com/files/package.json#config) variable ([example usage](https://frontend.irish/npm-config-variables)) is used in `build:umd` and `build:umd:min` to name the package that goes in the `dist` folder. If you copied your scripts directly from redux, those values are hard-coded to "redux" (which isn't a good name for *your* package).
 
 ### Install rollup dev dependencies
 As you can see above, some of the build scripts involve rollup. The packages below are from redux ([`package.json`](https://github.com/reactjs/redux/blob/master/package.json#L106-L110)).
@@ -391,7 +391,7 @@ rollup-plugin-uglify
 ```
 
 ### Create rollup boilerplate files
-It easiest to just grab the [`rollup.config.js`](https://raw.githubusercontent.com/reactjs/redux/master/rollup.config.js) directly from redux.
+It's easiest to just grab the [`rollup.config.js`](https://raw.githubusercontent.com/reactjs/redux/master/rollup.config.js) directly from redux.
 
 ```bash
 # remember to edit the moduleName

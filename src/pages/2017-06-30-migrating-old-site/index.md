@@ -23,7 +23,7 @@ A basic redirect looks like this:
 
 We need to create a redirect entry to cover for all of the pages of the old site. Some of the articles from the old blog were mildly popular and have many inbound links to them. The first step is to gather that list of pages.
 
-Thankfully, the old site published all of the posts to the `blog/` folder. This means we can use a wildcard redirect to the old site for anything under blog. This should redirect all of the links we care about. If people were deep linking to things besides my blog posts they will have to update their links manually.
+Thankfully, the old site published all of the posts to the `blog/` folder. This means we can use a wildcard redirect to the old site for anything under "blog". This should redirect all of the links we care about. If people were deep linking to things besides my blog posts they will have to update their links manually.
 
 Eventually this may prove to be a short-sighted approach. I will update this post when that day comes.
 

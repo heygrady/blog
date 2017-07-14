@@ -33,7 +33,7 @@ const PageLink = ({ title, description, date, path }) => {
 PageLink.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  date: PropTypes.date,
+  date: PropTypes.string,
   path: PropTypes.string
 }
 

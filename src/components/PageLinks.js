@@ -5,6 +5,7 @@ import get from 'lodash/get'
 
 const sortPosts = (a, b) => {
   const path = 'node.frontmatter.date'
+  console.log({ a, b, pathA: get(a, path), pathB: get(b, path) })
   return get(a, path) < get(b, path)
 }
 
