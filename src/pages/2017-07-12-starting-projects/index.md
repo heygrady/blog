@@ -74,7 +74,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
   atom .
   ```
 
-  **Note:** The best thing about using the terminal from within atom is that it automatically navigates you to your project directory. This makes it "free" (in an emotional sense) to open the terminal and run some commands for your project (i.e. you don't have to switch contexts and navigate to your project). And there's no pain in closing the terminal -- you never lose your place. When you're building apps it's easier to see errors as you make them. If you `--watch` your code in the atom terminal you can see if you're breaking the build in real time.
+  **Note:** The best thing about using the terminal from within atom is that it automatically navigates you to your project directory. This makes it "free" (in an emotional sense) to open the terminal and run some commands for your project (i.e. you don't have to switch contexts and navigate to your project). And there's no pain in closing the terminal -- you never lose your place. When you're building apps it's easier to see errors as you make them. If you `babel --watch` your code in the atom terminal you can see if you're breaking the build in real time.
 
 - Use a standard esnext (or whatever) directory structure. Redux places build-related files in a `build` folder. Redux calls it's "test" folder `test` while the react-redux-starter-it calls it `tests` (use your favorite).
 
