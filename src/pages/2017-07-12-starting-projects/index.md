@@ -5,13 +5,15 @@ date: "2017-07-12T18:18:31Z"
 readNext: "/fix-me/"
 path: "/starting-projects/"
 ---
-Becoming a better developer means trying out new things. I've been trying to lower my personal barriers to starting new projects by keeping track of the steps involved in *getting started*. Becoming prolific means becoming a master at getting started, but starting new things comes with a negative bias -- the starting boilerplate for new projects is painful. There's a lot to learn (and it always seems to change). I learn better when I take notes, so, here are my notes.
+Becoming a better developer means trying out new things, but starting new things is painful. There's a lot of boilerplate configuration to learn (and it always seems to change). I've been trying to lower my personal barriers to starting new projects by practicing *getting started*. A prolific developer has a mastered this important step.
 
-I recently [started a new blog](/new-blog/) because I wanted be able to practice the art of publishing often. I've already configured my blog to [deploy every time I push to Github](/deploying-travis/). Now I can easily write something down and publish it! In a very real sense, programming is the art of finding the best way to solve a problem and *writing it down*.
+I recently [started a new blog](/new-blog/) because I wanted be able to practice the art of publishing often. I've already configured my blog to [deploy every time I push to Github](/deploying-travis/). Now I can easily write something down and publish it!
 
-This *always be publishing* mentality is vital for the node community, because node developers prefer [many small packages](https://www.wired.com/2015/04/npm-funding/). Although, sometimes this can [cause hassles](https://www.theregister.co.uk/2016/03/23/npm_left_pad_chaos/).
+This *always be publishing* mentality is vital for the node community, because node developers prefer [many small packages](https://www.wired.com/2015/04/npm-funding/). Although, sometimes this can [cause hassles](https://www.theregister.co.uk/2016/03/23/npm_left_pad_chaos/). In a very real sense, programming is the art of finding the best way to solve a problem and *writing it down*.
 
-The hassle of setting up and maintaining the boilerplate configuration code is why [many](https://github.com/facebookincubator/create-react-app/tree/master/packages) [maintainers](https://github.com/mozilla-neutrino/neutrino-dev/tree/master/packages) have decided to create [monorepos](https://staltz.com/setting-up-a-javascript-monorepo.html), where many packages live side-by-side and share boilerplate code for testing and building and documentation.
+The hassle of setting up and maintaining boilerplate configuration code is why [many](https://github.com/facebookincubator/create-react-app/tree/master/packages) [maintainers](https://github.com/mozilla-neutrino/neutrino-dev/tree/master/packages) have decided to create [monorepos](https://staltz.com/setting-up-a-javascript-monorepo.html), where many packages live side-by-side and share boilerplate code for testing and building and documentation.
+
+Here I'm going to outline getting started on a new web package.
 
 ## Thinking small
 
@@ -19,9 +21,11 @@ There is a reason that the Node community encourages creating *small, focused* p
 
 The downside of many small packages is that you have to start lots of projects. Node doesn't come with a standard CLI beyond npm / yarn ([why yarn?](https://circleci.com/blog/why-are-developers-moving-to-yarn/)), so it's hard to know exactly where to start. Even if you're just creating a simple Node package, the process of publishing a package requires boilerplate configuration. With the addition of Babel and Webpack it can feel like it's taking *too long* to get going.
 
-As a JavaScript enthusiast, I'm almost always starting new Node-based projects. Node works really well on the server and is a perfect environment for react-redux (web application) development. Because I primarily do frontend development, I'm typically starting projects with the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) ([create-react-app](https://github.com/facebookincubator/create-react-app) is also very popular). Using a starter kit allows you to quickly bootstrap a new app with sensible defaults -- I'll probably write about that in a future post.
+As a JavaScript enthusiast, I'm almost always starting new Node-based projects. Node is a perfect environment for react-redux (web application) development. Because I primarily do frontend development, I'm typically starting projects with the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) ([create-react-app](https://github.com/facebookincubator/create-react-app) is also very popular). Using a starter kit allows you to quickly bootstrap a new app with sensible defaults -- I'll probably write about that in a future post.
 
-I find myself needing to create packages to re-use code across react-redux projects. These packages aren't web *apps*... they're web *packages*. I'm defining *web package* to mean: "an npm package that's intended to be imported into a (webpack / babel) web application." Below are the steps I take to start a new web package from scratch. Hopefully these notes will make it easier the next time I need to get started.
+I find myself needing to create packages to reuse code across react-redux projects. These packages aren't web *apps*... they're web *packages*. I'm defining *web package* as, "an npm package that's intended to be imported into a (webpack / babel) web application." Below are the steps I take to start a new web package from scratch.
+
+Hopefully these notes will make it easier the next time I need to get started.
 
 ### A proper start
 In this post I will be merging the configuration files from the [react-redux-starter-kit](https://github.com/davezuko/react-redux-sarter-kit) (a web application) and [redux](https://github.com/reactjs/redux) (a web package). I'm using files from the starter-kit because I like their use of [Standard JS](https://standardjs.com/). Plus, it's what I use to build my applications so I prefer a common "look and feel." I'm using files from redux because it is a really popular web package that has a broad audience -- so they likely have a solid setup.
