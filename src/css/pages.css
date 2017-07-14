@@ -4,6 +4,7 @@
 }
 
 :not(pre) > code {
+  font-size: 0.9em;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -15,8 +16,8 @@
   white-space: -moz-pre-wrap;
   white-space: -hp-pre-wrap;
   word-wrap: break-word;
-  background: #e5e5e5;
-  border: 1px solid #cccccc;
+  background: #eeeeee;
+  /*border: 1px solid #e1e1e1;*/
   display: inline;
   font-family: Inconsolata, monospace, serif;
   max-width: 100%;
@@ -27,7 +28,13 @@ h1 > code,
 h2 > code,
 h3 > code,
 h4 > code {
-  font-size: inherit;
+  font-size: 0.9em;
   border: none;
   background: none;
+}
+a > code {
+  border-bottom-width: 0;
+}
+a:hover > code {
+  border-bottom-width: 1px;
 }
