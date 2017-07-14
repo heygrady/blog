@@ -1,12 +1,12 @@
 ---
 title: "Upgrading Gatsby to 1.0"
-description: "The latest version of Gatsby was somewhat different from the pre-1.0 version. I upgraded my blog manually from the old version to the new version."
+description: "The latest version of Gatsby was somewhat different from the pre-1.0 release. I upgraded my blog manually from the old version to the new one."
 date: "2017-07-06T18:00:01Z"
 readNext: "/fix-me/"
 path: "/upgrading-gatsby/"
 ---
 
-In a previous post I installed [Gatsby 0.12.48](https://github.com/gatsbyjs/gatsby/tree/73dcc32d0041de6057d6328f0563b4e6cfb5e160) as [an upgrade to my blog](../new-blog/). Now it's already time to upgrade Gatsby. Version [1.0 of Gatsby](https://github.com/gatsbyjs/gatsby/tree/36e5fce58cccd1be09183a3573b234c87bd0c85d) has been [released](https://www.gatsbyjs.org/blog/gatsby-v1/). There are already docs available for [upgrading to the new version](https://www.gatsbyjs.org/docs/migrating-from-v0-to-v1/). Here we're going to upgrade this blog to Gatsby 1.0.
+In a previous post I installed [Gatsby 0.12.48](https://github.com/gatsbyjs/gatsby/tree/73dcc32d0041de6057d6328f0563b4e6cfb5e160) as [an upgrade to my blog](/new-blog/). Now it's already time to upgrade Gatsby. Version [1.0 of Gatsby](https://github.com/gatsbyjs/gatsby/tree/36e5fce58cccd1be09183a3573b234c87bd0c85d) has been [released](https://www.gatsbyjs.org/blog/gatsby-v1/). There are already docs available for [upgrading to the new version](https://www.gatsbyjs.org/docs/migrating-from-v0-to-v1/). Here we're going to upgrade this blog to Gatsby 1.0.
 
 ## Big changes
 Gatsby has changed in some significant, disorienting ways since the pre-1.0 days. The big upgrade is that there's a new application framework designed around GraphQL. This new app-centric structure is more like what you'd find in a traditional react starter-kit, like the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit#project-structure), except Gatsby has a focus on *pages* instead of *routes*. Gatsby is still *just* a static site generator -- but it's getting dressed up to work with data.
@@ -104,7 +104,7 @@ export default {
 - Import the required [prism css](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-prismjs#include-css). I added the additional CSS in a [`src/css/prism.css`](https://github.com/heygrady/blog/blob/e51c732c980997043f25d3cc311c6654b073bb4f/src/css/prism.css) file.
 - Replace instances of `Gatsby Starter Blog` with [`{config.blogTitle}`](https://github.com/heygrady/blog/blob/e51c732c980997043f25d3cc311c6654b073bb4f/src/layouts/index.js#L32)
 - Fix [PropTypes warnings](https://github.com/react-toolbox/react-toolbox/issues/1410)
-- Fix [ESLint errors](../enable-linting/)
+- Fix [ESLint errors](/enable-linting/)
 
 ```js{2,6,8-9,14-15}
 import React, { Component } from 'react'
@@ -150,7 +150,7 @@ export default Template
 ### Merge `package.json`
 - Update `name`, `description`, etc to match your blog.
 - Copy the `dependencies` from the new blog
-- Keep the `devDependencies` from the old blog (see previous [post on eslint](../enable-linting/))
+- Keep the `devDependencies` from the old blog (see previous [post on eslint](/enable-linting/))
 - Grab the `fix-semi` script from the new blog
 - Update `build:prod` to use `--prefix-paths` instead of `--prefix-links`
 
@@ -226,4 +226,4 @@ git commit -m "Upgrading to Gatsby 1.0" && \
 git push origin gatsby-upgrade
 ```
 
-On Github you will want to merge your feature branch using a [pull request](https://help.github.com/articles/about-pull-requests/). This should trigger the [travis deploy](../deploying-travis/). Be sure to check every link on your site before doing the final merge.
+On Github you will want to merge your feature branch using a [pull request](https://help.github.com/articles/about-pull-requests/). This should trigger the [travis deploy](/deploying-travis/). Be sure to check every link on your site before doing the final merge.

@@ -1,8 +1,12 @@
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
+    facebookAppId: false,
+    siteName: 'Heygrady.com',
+    canonicalUrl: 'https://heygrady.com',
     title: 'Heygrady',
     author: 'Grady Kuhnline',
+    publisherHandle: 'heygrady',
     twitterHandle:'heygrady'
   },
   plugins: [

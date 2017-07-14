@@ -84,4 +84,4 @@ For now I need to create `new.heygrady.com` and point it to my firebase hosting.
 ## What's next?
 Now my blog is live! But not on the final domain. I need to set up some redirects for the old site.
 
-- [Migrate the old site](../migrating-old-site)
+- [Migrate the old site](/migrating-old-site)

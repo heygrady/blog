@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "lint:fix": "yarn lint -- --fix",
     "test": "echo \"Warning: no test specified\" && exit 0",
-    "page": "DATE=\"$(date '+%Y-%m-%d')\" FOLDER=\"src/pages/$DATE-title\" FILE=\"$FOLDER/index.md\" && mkdir $FOLDER && touch $FILE && echo \"---\ntitle: \\\"Title\\\"\ndate: \\\"$(date '+%Y-%m-%dT%H:%M:%SZ')\\\"\nreadNext: \\\"/fix-me/\\\"\npath: \\\"/title/\\\"\n---\" >> $FILE",
+    "page": "DATE=\"$(date '+%Y-%m-%d')\" FOLDER=\"src/pages/$DATE-title\" FILE=\"$FOLDER/index.md\" && mkdir $FOLDER && touch $FILE && echo \"---\ntitle: \\\"Title\\\"\ndescription: \\\"Fix me.\\\"\ndate: \\\"$(date '+%Y-%m-%dT%H:%M:%SZ')\\\"\nreadNext: \\\"/fix-me/\\\"\npath: \\\"/title/\\\"\n---\" >> $FILE",
     "develop": "yarn dev",
     "build": "gatsby build",
     "build:prod": "yarn build -- --prefix-paths",

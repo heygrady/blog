@@ -6,7 +6,7 @@ readNext: "/fix-me/"
 path: "/migrating-old-site/"
 ---
 
-At this point I have [created a new blog](../new-blog) and configured it to [deploy to Firebase](../first-launch) at a temporary URL. Now I need to configure the new site to properly redirect to the old site so that I can cleanly retire the old Octopress blog without killing old links.
+At this point I have [created a new blog](/new-blog) and configured it to [deploy to Firebase](/first-launch) at a temporary URL. Now I need to configure the new site to properly redirect to the old site so that I can cleanly retire the old Octopress blog without killing old links.
 
 Thankfully, Firebase has some easy tools for [configuring redirects](https://firebase.google.com/docs/hosting/url-redirects-rewrites). These will all get baked into my `firebase.json` file.
 
@@ -94,4 +94,4 @@ Once the DNS propagates and the certificates are issued, the site should work ju
 - When everything is working, edit `new` to redirect to `heygrady.com` in Firebase console.
 
 ## What's next?
-- [Automatically deploy when changes are pushed to master](../deploying-travis/)
+- [Automatically deploy when changes are pushed to master](/deploying-travis/)

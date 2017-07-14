@@ -6,7 +6,7 @@ readNext: "/enable-linting/"
 path: "/deploying-travis/"
 ---
 
-I've gotten my blog [deployed on Firebase](../first-launch/). Now I can deploy changes as easily as running `firebase deploy` from the terminal in the root folder of my blog. But I would prefer to only publish changes to my blog when I push to Github. Or, rather, I want to consider `master` on Github as the latest stable version -- this is the code that needs to be live on Firebase.
+I've gotten my blog [deployed on Firebase](/first-launch/). Now I can deploy changes as easily as running `firebase deploy` from the terminal in the root folder of my blog. But I would prefer to only publish changes to my blog when I push to Github. Or, rather, I want to consider `master` on Github as the latest stable version -- this is the code that needs to be live on Firebase.
 
 I need automated deployments. This is something that [Travis](https://travis-ci.org/) does very well.
 
@@ -56,7 +56,7 @@ Edit the "test" script in your `package.json`:
 }
 ```
 
-Of course, this isn't a permanent solution. At the very least we should run the `lint` command that's included with Gatsby. But that can wait (we'll [enable linting](../enable-linting/) next). Right now we need to get Travis to deploy our blog. We've set our tests to emit a warning about "no tests" and exit with a success code so that Travis will continue.
+Of course, this isn't a permanent solution. At the very least we should run the `lint` command that's included with Gatsby. But that can wait (we'll [enable linting](/enable-linting/) next). Right now we need to get Travis to deploy our blog. We've set our tests to emit a warning about "no tests" and exit with a success code so that Travis will continue.
 
 **NOTE:** I broke my build while working on this post because the YAML frontmatter had a syntax error -- frontmatter errors make Gatsby unhappy. For me the problem was that I wasn't wrapping a string in quotes. In travis this showed up as a "failed" build. This kept the project from deploying because the build step was failing. In that way, building the project is a good minimal test.
 
@@ -149,4 +149,4 @@ git push origin master
 At this point, Travis should pick up your changes, test, build and deploy your project. If you have any troubles, you will need to push changes to your master branch to trigger a new travis build.
 
 ## What's next?
-- [Enabling and requiring proper linting](../enable-linting)
+- [Enabling and requiring proper linting](/enable-linting)
