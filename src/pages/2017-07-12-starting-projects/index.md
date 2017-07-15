@@ -360,7 +360,7 @@ import Whatever from 'new-project/lib'
 
 You can see below that `build:umd` and `build:umd:min` are using [rollup](https://github.com/rollup/rollup). Rollup ([explaination](https://medium.com/webpack/webpack-and-rollup-the-same-but-different-a41ad427058c)) has become the defacto build tool for creating Node packages based on Babel.
 
-```json
+```json{3,9-10}
 {
   "config": {
     "name": "new-project"
@@ -402,7 +402,7 @@ Or you can create the file manually. Below is a copy of the redux `rollup.config
 
 **Note:** Remember to edit the [`moduleName`](https://github.com/rollup/rollup/wiki/JavaScript-API#modulename) to match your project.
 
-```bash
+```bash{9}
 echo "import nodeResolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
@@ -729,7 +729,7 @@ Redux has a number of entries in its `package.json` that are not covered above.
 ```
 
 ### Gitbook
-I intentionally left off the Gitbook integration that redux includes because it would make this post too long. Project documentation may be covered in a future most.
+I intentionally left off the Gitbook integration that redux includes because it would make this post too long. Project documentation may be covered in a future post.
 
 ### Other missing features
 I intentionally skipped the steps for `README.md`, `docs` and publishing docs with Gitbook, travis / continuous integration, creating examples, and configuring TypeScript.
