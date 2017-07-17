@@ -97,7 +97,7 @@ export const fetchAction = createFetchAction({
 ```
 
 ## Bring your own `fetch`
-Fetch isn't available in every environment ([browser support](http://caniuse.com/fetch)). It's very common for web applications to use the [`whatwg-fetch` polyfill](https://github.com/github/fetch). If you're app runs in node or react-native, you might enjoy a platform agnostic polyfill, like [`fetch-everywhere`](https://github.com/lucasfeliciano/fetch-everywhere). If you wanted to use a library like [axios](https://github.com/mzabriskie/axios) or [superagent](https://github.com/visionmedia/superagent), you could supply `fetchAction` with a completely fake `fetch` function.
+Fetch isn't available in every environment ([browser support](http://caniuse.com/fetch)). It's very common for web applications to use the [`whatwg-fetch` polyfill](https://github.com/github/fetch). If your app runs in node or react-native, you might enjoy a platform agnostic polyfill, like [`fetch-everywhere`](https://github.com/lucasfeliciano/fetch-everywhere). If you wanted to use a library like [axios](https://github.com/mzabriskie/axios) or [superagent](https://github.com/visionmedia/superagent), you could supply `fetchAction` with a completely fake `fetch` function.
 
 **Note:** This initial version of fetch-actions is designed with fetch in mind. In specific, it expects [Requests](https://developer.mozilla.org/en-US/docs/Web/API/Request) and [Responses](https://developer.mozilla.org/en-US/docs/Web/API/Response) to match the fetch API.
 
