@@ -316,12 +316,12 @@ The full [fetch-actions API](https://heygrady.github.io/fetch-actions/docs/api/ 
 
 ## Conclusion
 
-If you like what you see above, you should be able to start using fetch-actions in your app right now. It is published as an [NPM package](https://www.npmjs.com/package/fetch-actions).
+If you like what you see above, you should be able to start using fetch-actions in your app right away. It is published as an [NPM package](https://www.npmjs.com/package/fetch-actions).
 
 ```bash
 yarn add fetch-actions
 ```
 
-Fetch-actions makes it easy to manage actions that create and transform fetch requests. You can read more about fetch-actions in the [docs](https://heygrady.github.io/fetch-actions/) or contribute to the github [repository](https://github.com/heygrady/fetch-actions/). Feel free to open any [issues](https://github.com/heygrady/fetch-actions/issues) run into. Currently, fetch-actions has 100% code coverage. You might like to review the [tests](https://github.com/heygrady/fetch-actions/tree/master/test) to learn more about the internal structure.
+Fetch-actions makes it easy to manage actions that create and transform fetch requests. You can read more about fetch-actions in the [docs](https://heygrady.github.io/fetch-actions/) or contribute to the Github [repository](https://github.com/heygrady/fetch-actions/). Feel free to open any [issues](https://github.com/heygrady/fetch-actions/issues) you run into. Currently, fetch-actions has 100% code coverage. You might like to review the [tests](https://github.com/heygrady/fetch-actions/tree/master/test) to learn more about the internal structure.
 
-As noted above, I was heavily inspired to create fetch-actions after using [redux-actions](https://github.com/acdlite/redux-actions) on a few projects. Hopefully fetch-actions can make your next API integration a little less painful.
+As noted above, I was heavily inspired to create fetch-actions after using [redux-actions](https://github.com/acdlite/redux-actions) on a few projects. Hopefully fetch-actions can make your next API integration a little more fun.
