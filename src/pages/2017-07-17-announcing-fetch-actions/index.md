@@ -97,11 +97,11 @@ export const fetchAction = createFetchAction({
 ```
 
 ## Bring your own `fetch`
-Fetch isn't available in every environment ([browser support](http://caniuse.com/fetch)). It's very common for web applications to use the [`whatwg-fetch` polyfill](https://github.com/github/fetch). If your app runs in node or react-native, you might enjoy a platform agnostic polyfill, like [`fetch-everywhere`](https://github.com/lucasfeliciano/fetch-everywhere). If you wanted to use a library like [axios](https://github.com/mzabriskie/axios) or [superagent](https://github.com/visionmedia/superagent), you could supply `fetchAction` with a completely fake `fetch` function.
+Fetch isn't available in every environment ([browser support](http://caniuse.com/fetch)). It's very common for web applications to use the [`whatwg-fetch` polyfill](https://github.com/github/fetch). If your app runs in node or react-native, you might enjoy a platform agnostic polyfill, like [`fetch-everywhere`](https://github.com/lucasfeliciano/fetch-everywhere). If you wanted to use a library like [axios](https://github.com/mzabriskie/axios) or [superagent](https://github.com/visionmedia/superagent), you could supply `fetchAction` with a completely *fake* `fetch` function.
 
-**Note:** This initial version of fetch-actions is designed with fetch in mind. In specific, it expects [Requests](https://developer.mozilla.org/en-US/docs/Web/API/Request) and [Responses](https://developer.mozilla.org/en-US/docs/Web/API/Response) to match the fetch API.
+**Note:** This initial version of fetch-actions is designed with [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) in mind. In specific, fetch-actions expects that the supplied `fetch` function will receive a [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request) and return a promise that resolves to a [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response). If you are replacing fetch with some other AJAX library you will need to take this into account.
 
-Below is a contrived example where you can supply whatever you want for fetch. You'll have the best results if you conform to the fetch standard. Fetch-actions supplies fetch with a Request object and expects to receive a promise that resolves to a Response.
+Below is a contrived example where you can supply *whatever you want* for `fetch`.
 
 ```js{5-8,11}
 import { createFetchAction } from 'fetch-actions'
@@ -123,7 +123,7 @@ export const fetchAction = createFetchAction({
 ### Mocking data with a `responder`
 If you are implementing a new API you may need to generate fake responses using mock fetch calls. Rather that replacing fetch itself, fetch-actions allows you to specify a `responder`, which should return valid responses. A responder function is called *instead of* fetch, which makes it easy to build your app against an API, even before it exists. If your responder function returns anything other than `undefined`, it will be used instead of fetch.
 
-**Note:** In this initial version, the response that your responder returns should be a valid fetch [response](https://developer.mozilla.org/en-US/docs/Web/API/Response).
+**Note:** In this initial version of fetch-actions, the response that your `responder` returns should be a valid fetch [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response).
 
 Here's a responder that will return mock data while you are in [development](https://babeljs.io/docs/plugins/transform-inline-environment-variables/):
 
@@ -149,11 +149,11 @@ export const fetchAction = createFetchAction({
 ```
 
 ### Using `handleResponderActions`
-As your application grows you may want to return different mock data depending on the action. Fetch-actions provides a handler for mapping actions to responder functions. The `handleResponderActions` function expects a map object as its only argument and returns a function. The returned function is identical to a `responder` (it accepts a request and an action and returns a response).
+As your application grows you may want to return different mock data depending on the action. Fetch-actions provides a handler for mapping actions to responder functions. The `handleResponderActions` function expects a map object as its only argument and returns a function. The returned function is identical to a `responder` (it accepts a request and an action as arguments and returns a response).
 
-The big difference is that `handleResponderActions` will call a specific responder function depending on the action type. If no matching action is found, undefined is returned, which will instruct fetch-actions to pass the request to fetch instead.
+The big difference is that `handleResponderActions` will call a specific responder function depending on the action type. If no matching responder is found, `undefined` is returned, which will instruct fetch-actions to pass the request to fetch instead.
 
-Below you can see a responder that is only called for the `FETCH_POSTS` action.
+Below you can see a `responder` that is only called for the `FETCH_POSTS` action.
 
 ```js{12-14}
 import { createFetchAction, handleResponderActions } from 'fetch-actions'
@@ -180,7 +180,7 @@ export const fetchAction = createFetchAction({
 ```
 
 ## Required: `requestCreator`
-At the very least, you need to provide a function for translating an action into a valid fetch request. Because every API is different, fetch-actions has no opinion about *how* you create those requests, but there's an requirement that a valid fetch request is returned.
+At the very least, you need to provide a function for translating an action into a valid fetch request. Because every API is different, fetch-actions has no opinion about *how* you create those requests, but there is a requirement that a valid fetch request is returned.
 
 A `requestCreator` is a function that receives an action as its only argument and returns a valid fetch request.
 
@@ -197,9 +197,9 @@ export const fetchAction = createFetchAction({
 ```
 
 ### Using `handleRequestCreatorActions(map)`
-A your app grows, you will want to generate requests based on the action. For convenience, fetch-actions provides a handler that can map actions to requestCreator functions. It works similarly to [`handleActions`](https://redux-actions.js.org/docs/api/handleAction.html#handleactions) from [redux-actions](https://github.com/acdlite/redux-actions).
+A your app grows, you will want to create requests based on the action type. For convenience, fetch-actions provides a handler that can map actions to `requestCreator` functions.
 
-The `handleRequestCreatorActions` function expects a map object as its only argument and returns a function. The returned function is identical to a `requestCreator` (it accepts an action and returns a request). The big difference is that `handleRequestCreatorActions` will call a specific requestCreator function depending on the action type.
+The `handleRequestCreatorActions` function expects a map object as its only argument and returns a function. The returned function is identical to a `requestCreator` (it accepts an action as an argument and returns a request). The big difference is that `handleRequestCreatorActions` will call a specific `requestCreator` function depending on the action type.
 
 Below you can see a `requestCreator` that calls different creators for the `FETCH_POSTS` and `FETCH_EXAMPLES` actions.
 
@@ -253,6 +253,10 @@ export const fetchAction = createFetchAction({
 ### Using `handleTransformerActions`
 Fetch-actions also provides a handler that can map actions to transformers. The `handleTransformerActions` function expects a map object as its only argument and returns a function. The returned function is identical to a `transformer` (it accepts a json object and an action and returns data). The big difference is that `handleTransformerActions` will call a specific `transformer` function depending on the action type.
 
+The `handleTransformerActions` function works similarly to [`handleActions`](https://redux-actions.js.org/docs/api/handleAction.html#handleactions) from [redux-actions](https://github.com/acdlite/redux-actions). In general, the handler pattern used in redux-actions was a major influence on fetch-actions.
+
+Below you can see a `transformer` that is called for the `FETCH_POSTS` action.
+
 ```js{11-13}
 import { createFetchAction, handleRequestCreatorActions, handleTransformerActions } from 'fetch-actions'
 import requestCreator from './requestCreators'
@@ -276,9 +280,9 @@ export const fetchAction = createFetchAction({
 ```
 
 ### Deeply nesting `transformer` functions
-Transformer functions are modeled after reducers. The `handleTransformerActions` is functionally similar to [`handleActions`](https://redux-actions.js.org/docs/api/handleAction.html#handleactions) (which is designed for reducers). You may find yourself in a scenario where similar objects need to be transformed in similar ways. It's a good practice to have your transformer deal with one small part of the object tree and leave deeper parts of the tree to other transformers.
+Transformer functions are modeled after reducers. The `handleTransformerActions` is functionally similar to [`handleActions`](https://redux-actions.js.org/docs/api/handleAction.html#handleactions) (which is designed for reducers). You may find yourself in a scenario where similar objects need to be transformed in similar ways. It's a good practice to have your `transformer` function deal with one small part of the object tree and leave deeper parts of the tree to other transformers.
 
-Here's an example of passing part of the tree to a child transformer:
+Here's an example of passing part of the tree to a child `transformer`:
 
 ```js{6-8,12}
 import { createFetchAction, handleRequestCreatorActions, handleTransformerActions } from 'fetch-actions'
