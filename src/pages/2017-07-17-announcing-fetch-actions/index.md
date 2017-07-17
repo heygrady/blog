@@ -1,6 +1,6 @@
 ---
 title: "Announcing fetch-actions"
-description: "I am proud to announce the initial release of fetch-actions, a functional wrapper for fetch designed for integrating a remote API with a redux applications."
+description: "I am proud to announce the initial release of fetch-actions, a functional wrapper for fetch designed for integrating a remote API with a redux application."
 date: "2017-07-17T11:12:18Z"
 readNext: "/fix-me/"
 path: "/announcing-fetch-actions/"
