@@ -8,7 +8,8 @@
     "babel",
     "react",
     "graphql",
-    "promise"
+    "promise",
+    "markdown"
   ],
   "env": {
     "browser" : true
