@@ -309,7 +309,7 @@ export const fetchAction = createFetchAction({
 ```
 
 ## More details in the docs
-The full [fetch-actions API](https://heygrady.github.io/fetch-actions/docs/api/ provides a number of handlers for managing the fetch lifecycle. You can read about these in the documentation.
+The full [fetch-actions API](https://heygrady.github.io/fetch-actions/docs/api/) provides a number of handlers for managing the fetch lifecycle. You can read about these in the documentation.
 
 - [`createFetchAction`](https://heygrady.github.io/fetch-actions/docs/api/createFetchAction.html)
 - [`handleRequestCreatorActions`](https://heygrady.github.io/fetch-actions/docs/api/handleRequestCreatorActions.html) —- creates a [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)
