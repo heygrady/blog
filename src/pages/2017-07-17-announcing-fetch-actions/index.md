@@ -311,12 +311,12 @@ export const fetchAction = createFetchAction({
 ## More details in the docs
 The full [fetch-actions API](https://heygrady.github.io/fetch-actions/docs/api/) provides a number of handlers for managing the fetch lifecycle. You can read about these in the documentation.
 
-- [`createFetchAction`](https://heygrady.github.io/fetch-actions/docs/api/createFetchAction.html)
-- [`handleRequestCreatorActions`](https://heygrady.github.io/fetch-actions/docs/api/handleRequestCreatorActions.html) -- creates a [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)
-- [`handleResponderActions`](https://heygrady.github.io/fetch-actions/docs/api/handleResponderActions.html) -- creates a [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)
-- [`handleResponseActions`](https://heygrady.github.io/fetch-actions/docs/api/handleResponseActions.html) -- receives a Response; must return a Response
-- [`handleTransformerActions`](https://heygrady.github.io/fetch-actions/docs/api/handleTransformerActions.html) -- receives [Response.json()](https://developer.mozilla.org/en-US/docs/Web/API/Body/json); should return data
-- [`handleFatalActions`](https://heygrady.github.io/fetch-actions/docs/api/handleFatalActions.html) -- catches thrown errors
+- [`createFetchAction(options)`](https://heygrady.github.io/fetch-actions/docs/api/createFetchAction.html)
+- [`handleRequestCreatorActions(map)`](https://heygrady.github.io/fetch-actions/docs/api/handleRequestCreatorActions.html) -- maps an action type to a `requestCreator(action)`, which creates a [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)
+- [`handleResponderActions(map)`](https://heygrady.github.io/fetch-actions/docs/api/handleResponderActions.html) -- maps an action type to a `responder(request, action)`, which creates a [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)
+- [`handleResponseActions(map)`](https://heygrady.github.io/fetch-actions/docs/api/handleResponseActions.html) -- maps an action type to a `responseHandler(response, action)`, which receives a Response; must return a Response
+- [`handleTransformerActions(map)`](https://heygrady.github.io/fetch-actions/docs/api/handleTransformerActions.html) -- maps an action type to a `transformer(json, action)`, which receives [response.json()](https://developer.mozilla.org/en-US/docs/Web/API/Body/json); should return data
+- [`handleFatalActions(map)`](https://heygrady.github.io/fetch-actions/docs/api/handleFatalActions.html) -- maps an action type to a `fatalHandler(error, action)`, which catches errors and can return data or throw an error
 
 ## Conclusion
 
