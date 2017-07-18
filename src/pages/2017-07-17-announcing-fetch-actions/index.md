@@ -10,7 +10,7 @@ When I first started working with redux I was pretty confused about how to get d
 
 Working with a server means working with an API and every API is a *little bit different*. It's no wonder that redux decided to steer clear of that mine field. In the past I've worked with kitchen sink frameworks like Angular and Ember that provide a full story about how to manage your API. [Ember Data](https://github.com/emberjs/data) provides the most complete API interface layer but it heavily favors the [JSONAPI specification](http://jsonapi.org/format/), which is [widely adopted](https://blog.codeship.com/building-a-json-api-with-rails-5/) in the Rails community but few [other places](http://jsonapi.org/implementations/#server-libraries). The react community has been toying with [relay and graphql](https://dev-blog.apollodata.com/exploring-relay-modern-276f5965f827), but there isn't yet a cohesive story for how a react-redux project should interface with an API.
 
-If you're serving a graphql or a REST API, your redux application will need to communicate with the it using something like fetch. [Fetch-actions](https://github.com/heygrady/fetch-actions) hopes to provide a smooth interface between your redux application and fetch.
+If you're serving a graphql or a REST API, your redux application will need to communicate with it using something like fetch. [Fetch-actions](https://github.com/heygrady/fetch-actions) hopes to provide a smooth interface between your redux application's middleware and fetch.
 
 ## Where does fetch-actions fit in?
 
