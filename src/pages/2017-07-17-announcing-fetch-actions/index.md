@@ -312,7 +312,7 @@ export const fetchAction = createFetchAction({
 The full [fetch-actions API](https://heygrady.github.io/fetch-actions/docs/api/) provides a number of handlers for managing the fetch lifecycle. You can read about these in the documentation.
 
 - [`createFetchAction`](https://heygrady.github.io/fetch-actions/docs/api/createFetchAction.html)
-- [`handleRequestCreatorActions`](https://heygrady.github.io/fetch-actions/docs/api/handleRequestCreatorActions.html) —- creates a [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)
+- [`handleRequestCreatorActions`](https://heygrady.github.io/fetch-actions/docs/api/handleRequestCreatorActions.html) -- creates a [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)
 - [`handleResponderActions`](https://heygrady.github.io/fetch-actions/docs/api/handleResponderActions.html) -- creates a [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)
 - [`handleResponseActions`](https://heygrady.github.io/fetch-actions/docs/api/handleResponseActions.html) -- receives a Response; must return a Response
 - [`handleTransformerActions`](https://heygrady.github.io/fetch-actions/docs/api/handleTransformerActions.html) -- receives [Response.json()](https://developer.mozilla.org/en-US/docs/Web/API/Body/json); should return data
