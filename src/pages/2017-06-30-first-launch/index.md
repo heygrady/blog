@@ -84,12 +84,12 @@ I need to get my new blog hosted on my website. Because I'm migrating my blog, I
 
 **Note:** If you are viewing this blog post on `heygrady.com` you are living in the future -- hello from the past!
 
-For now I need to create `new.heygrady.com` and point it to my firebase hosting. I recently switched my domains from Godaddy to Google Domains to make with process much simpler.
+For now I need to create `new.heygrady.com` and point it to my firebase hosting. I recently switched my domains from Godaddy to Google Domains to make managing my domain much simpler.
 
 - In Firebase, choose to "[connect domain](https://firebase.google.com/docs/hosting/custom-domain)"
 - In Google Domains, configure DNS, add an A record for `new` with the two addresses specified by Firebase
 - At first your site will throw a security error
-- In an hour or so it will all propagate and work as expected
+- In an hour or so the security settings will propagate and everything will work as expected
 
 ## What's next?
 Now my blog is live! But not on the final domain. I need to set up some redirects for the old site.
