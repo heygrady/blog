@@ -11,7 +11,7 @@ At this point I have [created a new blog](/new-blog) and configured it to [deplo
 Thankfully, Firebase has some easy tools for [configuring redirects](https://firebase.google.com/docs/hosting/url-redirects-rewrites). These will all get baked into my `firebase.json` file.
 
 ## Configure Redirects
-A basic redirect looks like this:
+A basic redirect looks like this (this would go in your `firebase.json`):
 
 ```json
 {
@@ -60,7 +60,7 @@ After reviewing the old Octopress site, I came up with the following "good enoug
 }
 ```
 
-#### Deploy the updated `firebase.json`
+### Deploy the updated `firebase.json`
 Now that we've updated our configuration it can be safely deployed.
 
 ```bash
