@@ -5,7 +5,7 @@ date: "2017-07-12T18:18:31Z"
 readNext: "/fix-me/"
 path: "/starting-projects/"
 ---
-Becoming a better developer means trying out new things, but starting new things is painful. There's a lot of boilerplate configuration to learn (and it always seems to change). I've been trying to lower my personal barriers to starting new projects by practicing *getting started*. A prolific developer has a mastered this important step.
+Becoming a better developer means trying out new things, but starting new things is painful. There's a lot of boilerplate configuration to learn (and it always seems to change). I've been trying to lower my personal barriers to starting new projects by practicing *getting started*. A prolific developer has mastered this important step.
 
 I recently [started a new blog](/new-blog/) because I wanted be able to practice the art of publishing often. I've already configured my blog to [deploy every time I push to Github](/deploying-travis/). Now I can easily write something down and publish it!
 
