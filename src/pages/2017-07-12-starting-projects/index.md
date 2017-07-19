@@ -115,7 +115,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
 
 - **Add some useful scripts to `package.json`.** [NPM is the perfect build tool](https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/). Keeping commonly used scripts in the `package.json` provides some built-in documentation on how to work with your project. This is good for you because it means you can leave a project and come back to it later and not have to look up how to "boot it up."
 
-It's nice to come into a project, type `yarn dev`, and have the dev environment stand itself up. It's useful to compare the scripts included with the starter-kit ([`package.json`](https://github.com/davezuko/react-redux-starter-kit/blob/master/package.json#L6)) and redux  ([`package.json`](https://github.com/reactjs/redux/blob/master/package.json#L16)) or your favorite project.
+  It's nice to come into a project, type `yarn dev`, and have the dev environment stand itself up. It's useful to compare the scripts included with the starter-kit ([`package.json`](https://github.com/davezuko/react-redux-starter-kit/blob/master/package.json#L6)) and redux  ([`package.json`](https://github.com/reactjs/redux/blob/master/package.json#L16)) or your favorite project.
 
   ```json
   {
