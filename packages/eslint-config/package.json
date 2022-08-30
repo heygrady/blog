@@ -1,0 +1,70 @@
+{
+  "name": "@heygrady/eslint-config",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "license": "MIT",
+  "main": "./index.js",
+  "files": [
+    "lib/**/*",
+    "astro.js",
+    "node.js",
+    "ts-node-esm.js",
+    "tsx-react-esm.js",
+    "zx.js"
+  ],
+  "scripts": {
+    "format": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\" --fix",
+    "lint": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\"",
+    "precommit": "lint-staged"
+  },
+  "dependencies": {
+    "@rushstack/eslint-patch": "^1.1.4",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-config-standard-jsx": "^11.0.0",
+    "eslint-config-standard-react": "^11.0.1",
+    "eslint-config-standard-with-typescript": "^22.0.0",
+    "eslint-import-resolver-typescript": "^3.5.0",
+    "eslint-plugin-astro": "^0.17.1",
+    "eslint-plugin-compat": "^4.0.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.0.1",
+    "eslint-plugin-jest-dom": "^4.0.2",
+    "eslint-plugin-jsdoc": "^39.3.6",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-markdown": "^3.0.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.1",
+    "eslint-plugin-react": "^7.31.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.6.4",
+    "eslint-plugin-testing-library": "^5.6.0",
+    "pkg-dir": "^5.0.0",
+    "prettier": "^2.7.1",
+    "prettier-config-standard": "^5.0.0",
+    "typescript": "^4.8.2"
+  },
+  "devDependencies": {
+    "lint-staged": "^13.0.3"
+  },
+  "lint-staged": {
+    "*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}": [
+      "eslint --fix"
+    ]
+  },
+  "browserslist": [
+    "node 16.14.0"
+  ],
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  },
+  "packageManager": "yarn@3.2.2"
+}
