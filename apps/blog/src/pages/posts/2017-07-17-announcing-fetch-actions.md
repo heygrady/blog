@@ -52,6 +52,7 @@ Consider this saga (presume it is called by a [`takeEvery`](https://redux-saga.j
 
 ```js
 import { put, call } from 'redux-saga/effects'
+
 import { requestPosts, receivePosts } from '../modules/posts/actions'
 import { fetchAction } from '../utils/api'
 
@@ -74,6 +75,7 @@ Every application will have unique API requirements, so you'll need to create yo
 
 ```js
 import { createFetchAction, handleRequestCreatorActions, handleTransformerActions } from 'fetch-actions'
+
 import { FETCH_POSTS } from '../modules/posts/constants'
 import 'fetch-everywhere'
 
@@ -104,6 +106,7 @@ Below is a contrived example where you can supply *whatever you want* for `fetch
 
 ```js
 import { createFetchAction } from 'fetch-actions'
+
 import requestCreator from './requestCreators'
 import transformer from './transformers'
 
@@ -128,6 +131,7 @@ Here's a responder that will return mock data while you are in [development](htt
 
 ```js
 import { createFetchAction } from 'fetch-actions'
+
 import requestCreator from './requestCreators'
 import transformer from './transformers'
 import 'fetch-everywhere'
@@ -156,9 +160,11 @@ Below you can see a `responder` that is only called for the `FETCH_POSTS` action
 
 ```js
 import { createFetchAction, handleResponderActions } from 'fetch-actions'
+
+import { FETCH_POSTS } from '../modules/posts/constants'
+
 import requestCreator from './requestCreators'
 import transformer from './transformers'
-import { FETCH_POSTS } from '../modules/posts/constants'
 import 'fetch-everywhere'
 import data from './mock/posts.js'
 
@@ -205,8 +211,9 @@ Below you can see a `requestCreator` that calls different creators for the `FETC
 
 ```js
 import { createFetchAction, handleRequestCreatorActions } from 'fetch-actions'
-import { FETCH_POSTS } from '../modules/posts/constants'
+
 import { FETCH_EXAMPLES } from '../modules/examples/constants'
+import { FETCH_POSTS } from '../modules/posts/constants'
 import 'fetch-everywhere'
 
 const fetchPostsRequestCreator = action => new Request(`https://www.reddit.com/r/${action.payload}.json`)
@@ -234,6 +241,7 @@ A `transformer` function receives a JSON object and an action as its two argumen
 
 ```js
 import { createFetchAction } from 'fetch-actions'
+
 import requestCreator from './requestCreators'
 import 'fetch-everywhere'
 
@@ -258,8 +266,10 @@ Below you can see a `transformer` that is called for the `FETCH_POSTS` action.
 
 ```js
 import { createFetchAction, handleRequestCreatorActions, handleTransformerActions } from 'fetch-actions'
-import requestCreator from './requestCreators'
+
 import { FETCH_POSTS } from '../modules/posts/constants'
+
+import requestCreator from './requestCreators'
 import 'fetch-everywhere'
 
 const fetchPostsTransformer = (json, action) => ({
@@ -289,9 +299,9 @@ import requestCreator from './requestCreators'
 import { FETCH_POSTS } from '../modules/posts/constants'
 import 'fetch-everywhere'
 
-const childTransformer = handleTransformerActions(
+const childTransformer = handleTransformerActions({
   [FETCH_POSTS]: (json, action) => json.data
-)
+})
 
 const transformer = handleTransformerActions({
   [FETCH_POSTS]: (json, action) => ({

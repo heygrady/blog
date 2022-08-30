@@ -50,7 +50,7 @@ Gatsby adds a `lint` script to your `packages.json` but it's not exactly what we
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "yarn lint -- --fix",
-    "test": "echo \"Warning: no test specified\" && exit 0",
+    "test": "echo \"Warning: no test specified\" && exit 0"
   }
 }
 ```

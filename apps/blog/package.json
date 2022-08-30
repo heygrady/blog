@@ -6,6 +6,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "format": "eslint \"**/*.{astro,md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\" --fix",
+    "lint": "eslint \"**/*.{astro,md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\"",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -17,11 +19,24 @@
     "typography-theme-wordpress-2016": "^0.16.19"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^0.10.2",
+    "@astrojs/mdx": "^0.10.3",
     "@astrojs/rss": "^1.0.0",
     "@astrojs/sitemap": "^1.0.0",
+    "@heygrady/eslint-config": "^1.0.0",
+    "@rushstack/eslint-patch": "^1.1.4",
+    "@types/eslint": "^8",
+    "@types/prettier": "^2",
     "@types/typography": "^0",
-    "astro": "^1.1.1",
-    "autoprefixer": "^10.4.8"
+    "astro": "^1.1.2",
+    "autoprefixer": "^10.4.8",
+    "eslint": "^8.23.0",
+    "prettier": "^2.7.1",
+    "prettier-config-standard": "^5.0.0"
+  },
+  "browserslist": [
+    "node 16.14.0"
+  ],
+  "engines": {
+    "node": ">=16.14.0"
   }
 }

@@ -1,47 +1,48 @@
 ---
-import { SITE_TITLE } from '../config';
-import {typography} from '../utils/typography'
+import { SITE_TITLE } from '../config'
+import { typography } from '../utils/typography'
 
 export interface Props {
-	small?: boolean;
+  small?: boolean
 }
 
 const { small } = Astro.props
 ---
 
 <header>
-	{
-		small
-			?  <h3
+  {
+    small ? (
+      <h3
+        style={{
+          fontFamily: 'Montserrat, sans-serif',
+          lineHeight: typography.rhythm(1),
+          marginTop: 0,
+          marginBottom: typography.rhythm(-1),
+        }}>
+        <a
           style={{
-            fontFamily: 'Montserrat, sans-serif',
-            lineHeight: typography.rhythm(1),
-            marginTop: 0,
-            marginBottom: typography.rhythm(-1),
+            boxShadow: 'none',
+            textDecoration: 'none',
+            color: 'inherit',
           }}
-        >
-          <a
-            style={{
-              boxShadow: 'none',
-              textDecoration: 'none',
-              color: 'inherit',
-            }}
-            href={'/'}
-          >
-            {SITE_TITLE}
-          </a>
-        </h3>
-			: <h1 style={{
-            ...typography.scale(1.5),
-            marginBottom: typography.rhythm(1.5),
-            marginTop: 0,
-          }}>
-				{SITE_TITLE}
-			</h1>
-	}
+          href={'/'}>
+          {SITE_TITLE}
+        </a>
+      </h3>
+    ) : (
+      <h1
+        style={{
+          ...typography.scale(1.5),
+          marginBottom: typography.rhythm(1.5),
+          marginTop: 0,
+        }}>
+        {SITE_TITLE}
+      </h1>
+    )
+  }
 </header>
 <style define:vars={{ rhythm_1_5: typography.rhythm(1.5) }}>
-	header {
-		margin: 0 0 var(--rhythm_1_5);
-	}
+  header {
+    margin: 0 0 var(--rhythm_1_5);
+  }
 </style>

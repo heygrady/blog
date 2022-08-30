@@ -1,17 +1,13 @@
 ---
-
-import { typography } from '../utils/typography'
-
+import { data } from '../config'
 import profilePic from '../images/profile-pic.jpg'
-
-import {data} from '../config'
+import { typography } from '../utils/typography'
 ---
 
 <p
   style={{
     marginBottom: typography.rhythm(2.5),
-  }}
->
+  }}>
   <img
     src={profilePic}
     alt={data.author}
@@ -21,12 +17,14 @@ import {data} from '../config'
       marginBottom: 0,
       width: typography.rhythm(2),
       height: typography.rhythm(2),
-      borderRadius: '50%'
+      borderRadius: '50%',
     }}
   />
   Written by <strong>{data.author}</strong>.
   {' '}
-  <a href={`https://twitter.com/${data.twitterHandle}`}>@{data.twitterHandle}</a>
+  <a href={`https://twitter.com/${data.twitterHandle}`}
+    >@{data.twitterHandle}
+  </a>
   {' | '}
   <a href={`https://www.linkedin.com/in/${data.twitterHandle}/`}>LinkedIn</a>
   {' | '}

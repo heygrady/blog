@@ -106,12 +106,13 @@ export default {
 - Fix [ESLint errors](/enable-linting/)
 
 ```js
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import { Container } from 'react-responsive-grid'
-import { rhythm, scale } from '../utils/typography'
+
 import config from '../config'
+import { rhythm, scale } from '../utils/typography'
 
 import 'prismjs/themes/prism-solarizedlight.css'
 import '../css/prism.css'
