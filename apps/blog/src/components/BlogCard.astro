@@ -1,11 +1,9 @@
 ---
+import { format } from '../utils/date'
 import { typography } from '../utils/typography'
-import { format as _format } from 'date-fns'
-
-import {format} from '../utils/date'
 
 export interface Props {
-	title: string
+  title: string
   description: string
   pubDate: string
   path: string
@@ -15,54 +13,51 @@ const { title, description, pubDate, path } = Astro.props
 ---
 
 <li
-  class='BlogCard'
+  class="BlogCard"
   style={{
-    marginBottom: typography.rhythm(1 + (1 / 2)),
-  }}
->
-  <time class='BlogCard__date' datetime={pubDate}>{format(pubDate)}</time>
+    marginBottom: typography.rhythm(1 + 1 / 2),
+  }}>
+  <time class="BlogCard__date" datetime={pubDate}>{format(pubDate)}</time>
   <h3
-    class='BlogCard__headline'
+    class="BlogCard__headline"
     style={{
       marginBottom: typography.rhythm(1 / 6),
     }}>
-    <a class='BlogCard__link' style={{ boxShadow: 'none' }} href={path}>
-      <span class='BlogCard__title'>{title}</span>
+    <a class="BlogCard__link" style={{ boxShadow: 'none' }} href={path}>
+      <span class="BlogCard__title">{title}</span>
     </a>
   </h3>
-  {description && (
-    <p class='BlogCard__description'>{description}</p>
-  )}
+  {description && <p class="BlogCard__description">{description}</p>}
 </li>
 <style>
-.BlogCard {
-  position: relative;
-}
-.BlogCard__headline {
-  font-size: 1.2em;
-  line-height: 28px;
-  margin-top: 0;
-}
-.BlogCard__date {
-  position: absolute;
-  left: -1.75rem;
-  color: #C6C8CA;
-  font-style: italic;
-  font-size: 0.6em;
-  line-height: 28px;
-  margin-bottom: 0;
-  transform: translateX(-100%);
-}
-@media (max-width: 889px) {
-  .BlogCard__date {
-    position: static;
-    left: auto;
-    font-size: 0.6em;
-    line-height: 1.2em;
-    transform: translateX(0);
+  .BlogCard {
+    position: relative;
   }
-}
-.BlogCard__description {
-  margin-bottom: 0;
-}
+  .BlogCard__headline {
+    font-size: 1.2em;
+    line-height: 28px;
+    margin-top: 0;
+  }
+  .BlogCard__date {
+    position: absolute;
+    left: -1.75rem;
+    color: #c6c8ca;
+    font-style: italic;
+    font-size: 0.6em;
+    line-height: 28px;
+    margin-bottom: 0;
+    transform: translateX(-100%);
+  }
+  @media (max-width: 889px) {
+    .BlogCard__date {
+      position: static;
+      left: auto;
+      font-size: 0.6em;
+      line-height: 1.2em;
+      transform: translateX(0);
+    }
+  }
+  .BlogCard__description {
+    margin-bottom: 0;
+  }
 </style>

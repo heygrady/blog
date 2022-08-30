@@ -1,94 +1,93 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Bio from '../components/Bio.astro';
-import Body from '../components/Body.astro';
-import Footer from '../components/Footer.astro';
-
-import {typography} from '../utils/typography'
-import {format} from '../utils/date'
+import BaseHead from '../components/BaseHead.astro'
+import Bio from '../components/Bio.astro'
+import Body from '../components/Body.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import { format } from '../utils/date'
+import { typography } from '../utils/typography'
 
 export interface Props {
-	content: {
-		title: string;
-		description: string;
-		pubDate?: string;
-		updatedDate?: string;
-		heroImage?: string;
-	};
+  content: {
+    title: string
+    description: string
+    pubDate?: string
+    updatedDate?: string
+    heroImage?: string
+  }
 }
 
 const {
-	content: { title, description, pubDate, updatedDate, heroImage },
-} = Astro.props;
+  content: { title, description, pubDate, updatedDate, heroImage },
+} = Astro.props
 ---
 
-<html>
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
+<html lang="en-US">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
 
-	<body>
-		<Body>
-			<Header small />
-			<main>
-				<article>
-					<h1 class="BlogPost__headline">{title}</h1>
-					<p
-						style={{
-							...typography.scale(-1 / 5),
-							display: 'block',
-							marginBottom: typography.rhythm(0.5),
-							marginTop: typography.rhythm(-1),
-						}}
-					>
-						{pubDate && <time>{format(pubDate)}</time>}
-						{updatedDate && <div>Last updated on <time>{updatedDate}</time></div>}
-					</p>
-					<h2
-						style={{
-							color: '#C6C8CA',
-							paddingTop: typography.rhythm(1.5),
-							borderTop: '4px solid #FF4C3B',
-							fontSize: '1.2rem',
-							lineHeight: '1.4em',
-							fontWeight: 'normal',
-							fontStyle: 'italic',
-							marginBottom: typography.rhythm(1.5),
-							marginTop: typography.rhythm(0.5),
-						}}>{description}</h2>
-					{heroImage && (
-						<img
-							width={720}
-							height={360}
-							src={heroImage}
-							alt=""
-						/>
-					)}
-					<slot />
-				</article>
-				<hr
-					style={{
-						background: 'none',
-						border: 'none',
-						borderTop: '4px solid #FF4C3B',
-						marginBottom: typography.rhythm(1),
-					}}
-				/>
-			</main>
-			<Bio />
-			<Footer />
-		</Body>
-	</body>
+  <body>
+    <Body>
+      <Header small />
+      <main>
+        <article>
+          <h1 class="BlogPost__headline">{title}</h1>
+          <p
+            style={{
+              ...typography.scale(-1 / 5),
+              display: 'block',
+              marginBottom: typography.rhythm(0.5),
+              marginTop: typography.rhythm(-1),
+            }}>
+            {pubDate && <time>{format(pubDate)}</time>}
+            {
+              updatedDate && (
+                <div>
+                  Last updated on <time>{updatedDate}</time>
+                </div>
+              )
+            }
+          </p>
+          <h2
+            style={{
+              color: '#C6C8CA',
+              paddingTop: typography.rhythm(1.5),
+              borderTop: '4px solid #FF4C3B',
+              fontSize: '1.2rem',
+              lineHeight: '1.4em',
+              fontWeight: 'normal',
+              fontStyle: 'italic',
+              marginBottom: typography.rhythm(1.5),
+              marginTop: typography.rhythm(0.5),
+            }}>
+            {description}
+          </h2>
+          {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
+          <slot />
+        </article>
+        <hr
+          style={{
+            background: 'none',
+            border: 'none',
+            borderTop: '4px solid #FF4C3B',
+            marginBottom: typography.rhythm(1),
+          }}
+        />
+      </main>
+      <Bio />
+      <Footer />
+    </Body>
+    <style define:vars={{ rhythm_2: typography.rhythm(2) }}>
+      :global(.astro-code) {
+        padding: 0.83255rem 1.75rem;
+        margin-left: -1.75rem;
+        margin-right: -1.75rem;
+      }
+      .BlogPost__headline {
+        margin-top: var(--rhythm_2);
+        line-height: var(--rhythm_2);
+      }
+    </style>
+  </body>
 </html>
-<style define:vars={{ rhythm_2: typography.rhythm(2) }}>
-	:global(.astro-code) {
-		padding: 0.83255rem 1.75rem;
-		margin-left: -1.75rem;
-		margin-right: -1.75rem;
-	}
-	.BlogPost__headline {
-		margin-top: var(--rhythm_2);
-		line-height: var(--rhythm_2);
-	}
-</style>

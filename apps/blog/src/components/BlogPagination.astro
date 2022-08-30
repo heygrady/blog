@@ -31,14 +31,19 @@ export interface Props {
 
 const { page } = Astro.props
 ---
+
 {page.url.prev === '/1' ? <a href={'/'}>Previous</a> : null}
-{page.url.prev && page.url.prev !== '/1' ? <a href={page.url.prev}>Previous</a> : null}
+{
+  page.url.prev && page.url.prev !== '/1' ? (
+    <a href={page.url.prev}>Previous</a>
+  ) : null
+}
 {page.url.prev && page.url.next ? ' | ' : null}
-{page.url.next ? <a href={page.url.next}>Next</a> : null }
+{page.url.next ? <a href={page.url.next}>Next</a> : null}
 
 <style>
-.BlogPagination {
-  list-style-type: none;
-  margin-left: 0;
-}
+  .BlogPagination {
+    list-style-type: none;
+    margin-left: 0;
+  }
 </style>

@@ -1,41 +1,42 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Body from '../components/Body.astro';
-import BlogList from '../components/BlogList.astro';
-import BlogPagination from '../components/BlogPagination.astro';
-import Bio from '../components/Bio.astro';
-import Footer from '../components/Footer.astro';
-import { PAGE_SIZE, SITE_TITLE, SITE_DESCRIPTION } from '../config';
+import BaseHead from '../components/BaseHead.astro'
+import Bio from '../components/Bio.astro'
+import BlogList from '../components/BlogList.astro'
+import BlogPagination from '../components/BlogPagination.astro'
+import Body from '../components/Body.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import { PAGE_SIZE, SITE_TITLE, SITE_DESCRIPTION } from '../config'
 
 export async function getStaticPaths({ paginate }) {
   const posts = (await Astro.glob('../pages/posts/*.{md,mdx}')).sort(
-    (a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
-  );
+    (a, b) =>
+      new Date(b.frontmatter.pubDate).valueOf() -
+      new Date(a.frontmatter.pubDate).valueOf()
+  )
 
   // Generate pages from our array of astronauts, with 2 to a page
-  return paginate(posts, { pageSize: PAGE_SIZE });
+  return paginate(posts, { pageSize: PAGE_SIZE })
 }
 
 // All paginated data is passed on the "page" prop
-const { page } = Astro.props;
+const { page } = Astro.props
 ---
 
 <!DOCTYPE html>
 <html lang="en-us">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Body>
-			<Header />
-			<Bio />
-			<main>
-				<BlogList posts={page.data} />
-				<BlogPagination page={page} />
-			</main>
-			<Footer />
-		</Body>
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Body>
+      <Header />
+      <Bio />
+      <main>
+        <BlogList posts={page.data} />
+        <BlogPagination page={page} />
+      </main>
+      <Footer />
+    </Body>
+  </body>
 </html>
-
