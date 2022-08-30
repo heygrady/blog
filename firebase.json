@@ -9,21 +9,20 @@
     ],
     "redirects": [
       {
-        "source" : "/blog/:post*",
-        "destination" : "https://2012.heygrady.com/blog/:post*",
-        "type" : 302
+        "source": "/blog/:post*",
+        "destination": "https://2012.heygrady.com/blog/:post*",
+        "type": 302
       },
       {
-        "source" : "/archives/:post*",
-        "destination" : "https://2012.heygrady.com/archives/:post*",
-        "type" : 302
+        "source": "/archives/:post*",
+        "destination": "https://2012.heygrady.com/archives/:post*",
+        "type": 302
       },
       {
-        "source" : "/categories/:post*",
-        "destination" : "https://2012.heygrady.com/categories/:post*",
-        "type" : 302
+        "source": "/categories/:post*",
+        "destination": "https://2012.heygrady.com/categories/:post*",
+        "type": 302
       },
-
       {
         "source": "/announcing-fetch-actions/",
         "destination": "https://heygrady.com/blog/2017-07-17-announcing-fetch-actions",
@@ -59,7 +58,6 @@
         "destination": "https://heygrady.com/blog/2017-06-30-first-launch",
         "type": 302
       }
-      
     ]
   }
 }
