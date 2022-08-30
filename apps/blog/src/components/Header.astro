@@ -15,6 +15,7 @@ const { small } = Astro.props
 			?  <h3
           style={{
             fontFamily: 'Montserrat, sans-serif',
+            lineHeight: typography.rhythm(1),
             marginTop: 0,
             marginBottom: typography.rhythm(-1),
           }}
@@ -39,11 +40,8 @@ const { small } = Astro.props
 			</h1>
 	}
 </header>
-<style>
+<style define:vars={{ rhythm_1_5: typography.rhythm(1.5) }}>
 	header {
-		margin: 0em 0 2em;
-	}
-	h2 {
-		margin: 0.5em 0;
+		margin: 0 0 var(--rhythm_1_5);
 	}
 </style>
