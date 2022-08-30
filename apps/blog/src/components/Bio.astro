@@ -1,0 +1,34 @@
+---
+
+import { typography } from '../utils/typography'
+
+import profilePic from '../images/profile-pic.jpg'
+
+import {data} from '../config'
+---
+
+<p
+  style={{
+    marginBottom: typography.rhythm(2.5),
+  }}
+>
+  <img
+    src={profilePic}
+    alt={data.author}
+    style={{
+      float: 'left',
+      marginRight: typography.rhythm(1 / 4),
+      marginBottom: 0,
+      width: typography.rhythm(2),
+      height: typography.rhythm(2),
+      borderRadius: '50%'
+    }}
+  />
+  Written by <strong>{data.author}</strong>.
+  {' '}
+  <a href={`https://twitter.com/${data.twitterHandle}`}>@{data.twitterHandle}</a>
+  {' | '}
+  <a href={`https://www.linkedin.com/in/${data.twitterHandle}/`}>LinkedIn</a>
+  {' | '}
+  <a href={`https://github.com/${data.twitterHandle}`}>Github</a>
+</p>
