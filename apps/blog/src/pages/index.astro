@@ -8,11 +8,9 @@ import Bio from '../components/Bio.astro';
 import Footer from '../components/Footer.astro';
 import { PAGE_SIZE, SITE_TITLE, SITE_DESCRIPTION } from '../config';
 
-const posts = (await Astro.glob('../pages/blog/*.{md,mdx}')).sort(
+const posts = (await Astro.glob('../pages/posts/*.{md,mdx}')).sort(
     (a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
   );
-
-console.log(posts.length)
 ---
 
 <!DOCTYPE html>
