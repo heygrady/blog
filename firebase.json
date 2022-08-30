@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "apps/blog/dist",
     "rewrites": [
       {
         "source": "**",
@@ -22,7 +22,44 @@
         "source" : "/categories/:post*",
         "destination" : "https://2012.heygrady.com/categories/:post*",
         "type" : 302
+      },
+
+      {
+        "source": "/announcing-fetch-actions/",
+        "destination": "https://heygrady.com/blog/2017-07-17-announcing-fetch-actions",
+        "type": 302
+      },
+      {
+        "source": "/starting-projects/",
+        "destination": "https://heygrady.com/blog/2017-07-12-starting-projects",
+        "type": 302
+      },
+      {
+        "source": "/upgrading-gatsby/",
+        "destination": "https://heygrady.com/blog/2017-07-06-upgrading-gatsby",
+        "type": 302
+      },
+      {
+        "source": "/enable-linting/",
+        "destination": "https://heygrady.com/blog/2017-07-03-enable-linting",
+        "type": 302
+      },
+      {
+        "source": "/deploying-travis/",
+        "destination": "https://heygrady.com/blog/2017-07-02-deploying-travis",
+        "type": 302
+      },
+      {
+        "source": "/migrating-old-site/",
+        "destination": "https://heygrady.com/blog/2017-06-30-migrating-old-sit",
+        "type": 302
+      },
+      {
+        "source": "/first-launch/",
+        "destination": "https://heygrady.com/blog/2017-06-30-first-launch",
+        "type": 302
       }
+      
     ]
   }
 }

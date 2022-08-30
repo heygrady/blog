@@ -1,0 +1,12 @@
+---
+import {typography} from '../utils/typography'
+---
+
+<div style={{
+  maxWidth: typography.rhythm(24),
+  padding: `${typography.rhythm(1.5)} ${typography.rhythm(3 / 4)}`,
+  marginLeft: 'auto',
+  marginRight: 'auto'
+}}>
+  <slot />
+</div>

@@ -1,0 +1,49 @@
+---
+import { SITE_TITLE } from '../config';
+import {typography} from '../utils/typography'
+
+export interface Props {
+	small?: boolean;
+}
+
+const { small } = Astro.props
+---
+
+<header>
+	{
+		small
+			?  <h3
+          style={{
+            fontFamily: 'Montserrat, sans-serif',
+            marginTop: 0,
+            marginBottom: typography.rhythm(-1),
+          }}
+        >
+          <a
+            style={{
+              boxShadow: 'none',
+              textDecoration: 'none',
+              color: 'inherit',
+            }}
+            href={'/'}
+          >
+            {SITE_TITLE}
+          </a>
+        </h3>
+			: <h1 style={{
+            ...typography.scale(1.5),
+            marginBottom: typography.rhythm(1.5),
+            marginTop: 0,
+          }}>
+				{SITE_TITLE}
+			</h1>
+	}
+</header>
+<style>
+	header {
+		margin: 0em 0 2em;
+	}
+	h2 {
+		margin: 0.5em 0;
+	}
+</style>

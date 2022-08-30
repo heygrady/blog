@@ -1,0 +1,27 @@
+---
+import BlogCard from '../components/BlogCard.astro';
+
+export interface Props {
+  posts: any[]
+}
+const { posts } = Astro.props
+---
+
+<section>
+  <ul class="BlogList">
+    {posts.map((post) => (
+      <BlogCard
+        title={post.frontmatter.title}
+        description={post.frontmatter.description}
+        pubDate={post.frontmatter.pubDate}
+        path={post.url}
+      />
+    ))}
+  </ul>
+</section>
+<style>
+.BlogList {
+  list-style-type: none;
+  margin-left: 0;
+}
+</style>

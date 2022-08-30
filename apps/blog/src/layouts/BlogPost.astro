@@ -1,0 +1,102 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Bio from '../components/Bio.astro';
+import Body from '../components/Body.astro';
+import Footer from '../components/Footer.astro';
+
+import {typography} from '../utils/typography'
+import {format} from '../utils/date'
+
+export interface Props {
+	content: {
+		title: string;
+		description: string;
+		pubDate?: string;
+		updatedDate?: string;
+		heroImage?: string;
+	};
+}
+
+const {
+	content: { title, description, pubDate, updatedDate, heroImage },
+} = Astro.props;
+---
+
+<html>
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			.title {
+				font-size: 2em;
+				margin: 0.25em 0 0;
+			}
+			hr {
+  				border-top: 1px solid #DDD;
+				margin: 1rem 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<Body>
+			<Header small />
+			<main>
+				<article>
+					<h1>{title}</h1>
+					<p
+						style={{
+							...typography.scale(-1 / 5),
+							display: 'block',
+							marginBottom: typography.rhythm(0.5),
+							marginTop: typography.rhythm(-1),
+						}}
+					>
+						{pubDate && <time>{format(pubDate)}</time>}
+						{updatedDate && <div>Last updated on <time>{updatedDate}</time></div>}
+					</p>
+
+
+					{heroImage && (
+						<img
+							width={720}
+							height={360}
+							src={heroImage}
+							alt=""
+						/>
+					)}
+					<h2
+						style={{
+							color: '#C6C8CA',
+							paddingTop: typography.rhythm(1.5),
+							borderTop: '4px solid #FF4C3B',
+							fontSize: '1.2rem',
+							lineHeight: '1.4em',
+							fontWeight: 'normal',
+							fontStyle: 'italic',
+							marginBottom: typography.rhythm(1.5),
+							marginTop: typography.rhythm(0.5),
+						}}>{description}</h2>
+					<slot />
+				</article>
+				<hr
+					style={{
+						background: 'none',
+						border: 'none',
+						borderTop: '4px solid #FF4C3B',
+						marginBottom: typography.rhythm(1),
+					}}
+				/>
+			</main>
+			<Bio />
+			<Footer />
+		</Body>
+	</body>
+</html>
+<style>
+	:global(.astro-code) {
+		padding: 0.83255rem 1.75rem;
+		margin-left: -1.75rem;
+		margin-right: -1.75rem;
+	}
+</style>

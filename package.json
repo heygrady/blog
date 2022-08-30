@@ -1,77 +1,38 @@
 {
-  "name": "heygrady-blog",
-  "description": "Heygrady's personal blog",
+  "name": "@heygrady/blog",
   "version": "1.0.0",
-  "author": "Grady Kuhnline <github@heygrady.com>",
-  "bugs": {
-    "url": "https://github.com/heygrady/blog/issues"
-  },
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "scripts/*"
+  ],
   "scripts": {
-    "clean": "rimraf .cache public",
-    "dev": "gatsby develop",
-    "lint": "eslint .",
-    "lint:fix": "yarn lint -- --fix",
-    "test": "echo \"Warning: no test specified\" && exit 0",
-    "page": "DATE=\"$(date '+%Y-%m-%d')\" FOLDER=\"src/pages/$DATE-title\" FILE=\"$FOLDER/index.md\" && mkdir $FOLDER && touch $FILE && echo \"---\ntitle: \\\"Title\\\"\ndescription: \\\"Fix me.\\\"\ndate: \\\"$(date '+%Y-%m-%dT%H:%M:%SZ')\\\"\nreadNext: \\\"/fix-me/\\\"\npath: \\\"/title/\\\"\n---\" >> $FILE",
-    "develop": "yarn dev",
-    "build": "gatsby build",
-    "build:prod": "yarn build -- --prefix-paths",
-    "deploy": "yarn lint && yarn test && yarn build:prod && firebase deploy",
-    "preview": "cd public && http-server -c-1",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
+    "build": "turbo run --concurrency=4 build",
+    "clean": "turbo run clean",
+    "coverage": "turbo run --concurrency=4 coverage",
+    "coverag:ci": "turbo run --concurrency=2 coverage -- --maxWorkers=2 --forceExit",
+    "format": "turbo run --concurrency=4 format",
+    "lint": "turbo run --concurrency=4 lint",
+    "postinstall": "husky install",
+    "start": "yarn workspace @heygrady/blog-app start",
+    "test": "turbo run --concurrency=4 test",
+    "test:ci": "turbo run --concurrency=2 test -- --maxWorkers=2 --forceExit"
   },
   "dependencies": {
-    "gatsby": "^1.2.0",
-    "gatsby-link": "^1.0.9",
-    "gatsby-plugin-google-analytics": "^1.0.1",
-    "gatsby-plugin-manifest": "^1.0.1",
-    "gatsby-plugin-offline": "^1.0.1",
-    "gatsby-plugin-preact": "^1.0.1",
-    "gatsby-plugin-react-helmet": "^1.0.1",
-    "gatsby-plugin-sharp": "^1.0.1",
-    "gatsby-remark-autolink-headers": "^1.0.1",
-    "gatsby-remark-copy-linked-files": "^1.0.1",
-    "gatsby-remark-images": "^1.2.0",
-    "gatsby-remark-prismjs": "^1.2.0",
-    "gatsby-remark-responsive-iframe": "^1.0.1",
-    "gatsby-remark-smartypants": "^1.0.1",
-    "gatsby-source-filesystem": "^1.0.1",
-    "gatsby-transformer-remark": "^1.1.0",
-    "gatsby-transformer-sharp": "^1.0.1",
-    "lodash": "^4.15.0",
-    "moment": "^2.18.1",
-    "react-helmet": "^5.1.3",
-    "react-responsive-grid": "^0.3.3",
-    "react-typography": "^0.15.0",
-    "typeface-merriweather": "^0.0.25",
-    "typeface-montserrat": "^0.0.24",
-    "typography": "^0.15.8",
-    "typography-theme-wordpress-2016": "^0.15.1"
+    "@changesets/cli": "^2.24.3",
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@commitlint/config-lerna-scopes": "^17.0.2",
+    "@manypkg/cli": "^0.19.1",
+    "firebase-tools": "^11.8.0",
+    "husky": "^8.0.0",
+    "turbo": "^1.4.3"
   },
-  "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^4.1.1",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-config-standard-react": "^5.0.0",
-    "eslint-plugin-babel": "^4.1.1",
-    "eslint-plugin-graphql": "^1.1.0",
-    "eslint-plugin-import": "^2.6.1",
-    "eslint-plugin-markdown": "^1.0.0-beta.6",
-    "eslint-plugin-node": "^5.1.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-react": "^7.1.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "http-server": "^0.10.0"
-  },
-  "homepage": "https://github.com/heygrady/blog#readme",
-  "keywords": [
-    "gatsby",
-    "blog"
-  ],
-  "license": "MIT",
-  "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/heygrady/blog.git"
+  "packageManager": "yarn@3.2.3",
+  "volta": {
+    "node": "16.17.0",
+    "npm": "8.18.0",
+    "yarn": "1.22.19"
   }
 }
