@@ -2,7 +2,8 @@ import Typography from 'typography'
 // @ts-expect-error
 import Wordpress2016 from 'typography-theme-wordpress-2016'
 
-export const typography = new Typography(Wordpress2016)
+// FIXME: this is different in prod versus dev
+export const typography = new Typography(Wordpress2016.default ?? Wordpress2016)
 
 export const googleFont = () => {
   // Create family + styles string

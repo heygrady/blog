@@ -22,7 +22,6 @@
     "@astrojs/sitemap": "^1.0.0",
     "@types/typography": "^0",
     "astro": "^1.1.1",
-    "autoprefixer": "^10.4.8",
-    "cssnano": "^5.1.13"
+    "autoprefixer": "^10.4.8"
   }
 }
