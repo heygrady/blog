@@ -34,8 +34,8 @@
     "prettier-config-standard": "^5.0.0"
   },
   "browserslist": [
-    "last 2 chrome versions",
-    "last 2 firefox versions",
+    "last 10 chrome versions",
+    "last 5 firefox versions",
     "last 2 safari version",
     "last 2 ios version"
   ],
