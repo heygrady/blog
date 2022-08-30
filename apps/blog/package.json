@@ -34,7 +34,10 @@
     "prettier-config-standard": "^5.0.0"
   },
   "browserslist": [
-    "node 16.14.0"
+    "last 2 chrome versions",
+    "last 2 firefox versions",
+    "last 2 safari version",
+    "last 2 ios version"
   ],
   "engines": {
     "node": ">=16.14.0"
