@@ -13,7 +13,13 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
-      - run: yarn install && yarn build
+      - name: TurboRepo local server
+        uses: felixmosh/turborepo-gh-artifacts@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          server-token: ${{ secrets.TURBO_SERVER_TOKEN }}
+      - run: yarn install
+      - run: yarn turbo run --concurrency=4 build --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}"
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
