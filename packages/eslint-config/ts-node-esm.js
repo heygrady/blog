@@ -37,6 +37,7 @@ module.exports = {
     ...require('./lib/rules/import.js'),
     ...require('./lib/rules/jsdoc.js'),
     ...require('./lib/rules/node.js'),
+    ...require('./lib/rules/prettier.js'),
   },
   overrides: [
     ...require('./lib/overrides/configFiles.js'),
