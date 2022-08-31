@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource/inconsolata": "^4.5.7",
     "@fontsource/merriweather": "^4.5.13",
     "@fontsource/montserrat": "^4.5.12",
     "date-fns": "^2.29.2",
@@ -36,8 +37,8 @@
   "browserslist": [
     "last 10 chrome versions",
     "last 5 firefox versions",
-    "last 2 safari version",
-    "last 2 ios version"
+    "last 2 safari versions",
+    "last 2 ios versions"
   ],
   "engines": {
     "node": ">=16.14.0"
