@@ -9,16 +9,10 @@ const today = new Date()
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B31DXD59R0"></script>
-<script>
-  // @ts-ignore
-  window.dataLayer = window.dataLayer || [];
-  // @ts-ignore
+<script is:inline set:html={`window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  // @ts-ignore
   gtag('js', new Date());
-  // @ts-ignore
-  gtag('config', 'G-B31DXD59R0');
-</script>
+  gtag('config', 'G-B31DXD59R0');`}></script>
 
 <style>
   footer {
