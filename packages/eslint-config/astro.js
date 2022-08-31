@@ -1,7 +1,5 @@
 require('@rushstack/eslint-patch/modern-module-resolution')
 
-const { allExtensions } = require('./lib/commonExtensions.js')
-
 module.exports = {
   extends: [
     'eslint:recommended',
@@ -31,6 +29,7 @@ module.exports = {
   rules: {
     ...require('./lib/rules/common.js'),
     ...require('./lib/rules/jsdoc.js'),
+    ...require('./lib/rules/prettier.js'),
   },
   overrides: [
     ...require('./lib/overrides/astro.js'),
