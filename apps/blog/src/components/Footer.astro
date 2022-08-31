@@ -6,6 +6,20 @@ const today = new Date()
   <p>Looking for <a href="https://2012.heygrady.com">older posts</a>?</p>
   &copy; {today.getFullYear()} Grady Kuhnline. All rights reserved.
 </footer>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B31DXD59R0"></script>
+<script>
+  // @ts-ignore
+  window.dataLayer = window.dataLayer || [];
+  // @ts-ignore
+  function gtag(){dataLayer.push(arguments);}
+  // @ts-ignore
+  gtag('js', new Date());
+  // @ts-ignore
+  gtag('config', 'G-B31DXD59R0');
+</script>
+
 <style>
   footer {
     padding: 25px;
