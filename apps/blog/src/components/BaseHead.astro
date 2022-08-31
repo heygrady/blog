@@ -15,7 +15,16 @@ import '@fontsource/merriweather/700.css'
 import '@fontsource/merriweather/700-italic.css'
 import '@fontsource/merriweather/900.css'
 import '@fontsource/merriweather/900-italic.css'
+
+import montserratLatin900 from '@fontsource/montserrat/files/montserrat-latin-900-normal.woff2'
+import merriweatherLatin400 from '@fontsource/merriweather/files/merriweather-latin-400-normal.woff2'
+import merriweatherLatin700 from '@fontsource/merriweather/files/merriweather-latin-700-normal.woff2'
+import merriweatherLatin400Italic from '@fontsource/merriweather/files/merriweather-latin-400-italic.woff2'
+import merriweatherLatin900 from '@fontsource/merriweather/files/merriweather-latin-900-normal.woff2'
+
 import { typography } from '../utils/typography'
+
+const commonFonts = [montserratLatin900, merriweatherLatin400, merriweatherLatin700, merriweatherLatin400Italic, merriweatherLatin900]
 
 export interface Props {
   title: string
@@ -52,6 +61,7 @@ const { title, description, image = '/heygrady-social.jpg' } = Astro.props
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 <!-- Typography -->
-<style is:inline set:html={typography.toString()}>
+<style is:inline set:html={typography.toString()}></style>
 
-</style>
+{commonFonts.map((url) => <link rel="preload" href={url} as="font" type="font/woff2" crossorigin>)}
+
