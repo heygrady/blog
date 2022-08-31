@@ -1000,6 +1000,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/inconsolata@npm:^4.5.7":
+  version: 4.5.7
+  resolution: "@fontsource/inconsolata@npm:4.5.7"
+  checksum: a70e0adbd88ba0355e62cf8256a124e9a5a18b1f68da25f8e9f5eaf0d940b55a2d8a1f62abced99518ea403baf669798019bd901053213ab11787937cf564c07
+  languageName: node
+  linkType: hard
+
 "@fontsource/merriweather@npm:^4.5.13":
   version: 4.5.13
   resolution: "@fontsource/merriweather@npm:4.5.13"
@@ -1107,6 +1114,7 @@ __metadata:
     "@astrojs/mdx": ^0.10.3
     "@astrojs/rss": ^1.0.0
     "@astrojs/sitemap": ^1.0.0
+    "@fontsource/inconsolata": ^4.5.7
     "@fontsource/merriweather": ^4.5.13
     "@fontsource/montserrat": ^4.5.12
     "@heygrady/eslint-config": ^1.0.0
@@ -1174,6 +1182,7 @@ __metadata:
     pkg-dir: ^5.0.0
     prettier: ^2.7.1
     prettier-config-standard: ^5.0.0
+    prettier-plugin-astro: ^0.5.3
     typescript: ^4.8.2
   languageName: unknown
   linkType: soft
