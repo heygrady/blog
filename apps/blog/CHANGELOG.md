@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.0.3
+
+### Patch Changes
+
+- 9ab41e3: Preload fonts and enable prefetch for site links
+
 ## 1.0.2
 
 ### Patch Changes
