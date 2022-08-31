@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.0.1
+
+### Patch Changes
+
+- a4d844e: Add Google Analytics v4 Snippet
+
 ## 1.0.0
 
 ### Major Changes
