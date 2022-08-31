@@ -9,7 +9,7 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       // https://github.com/shikijs/shiki/blob/main/docs/themes.md
-      theme: 'github-dark',
+      theme: 'solarized-light',
       // https://github.com/shikijs/shiki/blob/main/docs/languages.md
       langs: ['astro', 'js', 'jsx', 'ts', 'tsx', 'sh'],
       wrap: true,
