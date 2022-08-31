@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.0.2
+
+### Patch Changes
+
+- 9f3edc6: Fix Google Analytics Snippet
+
 ## 1.0.1
 
 ### Patch Changes
