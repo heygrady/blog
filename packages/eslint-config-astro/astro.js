@@ -5,6 +5,7 @@ module.exports = {
   // plugins: ['astro'],
   overrides: [
     ...require('./lib/overrides/src.js'),
+    ...require('./lib/overrides/astroConfig.js'),
     // ...require('./lib/overrides/astro.js'),
   ],
 }

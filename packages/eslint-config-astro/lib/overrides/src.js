@@ -4,7 +4,6 @@ module.exports = [
     files: ['src/**/*.{mjs,js,jsx,mts,ts,tsx}'],
     rules: {
       'import/extensions': 'off',
-      'import/no-unresolved': ['error', { ignore: ['^@astrojs\\/'] }],
       'n/file-extension-in-import': [
         'error',
         'always',
