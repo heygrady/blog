@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.0.4
+
+### Patch Changes
+
+- 3ec2b87: Publish packages to Github Package Registry
+
 ## 1.0.3
 
 ### Patch Changes
