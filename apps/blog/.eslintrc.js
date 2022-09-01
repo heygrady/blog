@@ -1,3 +1,3 @@
 require('@rushstack/eslint-patch/modern-module-resolution')
 
-module.exports = { extends: ['@heygrady/eslint-config/astro'] }
+module.exports = { extends: ['@heygrady/eslint-config-astro'] }
