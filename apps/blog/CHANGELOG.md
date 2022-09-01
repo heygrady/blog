@@ -1,5 +1,12 @@
 # @heygrady/blog-app
 
+## 1.0.5
+
+### Patch Changes
+
+- 501223c: Eslint Config
+- 7794acb: Fixing a failed publish
+
 ## 1.0.4
 
 ### Patch Changes
