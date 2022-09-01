@@ -5,12 +5,13 @@ import { fileURLToPath } from 'node:url'
 
 import { findRoot } from '@manypkg/find-root'
 import { getPackages } from '@manypkg/get-packages'
-import { cosmiconfig } from 'cosmiconfig'
 import Handlebars from 'handlebars'
 import { paramCase } from 'param-case'
 import supportsColor from 'supports-color'
 import yargs from 'yargs/yargs'
 import 'zx/globals'
+
+import { getConfig } from './utils/getConfig.js'
 
 process.env.FORCE_COLOR = supportsColor.stdout.level
 
@@ -19,7 +20,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const createPostCommand = async () => {
   const root = await findRoot()
   const packages = await getPackages(root)
-  const { config } = (await cosmiconfig('heygrady').search(root)) ?? {}
+  const config = await getConfig(root)
+
   if (!config) {
     throw new Error(
       'Please create a `heygrady.config.js` file in your repo root'
