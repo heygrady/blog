@@ -1,0 +1,58 @@
+{
+  "name": "@heygrady/eslint-config-astro",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heygrady/blog.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "type": "commonjs",
+  "license": "MIT",
+  "main": "./astro.js",
+  "files": [
+    "lib/**/*",
+    ".prettierrc.js",
+    "astro.js"
+  ],
+  "scripts": {
+    "clean": "rimraf .turbo",
+    "format": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\" --fix",
+    "lint": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\"",
+    "precommit": "lint-staged"
+  },
+  "dependencies": {
+    "@heygrady/eslint-config": "^1.0.0",
+    "@rushstack/eslint-patch": "^1.1.4",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "eslint": "^8.23.0",
+    "eslint-plugin-astro": "^0.17.1",
+    "pkg-dir": "^5.0.0",
+    "prettier": "^2.7.1",
+    "prettier-config-standard": "^5.0.0",
+    "prettier-plugin-astro": "^0.5.4",
+    "typescript": "^4.8.2"
+  },
+  "devDependencies": {
+    "@types/rimraf": "^3",
+    "lint-staged": "^13.0.3",
+    "rimraf": "^3.0.2"
+  },
+  "lint-staged": {
+    "*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}": [
+      "eslint --fix"
+    ]
+  },
+  "browserslist": [
+    "node 16.14.0"
+  ],
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  },
+  "packageManager": "yarn@3.2.2"
+}
