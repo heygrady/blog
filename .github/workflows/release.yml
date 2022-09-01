@@ -1,10 +1,10 @@
-# https://github.com/changesets/action#without-publishing
+# https://github.com/changesets/action#with-publishing
 name: Release
 
 on:
   push:
     branches:
-      - master
+      - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -18,8 +18,16 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@heygrady'
       - run: yarn install
-      - name: Create Release Pull Request
+      - name: Create Release Pull Request or Publish to Github Package Registry
+        id: changesets
         uses: changesets/action@v1
+        with:
+          # This expects you to have a script called release which does a build for your packages and calls changeset publish
+          publish: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages#example-workflow
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
