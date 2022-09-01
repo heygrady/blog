@@ -8,11 +8,12 @@ const astroExtensions = ['.astro']
 const allExtensions = [
   ...nodeExtensions,
   ...typescriptExtensions,
-  // ...astroExtensions,
+  ...astroExtensions,
 ]
 
 module.exports = {
   allExtensions,
+  astroExtensions,
   nodeExtensions,
   typescriptExtensions,
 }
