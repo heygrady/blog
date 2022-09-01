@@ -17,6 +17,7 @@
   "scripts": {
     "build": "turbo run --concurrency=4 build",
     "clean": "turbo run clean",
+    "clean:hard": "turbo run clean --force && yarn workspaces foreach exec \"rm -drf node_modules\" && rm -drf node_modules",
     "coverage": "turbo run --concurrency=4 coverage",
     "coverag:ci": "turbo run --concurrency=2 coverage -- --maxWorkers=2 --forceExit",
     "format": "turbo run --concurrency=4 format",
@@ -36,6 +37,7 @@
     "@manypkg/cli": "^0.19.1",
     "firebase-tools": "^11.8.0",
     "husky": "^8.0.1",
+    "rimraf": "^3.0.2",
     "turbo": "^1.4.3"
   },
   "packageManager": "yarn@3.2.3",
@@ -43,5 +45,8 @@
     "node": "16.17.0",
     "npm": "8.18.0",
     "yarn": "1.22.19"
+  },
+  "devDependencies": {
+    "@types/rimraf": "^3"
   }
 }
