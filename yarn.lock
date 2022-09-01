@@ -1175,6 +1175,7 @@ __metadata:
     handlebars: ^4.7.7
     lint-staged: ^13.0.3
     param-case: ^3.0.4
+    superstruct: ^0.16.0
     supports-color: ^9.2.2
     yargs: ^17.5.1
     zx: ^7.0.7
@@ -13555,6 +13556,13 @@ __metadata:
   bin:
     superstatic: bin/server
   checksum: 04ceebac683cc2c217428715c606368ab37d3bc53810b1de24361231e3ffb64d6f0914ec3a05f37a1e46d1e9ad5448b9be2365b03d0ca3f0d428242d2503f731
+  languageName: node
+  linkType: hard
+
+"superstruct@npm:^0.16.0":
+  version: 0.16.0
+  resolution: "superstruct@npm:0.16.0"
+  checksum: 1979c287f95f2a9dece537f74f5330b0b831965030fe025e2d52dfb3ecdf8974251371cc22d5cdf36960639b039687e5a236881f6ec7cf33d5c8fdc348f13a46
   languageName: node
   linkType: hard
 
