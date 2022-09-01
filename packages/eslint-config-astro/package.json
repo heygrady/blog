@@ -23,7 +23,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@heygrady/eslint-config": "^1.0.0",
+    "@heygrady/eslint-config": "^1.0.1",
     "@rushstack/eslint-patch": "^1.1.4",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",

@@ -130,12 +130,12 @@ If you are implementing a new API you may need to generate fake responses using 
 Here's a responder that will return mock data while you are in [development](https://babeljs.io/docs/plugins/transform-inline-environment-variables/):
 
 ```js
+import 'fetch-everywhere'
 import { createFetchAction } from 'fetch-actions'
 
+import data from './mock/posts.js'
 import requestCreator from './requestCreators'
 import transformer from './transformers'
-import 'fetch-everywhere'
-import data from './mock/posts.js'
 
 const responder = (request, action) => {
   if (process.env.NODE_ENV === 'development') {
@@ -160,13 +160,13 @@ Below you can see a `responder` that is only called for the `FETCH_POSTS` action
 
 ```js
 import { createFetchAction, handleResponderActions } from 'fetch-actions'
+import 'fetch-everywhere'
 
 import { FETCH_POSTS } from '../modules/posts/constants'
 
+import data from './mock/posts.js'
 import requestCreator from './requestCreators'
 import transformer from './transformers'
-import 'fetch-everywhere'
-import data from './mock/posts.js'
 
 const fetchPostsResponder = (input, init) => {
   return Promise.resolve(new Response(JSON.stringify(data)))
@@ -295,8 +295,10 @@ Here's an example of passing part of the tree to a child `transformer`:
 
 ```js
 import { createFetchAction, handleRequestCreatorActions, handleTransformerActions } from 'fetch-actions'
-import requestCreator from './requestCreators'
+
 import { FETCH_POSTS } from '../modules/posts/constants'
+
+import requestCreator from './requestCreators'
 import 'fetch-everywhere'
 
 const childTransformer = handleTransformerActions({

@@ -204,17 +204,16 @@ Here's an example of porting the `<Bio />` component from Gatsby to Astro.
 See [`Bio.js` here](https://github.com/heygrady/blog/blob/c5660d45c348d87967ce511dde22442743b87100/src/components/Bio.js)
 
 ```jsx
-
-
 import React, { Component } from 'react'
 
 // Import typefaces
 import 'typeface-montserrat'
 import 'typeface-merriweather'
 
-import profilePic from './profile-pic.jpg'
-import { rhythm } from '../utils/typography'
 import config from '../config'
+import { rhythm } from '../utils/typography'
+
+import profilePic from './profile-pic.jpg'
 
 class Bio extends Component {
   render () {
