@@ -10,11 +10,10 @@
   },
   "type": "commonjs",
   "license": "MIT",
-  "main": "./index.js",
+  "main": "./ts-node-esm.js",
   "files": [
     "lib/**/*",
     ".prettierrc.js",
-    "astro.js",
     "node.js",
     "ts-node-esm.js",
     "tsx-react-esm.js",
@@ -36,7 +35,6 @@
     "eslint-config-standard-react": "^11.0.1",
     "eslint-config-standard-with-typescript": "^22.0.0",
     "eslint-import-resolver-typescript": "^3.5.0",
-    "eslint-plugin-astro": "^0.17.1",
     "eslint-plugin-compat": "^4.0.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^27.0.1",
@@ -55,7 +53,6 @@
     "pkg-dir": "^5.0.0",
     "prettier": "^2.7.1",
     "prettier-config-standard": "^5.0.0",
-    "prettier-plugin-astro": "^0.5.3",
     "typescript": "^4.8.2"
   },
   "devDependencies": {
