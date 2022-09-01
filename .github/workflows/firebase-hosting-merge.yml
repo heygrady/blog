@@ -16,12 +16,15 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@heygrady'
       - name: TurboRepo local server
         uses: felixmosh/turborepo-gh-artifacts@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           server-token: ${{ secrets.TURBO_SERVER_TOKEN }}
-      - run: yarn install && yarn build
+      - run: yarn install
+      - run: yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

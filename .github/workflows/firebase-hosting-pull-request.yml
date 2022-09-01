@@ -13,6 +13,8 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@heygrady'
       - name: TurboRepo local server
         uses: felixmosh/turborepo-gh-artifacts@v1
         with:
