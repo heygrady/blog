@@ -1138,8 +1138,6 @@ __metadata:
     autoprefixer: ^10.4.8
     date-fns: ^2.29.2
     eslint: ^8.23.0
-    prettier: ^2.7.1
-    prettier-config-standard: ^5.0.0
     rimraf: ^3.0.2
     typography: ^0.16.21
     typography-theme-wordpress-2016: ^0.16.19
