@@ -18,8 +18,8 @@
   ],
   "scripts": {
     "clean": "rimraf .turbo",
-    "format": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\" --fix",
-    "lint": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\"",
+    "format": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}\" --fix",
+    "lint": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}\"",
     "precommit": "lint-staged"
   },
   "dependencies": {
@@ -41,7 +41,7 @@
     "rimraf": "^3.0.2"
   },
   "lint-staged": {
-    "*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}": [
+    "*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": [
       "eslint --fix"
     ]
   },
