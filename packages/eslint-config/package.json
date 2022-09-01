@@ -20,6 +20,7 @@
     "zx.js"
   ],
   "scripts": {
+    "clean": "rimraf .turbo",
     "format": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\" --fix",
     "lint": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\"",
     "precommit": "lint-staged"
@@ -56,7 +57,9 @@
     "typescript": "^4.8.2"
   },
   "devDependencies": {
-    "lint-staged": "^13.0.3"
+    "@types/rimraf": "^3",
+    "lint-staged": "^13.0.3",
+    "rimraf": "^3.0.2"
   },
   "lint-staged": {
     "*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}": [
