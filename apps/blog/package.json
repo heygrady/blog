@@ -2,6 +2,13 @@
   "name": "@heygrady/blog-app",
   "version": "1.0.3",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heygrady/blog.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
