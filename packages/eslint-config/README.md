@@ -1,1 +1,1 @@
-# @comfy/eslint-config
+# @heygrady/eslint-config
