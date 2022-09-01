@@ -40,4 +40,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages#example-workflow
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
