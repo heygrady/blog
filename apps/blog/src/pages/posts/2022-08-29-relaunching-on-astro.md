@@ -33,6 +33,8 @@ The official [Firebase Github Action](https://firebase.google.com/docs/hosting/g
 
 This part is totally extra but I wanted to upgrade my blog repo to be a monorepo instead of a single-package repo. This is hardly useful for a typical blog site and I won't spend much time on this piece during this post. I've been wanting to play with Changesets and took the opportunity for this project.
 
+See [creating a Yarn Monorepo in 2022](./2022-09-01-creating-a-yarn-monorepo-in-2022) for more details.
+
 ### Framework: Astro
 
 This is the focus of this post. Astro is an exciting new framework that builds on the advances of the last several years (it uses Vite + ES Build under the hood). It provides out of the box integrations with the most popular UI frameworks today (React, Vue, SolidJS, Svelte). It also provides its own custom template language that is very easy to work with.
