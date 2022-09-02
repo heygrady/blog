@@ -170,7 +170,7 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
