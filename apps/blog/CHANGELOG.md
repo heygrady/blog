@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.1.1
+
+### Patch Changes
+
+- 72e2155: Improve action cache
+
 ## 1.1.0
 
 ### Minor Changes
