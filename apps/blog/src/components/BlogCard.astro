@@ -23,7 +23,11 @@ const { title, description, pubDate, path } = Astro.props
     style={{
       marginBottom: typography.rhythm(1 / 6),
     }}>
-    <a rel="prefetch" class="BlogCard__link" style={{ boxShadow: 'none' }} href={path}>
+    <a
+      rel="prefetch"
+      class="BlogCard__link"
+      style={{ boxShadow: 'none' }}
+      href={path}>
       <span class="BlogCard__title">{title}</span>
     </a>
   </h3>
