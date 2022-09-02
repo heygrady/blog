@@ -1,4 +1,6 @@
 ---
+import { Image } from '@astrojs/image/components'
+
 import BaseHead from '../components/BaseHead.astro'
 import Bio from '../components/Bio.astro'
 import Body from '../components/Body.astro'
@@ -20,6 +22,9 @@ export interface Props {
 const {
   content: { title, description, pubDate, updatedDate, heroImage },
 } = Astro.props
+const heroImageMetadata = heroImage
+  ? import(/* @vite-ignore */ heroImage)
+  : undefined
 ---
 
 <html lang="en-US">
@@ -63,7 +68,18 @@ const {
             }}>
             {description}
           </h2>
-          {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
+          {
+            heroImage && (
+              <Image
+                width={720}
+                height={360}
+                aspectRatio="2:1"
+                quality="70"
+                src={heroImageMetadata}
+                alt=""
+              />
+            )
+          }
           <slot />
         </article>
         <hr

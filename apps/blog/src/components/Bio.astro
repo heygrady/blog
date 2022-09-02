@@ -1,4 +1,6 @@
 ---
+import { Image } from '@astrojs/image/components'
+
 import { data } from '../config'
 import profilePic from '../images/profile-pic.jpg'
 import { typography } from '../utils/typography'
@@ -8,8 +10,12 @@ import { typography } from '../utils/typography'
   style={{
     marginBottom: typography.rhythm(2.5),
   }}>
-  <img
+  <Image
     src={profilePic}
+    height={112}
+    width={112}
+    aspectRatio="1:1"
+    quality="100"
     alt={data.author}
     style={{
       float: 'left',
