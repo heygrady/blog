@@ -8,6 +8,7 @@
   "eslint.validate": [
     "javascript",
     "javascriptreact",
+    "astro",
     "typescript",
     "typescriptreact",
     "markdown"
