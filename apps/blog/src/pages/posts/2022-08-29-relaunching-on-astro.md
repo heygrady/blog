@@ -3,7 +3,7 @@ layout: "../../layouts/BlogPost.astro"
 title: "Relaunching on Astro"
 description: "Upgrading my blog from a very outdated version of Gastby to Astro."
 pubDate: "2022-08-29T23:40:29Z"
-heroImage: "../images/hero-relaunching-on-astro.jpg"
+heroImage: "hero-relaunching-on-astro.jpg"
 ---
 
 I update my blog very rarely. It seems like I blog during the summer, in short bursts, every five years. My last [series of blog posts](https://heygrady.com/posts/2017-06-30-new-blog) are from 2017; and before that it was [my Octopress blog in 2012](https://2012.heygrady.com/). Upgrading from Octopress to Gatsby was a tough challenge and I give up entirely. I ended up archiving that old site on a sub-domain.

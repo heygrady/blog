@@ -23,7 +23,7 @@ const {
   content: { title, description, pubDate, updatedDate, heroImage },
 } = Astro.props
 const heroImageMetadata = heroImage
-  ? import(/* @vite-ignore */ heroImage)
+  ? import(`../images/${heroImage.split('.')[0]}.jpg`)
   : undefined
 ---
 
@@ -74,7 +74,7 @@ const heroImageMetadata = heroImage
                 width={720}
                 height={360}
                 aspectRatio="2:1"
-                quality="70"
+                quality={70}
                 src={heroImageMetadata}
                 alt=""
               />
