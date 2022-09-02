@@ -79,7 +79,7 @@ module.exports = [
   },
   // Fixes collision with markdown files
   {
-    files: ['**/src/**/*.md/*.{js,jsx,cjs,mjs,ts,tsx,cts,mts}'],
+    files: ['**/src/**/*.md/*.{js,jsx,ts,tsx}'],
     parserOptions: {
       project: null,
     },

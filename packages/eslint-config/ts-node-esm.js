@@ -5,6 +5,7 @@ const { allExtensions } = require('./lib/commonExtensions.js')
 module.exports = {
   extends: [
     'eslint:recommended',
+    'plugin:eslint-comments/recommended',
     'plugin:compat/recommended',
     'plugin:n/recommended',
     'plugin:import/recommended',
