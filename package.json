@@ -24,10 +24,10 @@
     "lint": "turbo run --concurrency=4 lint",
     "postinstall": "husky install",
     "release": "yarn build && changeset publish",
-    "version": "changeset version && yarn install",
     "start": "yarn workspace @heygrady/blog-app start",
     "test": "turbo run --concurrency=4 test",
-    "test:ci": "turbo run --concurrency=2 test -- --maxWorkers=2 --forceExit"
+    "test:ci": "turbo run --concurrency=2 test -- --maxWorkers=2 --forceExit",
+    "version": "changeset version && yarn install"
   },
   "dependencies": {
     "@changesets/cli": "^2.24.4",

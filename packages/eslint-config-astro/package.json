@@ -6,6 +6,7 @@
     "url": "https://github.com/heygrady/blog.git"
   },
   "publishConfig": {
+    "access": "public",
     "registry": "https://npm.pkg.github.com"
   },
   "type": "commonjs",
@@ -14,7 +15,8 @@
   "files": [
     "lib/**/*",
     ".prettierrc.js",
-    "astro.js"
+    "astro.js",
+    "README.md"
   ],
   "scripts": {
     "clean": "rimraf .turbo",
