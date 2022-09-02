@@ -1,3 +1,4 @@
+import image from '@astrojs/image'
 import mdx from '@astrojs/mdx'
 import prefetch from '@astrojs/prefetch'
 import sitemap from '@astrojs/sitemap'
@@ -6,7 +7,7 @@ import { defineConfig } from 'astro/config'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://heygrady.com',
-  integrations: [mdx(), sitemap(), prefetch()],
+  integrations: [mdx(), sitemap(), prefetch(), image()],
   markdown: {
     shikiConfig: {
       // https://github.com/shikijs/shiki/blob/main/docs/themes.md

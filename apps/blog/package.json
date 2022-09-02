@@ -7,6 +7,7 @@
     "url": "https://github.com/heygrady/blog.git"
   },
   "publishConfig": {
+    "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
@@ -28,6 +29,7 @@
     "typography-theme-wordpress-2016": "^0.16.19"
   },
   "devDependencies": {
+    "@astrojs/image": "^0.5.0",
     "@astrojs/mdx": "^0.11.0",
     "@astrojs/prefetch": "^0.0.7",
     "@astrojs/rss": "^1.0.0",
