@@ -22,9 +22,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: yarn-cache-folder-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
+          key: root-node-modules-folder-v1
           restore-keys: |
-            yarn-cache-folder-
+            root-node-modules-folder-
       - name: TurboRepo local server
         uses: felixmosh/turborepo-gh-artifacts@v1
         with:
