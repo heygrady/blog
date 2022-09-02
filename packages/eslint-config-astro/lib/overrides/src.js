@@ -1,7 +1,6 @@
 module.exports = [
   {
-    // FIXME: add astro extension
-    files: ['src/**/*.{mjs,js,jsx,mts,ts,tsx}'],
+    files: ['src/**/*.{astro,mjs,js,jsx,mts,ts,tsx}'],
     rules: {
       'import/extensions': 'off',
       'n/file-extension-in-import': [
@@ -16,7 +15,7 @@ module.exports = [
     },
   },
   {
-    files: ['**/*.md/*.js', '**/*.md/*.jsx', '**/*.md/*.ts', '**/*.md/*.tsx'],
+    files: ['**/*.md/*.{astro,mjs,js,jsx,mts,ts,tsx}'],
     rules: {
       'import/no-unresolved': 'off',
       'n/file-extension-in-import': [

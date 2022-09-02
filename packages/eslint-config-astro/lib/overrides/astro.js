@@ -17,9 +17,17 @@ module.exports = [
     },
     rules: {
       'import/extensions': 'off',
+
       // https://github.com/weiran-zsd/eslint-plugin-node/issues/47
       'n/no-missing-import': 'off',
       'n/no-unsupported-features/es-syntax': 'off',
     },
+  },
+  {
+    files: ['**/*.md/*.astro', '**/*.md/*.astro/*.js'],
+    parserOptions: {
+      project: null,
+    },
+    rules: {},
   },
 ]
