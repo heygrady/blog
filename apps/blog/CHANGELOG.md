@@ -1,5 +1,18 @@
 # @heygrady/blog-app
 
+## 1.1.0
+
+### Minor Changes
+
+- 4483ae5: New post and some repo cleanup
+
+### Patch Changes
+
+- a9b1150: New Create Post Command
+- 7a0cfca: Fix a typo that caused eslint-plugin-astro to freak out
+- 678b629: Fix image build issues
+- 993d388: Improving Eslint Config
+
 ## 1.0.5
 
 ### Patch Changes
