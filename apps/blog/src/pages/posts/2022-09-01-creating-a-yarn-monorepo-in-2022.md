@@ -3,7 +3,7 @@ layout: "../../layouts/BlogPost.astro"
 title: "Creating a Yarn Monorepo in 2022"
 description: "Setting up a productive monorepo with modern tooling."
 pubDate: "2022-09-01T06:58:32.817Z"
-heroImage: "../images/hero-create-yarn-monorepo.jpg"
+heroImage: "hero-create-yarn-monorepo.jpg"
 ---
 
 The goal here is to create an new monorepo that is ready to start creating packages and apps. This is similar to the Turborepo starter but it doesn't use turbo to initialize the repo.
