@@ -190,7 +190,7 @@ import { typography } from '../utils/typography'
 <!-- ... -->
 
 <!-- Typography -->
-<style is:inline set:html={typography.toString()}>
+<style is:inline set:html={typography.toString()}></style>
 ```
 
 ## Port over components
