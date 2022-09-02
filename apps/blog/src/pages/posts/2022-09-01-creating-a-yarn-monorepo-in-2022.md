@@ -186,11 +186,16 @@ jobs:
           cache: 'yarn'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@heygrady'
-      - name: Cache root node_modules
+      - name: Cache node_modules and yarn cache
         uses: actions/cache@v3
         with:
-          path: node_modules
-          key: root-node-modules-folder-v0
+          path: |
+            node_modules
+            apps/*/node_modules
+            packages/*/node_modules
+            scripts/*/node_modules
+            .yarn/cache
+          key: root-node-modules-folder-v1
           restore-keys: |
             root-node-modules-folder-
       - run: yarn install
