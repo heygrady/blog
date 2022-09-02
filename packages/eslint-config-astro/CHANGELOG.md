@@ -1,5 +1,22 @@
 # @heygrady/eslint-config-astro
 
+## 1.2.0
+
+### Minor Changes
+
+- 0c61b6e: Enable eslint-plugin-eslint-comments and eslint-plugin-astro
+
+### Patch Changes
+
+- a9b1150: New Create Post Command
+- 4483ae5: New post and some repo cleanup
+- 993d388: Improving Eslint Config
+- Updated dependencies [a9b1150]
+- Updated dependencies [4483ae5]
+- Updated dependencies [993d388]
+- Updated dependencies [0c61b6e]
+  - @heygrady/eslint-config@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes
