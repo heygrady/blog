@@ -30,7 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "eslint": "^8.23.0",
-    "eslint-plugin-astro": "^0.17.1",
+    "eslint-plugin-astro": "^0.18.0",
     "pkg-dir": "^5.0.0",
     "prettier": "^2.7.1",
     "prettier-config-standard": "^5.0.0",
