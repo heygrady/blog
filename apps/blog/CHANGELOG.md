@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.0
+
+### Minor Changes
+
+- 2578bb0: Init Firebase App
+
 ## 1.1.1
 
 ### Patch Changes
