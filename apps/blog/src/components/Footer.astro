@@ -13,7 +13,17 @@ const today = new Date()
     text-align: center;
   }
 </style>
-
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPNEYCN59K"
+></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || []
+  function gtag() {
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+  gtag('config', 'G-ZPNEYCN59K')
+</script>
 <script>
   import { init } from '../firebase'
   init()
