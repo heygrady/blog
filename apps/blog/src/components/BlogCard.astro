@@ -10,6 +10,8 @@ export interface Props {
 }
 
 const { title, description, pubDate, path } = Astro.props
+
+const trailingSlash = (path: string) => (path.endsWith('/') ? path : `${path}/`)
 ---
 
 <li
@@ -27,7 +29,7 @@ const { title, description, pubDate, path } = Astro.props
       rel="prefetch"
       class="BlogCard__link"
       style={{ boxShadow: 'none' }}
-      href={path}>
+      href={trailingSlash(path)}>
       <span class="BlogCard__title">{title}</span>
     </a>
   </h3>
