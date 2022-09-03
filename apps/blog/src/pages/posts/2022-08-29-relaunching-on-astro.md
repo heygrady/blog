@@ -75,7 +75,7 @@ git clone git@github.com:heygrady/blog.git
 
 # start a branch
 cd blog
-git branch astro
+git checkout -b astro
 ```
 
 ### Monorepo
