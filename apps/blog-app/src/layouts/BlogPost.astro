@@ -1,5 +1,5 @@
 ---
-import { Image } from '@astrojs/image/components'
+import { Picture } from '@astrojs/image/components'
 
 import BaseHead from '../components/BaseHead.astro'
 import Bio from '../components/Bio.astro'
@@ -70,14 +70,36 @@ const heroImageMetadata = heroImage
           </h2>
           {
             heroImage && (
-              <Image
-                width={720}
-                height={360}
-                aspectRatio="2:1"
-                quality={70}
-                src={heroImageMetadata}
-                alt=""
-              />
+              <>
+                <Picture
+                  class="BlogPost__hero"
+                  widths={[780, 1440]}
+                  sizes={'((max-width: 0) and (max-width: 720px)) 780px, (min-width: 720px) 1440px'}
+                  aspectRatio="2:1"
+                  quality={70}
+                  src={heroImageMetadata}
+                  alt=""
+                />
+                <style>
+                  .BlogPost__hero {
+                    display: block;
+                    width: 100%;
+                    height: 0;
+                    padding-bottom: 50%;
+                    position: relative;
+                    margin-bottom: 1.75rem;
+                  }
+                  .BlogPost__hero img {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    max-height: 100%;
+                  }
+                </style>
+              </>
+              
             )
           }
           <slot />
