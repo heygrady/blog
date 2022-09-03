@@ -97,9 +97,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/mdx@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "@astrojs/mdx@npm:0.11.0"
+"@astrojs/mdx@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@astrojs/mdx@npm:0.11.1"
   dependencies:
     "@astrojs/prism": ^1.0.1
     "@mdx-js/mdx": ^2.1.2
@@ -116,7 +116,7 @@ __metadata:
     shiki: ^0.11.1
     unist-util-visit: ^4.1.0
     vfile: ^5.3.2
-  checksum: 0f518b698269129d6066d3148b1c4f80538f97d2527f2a4ad32dad54aa956001ea567250debe1dd0153b22c25ffcd0a9e6a5d4f5f8394fb566ae8b5c8ab45398
+  checksum: b6e8a42ffc6215e69f473f31fdcca891ed6fff9f91bde457e5913aad1b0e152f1cfb1a4ce1a544535d94d78fb35c3dbc846ff71b6baf41dd5e7f77e070f17096
   languageName: node
   linkType: hard
 
@@ -1656,12 +1656,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@heygrady/blog-app@workspace:apps/blog":
+"@heygrady/blog-app@workspace:apps/blog-app":
   version: 0.0.0-use.local
-  resolution: "@heygrady/blog-app@workspace:apps/blog"
+  resolution: "@heygrady/blog-app@workspace:apps/blog-app"
   dependencies:
     "@astrojs/image": ^0.5.0
-    "@astrojs/mdx": ^0.11.0
+    "@astrojs/mdx": ^0.11.1
     "@astrojs/prefetch": ^0.0.7
     "@astrojs/rss": ^1.0.0
     "@astrojs/sitemap": ^1.0.0
@@ -1674,7 +1674,7 @@ __metadata:
     "@types/prettier": ^2
     "@types/rimraf": ^3
     "@types/typography": ^0
-    astro: ^1.1.3
+    astro: ^1.1.5
     autoprefixer: ^10.4.8
     date-fns: ^2.29.2
     eslint: ^8.23.0
@@ -1693,33 +1693,33 @@ __metadata:
     "@commitlint/cli": ^17.1.2
     "@commitlint/config-conventional": ^17.1.0
     "@commitlint/config-lerna-scopes": ^17.0.2
-    "@heygrady/create-post-command": "workspace:*"
+    "@heygrady/create-post": "workspace:*"
     "@manypkg/cli": ^0.19.1
     "@types/rimraf": ^3
     firebase-tools: ^11.8.0
     husky: ^8.0.1
     rimraf: ^3.0.2
-    turbo: ^1.4.3
+    turbo: ^1.4.5
   languageName: unknown
   linkType: soft
 
-"@heygrady/create-post-command@workspace:*, @heygrady/create-post-command@workspace:scripts/create-post-command":
+"@heygrady/create-post@workspace:*, @heygrady/create-post@workspace:scripts/create-post":
   version: 0.0.0-use.local
-  resolution: "@heygrady/create-post-command@workspace:scripts/create-post-command"
+  resolution: "@heygrady/create-post@workspace:scripts/create-post"
   dependencies:
     "@heygrady/eslint-config": ^1.2.0
     "@manypkg/find-root": ^1.1.0
     "@manypkg/get-packages": ^1.1.3
     "@rushstack/eslint-patch": ^1.1.4
     cosmiconfig: ^7.0.1
-    eslint: ^8.20.0
+    eslint: ^8.23.0
     handlebars: ^4.7.7
     lint-staged: ^13.0.3
     param-case: ^3.0.4
     superstruct: ^0.16.0
     supports-color: ^9.2.2
     yargs: ^17.5.1
-    zx: ^7.0.7
+    zx: ^7.0.8
   bin:
     create-post: ./index.js
   languageName: unknown
@@ -1735,7 +1735,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.36.1
     "@typescript-eslint/parser": ^5.36.1
     eslint: ^8.23.0
-    eslint-plugin-astro: ^0.17.1
+    eslint-plugin-astro: ^0.18.0
     lint-staged: ^13.0.3
     pkg-dir: ^5.0.0
     prettier: ^2.7.1
@@ -1773,7 +1773,7 @@ __metadata:
     eslint-plugin-n: ^15.2.5
     eslint-plugin-prettier: ^4.2.1
     eslint-plugin-promise: ^6.0.1
-    eslint-plugin-react: ^7.31.1
+    eslint-plugin-react: ^7.31.4
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-storybook: ^0.6.4
     eslint-plugin-testing-library: ^5.6.0
@@ -3298,7 +3298,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ast-types@npm:0.14.2, ast-types@npm:^0.14.2":
+"ast-types@npm:0.14.2":
   version: 0.14.2
   resolution: "ast-types@npm:0.14.2"
   dependencies:
@@ -3332,23 +3332,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astro-eslint-parser@npm:^0.5.0":
-  version: 0.5.1
-  resolution: "astro-eslint-parser@npm:0.5.1"
+"astro-eslint-parser@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "astro-eslint-parser@npm:0.6.0"
   dependencies:
     "@astrojs/compiler": 0.18.0 - 0.23.0 || ^0.23.0
     "@typescript-eslint/types": ^5.25.0
+    astrojs-compiler-sync: ^0.2.0
     debug: ^4.3.4
     eslint-visitor-keys: ^3.0.0
     espree: ^9.0.0
-    synckit: ^0.8.0
-  checksum: e115700488f4e3b94f0207274ef4f789721099e395a09e0929bb606309efa11566f140a08fa33ed986a237b829e2a89486f733345b8df2a47c5c81fd6893d79c
+  checksum: d9ee371752c5c72a4e7fbd769ddf0cbcee6e8e6d2935593887292d9fdd04fde3bc43b7f4d622598eb40b1f125765ef70dd030fc75a3dd2161029f5b857375eb7
   languageName: node
   linkType: hard
 
-"astro@npm:^1.1.3":
-  version: 1.1.3
-  resolution: "astro@npm:1.1.3"
+"astro@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "astro@npm:1.1.5"
   dependencies:
     "@astrojs/compiler": ^0.23.4
     "@astrojs/language-server": ^0.23.0
@@ -3363,7 +3363,6 @@ __metadata:
     "@babel/types": ^7.18.4
     "@proload/core": ^0.3.2
     "@proload/plugin-tsm": ^0.2.1
-    ast-types: ^0.14.2
     boxen: ^6.2.1
     ci-info: ^3.3.1
     common-ancestor-path: ^1.0.1
@@ -3407,7 +3406,18 @@ __metadata:
     zod: ^3.17.3
   bin:
     astro: astro.js
-  checksum: c82337100786d4cad4e71e4fa5da3161b807525ce0a3dad21e2aa0283ca0f4c0767f6c4ec78e33b0126bcc9a3cd511a81b0defe3bebe11a9b2e42176f4a13098
+  checksum: fa997f28be32b256bd6960bed78d3122717b07a28023bf92acbc825689a4e308602b7372e3b0d0a99257a172f20520a083eda38694ada34d5e17cb75da010fa9
+  languageName: node
+  linkType: hard
+
+"astrojs-compiler-sync@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "astrojs-compiler-sync@npm:0.2.0"
+  dependencies:
+    synckit: ^0.8.0
+  peerDependencies:
+    "@astrojs/compiler": ">=0.18.0"
+  checksum: 2a7d66c48ac79dc56f154731fbd6ac5023ee5331cdc38fba9e19b2f8035849764a6cae69e36080e5f1e37cae9cb59d5f36f4d0511a013eab777bb6cd7143739a
   languageName: node
   linkType: hard
 
@@ -5879,19 +5889,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-astro@npm:^0.17.1":
-  version: 0.17.1
-  resolution: "eslint-plugin-astro@npm:0.17.1"
+"eslint-plugin-astro@npm:^0.18.0":
+  version: 0.18.0
+  resolution: "eslint-plugin-astro@npm:0.18.0"
   dependencies:
     "@typescript-eslint/types": ^5.25.0
-    astro-eslint-parser: ^0.5.0
+    astro-eslint-parser: ^0.6.0
     eslint-utils: ^3.0.0
     postcss: ^8.4.14
     postcss-selector-parser: ^6.0.10
     sourcemap-codec: ^1.4.8
   peerDependencies:
     eslint: ">=7.0.0"
-  checksum: b81191670f99b14368097ac029fca599cef840034c197914ece3ff76335d5469dcc5442c3acabfe7ef86d10b42295c46d917291a382d28539a395ae78fa9a933
+  checksum: 449400385479ca9776655c1f7458a081a80bacd09d85d1d059eaa1f530afcd5dac3ee027c3012455af82a98e1f3186740eec66253330f78608608bac7c9ad275
   languageName: node
   linkType: hard
 
@@ -6102,9 +6112,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:^7.31.1":
-  version: 7.31.1
-  resolution: "eslint-plugin-react@npm:7.31.1"
+"eslint-plugin-react@npm:^7.31.4":
+  version: 7.31.4
+  resolution: "eslint-plugin-react@npm:7.31.4"
   dependencies:
     array-includes: ^3.1.5
     array.prototype.flatmap: ^1.3.0
@@ -6122,7 +6132,7 @@ __metadata:
     string.prototype.matchall: ^4.0.7
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
-  checksum: 6217d4c4e36c8fea24facd0cdcf22b2fd38a3603db94ec7c0a6f430046c8564b6c6884e0a9d4a4b8766201f66e8b18af594002210421bf9b6623b1fc32e15a3a
+  checksum: 5fa5293f922c9fc24c300a60b9d3f33a2406116b88df46a134cbcdb514b91b526251ce604716ab1cde94c7c95f25963a56c1509faf867601b3b0f94d9f68d61b
   languageName: node
   linkType: hard
 
@@ -6212,7 +6222,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.20.0, eslint@npm:^8.23.0":
+"eslint@npm:^8.23.0":
   version: 8.23.0
   resolution: "eslint@npm:8.23.0"
   dependencies:
@@ -14892,122 +14902,122 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-android-arm64@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-android-arm64@npm:1.4.3"
+"turbo-android-arm64@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-android-arm64@npm:1.4.5"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-darwin-64@npm:1.4.3"
+"turbo-darwin-64@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-darwin-64@npm:1.4.5"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-darwin-arm64@npm:1.4.3"
+"turbo-darwin-arm64@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-darwin-arm64@npm:1.4.5"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-64@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-freebsd-64@npm:1.4.3"
+"turbo-freebsd-64@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-freebsd-64@npm:1.4.5"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-arm64@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-freebsd-arm64@npm:1.4.3"
+"turbo-freebsd-arm64@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-freebsd-arm64@npm:1.4.5"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-32@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-linux-32@npm:1.4.3"
+"turbo-linux-32@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-linux-32@npm:1.4.5"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-linux-64@npm:1.4.3"
+"turbo-linux-64@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-linux-64@npm:1.4.5"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-linux-arm64@npm:1.4.3"
+"turbo-linux-arm64@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-linux-arm64@npm:1.4.5"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-linux-arm@npm:1.4.3"
+"turbo-linux-arm@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-linux-arm@npm:1.4.5"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"turbo-linux-mips64le@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-linux-mips64le@npm:1.4.3"
+"turbo-linux-mips64le@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-linux-mips64le@npm:1.4.5"
   conditions: os=linux & cpu=mipsel
   languageName: node
   linkType: hard
 
-"turbo-linux-ppc64le@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-linux-ppc64le@npm:1.4.3"
+"turbo-linux-ppc64le@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-linux-ppc64le@npm:1.4.5"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
 
-"turbo-windows-32@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-windows-32@npm:1.4.3"
+"turbo-windows-32@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-windows-32@npm:1.4.5"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-windows-64@npm:1.4.3"
+"turbo-windows-64@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-windows-64@npm:1.4.5"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:1.4.3":
-  version: 1.4.3
-  resolution: "turbo-windows-arm64@npm:1.4.3"
+"turbo-windows-arm64@npm:1.4.5":
+  version: 1.4.5
+  resolution: "turbo-windows-arm64@npm:1.4.5"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^1.4.3":
-  version: 1.4.3
-  resolution: "turbo@npm:1.4.3"
+"turbo@npm:^1.4.5":
+  version: 1.4.5
+  resolution: "turbo@npm:1.4.5"
   dependencies:
-    turbo-android-arm64: 1.4.3
-    turbo-darwin-64: 1.4.3
-    turbo-darwin-arm64: 1.4.3
-    turbo-freebsd-64: 1.4.3
-    turbo-freebsd-arm64: 1.4.3
-    turbo-linux-32: 1.4.3
-    turbo-linux-64: 1.4.3
-    turbo-linux-arm: 1.4.3
-    turbo-linux-arm64: 1.4.3
-    turbo-linux-mips64le: 1.4.3
-    turbo-linux-ppc64le: 1.4.3
-    turbo-windows-32: 1.4.3
-    turbo-windows-64: 1.4.3
-    turbo-windows-arm64: 1.4.3
+    turbo-android-arm64: 1.4.5
+    turbo-darwin-64: 1.4.5
+    turbo-darwin-arm64: 1.4.5
+    turbo-freebsd-64: 1.4.5
+    turbo-freebsd-arm64: 1.4.5
+    turbo-linux-32: 1.4.5
+    turbo-linux-64: 1.4.5
+    turbo-linux-arm: 1.4.5
+    turbo-linux-arm64: 1.4.5
+    turbo-linux-mips64le: 1.4.5
+    turbo-linux-ppc64le: 1.4.5
+    turbo-windows-32: 1.4.5
+    turbo-windows-64: 1.4.5
+    turbo-windows-arm64: 1.4.5
   dependenciesMeta:
     turbo-android-arm64:
       optional: true
@@ -15039,7 +15049,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: ed4f327bf4bdd152a0842c707c4b7f614c360d610fb079dcf351b2d83490883e62e148f30f46c20b963a2c58286461ce12d7fb284f8526801cc25a97a160177f
+  checksum: 31ce43e825606abf1346ae379d7367ec9f0c76d1aca1c167708a149a89da735effaeb50e92ee8c358fbe4e64ec49d2388b4e5b250167036e700901401b3a76c5
   languageName: node
   linkType: hard
 
@@ -16333,7 +16343,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zx@npm:^7.0.7":
+"zx@npm:^7.0.8":
   version: 7.0.8
   resolution: "zx@npm:7.0.8"
   dependencies:
