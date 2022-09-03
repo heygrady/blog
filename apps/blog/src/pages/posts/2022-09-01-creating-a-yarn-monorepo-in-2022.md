@@ -184,8 +184,13 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@heygrady'
+      - name: Setup .yarnrc.yml
+        run: |
+          yarn config set npmScopes.heygrady.npmRegistryServer "https://npm.pkg.github.com"
+          yarn config set npmScopes.heygrady.npmAlwaysAuth true
+          yarn config set npmScopes.heygrady.npmAuthToken $NPM_AUTH_TOKEN
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Cache node_modules and yarn cache
         uses: actions/cache@v3
         with:
