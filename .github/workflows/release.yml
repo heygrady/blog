@@ -18,6 +18,8 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@heygrady'
       - name: Setup .yarnrc.yml
         run: |
           yarn config set npmScopes.heygrady.npmRegistryServer "https://npm.pkg.github.com"
