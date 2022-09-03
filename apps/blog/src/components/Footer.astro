@@ -7,20 +7,14 @@ const today = new Date()
   &copy; {today.getFullYear()} Grady Kuhnline. All rights reserved.
 </footer>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B31DXD59R0"
-></script>
-<script
-  is:inline
-  set:html={`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-B31DXD59R0');`}
-></script>
-
 <style>
   footer {
     padding: 25px;
     text-align: center;
   }
 </style>
+
+<script>
+  import { init } from '../firebase'
+  init()
+</script>

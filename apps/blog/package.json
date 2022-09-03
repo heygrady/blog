@@ -25,6 +25,7 @@
     "@fontsource/merriweather": "^4.5.13",
     "@fontsource/montserrat": "^4.5.12",
     "date-fns": "^2.29.2",
+    "firebase": "^9.9.4",
     "typography": "^0.16.21",
     "typography-theme-wordpress-2016": "^0.16.19"
   },
