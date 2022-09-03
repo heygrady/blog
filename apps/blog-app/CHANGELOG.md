@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.4
+
+### Patch Changes
+
+- bc85701: Add registry config
+
 ## 1.2.3
 
 ### Patch Changes
