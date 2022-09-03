@@ -184,6 +184,8 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@heygrady'
       - name: Setup .yarnrc.yml
         run: |
           yarn config set npmScopes.heygrady.npmRegistryServer "https://npm.pkg.github.com"
@@ -215,6 +217,7 @@ jobs:
           publish: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages#example-workflow
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
