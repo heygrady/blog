@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.3
+
+### Patch Changes
+
+- 35a51eb: Force bump
+
 ## 1.2.2
 
 ### Patch Changes
