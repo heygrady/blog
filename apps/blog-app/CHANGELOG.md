@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.5
+
+### Patch Changes
+
+- 57be099: Tweak hero image
+
 ## 1.2.4
 
 ### Patch Changes
