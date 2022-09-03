@@ -1,5 +1,11 @@
 # @heygrady/eslint-config
 
+## 1.2.1
+
+### Patch Changes
+
+- eb681c8: Upgrade package, fix typos, rename folders
+
 ## 1.2.0
 
 ### Minor Changes

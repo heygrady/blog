@@ -1668,7 +1668,7 @@ __metadata:
     "@fontsource/inconsolata": ^4.5.7
     "@fontsource/merriweather": ^4.5.13
     "@fontsource/montserrat": ^4.5.12
-    "@heygrady/eslint-config-astro": ^1.2.0
+    "@heygrady/eslint-config-astro": ^1.2.1
     "@rushstack/eslint-patch": ^1.1.4
     "@types/eslint": ^8
     "@types/prettier": ^2
@@ -1707,7 +1707,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@heygrady/create-post@workspace:scripts/create-post"
   dependencies:
-    "@heygrady/eslint-config": ^1.2.0
+    "@heygrady/eslint-config": ^1.2.1
     "@manypkg/find-root": ^1.1.0
     "@manypkg/get-packages": ^1.1.3
     "@rushstack/eslint-patch": ^1.1.4
@@ -1725,11 +1725,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@heygrady/eslint-config-astro@^1.2.0, @heygrady/eslint-config-astro@workspace:packages/eslint-config-astro":
+"@heygrady/eslint-config-astro@^1.2.1, @heygrady/eslint-config-astro@workspace:packages/eslint-config-astro":
   version: 0.0.0-use.local
   resolution: "@heygrady/eslint-config-astro@workspace:packages/eslint-config-astro"
   dependencies:
-    "@heygrady/eslint-config": ^1.2.0
+    "@heygrady/eslint-config": ^1.2.1
     "@rushstack/eslint-patch": ^1.1.4
     "@types/rimraf": ^3
     "@typescript-eslint/eslint-plugin": ^5.36.1
@@ -1746,7 +1746,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@heygrady/eslint-config@^1.2.0, @heygrady/eslint-config@workspace:packages/eslint-config":
+"@heygrady/eslint-config@^1.2.1, @heygrady/eslint-config@workspace:packages/eslint-config":
   version: 0.0.0-use.local
   resolution: "@heygrady/eslint-config@workspace:packages/eslint-config"
   dependencies:
