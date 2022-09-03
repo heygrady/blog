@@ -1,6 +1,6 @@
 {
   "name": "@heygrady/eslint-config-astro",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/heygrady/blog.git"
@@ -25,7 +25,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@heygrady/eslint-config": "^1.2.0",
+    "@heygrady/eslint-config": "^1.2.1",
     "@rushstack/eslint-patch": "^1.1.4",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",

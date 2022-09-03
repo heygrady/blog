@@ -1,5 +1,13 @@
 # @heygrady/eslint-config-astro
 
+## 1.2.1
+
+### Patch Changes
+
+- eb681c8: Upgrade package, fix typos, rename folders
+- Updated dependencies [eb681c8]
+  - @heygrady/eslint-config@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes
