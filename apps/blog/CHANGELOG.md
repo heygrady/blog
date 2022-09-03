@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.1
+
+### Patch Changes
+
+- 15c01df: Enable Google Analytics
+
 ## 1.2.0
 
 ### Minor Changes
