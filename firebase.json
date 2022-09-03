@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "apps/blog/dist",
+    "public": "apps/blog-app/dist",
     "rewrites": [
       {
         "source": "**",
