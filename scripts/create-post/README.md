@@ -1,4 +1,4 @@
-# create-post-command
+# create-post
 
 Create a post in an astro app.
 
@@ -6,7 +6,7 @@ Create a post in an astro app.
 
 ```sh
 # in your repo root
-yarn add @heygrady/create-post-command
+yarn add @heygrady/create-post
 ```
 
 ## Usage

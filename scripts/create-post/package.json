@@ -1,5 +1,5 @@
 {
-  "name": "@heygrady/create-post-command",
+  "name": "@heygrady/create-post",
   "version": "1.0.0",
   "repository": {
     "type": "git",
@@ -10,13 +10,12 @@
     "registry": "https://npm.pkg.github.com"
   },
   "type": "module",
-  "main": "./index.js",
+  "main": "./command.js",
   "exports": {
-    ".": "./index.js"
+    ".": "./index.js",
+    "./command": "./command.js"
   },
-  "bin": {
-    "create-post": "./index.js"
-  },
+  "bin": "./index.js",
   "scripts": {
     "clean": "rimraf .turbo",
     "format": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}\" --fix",
@@ -32,12 +31,12 @@
     "superstruct": "^0.16.0",
     "supports-color": "^9.2.2",
     "yargs": "^17.5.1",
-    "zx": "^7.0.7"
+    "zx": "^7.0.8"
   },
   "devDependencies": {
     "@heygrady/eslint-config": "^1.2.0",
     "@rushstack/eslint-patch": "^1.1.4",
-    "eslint": "^8.20.0",
+    "eslint": "^8.23.0",
     "lint-staged": "^13.0.3"
   },
   "lint-staged": {

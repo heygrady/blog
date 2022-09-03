@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -8,7 +6,6 @@ import { getPackages } from '@manypkg/get-packages'
 import Handlebars from 'handlebars'
 import { paramCase } from 'param-case'
 import supportsColor from 'supports-color'
-import yargs from 'yargs/yargs'
 import 'zx/globals'
 
 import { getConfig } from './utils/getConfig.js'
@@ -17,7 +14,13 @@ process.env.FORCE_COLOR = supportsColor.stdout.level
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-const createPostCommand = async () => {
+export const command = 'post'
+
+export const desc = 'Create a new blog post'
+
+export const builder = {}
+
+export const handler = async () => {
   const root = await findRoot()
   const packages = await getPackages(root)
   const config = await getConfig(root)
@@ -28,11 +31,9 @@ const createPostCommand = async () => {
     )
   }
 
-  const title = await question(
-    'What is the title of your post? (use Title Case): '
-  )
+  const title = await question('What is the title of your post? (Title Case): ')
   const description = await question(
-    'What is the description of your post? (use Sentence case.): '
+    'What is the description of your post? (Sentence case.): '
   )
 
   const blogRoot = packages.packages
@@ -56,10 +57,3 @@ const createPostCommand = async () => {
   const content = template({ title, description, pubDate })
   fs.writeFile(postPath, content)
 }
-
-export const argv = yargs(process.argv.slice(2)).command(
-  '$0',
-  'Create a new blog post',
-  () => {},
-  createPostCommand
-).argv
