@@ -11,7 +11,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "cleam": "rimraf .turbo dist",
+    "clean": "rimraf .turbo dist",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
