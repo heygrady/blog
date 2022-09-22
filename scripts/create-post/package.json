@@ -28,7 +28,7 @@
     "cosmiconfig": "^7.0.1",
     "handlebars": "^4.7.7",
     "param-case": "^3.0.4",
-    "superstruct": "^0.16.4",
+    "superstruct": "^0.16.5",
     "supports-color": "^9.2.3",
     "yargs": "^17.5.1",
     "zx": "^7.0.8"
