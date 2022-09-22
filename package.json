@@ -12,7 +12,8 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-    "scripts/*"
+    "scripts/*",
+    "templates/*"
   ],
   "scripts": {
     "build": "turbo run --concurrency=4 build",
