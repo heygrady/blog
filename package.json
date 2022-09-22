@@ -39,7 +39,6 @@
     "@manypkg/cli": "^0.19.1",
     "firebase-tools": "^11.9.0",
     "husky": "^8.0.1",
-    "rimraf": "^3.0.2",
     "turbo": "^1.5.1"
   },
   "packageManager": "yarn@3.2.3",
@@ -47,8 +46,5 @@
     "node": "16.17.0",
     "npm": "8.18.0",
     "yarn": "1.22.19"
-  },
-  "devDependencies": {
-    "@types/rimraf": "^3"
   }
 }
