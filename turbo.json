@@ -9,24 +9,24 @@
     },
     "clean": {},
     "coverage": {
-      "inputs": ["src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
+      "inputs": ["**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
       "outputs": ["coverage/**"],
       "dependsOn": ["^build"]
     },
     "format": {
-      "inputs": ["src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
+      "inputs": ["**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
       "dependsOn": ["^build"]
     },
     "lint": {
-      "inputs": ["src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
+      "inputs": ["**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
       "dependsOn": ["^build"]
     },
     "precommit": {
-      "inputs": ["src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
+      "inputs": ["**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
       "dependsOn": ["^build"]
     },
     "test": {
-      "inputs": ["src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
+      "inputs": ["**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
       "dependsOn": ["^build"]
     }
   }
