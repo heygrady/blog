@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "declaration": false,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "resolveJsonModule": false,
+    "useDefineForClassFields": true
+  },
+  "extends": "@tsconfig/node16-strictest-esm/tsconfig.json",
+  "include": ["src", "test"]
+}
+  
