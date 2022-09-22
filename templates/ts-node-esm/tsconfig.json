@@ -1,0 +1,4 @@
+{
+    "extends": "@heygrady/tsconfig-bases/ts-node-esm/tsconfig.json",
+    "include": ["src", "test"]
+}
