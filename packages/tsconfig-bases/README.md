@@ -1,0 +1,1 @@
+# @heygrady/tsconfig-bases
