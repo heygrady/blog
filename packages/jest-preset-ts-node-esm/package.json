@@ -1,0 +1,51 @@
+{
+  "name": "@heygrady/jest-preset-ts-node-esm",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "license": "MIT",
+  "main": "./jest-preset.js",
+  "files": [
+    "__mocks__/**/*",
+    "jest-preset.js"
+  ],
+  "scripts": {
+    "format": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\" --fix",
+    "lint": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\"",
+    "precommit": "lint-staged"
+  },
+  "dependencies": {
+    "@types/jest": "^29",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.0.3",
+    "jest-config": "^29.0.3",
+    "ts-jest": "^29.0.1",
+    "ts-jest-resolver": "^2.0.0",
+    "typescript": "^4.8.3"
+  },
+  "devDependencies": {
+    "@heygrady/eslint-config": "^1.2.1",
+    "@rushstack/eslint-patch": "^1.2.0",
+    "@types/eslint": "^8",
+    "@types/prettier": "^2",
+    "@types/rimraf": "^3",
+    "eslint": "^8.23.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prettier-config-standard": "^5.0.0"
+  },
+  "lint-staged": {
+    "*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}": [
+      "eslint --fix"
+    ]
+  },
+  "browserslist": [
+    "node 16.14.0"
+  ],
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  },
+  "packageManager": "yarn@3.2.2"
+}
