@@ -26,16 +26,16 @@
   },
   "dependencies": {
     "@heygrady/eslint-config": "^1.2.1",
-    "@rushstack/eslint-patch": "^1.1.4",
-    "@typescript-eslint/eslint-plugin": "^5.36.1",
-    "@typescript-eslint/parser": "^5.36.1",
-    "eslint": "^8.23.0",
-    "eslint-plugin-astro": "^0.18.0",
+    "@rushstack/eslint-patch": "^1.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
+    "eslint": "^8.23.1",
+    "eslint-plugin-astro": "^0.19.0",
     "pkg-dir": "^5.0.0",
     "prettier": "^2.7.1",
     "prettier-config-standard": "^5.0.0",
     "prettier-plugin-astro": "^0.5.4",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.3"
   },
   "devDependencies": {
     "@types/rimraf": "^3",
