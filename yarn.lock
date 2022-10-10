@@ -2120,7 +2120,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@heygrady/jest-preset-ts-node-esm@^1.0.0, @heygrady/jest-preset-ts-node-esm@workspace:packages/jest-preset-ts-node-esm":
+"@heygrady/jest-preset-ts-node-esm@^1.0.1, @heygrady/jest-preset-ts-node-esm@workspace:packages/jest-preset-ts-node-esm":
   version: 0.0.0-use.local
   resolution: "@heygrady/jest-preset-ts-node-esm@workspace:packages/jest-preset-ts-node-esm"
   dependencies:
@@ -2158,8 +2158,8 @@ __metadata:
   resolution: "@heygrady/ts-node-esm@workspace:templates/ts-node-esm"
   dependencies:
     "@heygrady/eslint-config": ^1.2.1
-    "@heygrady/jest-preset-ts-node-esm": ^1.0.0
-    "@heygrady/tsconfig-bases": ^1.0.0
+    "@heygrady/jest-preset-ts-node-esm": ^1.0.1
+    "@heygrady/tsconfig-bases": ^1.0.1
     "@rushstack/eslint-patch": ^1.2.0
     "@swc/cli": ^0.1.57
     "@swc/core": ^1.3.4
@@ -2176,7 +2176,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@heygrady/tsconfig-bases@^1.0.0, @heygrady/tsconfig-bases@workspace:packages/tsconfig-bases":
+"@heygrady/tsconfig-bases@^1.0.1, @heygrady/tsconfig-bases@workspace:packages/tsconfig-bases":
   version: 0.0.0-use.local
   resolution: "@heygrady/tsconfig-bases@workspace:packages/tsconfig-bases"
   dependencies:

@@ -1,5 +1,11 @@
 # @heygrady/create-post-command
 
+## 1.0.2
+
+### Patch Changes
+
+- 1cc958e: Create some new packages
+
 ## 1.0.1
 
 ### Patch Changes
