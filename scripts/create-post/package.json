@@ -1,6 +1,6 @@
 {
   "name": "@heygrady/create-post",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/heygrady/blog.git"
@@ -34,7 +34,7 @@
     "zx": "^7.1.1"
   },
   "devDependencies": {
-    "@heygrady/eslint-config": "^1.2.1",
+    "@heygrady/eslint-config": "^1.2.2",
     "@rushstack/eslint-patch": "^1.2.0",
     "eslint": "^8.25.0",
     "lint-staged": "^13.0.3"

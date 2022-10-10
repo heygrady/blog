@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.6
+
+### Patch Changes
+
+- 4ec2872: Downgrade astro images, upgrade other packages to latest
+
 ## 1.2.5
 
 ### Patch Changes
