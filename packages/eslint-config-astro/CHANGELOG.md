@@ -1,5 +1,13 @@
 # @heygrady/eslint-config-astro
 
+## 1.2.2
+
+### Patch Changes
+
+- 4ec2872: Downgrade astro images, upgrade other packages to latest
+- Updated dependencies [4ec2872]
+  - @heygrady/eslint-config@1.2.2
+
 ## 1.2.1
 
 ### Patch Changes
