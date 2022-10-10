@@ -29,11 +29,17 @@ module.exports = [
     },
     parser: '@typescript-eslint/parser',
     parserOptions: {
-      project: `${root}/tsconfig.json`,
+      project: [
+        `${root}/tsconfig.json`,
+        './packages/*/tsconfig.json',
+        '../../packages/*/tsconfig.json',
+      ],
       tsconfigRootDir: root,
     },
     rules: {
+      '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/triple-slash-reference': 'off',
+
       'import/extensions': 'off',
       // https://github.com/weiran-zsd/eslint-plugin-node/issues/47
       'n/no-missing-import': 'off',
@@ -48,7 +54,11 @@ module.exports = [
     files: ['src/**/*.{js,jsx,cjs,mjs}'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
-      project: `${root}/tsconfig.json`,
+      project: [
+        `${root}/tsconfig.json`,
+        './packages/*/tsconfig.json',
+        '../../packages/*/tsconfig.json',
+      ],
       tsconfigRootDir: root,
     },
     settings: {
