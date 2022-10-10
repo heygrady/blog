@@ -31,12 +31,12 @@
     "superstruct": "^0.16.5",
     "supports-color": "^9.2.3",
     "yargs": "^17.6.0",
-    "zx": "^7.0.8"
+    "zx": "^7.1.1"
   },
   "devDependencies": {
     "@heygrady/eslint-config": "^1.2.1",
     "@rushstack/eslint-patch": "^1.2.0",
-    "eslint": "^8.24.0",
+    "eslint": "^8.25.0",
     "lint-staged": "^13.0.3"
   },
   "lint-staged": {
