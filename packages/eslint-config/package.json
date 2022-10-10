@@ -1,6 +1,8 @@
 {
   "name": "@heygrady/eslint-config",
   "version": "1.2.1",
+  "type": "commonjs",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/heygrady/blog.git"
@@ -9,8 +11,6 @@
     "access": "public",
     "registry": "https://npm.pkg.github.com"
   },
-  "type": "commonjs",
-  "license": "MIT",
   "main": "./ts-node-esm.js",
   "files": [
     "lib/**/*",
@@ -29,9 +29,9 @@
   },
   "dependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
-    "@typescript-eslint/eslint-plugin": "^5.38.0",
-    "@typescript-eslint/parser": "^5.38.0",
-    "eslint": "^8.23.1",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
+    "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-config-standard-jsx": "^11.0.0",
@@ -53,11 +53,11 @@
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.4",
-    "eslint-plugin-testing-library": "^5.6.4",
+    "eslint-plugin-testing-library": "^5.7.2",
     "pkg-dir": "^5.0.0",
     "prettier": "^2.7.1",
     "prettier-config-standard": "^5.0.0",
-    "typescript": "^4.8.3"
+    "typescript": "^4.8.4"
   },
   "devDependencies": {
     "@types/rimraf": "^3",
