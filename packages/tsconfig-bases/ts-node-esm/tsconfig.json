@@ -9,7 +9,7 @@
     "resolveJsonModule": false,
     "useDefineForClassFields": true
   },
-  "extends": "@tsconfig/node16-strictest-esm/tsconfig.json",
+  "extends": ["@tsconfig/node16/tsconfig.json", "@tsconfig/strictest/tsconfig.json", "@tsconfig/esm/tsconfig.json"],
   "include": ["src", "test"]
 }
   
