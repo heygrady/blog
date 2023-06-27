@@ -3,13 +3,14 @@ import { Image } from '@astrojs/image/components'
 
 import { data } from '../config'
 import profilePic from '../images/profile-pic.jpg'
+import { styleToString } from '../utils/styleToString'
 import { typography } from '../utils/typography'
 ---
 
 <p
-  style={{
+  style={styleToString({
     marginBottom: typography.rhythm(2.5),
-  }}>
+  })}>
   <Image
     src={profilePic}
     height={112}
@@ -17,14 +18,14 @@ import { typography } from '../utils/typography'
     aspectRatio="1:1"
     quality={70}
     alt={data.author}
-    style={{
+    style={styleToString({
       float: 'left',
       marginRight: typography.rhythm(1 / 4),
       marginBottom: 0,
       width: typography.rhythm(2),
       height: typography.rhythm(2),
       borderRadius: '50%',
-    }}
+    })}
   />
   Written by <strong>{data.author}</strong>.
   {' '}

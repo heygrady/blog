@@ -148,7 +148,7 @@ This is a port of [the same file](https://github.com/heygrady/blog/blob/c5660d45
 
 ```ts
 import Typography from 'typography'
-// @ts-expect-error
+// @ts-expect-error no types exported
 import Wordpress2016 from 'typography-theme-wordpress-2016'
 
 // FIXME: this is different in prod versus dev

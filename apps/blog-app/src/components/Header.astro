@@ -1,5 +1,6 @@
 ---
 import { SITE_TITLE } from '../config'
+import { styleToString } from '../utils/styleToString'
 import { typography } from '../utils/typography'
 
 export interface Props {
@@ -13,30 +14,30 @@ const { small } = Astro.props
   {
     small ? (
       <h3
-        style={{
+        style={styleToString({
           fontFamily: 'Montserrat, sans-serif',
           lineHeight: typography.rhythm(1),
           marginTop: 0,
           marginBottom: typography.rhythm(-1),
-        }}>
+        })}>
         <a
           rel="prefetch"
-          style={{
+          style={styleToString({
             boxShadow: 'none',
             textDecoration: 'none',
             color: 'inherit',
-          }}
+          })}
           href={'/'}>
           {SITE_TITLE}
         </a>
       </h3>
     ) : (
       <h1
-        style={{
+        style={styleToString({
           ...typography.scale(1.5),
           marginBottom: typography.rhythm(1.5),
           marginTop: 0,
-        }}>
+        })}>
         {SITE_TITLE}
       </h1>
     )

@@ -7,6 +7,7 @@ import Body from '../components/Body.astro'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 import { format } from '../utils/date'
+import { styleToString } from '../utils/styleToString'
 import { typography } from '../utils/typography'
 
 export interface Props {
@@ -22,6 +23,7 @@ export interface Props {
 const {
   content: { title, description, pubDate, updatedDate, heroImage },
 } = Astro.props
+
 const heroImageMetadata = heroImage
   ? import(`../images/${heroImage.split('.')[0]}.jpg`)
   : undefined
@@ -39,12 +41,12 @@ const heroImageMetadata = heroImage
         <article>
           <h1 class="BlogPost__headline">{title}</h1>
           <p
-            style={{
+            style={styleToString({
               ...typography.scale(-1 / 5),
               display: 'block',
               marginBottom: typography.rhythm(0.5),
               marginTop: typography.rhythm(-1),
-            }}>
+            })}>
             {pubDate && <time>{format(pubDate)}</time>}
             {
               updatedDate && (
@@ -55,7 +57,7 @@ const heroImageMetadata = heroImage
             }
           </p>
           <h2
-            style={{
+            style={styleToString({
               color: '#C6C8CA',
               paddingTop: typography.rhythm(1.5),
               borderTop: '4px solid #FF4C3B',
@@ -65,14 +67,13 @@ const heroImageMetadata = heroImage
               fontStyle: 'italic',
               marginBottom: typography.rhythm(1.5),
               marginTop: typography.rhythm(0.5),
-            }}>
+            })}>
             {description}
           </h2>
           {
             heroImage && (
-              <>
+              <div class="BlogPost__hero">
                 <Picture
-                  class="BlogPost__hero"
                   widths={[780, 1440]}
                   sizes={'((max-width: 0) and (max-width: 720px)) 780px, (min-width: 720px) 1440px'}
                   aspectRatio="2:1"
@@ -81,7 +82,7 @@ const heroImageMetadata = heroImage
                   alt=""
                 />
                 <style>
-                  .BlogPost__hero {
+                  .BlogPost__hero picture {
                     display: block;
                     width: 100%;
                     height: 0;
@@ -98,19 +99,19 @@ const heroImageMetadata = heroImage
                     max-height: 100%;
                   }
                 </style>
-              </>
+              </div>
               
             )
           }
           <slot />
         </article>
         <hr
-          style={{
+          style={styleToString({
             background: 'none',
             border: 'none',
             borderTop: '4px solid #FF4C3B',
             marginBottom: typography.rhythm(1),
-          }}
+          })}
         />
       </main>
       <Bio />

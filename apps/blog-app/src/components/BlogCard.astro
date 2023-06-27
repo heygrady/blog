@@ -1,5 +1,6 @@
 ---
 import { format } from '../utils/date'
+import { styleToString } from '../utils/styleToString'
 import { typography } from '../utils/typography'
 
 export interface Props {
@@ -16,19 +17,19 @@ const trailingSlash = (path: string) => (path.endsWith('/') ? path : `${path}/`)
 
 <li
   class="BlogCard"
-  style={{
+  style={styleToString({
     marginBottom: typography.rhythm(1 + 1 / 2),
-  }}>
+  })}>
   <time class="BlogCard__date" datetime={pubDate}>{format(pubDate)}</time>
   <h3
     class="BlogCard__headline"
-    style={{
+    style={styleToString({
       marginBottom: typography.rhythm(1 / 6),
-    }}>
+    })}>
     <a
       rel="prefetch"
       class="BlogCard__link"
-      style={{ boxShadow: 'none' }}
+      style={styleToString({ boxShadow: 'none' })}
       href={trailingSlash(path)}>
       <span class="BlogCard__title">{title}</span>
     </a>

@@ -6,8 +6,15 @@ import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://heygrady.com',
-  integrations: [mdx(), sitemap(), prefetch(), image()],
+  site: 'https://heygrady.com/',
+  integrations: [
+    mdx(),
+    sitemap(),
+    prefetch(),
+    image({
+      serviceEntryPoint: '@astrojs/image/sharp',
+    }),
+  ],
   markdown: {
     shikiConfig: {
       // https://github.com/shikijs/shiki/blob/main/docs/themes.md

@@ -67,9 +67,7 @@ const { title, description, image = '/heygrady-social.jpg' } = Astro.props
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 <!-- Typography -->
-<style is:inline set:html={typography.toString()}>
-
-</style>
+<style is:inline set:html={typography.toString()}></style>
 
 {
   commonFonts.map((url) => (
