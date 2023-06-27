@@ -6,6 +6,9 @@ module.exports = {
     'plugin:astro/recommended',
     'plugin:astro/jsx-a11y-recommended',
   ],
+  rules: {
+    ...require('./lib/rules/prettier.js'),
+  },
   overrides: [
     ...require('./lib/overrides/src.js'),
     ...require('./lib/overrides/astroConfig.js'),
