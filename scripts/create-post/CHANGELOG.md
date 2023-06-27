@@ -1,5 +1,11 @@
 # @heygrady/create-post-command
 
+## 1.0.4
+
+### Patch Changes
+
+- 88ea8b3: Upgrade all packages; Upgrade Astro.
+
 ## 1.0.3
 
 ### Patch Changes

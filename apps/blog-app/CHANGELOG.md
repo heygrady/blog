@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.7
+
+### Patch Changes
+
+- 88ea8b3: Upgrade all packages; Upgrade Astro.
+
 ## 1.2.6
 
 ### Patch Changes
