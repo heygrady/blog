@@ -9,4 +9,4 @@
 "@heygrady/ts-node-esm": patch
 ---
 
-Upgrade all packages; Upgrade Astro
+Upgrade all packages; Upgrade Astro.
