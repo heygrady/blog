@@ -1,5 +1,13 @@
 # @heygrady/eslint-config-astro
 
+## 1.2.3
+
+### Patch Changes
+
+- 88ea8b3: Upgrade all packages; Upgrade Astro.
+- Updated dependencies [88ea8b3]
+  - @heygrady/eslint-config@1.2.3
+
 ## 1.2.2
 
 ### Patch Changes
