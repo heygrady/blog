@@ -1,5 +1,11 @@
 # @heygrady/create-post-command
 
+## 1.0.6
+
+### Patch Changes
+
+- 6cf652c: Hexagonoids
+
 ## 1.0.5
 
 ### Patch Changes
