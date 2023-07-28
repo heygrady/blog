@@ -22,8 +22,8 @@ export const builder = {}
 
 export const handler = async () => {
   const root = await findRoot()
-  const packages = await getPackages(root)
-  const config = await getConfig(root)
+  const packages = await getPackages(root.rootDir)
+  const config = await getConfig(root.rootDir)
 
   if (!config) {
     throw new Error(
