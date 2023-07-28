@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.9
+
+### Patch Changes
+
+- 7dd00ea: Upgrade eslint-config-standard-with-typescript
+
 ## 1.2.8
 
 ### Patch Changes

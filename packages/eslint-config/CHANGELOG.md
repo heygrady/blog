@@ -1,5 +1,11 @@
 # @heygrady/eslint-config
 
+## 1.3.0
+
+### Minor Changes
+
+- 7dd00ea: Upgrade eslint-config-standard-with-typescript
+
 ## 1.2.4
 
 ### Patch Changes
