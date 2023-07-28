@@ -10,7 +10,7 @@ module.exports = {
     'plugin:n/recommended',
     'plugin:import/recommended',
     'plugin:jsdoc/recommended',
-    'standard-with-typescript',
+    'standard',
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',

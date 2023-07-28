@@ -14,7 +14,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:storybook/recommended',
-    'standard-with-typescript',
+    'standard',
     'standard-jsx',
     'standard-react',
     'plugin:prettier/recommended',
