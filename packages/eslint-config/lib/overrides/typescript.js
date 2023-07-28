@@ -4,6 +4,7 @@ const {
   allExtensions,
   typescriptExtensions,
 } = require('../commonExtensions.js')
+const { parserServicesRules } = require('../parserServicesRules.js')
 
 const root = pkgDir.sync()
 
@@ -58,7 +59,7 @@ module.exports = [
   // Parse js files within a Typescript src folder
   {
     files: ['src/**/*.{js,jsx,cjs,mjs}'],
-    extends: ['standard-with-typescript', 'plugin:prettier/recommended'],
+    extends: ['standard', 'plugin:prettier/recommended'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
       project: [
@@ -100,6 +101,14 @@ module.exports = [
     files: ['**/src/**/*.md/*.{js,jsx,ts,tsx}'],
     parserOptions: {
       project: null,
+    },
+    rules: {
+      ...parserServicesRules,
+      'no-undef': 'warn',
+      'no-unused-vars': 'warn',
+      'import/named': 'off',
+      'import/no-unresolved': 'off',
+      'n/no-missing-import': 'off',
     },
   },
 ]

@@ -26,6 +26,7 @@ module.exports = [
       },
     },
     rules: {
+      ...parserServicesRules,
       'no-undef': 'warn',
       'import/named': 'off',
       'import/no-unresolved': 'off',
