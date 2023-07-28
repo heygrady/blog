@@ -1,5 +1,11 @@
 # @heygrady/eslint-config-astro
 
+## 1.3.0
+
+### Minor Changes
+
+- d008865: Remove jest and add vitest to eslint-config-astro
+
 ## 1.2.4
 
 ### Patch Changes
