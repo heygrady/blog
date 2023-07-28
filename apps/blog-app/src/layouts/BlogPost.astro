@@ -25,7 +25,7 @@ const {
 } = Astro.props
 
 const heroImageMetadata = heroImage
-  ? import(`../images/${heroImage.split('.')[0]}.jpg`)
+  ? import(`../images/${heroImage.split('.')[0]}.${heroImage.split('.')[1]}`)
   : undefined
 ---
 
