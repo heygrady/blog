@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.10
+
+### Patch Changes
+
+- 6cf652c: Hexagonoids
+
 ## 1.2.9
 
 ### Patch Changes
