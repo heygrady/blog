@@ -3,7 +3,7 @@ const { parserServicesRules } = require('../parserServicesRules.js')
 // common config overrides for all configs
 module.exports = [
   {
-    files: ['*.config.{js,cjs,mjs}', '*rc.{js,cjs,mjs}'],
+    files: ['*.config.{js,cjs,mjs,ts,cts,mts}', '*rc.{js,cjs,mjs,ts,cts,mts}'],
     rules: {
       ...parserServicesRules,
       'import/no-default-export': 'off',

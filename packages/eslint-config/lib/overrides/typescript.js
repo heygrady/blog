@@ -10,7 +10,11 @@ const root = pkgDir.sync()
 module.exports = [
   {
     files: ['**/*.{cts,mts,ts,tsx}', '**/*.d.{cts,mts,ts}'],
-    extends: ['plugin:import/typescript'],
+    extends: [
+      'plugin:import/typescript',
+      'standard-with-typescript',
+      'plugin:prettier/recommended',
+    ],
     settings: {
       'import/extensions': allExtensions,
       'import/parsers': {
@@ -37,6 +41,7 @@ module.exports = [
       tsconfigRootDir: root,
     },
     rules: {
+      ...require('../rules/prettier.js'),
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/triple-slash-reference': 'off',
 
@@ -49,9 +54,11 @@ module.exports = [
       ],
     },
   },
+
   // Parse js files within a Typescript src folder
   {
     files: ['src/**/*.{js,jsx,cjs,mjs}'],
+    extends: ['standard-with-typescript', 'plugin:prettier/recommended'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
       project: [
@@ -78,6 +85,7 @@ module.exports = [
       },
     },
     rules: {
+      ...require('../rules/prettier.js'),
       'import/extensions': 'off',
       // https://github.com/weiran-zsd/eslint-plugin-node/issues/47
       'n/no-missing-import': 'off',
