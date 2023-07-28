@@ -1,5 +1,11 @@
 # @heygrady/eslint-config-astro
 
+## 1.4.2
+
+### Patch Changes
+
+- 5eafea2: Use correct version for @typescript-eslint/parser
+
 ## 1.4.1
 
 ### Patch Changes
