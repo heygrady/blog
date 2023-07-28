@@ -1,5 +1,16 @@
 # @heygrady/eslint-config-astro
 
+## 1.4.0
+
+### Minor Changes
+
+- 7dd00ea: Upgrade eslint-config-standard-with-typescript
+
+### Patch Changes
+
+- Updated dependencies [7dd00ea]
+  - @heygrady/eslint-config@1.3.0
+
 ## 1.3.0
 
 ### Minor Changes
