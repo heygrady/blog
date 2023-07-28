@@ -1,5 +1,11 @@
 # @heygrady/create-post-command
 
+## 1.0.5
+
+### Patch Changes
+
+- 31ea6fa: Upgrade all packages
+
 ## 1.0.4
 
 ### Patch Changes

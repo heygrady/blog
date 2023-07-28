@@ -1,5 +1,11 @@
 # @heygrady/jest-preset-ts-node-esm
 
+## 1.0.4
+
+### Patch Changes
+
+- 31ea6fa: Upgrade all packages
+
 ## 1.0.3
 
 ### Patch Changes

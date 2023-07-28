@@ -1,5 +1,11 @@
 # @heygrady/eslint-config
 
+## 1.2.4
+
+### Patch Changes
+
+- 31ea6fa: Upgrade all packages
+
 ## 1.2.3
 
 ### Patch Changes
