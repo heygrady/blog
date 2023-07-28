@@ -1,5 +1,11 @@
 # @heygrady/eslint-config
 
+## 1.3.1
+
+### Patch Changes
+
+- a1eeb5b: Typescript fixes
+
 ## 1.3.0
 
 ### Minor Changes

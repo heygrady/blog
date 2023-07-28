@@ -1,5 +1,13 @@
 # @heygrady/eslint-config-astro
 
+## 1.4.1
+
+### Patch Changes
+
+- 286df80: Add missing package
+- Updated dependencies [a1eeb5b]
+  - @heygrady/eslint-config@1.3.1
+
 ## 1.4.0
 
 ### Minor Changes
