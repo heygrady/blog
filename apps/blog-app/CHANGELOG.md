@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.8
+
+### Patch Changes
+
+- 31ea6fa: Upgrade all packages
+
 ## 1.2.7
 
 ### Patch Changes

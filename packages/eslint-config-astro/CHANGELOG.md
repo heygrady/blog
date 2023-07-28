@@ -1,5 +1,13 @@
 # @heygrady/eslint-config-astro
 
+## 1.2.4
+
+### Patch Changes
+
+- 31ea6fa: Upgrade all packages
+- Updated dependencies [31ea6fa]
+  - @heygrady/eslint-config@1.2.4
+
 ## 1.2.3
 
 ### Patch Changes
