@@ -6,7 +6,7 @@ pubDate: "2023-07-28T21:29:45.882Z"
 heroImage: "hero-hexagonoids.png"
 ---
 
-I've been wanting to play around with BabylonJS for quite a while and I finally made a game. It's an Asteroids clone that takes place on the surface of a sphere. I
+I've been wanting to play around with BabylonJS for quite a while and I finally made a game. It's an Asteroids clone that takes place on the surface of a sphere.
 
 Check out [hexagonoids.heygrady.com](https://hexagonoids.heygrady.com/) to play it right now. The code is available at [heygrady/hexagonoids](https://github.com/heygrady/hexagonoids).
 
@@ -16,10 +16,9 @@ Check out [hexagonoids.heygrady.com](https://hexagonoids.heygrady.com/) to play 
 2. Build an asteroids game on top of it
 3. Publish it using Vercel
 
-
 # Project structure
 
-I decided to build this app using [Astro](https://astro.build/), which I recently used to upgrade this blog. I've come to love Astro because it is built on top of tooling (like [Vite](https://vitejs.dev/)) that I really enjoy.
+I decided to build this app using [Astro](https://astro.build/), which I recently used to [upgrade this blog](https://heygrady.com/posts/2022-08-29-relaunching-on-astro/). I've come to love Astro because it is built on top of tooling (like [Vite](https://vitejs.dev/)) that I really enjoy.
 
 - Astro
 - Tailwind
@@ -28,7 +27,7 @@ I decided to build this app using [Astro](https://astro.build/), which I recentl
 - BabylonJS
 
 ### Tailwind
-I decided to use [Tailwind](https://docs.astro.build/en/guides/integrations-guide/tailwind/) because it is well integrated with Astro and is an industry best practice. I'd never worked with Tailwind very much previously. For the small amount of CSS I needed to do for this project it was just as well to hunt and peck in the Tailwind docs as it would be to try and comb the internet for how to make CSS work in 2023. I plan to continue using Tailwind on future projects.
+I decided to use [Tailwind](https://docs.astro.build/en/guides/integrations-guide/tailwind/) because it is well integrated with Astro and is an industry best practice. I'd not previously worked with Tailwind. For the small amount of CSS I needed to do for this project it was just as well to hunt and peck in the Tailwind docs as it would be to try and comb the internet for how to make CSS work in 2023. I plan to continue using Tailwind on future projects.
 
 ### SolidJS
 I decided to use [SolidJS](https://www.solidjs.com/) as a wrapper for my BabylonJS app. This was [not strictly necessary](https://forum.babylonjs.com/t/getting-started-with-solid-js/36954/3) but it helped me get comfortable with the workflow, as Babylon is pretty different from a typical frontend project. It ended up being really nice to use SolidJS for organizing how the app initializes itself and how to manage context.
@@ -49,7 +48,7 @@ There were long stretches of time where ChatGPT was happily telling me how to ac
 
 The collision system was one of those adventures. I had started out trying to mock something up based on how I thought collisions should work. I also wanted to test out some theories about utilizing h3-js for collisions. I ended up with something that worked well but had major performance issues. Because I'd talked it over so thoroughly with ChatGPT I was becoming more aware of how efficient collision systems work. And then, out of nowhere, I realized that BabylonJS had all of that built in and all I had to do was use it.
 
-Overall, this was a great way to get into a library like BabylonJS with an expansive, tersely documented API. I knew very little of the jargon before diving in but I know about [Quaternions](https://doc.babylonjs.com/typedoc/classes/BABYLON.Quaternion) now. Usually ChatGPT was more helpful than forum posts or stack overflow. Occasionally I found a good solution written in Unity and then I had ChatGPT rewrite it for BabylonJS. That would then tell me the classes to search for in the docs so that I figure out how it all worked.
+Overall, this was a great way to get into a library like BabylonJS with an expansive, tersely documented API. I knew very little of the jargon before diving in but now I know about [Quaternions](https://doc.babylonjs.com/typedoc/classes/BABYLON.Quaternion). Usually ChatGPT was more helpful than forum posts or Stack Overflow. Occasionally I found a good solution written in Unity and then I had ChatGPT rewrite it for BabylonJS. That would then tell me the classes to search for in the docs so that I figure out how it all worked.
 
 # Using Github Copilot
 
@@ -63,15 +62,15 @@ Seriously, start using Copilot.
 
 # Integrating SolidJS and Babylon
 
-I ended up creating [a thin wrapper](https://github.com/heygrady/hexagonoids/tree/main/apps/hexagonoids/src/components/solid-babylon) around the Babylon Scene and using SolidJS context and Nano Stores to make that scene available to the component tree. I grew to love the system. In particular, it became much easier to reason about my app as I was able to look at the component tree to figure out how all of the major building blocks fit together.
+I ended up creating [a thin wrapper](https://github.com/heygrady/hexagonoids/tree/aafc10b5367879b5b0fcd08fd5883d74539214c2/apps/hexagonoids/src/components/solid-babylon) around the Babylon Scene and using SolidJS context and Nano Stores to make that scene available to the component tree. I grew to love the system. In particular, it became much easier to reason about my app as I was able to look at the component tree to figure out how all of the major building blocks fit together.
 
 ### Getting it working
 I initially was trying to use SolidJS to manage the lifecycles of the Babylon nodes but that was a bad idea for things that change frequently, like rocks and bullets. I ended up creating custom object pools and using nano store actions to manage the way nodes and materials are reused and disposed.
 
 After I had gone through a few rounds of polish I noticed that I was employing a familiar rect-redux style workflow. Moving vital functionality out of components and into actions helped everything make a lot more sense.
 
-- Component Tree -- SolidJS for composing components and managing context
-- State Manager -- Nano Stores for portable state and actions
+- **Component Tree** -- SolidJS for composing components and context
+- **State Manager** -- Nano Stores for portable state and actions
 
 A typical Solid-Babylon component ended up looking like this:
 
@@ -117,23 +116,105 @@ export const Example: Component<ExampleProps> = (props) => {
 }
 ```
 
-In the code above we're able to seamlessly blend the Babylon render loop with the SolidJS component lifecyle. I found it to be quite intuitive.
+In the code above we're able to seamlessly blend the Babylon render loop with the SolidJS component lifecycle. I found it to be quite intuitive.
+
+### Composability
+
+My `<Game />` component ended up looking something like this:
+
+```tsx
+import type { Component, JSX } from 'solid-js'
+import { Show, createSignal } from 'solid-js'
+
+import { SceneCanvas } from '../solid-babylon/SceneCanvas'
+
+import { Bullets } from './Bullets'
+import { CameraLighting } from './CameraLighting'
+import { Cells } from './Cells'
+import { Collisions } from './Collisions'
+import { Culling } from './Culling'
+import { EndScreen } from './EndScreen'
+import { GameContext, type GameContextValue } from './GameContext'
+import { Globe } from './Globe'
+import { KeyboardPlayer } from './KeyboardPlayer'
+import { Lights } from './Lights'
+import { Rocks } from './Rocks'
+import { Score } from './Score'
+import { ShipCamera } from './ShipCamera'
+import { Ships } from './Ships'
+import { StartScreen } from './StartScreen'
+import { bindGameActions } from './store/game/GameActions'
+import { createGameStore } from './store/game/GameStore'
+import { UI } from './UI'
+
+export const Game: Component<
+  JSX.CanvasHTMLAttributes<HTMLCanvasElement>
+> = (props) => {
+  const $game = createGameStore()
+  const gameActions = bindGameActions($game)
+  const gameContext: GameContextValue = [
+    $game,
+    gameActions,
+  ]
+
+  // Wait for scene to be ready
+  const [ready, setReady] = createSignal<boolean>(false)
+  const onReady = () => {
+    setReady(true)
+  }
+
+  return (
+    <SceneCanvas
+      onReady={onReady}
+      {...props}>
+      <GameContext.Provider value={gameContext}>
+        <Show when={ready()}>
+          <Globe>
+            <Ships />
+            <Bullets />
+            <Rocks />
+            <Cells />
+            <Lights />
+            <KeyboardPlayer>
+              <ShipCamera>
+                <CameraLighting />
+                <Culling />
+                <Collisions />
+                <UI>
+                  <Score />
+                  <StartScreen />
+                  <EndScreen />
+                </UI>
+              </ShipCamera>
+            </KeyboardPlayer>
+          </Globe>
+        </Show>
+      </GameContext.Provider>
+    </SceneCanvas>
+  )
+}
+
+```
+
+The code above shows how I composed my scene and separated the concerns into different components. The nesting of components also helps string together dependency chains. Notice how the `<ShipCamera />` is nested inside the `<KeyboardPlayer />`. This is because the camera needs the player to exist so that it can function properly. Similarly, the `<CameraLighting />` is inside the `<ShipCamera />` for similar reasons.
+
+This composability made it really easy to keep things organized. 
 
 ### Solid-Babylon Troubles
 
-I had some issues where SolidJS wanted to aggressively re-render some components when their props changed. This was all proper but ended up being a performance issue, as Babylon meshes and materials are expensive to create and dispose of.
+I had some issues where SolidJS wanted to aggressively re-render components when their props changed. This was all proper but ended up being a performance issue, as Babylon meshes and materials are expensive to create and dispose of.
 
-For components without props it's not a big deal to manage everything in Solid. In practice, I ended up managing the Babylon node instances with Solid when they were simple and low-impact, like the camera. And then for complex things, like the h3 cells, rocks and bullets, I lifted the management of those nodes to nano store actions.
+For components without props it's not a big deal to manage everything in Solid. In practice, I ended up managing the Babylon node instances with Solid when they were simple and low-impact, like the camera. And then for complex things, like rocks and bullets, I lifted the management of those nodes to store actions.
 
-I generally avoided SolidJS concepts like `createEffect` because I rarely wanted to trigger components to re-render.
+I generally avoided SolidJS concepts like `createEffect` because I rarely wanted to trigger components to re-render that way.
 
 # Using H3
 
-My initial inspiration for working on this project was to get more familiar with the H3 geospatial indexing system. I had encountered it while hanging out with some data science folks a few years back it it captured my imagination. [Hexagons are really cool](https://nautil.us/why-nature-prefers-hexagons-235863/).
+My initial inspiration for working on this project was to get more familiar with the H3 geospatial indexing system. I had encountered it while hanging out with some data science folks a few years back and it captured my imagination. [Hexagons are really cool](https://nautil.us/why-nature-prefers-hexagons-235863/).
 
-Creating a hexagon-tiled globe is something of [a honey pot](https://stackoverflow.com/a/12847711) for people that wish they knew how 3d games worked. I was successfully able to use [quickhull3d](https://www.npmjs.com/package/quickhull3d) to create polyhedra from the vertexes of [individual cells](https://github.com/heygrady/hexagonoids/blob/main/apps/hexagonoids/src/components/hexagonoids/cell/createCellPolygon.ts) and for the [entire globe](https://github.com/heygrady/hexagonoids/blob/main/apps/hexagonoids/src/components/hexagonoids/cell/createRes0Polyhedron.ts). I hope to work on those pieces further and to separate them out of the game logic and into a standalone packages. I would love to create a globe mesh that automatically increased the resolution of the cells as you zoomed in.
+Creating a hexagon-tiled globe is something of [a honey pot](https://stackoverflow.com/a/12847711) for people that wish they knew how 3D games worked. I was successfully able to use [quickhull3d](https://www.npmjs.com/package/quickhull3d) to create polyhedra from the vertexes of [individual cells](https://github.com/heygrady/hexagonoids/blob/aafc10b5367879b5b0fcd08fd5883d74539214c2/apps/hexagonoids/src/components/hexagonoids/cell/createCellPolygon.ts) and for the [entire globe](apps/hexagonoids/src/components/hexagonoids/cell/createRes0Polyhedron.ts). 
 
-I have some more dreams for what I can do with this spherical game world and I'm excited for the possibilities.
+I have some more dreams for what I can do with this spherical game world and I'm excited for the possibilities. I hope to work on those pieces further and to separate them out of the game logic and into a standalone packages. I would love to create a globe mesh that automatically increased the resolution of the cells as you zoomed in.
 
 # Learning about Asteroids
 
@@ -150,14 +231,9 @@ I've been publishing my projects to Firebase because it's free and easy. I decid
 
 Vercel was very easy to get set up. I ran into a few hiccups because I like to use Yarn and I use packages that are published to Github Packages. I was able to find a workaround ([see here](https://github.com/vercel/vercel/discussions/5418#discussioncomment-1453970)) and then it was smooth sailing. I will definitely be using Vercel on future projects.
 
-I'm sure it would get expensive to run a huge company on Vercel but for small to medium sized teams this workflow is a game changer.
+I'm sure it would get expensive to run a huge company on Vercel but for small to medium sized teams this workflow is a game changer. I was fiddling with the settings and reading the docs when I suddenly realized that my site had been live on the internet for a few hours already.
 
-Cool things:
-- Everything works
-- Most things are automatic
-- Every branch is published, always!
-
-I was fiddling with the settings and reading the docs when I suddenly realized that my site had been live on the internet for a few hours already.
+At first I was uncomfortable with automatically publishing the main branch to production but then I decided it was just fine.
 
 # Takeaways
 
