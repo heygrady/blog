@@ -46,9 +46,8 @@ module.exports = {
     ...require('@heygrady/eslint-config/lib/overrides/json.js'),
     ...require('@heygrady/eslint-config/lib/overrides/markdown.js'),
     ...require('@heygrady/eslint-config/lib/overrides/typescript.js'),
+    ...require('@heygrady/eslint-config/lib/overrides/vitest.js'),
     ...require('./lib/overrides/astro.js'),
     ...require('./lib/overrides/astroConfig.js'),
-    ...require('./lib/overrides/src.js'),
-    ...require('./lib/overrides/vitest.js'),
   ],
 }
