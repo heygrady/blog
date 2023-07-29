@@ -66,6 +66,7 @@ I ended up creating [a thin wrapper](https://github.com/heygrady/hexagonoids/tre
 A typical Solid-Babylon component ended up looking like this:
 
 ```tsx
+import { TransformNode } from '@babylon/core'
 import type { Component, JSX } from 'solid-js'
 import { onCleanup } from 'solid-js'
 
