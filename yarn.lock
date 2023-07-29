@@ -2143,10 +2143,10 @@ __metadata:
     "@types/prettier": ^2
     "@types/rimraf": ^4
     "@types/typography": ^0
-    astro: ^2.9.4
+    astro: ^2.9.6
     autoprefixer: ^10.4.14
     date-fns: ^2.30.0
-    eslint: ^8.45.0
+    eslint: ^8.46.0
     firebase: ^10.1.0
     postcss: ^8.4.27
     rimraf: ^5.0.1
@@ -2183,7 +2183,7 @@ __metadata:
     "@manypkg/get-packages": ^2.2.0
     "@rushstack/eslint-patch": ^1.3.2
     cosmiconfig: ^8.2.0
-    eslint: ^8.45.0
+    eslint: ^8.46.0
     handlebars: ^4.7.7
     lint-staged: ^13.2.3
     param-case: ^3.0.4
@@ -2206,7 +2206,7 @@ __metadata:
     "@types/rimraf": ^4
     "@typescript-eslint/eslint-plugin": ^5.52.0
     "@typescript-eslint/parser": ^5.52.0
-    eslint: ^8.45.0
+    eslint: ^8.46.0
     eslint-config-prettier: ^8.8.0
     eslint-config-standard: ^17.1.0
     eslint-config-standard-with-typescript: ^37.0.0
@@ -2214,11 +2214,11 @@ __metadata:
     eslint-plugin-astro: 0.27.2
     eslint-plugin-compat: ^4.1.4
     eslint-plugin-eslint-comments: ^3.2.0
-    eslint-plugin-import: ^2.27.5
+    eslint-plugin-import: ^2.28.0
     eslint-plugin-jsdoc: ^46.4.5
     eslint-plugin-json: ^3.1.0
     eslint-plugin-jsx-a11y: ^6.7.1
-    eslint-plugin-markdown: ^3.0.0
+    eslint-plugin-markdown: ^3.0.1
     eslint-plugin-n: 16.0.1
     eslint-plugin-prettier: ^4.2.1
     eslint-plugin-promise: ^6.1.1
@@ -2243,7 +2243,7 @@ __metadata:
     "@types/rimraf": ^4
     "@typescript-eslint/eslint-plugin": ^5.52.0
     "@typescript-eslint/parser": ^5.52.0
-    eslint: ^8.45.0
+    eslint: ^8.46.0
     eslint-config-prettier: ^8.8.0
     eslint-config-standard: 17.1.0
     eslint-config-standard-jsx: ^11.0.0
@@ -2252,13 +2252,13 @@ __metadata:
     eslint-import-resolver-typescript: ^3.5.5
     eslint-plugin-compat: ^4.1.4
     eslint-plugin-eslint-comments: ^3.2.0
-    eslint-plugin-import: ^2.27.5
+    eslint-plugin-import: ^2.28.0
     eslint-plugin-jest: ^27.2.3
     eslint-plugin-jest-dom: ^5.0.1
     eslint-plugin-jsdoc: ^46.4.5
     eslint-plugin-json: ^3.1.0
     eslint-plugin-jsx-a11y: ^6.7.1
-    eslint-plugin-markdown: ^3.0.0
+    eslint-plugin-markdown: ^3.0.1
     eslint-plugin-n: 16.0.1
     eslint-plugin-prettier: ^4.2.1
     eslint-plugin-promise: ^6.1.1
@@ -2275,7 +2275,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@heygrady/jest-preset-ts-node-esm@^1.0.4, @heygrady/jest-preset-ts-node-esm@workspace:packages/jest-preset-ts-node-esm":
+"@heygrady/jest-preset-ts-node-esm@workspace:packages/jest-preset-ts-node-esm":
   version: 0.0.0-use.local
   resolution: "@heygrady/jest-preset-ts-node-esm@workspace:packages/jest-preset-ts-node-esm"
   dependencies:
@@ -2285,7 +2285,7 @@ __metadata:
     "@types/jest": ^29
     "@types/prettier": ^2
     "@types/rimraf": ^4
-    eslint: ^8.45.0
+    eslint: ^8.46.0
     identity-obj-proxy: ^3.0.0
     jest: ^29.6.2
     jest-config: ^29.6.2
@@ -2302,7 +2302,7 @@ __metadata:
   dependencies:
     "@heygrady/eslint-config": ^1.2.4
     "@rushstack/eslint-patch": ^1.3.2
-    eslint: ^8.45.0
+    eslint: ^8.46.0
     jest: ^29.6.2
     lint-staged: ^13.2.3
     rimraf: ^5.0.1
@@ -2313,22 +2313,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@heygrady/ts-node-esm@workspace:templates/ts-node-esm"
   dependencies:
-    "@heygrady/eslint-config": ^1.2.4
-    "@heygrady/jest-preset-ts-node-esm": ^1.0.4
+    "@heygrady/eslint-config": ^1.3.1
     "@heygrady/tsconfig-bases": ^1.0.3
     "@rushstack/eslint-patch": ^1.3.2
     "@swc/cli": ^0.1.62
-    "@swc/core": ^1.3.71
+    "@swc/core": ^1.3.72
     "@swc/helpers": ^0.5.1
     "@types/eslint": ^8
     "@types/prettier": ^2
     "@types/rimraf": ^4
     concurrently: ^8.2.0
-    eslint: ^8.45.0
-    jest: ^29.6.2
+    eslint: ^8.46.0
     lint-staged: ^13.2.3
     rimraf: ^5.0.1
     typescript: ^5.1.3
+    vitest: ^0.33.0
   languageName: unknown
   linkType: soft
 
@@ -2337,7 +2336,7 @@ __metadata:
   resolution: "@heygrady/tsconfig-bases@workspace:packages/tsconfig-bases"
   dependencies:
     "@tsconfig/esm": ^1.0.4
-    "@tsconfig/node16": ^1.0.4
+    "@tsconfig/node16": ^16.1.0
     "@tsconfig/strictest": ^2.0.1
   languageName: unknown
   linkType: soft
@@ -3145,90 +3144,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.3.71":
-  version: 1.3.71
-  resolution: "@swc/core-darwin-arm64@npm:1.3.71"
+"@swc/core-darwin-arm64@npm:1.3.72":
+  version: 1.3.72
+  resolution: "@swc/core-darwin-arm64@npm:1.3.72"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.3.71":
-  version: 1.3.71
-  resolution: "@swc/core-darwin-x64@npm:1.3.71"
+"@swc/core-darwin-x64@npm:1.3.72":
+  version: 1.3.72
+  resolution: "@swc/core-darwin-x64@npm:1.3.72"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.3.71":
-  version: 1.3.71
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.71"
+"@swc/core-linux-arm-gnueabihf@npm:1.3.72":
+  version: 1.3.72
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.72"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.3.71":
-  version: 1.3.71
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.71"
+"@swc/core-linux-arm64-gnu@npm:1.3.72":
+  version: 1.3.72
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.72"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.3.71":
-  version: 1.3.71
-  resolution: "@swc/core-linux-arm64-musl@npm:1.3.71"
+"@swc/core-linux-arm64-musl@npm:1.3.72":
+  version: 1.3.72
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.72"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.3.71":
-  version: 1.3.71
-  resolution: "@swc/core-linux-x64-gnu@npm:1.3.71"
+"@swc/core-linux-x64-gnu@npm:1.3.72":
+  version: 1.3.72
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.72"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.3.71":
-  version: 1.3.71
-  resolution: "@swc/core-linux-x64-musl@npm:1.3.71"
+"@swc/core-linux-x64-musl@npm:1.3.72":
+  version: 1.3.72
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.72"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.3.71":
-  version: 1.3.71
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.71"
+"@swc/core-win32-arm64-msvc@npm:1.3.72":
+  version: 1.3.72
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.72"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.3.71":
-  version: 1.3.71
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.71"
+"@swc/core-win32-ia32-msvc@npm:1.3.72":
+  version: 1.3.72
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.72"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.3.71":
-  version: 1.3.71
-  resolution: "@swc/core-win32-x64-msvc@npm:1.3.71"
+"@swc/core-win32-x64-msvc@npm:1.3.72":
+  version: 1.3.72
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.72"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.3.71":
-  version: 1.3.71
-  resolution: "@swc/core@npm:1.3.71"
+"@swc/core@npm:^1.3.72":
+  version: 1.3.72
+  resolution: "@swc/core@npm:1.3.72"
   dependencies:
-    "@swc/core-darwin-arm64": 1.3.71
-    "@swc/core-darwin-x64": 1.3.71
-    "@swc/core-linux-arm-gnueabihf": 1.3.71
-    "@swc/core-linux-arm64-gnu": 1.3.71
-    "@swc/core-linux-arm64-musl": 1.3.71
-    "@swc/core-linux-x64-gnu": 1.3.71
-    "@swc/core-linux-x64-musl": 1.3.71
-    "@swc/core-win32-arm64-msvc": 1.3.71
-    "@swc/core-win32-ia32-msvc": 1.3.71
-    "@swc/core-win32-x64-msvc": 1.3.71
+    "@swc/core-darwin-arm64": 1.3.72
+    "@swc/core-darwin-x64": 1.3.72
+    "@swc/core-linux-arm-gnueabihf": 1.3.72
+    "@swc/core-linux-arm64-gnu": 1.3.72
+    "@swc/core-linux-arm64-musl": 1.3.72
+    "@swc/core-linux-x64-gnu": 1.3.72
+    "@swc/core-linux-x64-musl": 1.3.72
+    "@swc/core-win32-arm64-msvc": 1.3.72
+    "@swc/core-win32-ia32-msvc": 1.3.72
+    "@swc/core-win32-x64-msvc": 1.3.72
   peerDependencies:
     "@swc/helpers": ^0.5.0
   dependenciesMeta:
@@ -3255,7 +3254,7 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: 86389384951c531579e518c012d36b28ef070146faf8d6965a174fd2c7b18113c5939fc3ca81ec8be448188949763cc98cb20d16f44316cd209860f53b760c80
+  checksum: 8dc1103de987d05ff97ec7acdb5ba0f9442ed658aa4923ba5f81eb6185375f695394a62415fbaf6f2e4685cfba5dec6c736666d8568e1defb5e3a44d65efecb9
   languageName: node
   linkType: hard
 
@@ -3351,10 +3350,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsconfig/node16@npm:^1.0.2, @tsconfig/node16@npm:^1.0.4":
+"@tsconfig/node16@npm:^1.0.2":
   version: 1.0.4
   resolution: "@tsconfig/node16@npm:1.0.4"
   checksum: 202319785901f942a6e1e476b872d421baec20cf09f4b266a1854060efbf78cde16a4d256e8bc949d31e6cd9a90f1e8ef8fb06af96a65e98338a2b6b0de0a0ff
+  languageName: node
+  linkType: hard
+
+"@tsconfig/node16@npm:^16.1.0":
+  version: 16.1.0
+  resolution: "@tsconfig/node16@npm:16.1.0"
+  checksum: a0a176492e3802a5340eda1e61eabc8d4767e46496bc080ce9c381993ce8c5fb3df8f65267c3a9af4335bc00a85028845f795ea27545f63d62b93ab6675cf8fa
   languageName: node
   linkType: hard
 
@@ -4720,7 +4726,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astro@npm:^2.9.4":
+"astro@npm:^2.9.6":
   version: 2.9.6
   resolution: "astro@npm:2.9.6"
   dependencies:
@@ -7561,7 +7567,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import@npm:^2.27.5":
+"eslint-plugin-import@npm:^2.28.0":
   version: 2.28.0
   resolution: "eslint-plugin-import@npm:2.28.0"
   dependencies:
@@ -7675,7 +7681,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-markdown@npm:^3.0.0":
+"eslint-plugin-markdown@npm:^3.0.1":
   version: 3.0.1
   resolution: "eslint-plugin-markdown@npm:3.0.1"
   dependencies:
@@ -7829,7 +7835,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.45.0":
+"eslint@npm:^8.46.0":
   version: 8.46.0
   resolution: "eslint@npm:8.46.0"
   dependencies:
