@@ -1,5 +1,11 @@
 # @heygrady/eslint-config-astro
 
+## 1.5.1
+
+### Patch Changes
+
+- 406d9f5: Updating the hexagonoids post; small tweak for astro linting
+
 ## 1.5.0
 
 ### Minor Changes

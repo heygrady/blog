@@ -2136,7 +2136,7 @@ __metadata:
     "@fontsource/inconsolata": ^4.5.10
     "@fontsource/merriweather": ^4.5.14
     "@fontsource/montserrat": ^4.5.14
-    "@heygrady/eslint-config-astro": ^1.5.0
+    "@heygrady/eslint-config-astro": ^1.5.1
     "@rushstack/eslint-patch": ^1.3.2
     "@types/eslint": ^8
     "@types/node": ^16
@@ -2197,7 +2197,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@heygrady/eslint-config-astro@^1.5.0, @heygrady/eslint-config-astro@workspace:packages/eslint-config-astro":
+"@heygrady/eslint-config-astro@^1.5.1, @heygrady/eslint-config-astro@workspace:packages/eslint-config-astro":
   version: 0.0.0-use.local
   resolution: "@heygrady/eslint-config-astro@workspace:packages/eslint-config-astro"
   dependencies:

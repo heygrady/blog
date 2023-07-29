@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.12
+
+### Patch Changes
+
+- 406d9f5: Updating the hexagonoids post; small tweak for astro linting
+
 ## 1.2.11
 
 ### Patch Changes
