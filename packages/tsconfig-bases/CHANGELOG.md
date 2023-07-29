@@ -1,5 +1,11 @@
 # @heygrady/tsconfig-bases
 
+## 1.0.4
+
+### Patch Changes
+
+- 1345b72: Fixing up some eslint stuff and updating the ts-node-esm package template.
+
 ## 1.0.3
 
 ### Patch Changes

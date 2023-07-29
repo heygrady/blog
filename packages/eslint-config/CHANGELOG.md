@@ -1,5 +1,11 @@
 # @heygrady/eslint-config
 
+## 1.4.0
+
+### Minor Changes
+
+- 1345b72: Fixing up some eslint stuff and updating the ts-node-esm package template.
+
 ## 1.3.1
 
 ### Patch Changes

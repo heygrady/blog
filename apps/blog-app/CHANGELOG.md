@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.11
+
+### Patch Changes
+
+- 1345b72: Fixing up some eslint stuff and updating the ts-node-esm package template.
+
 ## 1.2.10
 
 ### Patch Changes
