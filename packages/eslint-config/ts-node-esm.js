@@ -41,10 +41,10 @@ module.exports = {
     ...require('./lib/rules/prettier.js'),
   },
   overrides: [
+    ...require('./lib/overrides/typescript.js'),
     ...require('./lib/overrides/configFiles.js'),
-    ...require('./lib/overrides/jest.js'),
     ...require('./lib/overrides/json.js'),
     ...require('./lib/overrides/markdown.js'),
-    ...require('./lib/overrides/typescript.js'),
+    ...require('./lib/overrides/vitest.js'),
   ],
 }
