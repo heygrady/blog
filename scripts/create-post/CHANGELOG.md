@@ -1,5 +1,11 @@
 # @heygrady/create-post-command
 
+## 1.0.7
+
+### Patch Changes
+
+- 1345b72: Fixing up some eslint stuff and updating the ts-node-esm package template.
+
 ## 1.0.6
 
 ### Patch Changes

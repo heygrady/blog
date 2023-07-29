@@ -1,5 +1,16 @@
 # @heygrady/eslint-config-astro
 
+## 1.5.0
+
+### Minor Changes
+
+- 1345b72: Fixing up some eslint stuff and updating the ts-node-esm package template.
+
+### Patch Changes
+
+- Updated dependencies [1345b72]
+  - @heygrady/eslint-config@1.4.0
+
 ## 1.4.2
 
 ### Patch Changes
