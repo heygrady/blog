@@ -1,12 +1,8 @@
-const pkgDir = require('pkg-dir')
-
 const {
   allExtensions,
   typescriptExtensions,
 } = require('../commonExtensions.js')
 const { parserServicesRules } = require('../parserServicesRules.js')
-
-const root = pkgDir.sync()
 
 module.exports = [
   {
@@ -16,6 +12,9 @@ module.exports = [
       'standard-with-typescript',
       'plugin:prettier/recommended',
     ],
+    parserOptions: {
+      project: null,
+    },
     settings: {
       'import/extensions': allExtensions,
       'import/parsers': {
@@ -25,7 +24,6 @@ module.exports = [
         typescript: {
           alwaysTryTypes: true,
           extensions: typescriptExtensions,
-          project: `${root}/tsconfig.json`,
         },
         node: {
           extensions: allExtensions,
@@ -33,13 +31,57 @@ module.exports = [
       },
     },
     parser: '@typescript-eslint/parser',
-    parserOptions: {
-      project: [
-        `${root}/tsconfig.json`,
-        './packages/*/tsconfig.json',
-        '../../packages/*/tsconfig.json',
+    rules: {
+      // turn off all rules that need parser services
+      ...parserServicesRules,
+      ...require('../rules/prettier.js'),
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/triple-slash-reference': 'off',
+
+      'import/extensions': 'off',
+      // https://github.com/weiran-zsd/eslint-plugin-node/issues/47
+      // 'n/no-missing-import': 'off',
+      'n/no-unsupported-features/es-syntax': [
+        'error',
+        { ignores: ['modules'] },
       ],
-      tsconfigRootDir: root,
+    },
+  },
+
+  // Add a project for ts files within a Typescript src folder
+  {
+    files: ['src/**/*.{cts,mts,ts,tsx}'],
+    extends: [
+      'plugin:import/typescript',
+      'standard-with-typescript',
+      'plugin:prettier/recommended',
+    ],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+      project: true,
+    },
+    settings: {
+      'import/extensions': allExtensions,
+      'import/parsers': {
+        '@typescript-eslint/parser': typescriptExtensions,
+      },
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          extensions: typescriptExtensions,
+          // FIXME: this plugin should support true for the project field
+          // https://www.npmjs.com/package/eslint-import-resolver-typescript#configuration
+          project: [
+            'apps/*/tsconfig.json',
+            'packages/*/tsconfig.json',
+            'scripts/*/tsconfig.json',
+            'templates/*/tsconfig.json',
+          ],
+        },
+        node: {
+          extensions: allExtensions,
+        },
+      },
     },
     rules: {
       ...require('../rules/prettier.js'),
@@ -48,7 +90,7 @@ module.exports = [
 
       'import/extensions': 'off',
       // https://github.com/weiran-zsd/eslint-plugin-node/issues/47
-      'n/no-missing-import': 'off',
+      // 'n/no-missing-import': 'off',
       'n/no-unsupported-features/es-syntax': [
         'error',
         { ignores: ['modules'] },
@@ -56,18 +98,13 @@ module.exports = [
     },
   },
 
-  // Parse js files within a Typescript src folder
+  // Add a project for js files within a Typescript src folder
   {
     files: ['src/**/*.{js,jsx,cjs,mjs}'],
     extends: ['standard', 'plugin:prettier/recommended'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
-      project: [
-        `${root}/tsconfig.json`,
-        './packages/*/tsconfig.json',
-        '../../packages/*/tsconfig.json',
-      ],
-      tsconfigRootDir: root,
+      project: true,
     },
     settings: {
       'import/extensions': allExtensions,
@@ -78,7 +115,12 @@ module.exports = [
         typescript: {
           alwaysTryTypes: true,
           extensions: typescriptExtensions,
-          project: `${root}/tsconfig.json`,
+          project: [
+            'apps/*/tsconfig.json',
+            'packages/*/tsconfig.json',
+            'scripts/*/tsconfig.json',
+            'templates/*/tsconfig.json',
+          ],
         },
         node: {
           extensions: allExtensions,
@@ -96,6 +138,7 @@ module.exports = [
       ],
     },
   },
+
   // Fixes collision with markdown files
   {
     files: ['**/src/**/*.md/*.{js,jsx,ts,tsx}'],
@@ -108,7 +151,7 @@ module.exports = [
       'no-unused-vars': 'warn',
       'import/named': 'off',
       'import/no-unresolved': 'off',
-      'n/no-missing-import': 'off',
+      // 'n/no-missing-import': 'off',
     },
   },
 ]
