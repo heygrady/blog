@@ -40,6 +40,7 @@ module.exports = {
     ...require('@heygrady/eslint-config/lib/rules/jsdoc.js'),
     ...require('@heygrady/eslint-config/lib/rules/node.js'),
     ...require('./lib/rules/prettier.js'),
+    'n/no-missing-import': 'off',
   },
   overrides: [
     ...require('@heygrady/eslint-config/lib/overrides/configFiles.js'),
