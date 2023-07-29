@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'vitest'
+
 import { example } from '../src/index.js'
 
 describe('example', () => {
