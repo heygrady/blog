@@ -6,9 +6,9 @@ pubDate: "2023-07-28T21:29:45.882Z"
 heroImage: "hero-hexagonoids.png"
 ---
 
-I've been wanting to play around with BabylonJS for quite a while and I finally made a game. Check out [hexagonoids.heygrady.com](https://hexagonoids.heygrady.com/) to play it right now. It's an Asteroids clone that takes place on the surface of a sphere. I've made the code open source and posted it to [heygrady/hexagonoids](https://github.com/heygrady/hexagonoids).
+I've been wanting to play around with BabylonJS for quite a while and I finally made a game. It's an Asteroids clone that takes place on the surface of a sphere. I
 
-This was a fun project that also allowed me to play around with Vercel.
+Check out [hexagonoids.heygrady.com](https://hexagonoids.heygrady.com/) to play it right now. The code is available at [heygrady/hexagonoids](https://github.com/heygrady/hexagonoids).
 
 ## Goals
 
@@ -34,20 +34,22 @@ I decided to use [Tailwind](https://docs.astro.build/en/guides/integrations-guid
 I decided to use [SolidJS](https://www.solidjs.com/) as a wrapper for my BabylonJS app. This was [not strictly necessary](https://forum.babylonjs.com/t/getting-started-with-solid-js/36954/3) but it helped me get comfortable with the workflow, as Babylon is pretty different from a typical frontend project. It ended up being really nice to use SolidJS for organizing how the app initializes itself and how to manage context.
 
 ### Nano Stores
-After having spent several years wrestling with React-Redux, it was really nice to use Nano Stores. I landed on this because it was recommended by Astro and it really suited my use case. I ended up created all of the core game concepts (`$ship`, `$rock`, etc.) as nanostores and bundling them with the Babylon Nodes that were created to render them. This made it really easy to manage state and also the lifecycle of meshes and materials.
+After having spent several years wrestling with React-Redux, it was really nice to use Nano Stores. I landed on this because it was recommended by Astro and it really suited my use case. I ended up creating all of the core game concepts (`$ship`, `$rock`, etc.) as nano stores and bundling them with the Babylon Nodes that were created to render them. This made it really easy to manage state and also the lifecycle of meshes and materials.
 
 ### BabylonJS
-BabylonJS is really powerful and has loads of documentation but I'm very new to 3D game development and many of the concepts escape me. I initially was trying to use SolidJS to manage the lifecycles of the Babylon nodes but that was a bad idea for things that change frequently, like rocks and bullets. I ended up creating custom object pools and using nano store actions to manage the way nodes and materials are reused and disposed.
+BabylonJS is a really powerful 3D game engine for browsers. While there is extensive documentation and examples, I'm very new to 3D game development and many of the concepts escape me. I've played with ThreeJS previously and found Babylon to be mostly similar.
 
 # Using ChatGPT
 
-I relied heavily on [ChatGPT](https://chat.openai.com/) and [Github Copilot](https://github.com/features/copilot). It would've been impossible to complete this project without ChatGPT. There is a fair amount of code in the project that is directly pasted from the chat window. Once ChatGPT got me going I then had keywords that I could search for in the Babylon documentation and on Google.
+It would've been impossible to complete this project without [ChatGPT](https://chat.openai.com/). There is a fair amount of code in the project that is directly pasted from the chat window. Once ChatGPT got me going I then had keywords that I could search for in the Babylon documentation and on Google.
 
-Often the code that ChatGPT generated was filled with small errors (or huge errors). Rarely could I just cut and paste the code without editing it. There were long stretches of time where ChatGPT was happily telling me how to accomplish something the wrong way. But then, after quizzing ChatGPT about why my code still wasn't working it would point out that there are standard best practices to solving these problems.
+Often the code that ChatGPT generated was filled with small errors. Rarely could I just cut and paste the code without editing it. However, the boilerplate code that it generated gave me things to research further. This felt similar to how I first learned web development by looking up how generated code actually worked.
 
-The collision system was one of those adventures. I had started out trying to mock something up based on how I thought collisions should work. I also wanted to test out some theories I had about utilizing h3-js for collisions. I ended up with something that worked well but had major performance issues. Because I'd talked it over so thoroughly with ChatGPT I was becoming more aware of how efficient collision systems work. And then, out of nowhere, I realized that BabylonJS had all of that built in and all I had to do was use it.
+There were long stretches of time where ChatGPT was happily telling me how to accomplish something the wrong way. But then, after additional searching to figure out why my code still wasn't working, I would uncover the standard approach.
 
-Overall, this was a great way to get into a library like BabylonJS with an expansive, densely documented API when I knew very little of the jargon before diving in. Usually ChatGPT was more helpful than forum posts or stack overflow. More than once I found a good solution written in Unity and then I had ChatGPT rewrite it for BabylonJS. That would then tell me the classes to search for in the docs so that I could double check that ChatGPT was using things correctly.
+The collision system was one of those adventures. I had started out trying to mock something up based on how I thought collisions should work. I also wanted to test out some theories about utilizing h3-js for collisions. I ended up with something that worked well but had major performance issues. Because I'd talked it over so thoroughly with ChatGPT I was becoming more aware of how efficient collision systems work. And then, out of nowhere, I realized that BabylonJS had all of that built in and all I had to do was use it.
+
+Overall, this was a great way to get into a library like BabylonJS with an expansive, tersely documented API. I knew very little of the jargon before diving in but I know about [Quaternions](https://doc.babylonjs.com/typedoc/classes/BABYLON.Quaternion) now. Usually ChatGPT was more helpful than forum posts or stack overflow. Occasionally I found a good solution written in Unity and then I had ChatGPT rewrite it for BabylonJS. That would then tell me the classes to search for in the docs so that I figure out how it all worked.
 
 # Using Github Copilot
 
@@ -62,6 +64,14 @@ Seriously, start using Copilot.
 # Integrating SolidJS and Babylon
 
 I ended up creating [a thin wrapper](https://github.com/heygrady/hexagonoids/tree/main/apps/hexagonoids/src/components/solid-babylon) around the Babylon Scene and using SolidJS context and Nano Stores to make that scene available to the component tree. I grew to love the system. In particular, it became much easier to reason about my app as I was able to look at the component tree to figure out how all of the major building blocks fit together.
+
+### Getting it working
+I initially was trying to use SolidJS to manage the lifecycles of the Babylon nodes but that was a bad idea for things that change frequently, like rocks and bullets. I ended up creating custom object pools and using nano store actions to manage the way nodes and materials are reused and disposed.
+
+After I had gone through a few rounds of polish I noticed that I was employing a familiar rect-redux style workflow. Moving vital functionality out of components and into actions helped everything make a lot more sense.
+
+- Component Tree -- SolidJS for composing components and managing context
+- State Manager -- Nano Stores for portable state and actions
 
 A typical Solid-Babylon component ended up looking like this:
 
@@ -86,7 +96,7 @@ export const Example: Component<ExampleProps> = (props) => {
   // Get other important nano stores from solid-js context
   const [$game, gameActions] = useGame()
   
-  // Create nodes on render
+  // Create nodes on component render
   const exampleNode = new TransformNode('example', scene)
 
   onBeforeRender(() => {
@@ -107,25 +117,32 @@ export const Example: Component<ExampleProps> = (props) => {
 }
 ```
 
+In the code above we're able to seamlessly blend the Babylon render loop with the SolidJS component lifecyle. I found it to be quite intuitive.
+
 ### Solid-Babylon Troubles
 
 I had some issues where SolidJS wanted to aggressively re-render some components when their props changed. This was all proper but ended up being a performance issue, as Babylon meshes and materials are expensive to create and dispose of.
 
 For components without props it's not a big deal to manage everything in Solid. In practice, I ended up managing the Babylon node instances with Solid when they were simple and low-impact, like the camera. And then for complex things, like the h3 cells, rocks and bullets, I lifted the management of those nodes to nano store actions.
 
+I generally avoided SolidJS concepts like `createEffect` because I rarely wanted to trigger components to re-render.
+
 # Using H3
 
 My initial inspiration for working on this project was to get more familiar with the H3 geospatial indexing system. I had encountered it while hanging out with some data science folks a few years back it it captured my imagination. [Hexagons are really cool](https://nautil.us/why-nature-prefers-hexagons-235863/).
 
-I was successfully able to use [quickhull3d](https://www.npmjs.com/package/quickhull3d) to create polyhedra from the vertexes of [individual cells](https://github.com/heygrady/hexagonoids/blob/main/apps/hexagonoids/src/components/hexagonoids/cell/createCellPolygon.ts) and for the [entire globe](https://github.com/heygrady/hexagonoids/blob/main/apps/hexagonoids/src/components/hexagonoids/cell/createRes0Polyhedron.ts). I hope to work on those pieces further and to separate them out of the game logic and into a standalone packages. I would love to create a globe mesh that automatically increased the resolution of the cells as you zoomed in.
+Creating a hexagon-tiled globe is something of [a honey pot](https://stackoverflow.com/a/12847711) for people that wish they knew how 3d games worked. I was successfully able to use [quickhull3d](https://www.npmjs.com/package/quickhull3d) to create polyhedra from the vertexes of [individual cells](https://github.com/heygrady/hexagonoids/blob/main/apps/hexagonoids/src/components/hexagonoids/cell/createCellPolygon.ts) and for the [entire globe](https://github.com/heygrady/hexagonoids/blob/main/apps/hexagonoids/src/components/hexagonoids/cell/createRes0Polyhedron.ts). I hope to work on those pieces further and to separate them out of the game logic and into a standalone packages. I would love to create a globe mesh that automatically increased the resolution of the cells as you zoomed in.
+
+I have some more dreams for what I can do with this spherical game world and I'm excited for the possibilities.
 
 # Learning about Asteroids
 
-I had some fun digging into how Asteroids was made and formalizing my understanding of how the game worked. There's a rich community of people who love Asteroids. Now my Google News feed is showing me articles about classic arcade games. Here's some links that were super helpful:
+I had some fun digging into how Asteroids was made and formalizing my understanding of how the game worked. There's a rich community of people who love Asteroids. As a bonus, my Google News feed has started showing me articles about classic arcade games. Here's some links that were super helpful:
 
 - [Original hand-drawn vectors](https://arcadeblogger.com/2018/10/24/atari-asteroids-creating-a-vector-arcade-classic/)
 - [Measurements of relative sizes and speeds](https://www.retrogamedeconstructionzone.com/2019/10/asteroids-by-numbers.html)
 - [Detailed vectors from the original source code](https://ronjeffries.com/articles/020-asteroids/asteroids-10/)
+- [Play Asteroids on the AARP website](https://games.aarp.org/games/atari-asteroids)
 
 # Publishing to Vercel
 
