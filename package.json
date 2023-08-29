@@ -32,14 +32,14 @@
   },
   "dependencies": {
     "@changesets/cli": "^2.26.2",
-    "@commitlint/cli": "^17.6.7",
-    "@commitlint/config-conventional": "^17.6.7",
-    "@commitlint/config-lerna-scopes": "^17.6.6",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/config-lerna-scopes": "^17.7.0",
     "@heygrady/create-post": "workspace:*",
     "@manypkg/cli": "^0.21.0",
-    "firebase-tools": "^12.4.6",
+    "firebase-tools": "^12.5.2",
     "husky": "^8.0.3",
-    "turbo": "^1.10.12"
+    "turbo": "^1.10.13"
   },
   "packageManager": "yarn@3.6.0",
   "volta": {
