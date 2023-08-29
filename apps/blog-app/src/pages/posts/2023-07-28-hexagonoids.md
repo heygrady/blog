@@ -1,6 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
-title: "Hexagonoids: Asteroids on a Sphere."
+title: "Hexagonoids: Asteroids on a Sphere"
 description: "Creating a game using BabylonJS and H3 and publishing it on Vercel."
 pubDate: "2023-07-28T21:29:45.882Z"
 heroImage: "hero-hexagonoids.png"
@@ -48,7 +48,7 @@ There were long stretches of time where ChatGPT was happily telling me how to ac
 
 The collision system was one of those adventures. I had started out trying to mock something up based on how I thought collisions should work. I also wanted to test out some theories about utilizing h3-js for collisions. I ended up with something that worked well but had major performance issues. Because I'd talked it over so thoroughly with ChatGPT I was becoming more aware of how efficient collision systems work. And then, out of nowhere, I realized that BabylonJS had all of that built in and all I had to do was use it.
 
-Overall, this was a great way to get into a library like BabylonJS with an expansive, tersely documented API. I knew very little of the jargon before diving in but now I know about [Quaternions](https://doc.babylonjs.com/typedoc/classes/BABYLON.Quaternion). Usually ChatGPT was more helpful than forum posts or Stack Overflow. Occasionally I found a good solution written in Unity and then I had ChatGPT rewrite it for BabylonJS. That would then tell me the classes to search for in the docs so that I figure out how it all worked.
+Overall, this was a great way to get into a library like BabylonJS with an expansive, tersely documented API. I knew very little of the jargon before diving in but now I know about [Quaternions](https://doc.babylonjs.com/typedoc/classes/BABYLON.Quaternion). Usually ChatGPT was more helpful than forum posts or Stack Overflow. Occasionally I found a good solution written in Unity and then I had ChatGPT rewrite it for BabylonJS. That would then tell me the classes to search for in the docs so that I could figure out how it all worked.
 
 # Using Github Copilot
 
@@ -67,7 +67,7 @@ I ended up creating [a thin wrapper](https://github.com/heygrady/hexagonoids/tre
 ### Getting it working
 I initially was trying to use SolidJS to manage the lifecycles of the Babylon nodes but that was a bad idea for things that change frequently, like rocks and bullets. I ended up creating custom object pools and using nano store actions to manage the way nodes and materials are reused and disposed.
 
-After I had gone through a few rounds of polish I noticed that I was employing a familiar rect-redux style workflow. Moving vital functionality out of components and into actions helped everything make a lot more sense.
+After I had gone through a few rounds of polish I noticed that I was employing a familiar react-redux style workflow. Moving vital functionality out of components and into actions helped everything make a lot more sense.
 
 - **Component Tree** -- SolidJS for composing components and context
 - **State Manager** -- Nano Stores for portable state and actions
