@@ -1,5 +1,11 @@
 # @heygrady/ts-node-esm
 
+## 1.2.0
+
+### Minor Changes
+
+- 3c6a3f9: Upgrade packages, fix some typos. Fixes vitest in ESLint.
+
 ## 1.1.0
 
 ### Minor Changes
