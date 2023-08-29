@@ -4,7 +4,6 @@ export const styleToString = (
 ): string => {
   return Object.keys(style).reduce(
     (acc, key) =>
-      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
       acc +
       key
         .split(/(?=[A-Z])/)
