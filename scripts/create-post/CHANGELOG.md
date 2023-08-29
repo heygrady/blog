@@ -1,5 +1,11 @@
 # @heygrady/create-post-command
 
+## 1.0.8
+
+### Patch Changes
+
+- 3c6a3f9: Upgrade packages, fix some typos. Fixes vitest in ESLint.
+
 ## 1.0.7
 
 ### Patch Changes

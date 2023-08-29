@@ -1,6 +1,6 @@
 {
   "name": "@heygrady/jest-preset-ts-node-esm",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "commonjs",
   "license": "MIT",
   "repository": {
@@ -31,7 +31,7 @@
     "typescript": "^5.1.3"
   },
   "devDependencies": {
-    "@heygrady/eslint-config": "^1.4.0",
+    "@heygrady/eslint-config": "^1.5.0",
     "@rushstack/eslint-patch": "^1.3.3",
     "@types/eslint": "^8",
     "@types/prettier": "^2",

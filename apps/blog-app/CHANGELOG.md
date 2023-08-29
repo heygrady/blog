@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.13
+
+### Patch Changes
+
+- 3c6a3f9: Upgrade packages, fix some typos. Fixes vitest in ESLint.
+
 ## 1.2.12
 
 ### Patch Changes

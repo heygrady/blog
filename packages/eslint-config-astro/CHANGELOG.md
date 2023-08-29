@@ -1,5 +1,13 @@
 # @heygrady/eslint-config-astro
 
+## 1.5.2
+
+### Patch Changes
+
+- 3c6a3f9: Upgrade packages, fix some typos. Fixes vitest in ESLint.
+- Updated dependencies [3c6a3f9]
+  - @heygrady/eslint-config@1.5.0
+
 ## 1.5.1
 
 ### Patch Changes
