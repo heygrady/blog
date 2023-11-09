@@ -21,6 +21,9 @@ module.exports = [
       // https://github.com/weiran-zsd/eslint-plugin-node/issues/47
       'n/no-missing-import': 'off',
       'n/no-unsupported-features/es-syntax': 'off',
+
+      // prettier-plugin-astro is _very_ buggy, especially when used with eslint-plugin-prettier
+      'prettier/prettier': 'off',
     },
   },
   {
