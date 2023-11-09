@@ -1,5 +1,11 @@
 # @heygrady/ts-node-esm
 
+## 1.2.1
+
+### Patch Changes
+
+- c804d1c: Upgrade packages; disable eslint prettier in astro files
+
 ## 1.2.0
 
 ### Minor Changes
