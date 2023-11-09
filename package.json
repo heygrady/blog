@@ -41,10 +41,10 @@
     "husky": "^8.0.3",
     "turbo": "^1.10.13"
   },
-  "packageManager": "yarn@3.6.0",
+  "packageManager": "yarn@3.6.4",
   "volta": {
-    "node": "16.20.1",
-    "npm": "9.8.0",
-    "yarn": "3.6.1"
+    "node": "16.20.2",
+    "npm": "10.2.3",
+    "yarn": "3.6.4"
   }
 }
