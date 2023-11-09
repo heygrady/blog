@@ -16,25 +16,28 @@ const trailingSlash = (path: string) => (path.endsWith('/') ? path : `${path}/`)
 ---
 
 <li
-  class="BlogCard"
+  class='BlogCard'
   style={styleToString({
     marginBottom: typography.rhythm(1 + 1 / 2),
-  })}>
-  <time class="BlogCard__date" datetime={pubDate}>{format(pubDate)}</time>
+  })}
+>
+  <time class='BlogCard__date' datetime={pubDate}>{format(pubDate)}</time>
   <h3
-    class="BlogCard__headline"
+    class='BlogCard__headline'
     style={styleToString({
       marginBottom: typography.rhythm(1 / 6),
-    })}>
+    })}
+  >
     <a
-      rel="prefetch"
-      class="BlogCard__link"
+      rel='prefetch'
+      class='BlogCard__link'
       style={styleToString({ boxShadow: 'none' })}
-      href={trailingSlash(path)}>
-      <span class="BlogCard__title">{title}</span>
+      href={trailingSlash(path)}
+    >
+      <span class='BlogCard__title'>{title}</span>
     </a>
   </h3>
-  {description && <p class="BlogCard__description">{description}</p>}
+  {description && <p class='BlogCard__description'>{description}</p>}
 </li>
 <style>
   .BlogCard {

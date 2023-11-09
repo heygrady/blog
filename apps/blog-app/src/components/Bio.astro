@@ -10,12 +10,13 @@ import { typography } from '../utils/typography'
 <p
   style={styleToString({
     marginBottom: typography.rhythm(2.5),
-  })}>
+  })}
+>
   <Image
     src={profilePic}
     height={112}
     width={112}
-    aspectRatio="1:1"
+    aspectRatio='1:1'
     quality={70}
     alt={data.author}
     style={styleToString({
@@ -27,7 +28,7 @@ import { typography } from '../utils/typography'
       borderRadius: '50%',
     })}
   />
-  Written by <strong>{data.author}</strong>.
+   Written by <strong>{data.author}</strong>.
   {' '}
   <a href={`https://twitter.com/${data.twitterHandle}`}
     >@{data.twitterHandle}

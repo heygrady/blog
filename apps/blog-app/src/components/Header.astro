@@ -19,15 +19,17 @@ const { small } = Astro.props
           lineHeight: typography.rhythm(1),
           marginTop: 0,
           marginBottom: typography.rhythm(-1),
-        })}>
+        })}
+      >
         <a
-          rel="prefetch"
+          rel='prefetch'
           style={styleToString({
             boxShadow: 'none',
             textDecoration: 'none',
             color: 'inherit',
           })}
-          href={'/'}>
+          href={'/'}
+        >
           {SITE_TITLE}
         </a>
       </h3>
@@ -37,7 +39,8 @@ const { small } = Astro.props
           ...typography.scale(1.5),
           marginBottom: typography.rhythm(1.5),
           marginTop: 0,
-        })}>
+        })}
+      >
         {SITE_TITLE}
       </h1>
     )
