@@ -1,5 +1,11 @@
 # @heygrady/tsconfig-bases
 
+## 1.0.6
+
+### Patch Changes
+
+- c804d1c: Upgrade packages; disable eslint prettier in astro files
+
 ## 1.0.5
 
 ### Patch Changes

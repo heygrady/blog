@@ -1,5 +1,11 @@
 # @heygrady/jest-preset-ts-node-esm
 
+## 1.0.7
+
+### Patch Changes
+
+- c804d1c: Upgrade packages; disable eslint prettier in astro files
+
 ## 1.0.6
 
 ### Patch Changes

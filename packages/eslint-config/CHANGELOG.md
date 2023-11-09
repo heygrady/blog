@@ -1,5 +1,11 @@
 # @heygrady/eslint-config
 
+## 1.5.1
+
+### Patch Changes
+
+- c804d1c: Upgrade packages; disable eslint prettier in astro files
+
 ## 1.5.0
 
 ### Minor Changes

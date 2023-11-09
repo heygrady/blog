@@ -1,5 +1,11 @@
 # @heygrady/create-post-command
 
+## 1.0.9
+
+### Patch Changes
+
+- c804d1c: Upgrade packages; disable eslint prettier in astro files
+
 ## 1.0.8
 
 ### Patch Changes

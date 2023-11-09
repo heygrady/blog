@@ -1,6 +1,6 @@
 {
   "name": "@heygrady/blog-app",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "private": true,
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
     "@astrojs/prefetch": "^0.3.0",
     "@astrojs/rss": "^2.4.4",
     "@astrojs/sitemap": "^2.0.2",
-    "@heygrady/eslint-config-astro": "^1.5.2",
+    "@heygrady/eslint-config-astro": "^1.6.0",
     "@rushstack/eslint-patch": "^1.5.1",
     "@types/eslint": "^8",
     "@types/node": "^16",

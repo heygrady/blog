@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.14
+
+### Patch Changes
+
+- c804d1c: Upgrade packages; disable eslint prettier in astro files
+
 ## 1.2.13
 
 ### Patch Changes
