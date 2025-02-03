@@ -5,6 +5,7 @@ npm init astro -- --template blog
 ```
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
+[![Open in Codeanywhere](https://img.shields.io/badge/Open%20in-Codeanywhere-blue?style=for-the-badge&logo=codeanywhere)](https://app.codeanywhere.com/#https://github.com/withastro/astro/tree/latest/examples/blog)
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
