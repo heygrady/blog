@@ -5,7 +5,7 @@ description: "I implemented eslint to show linting errors in my editor while I w
 pubDate: "2017-07-03T11:59:28Z"
 ---
 
-In the previous post about [automating deployments with Travis](/deploying-travis/) I noted that it's a good idea to lint your code before deploying it. In past react projects I've started with the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) which comes preconfigured to use [eslint](http://eslint.org/) with the [Standard JS](https://standardjs.com/) package. We need linting for this blog, so let's copy what the starter-kit is doing.
+In the previous post about [automating deployments with Travis](/deploying-travis/) I noted that it's a good idea to lint your code before deploying it. In past React projects I've started with the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) which comes preconfigured to use [eslint](http://eslint.org/) with the [Standard JS](https://standardjs.com/) package. We need linting for this blog, so let's copy what the starter-kit is doing.
 
 ## Grab the files from the starter-kit
 Probably the easiest way to grab our files is using `wget`. You might need to [install wget](http://brewformulas.org/Wget) on your system. You can always manually pull down these files.
@@ -19,13 +19,13 @@ wget https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.
 ```
 
 ### Customize the files for our needs
-We need to make sure we ignore the public folder.
+We need to make sure we ignore the `public` folder.
 
 ```bash
 echo "public/**" >> .eslintignore
 ```
 ## Install eslint
-We need to install eslint for our project. We can also remove [`gh-pages`](https://github.com/tschaub/gh-pages) from our project since we're not hosting our blog on [Github pages](https://pages.github.com/).
+We need to install eslint for our project. We can also remove [`gh-pages`](https://github.com/tschaub/gh-pages) from our project since we're not hosting our blog on [GitHub Pages](https://pages.github.com/).
 
 ```bash
 yarn add --dev babel-eslint \
@@ -43,7 +43,7 @@ yarn remove gh-pages
 ```
 
 ## Add some linting scripts
-Gatsby adds a `lint` script to your `packages.json` but it's not exactly what we need. We're going to rely instead on the [`.eslintrc`](https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.eslintrc) that we downloaded from the starter-kit. This means that we can simplify the lint command. We'll also add the [`lint:fix`](https://github.com/davezuko/react-redux-starter-kit/blob/c1c4e8c3369d4d9397fa65149acbe6410892b0cf/package.json#L14) from the starter-kit.
+Gatsby adds a `lint` script to your `package.json` but it's not exactly what we need. We're going to rely instead on the [`.eslintrc`](https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.eslintrc) that we downloaded from the starter-kit. This means that we can simplify the lint command. We'll also add the [`lint:fix`](https://github.com/davezuko/react-redux-starter-kit/blob/c1c4e8c3369d4d9397fa65149acbe6410892b0cf/package.json#L14) from the starter-kit.
 
 ```json
 {
@@ -55,7 +55,7 @@ Gatsby adds a `lint` script to your `packages.json` but it's not exactly what we
 }
 ```
 
-At this point we can run our linter. If you are using an editor like [Atom](https://atom.io/) you should install the [eslint package](https://atom.io/packages/eslint) to see linting errors in your editor. This is preferred to using an eslint watch option.
+At this point we can run our linter. If you are using an editor like [Atom](https://atom.io/) you should install the [ESLint package](https://atom.io/packages/eslint) to see linting errors in your editor. This is preferred to using an ESLint watch option.
 
 ```bash
 # this should show some errors
@@ -66,7 +66,7 @@ yarn lint:fix
 ```
 
 ## Require linting to deploy
-We can require the project to pass our linter before we will deploy it. All we need to do is call lint from our script block in our `.travis.yml` file.
+We can require the project to pass our linter before we will deploy it. All we need to do is call `lint` from our script block in our `.travis.yml` file.
 
 ```yaml
 # make your .travis.yml script section look more like this
@@ -97,4 +97,4 @@ These are the errors I had to fix:
 ```
 
 ## Try to deploy
-Once you are able to run `yarn lint` on your local, try committing your files and seeing if Travis can build your project. From now on your project will need to pass the linter before it can be deployed.
+Once you are able to run `yarn lint` locally, try committing your files and seeing if Travis can build your project. From now on your project will need to pass the linter before it can be deployed.

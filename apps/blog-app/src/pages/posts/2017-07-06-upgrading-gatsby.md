@@ -8,11 +8,11 @@ pubDate: "2017-07-06T18:00:01Z"
 In a previous post I installed [Gatsby 0.12.48](https://github.com/gatsbyjs/gatsby/tree/73dcc32d0041de6057d6328f0563b4e6cfb5e160) as [an upgrade to my blog](/new-blog/). Now it's already time to upgrade Gatsby. Version [1.0 of Gatsby](https://github.com/gatsbyjs/gatsby/tree/36e5fce58cccd1be09183a3573b234c87bd0c85d) has been [released](https://www.gatsbyjs.org/blog/gatsby-v1/). There are already docs available for [upgrading to the new version](https://www.gatsbyjs.org/docs/migrating-from-v0-to-v1/). Here we're going to upgrade this blog to Gatsby 1.0.
 
 ## Big changes
-Gatsby has changed in some significant, disorienting ways since the pre-1.0 days. The big upgrade is that there's a new application framework designed around GraphQL. This new app-centric structure is more like what you'd find in a traditional react starter-kit, like the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit#project-structure), except Gatsby has a focus on *pages* instead of *routes*. Gatsby is still *just* a static site generator -- but it's getting dressed up to work with data.
+Gatsby has changed in some significant, disorienting ways since the pre-1.0 days. The big upgrade is that there's a new application framework designed around GraphQL. This new app-centric structure is more like what you'd find in a traditional React starter kit, like the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit#project-structure), except Gatsby has a focus on *pages* instead of *routes*. Gatsby is still *just* a static site generator -- but it's getting dressed up to work with data.
 
 The 1.0 version of Gatsby includes an upgrade to their [blog starter](https://github.com/gatsbyjs/gatsby-starter-blog/tree/ec2f17b6ac61b12a64c335f8facf1ed7590833b9).We're trying to make [our old site](https://github.com/heygrady/blog/tree/16fe1912b2ce87616ecd7922d8d6de38db41ef27) (based on the [old blog starter](https://github.com/gatsbyjs/gatsby-starter-blog/tree/f404f3a1bfddcb17aeb038b60a7cf2a025c44550)) work with the new version of Gatsby.
 
-Let's install a new blog as an example of what we needs to change. This will give us a local example of an already-upgraded Gatsby site to work from.
+Let's install a new blog as an example of what needs to change. This will give us a local example of an already-upgraded Gatsby site to work from.
 
 ## Make a fresh Gatsby blog
 Install a fresh blog in a new directory. I installed it in the directory *next to* my existing blog. This will make it easy to copy files over when it's time for that.
@@ -28,7 +28,7 @@ gatsby new upgrade-test gatsbyjs/gatsby-starter-blog
 ```
 
 ### Moving over posts
-The old blog was a vanilla clone of the Gatsby starter. It should be possible to move the posts from the `pages` folder of the old site to the `src/pages` folder of the new site. For now it's best to only move the blog posts themselves. Gatsby is pretty much the same with regards to posts themselves, many of the other boilerplate files have changed.
+The old blog was a vanilla clone of the Gatsby starter. It should be possible to move the posts from the `pages` folder of the old site to the `src/pages` folder of the new site. For now it's best to only move the blog posts themselves. Gatsby is pretty much the same with regards to posts themselves; many of the other boilerplate files have changed.
 
 - Copy just the posts from your existing blog to the fresh blog
 - Delete the example posts
@@ -53,7 +53,7 @@ git checkout gatsby-upgrade
 ```
 
 ### Add the `src` folder
-The most obvious change in Gatsby is the addition of a `src` folder. This is a [common convention](https://medium.com/@tarkus/how-to-build-and-publish-es6-modules-today-with-babel-and-rollup-4426d9c7ca71) in babel-based projects and it's great that Gatsby is embracing it.
+The most obvious change in Gatsby is the addition of a `src` folder. This is a [common convention](https://medium.com/@tarkus/how-to-build-and-publish-es6-modules-today-with-babel-and-rollup-4426d9c7ca71) in Babel-based projects and it's great that Gatsby is embracing it.
 
 ```bash
 mkdir src && \
@@ -66,7 +66,7 @@ mv html.js ./src/
 ```
 
 ### Out with the old, in with the new
-The new Gatsby works differently enough that we want to blow away our old blog and copy the new blog on top of it. We're going to do this somewhat surgically. Luckily there's a first step that's pretty easy. We should be able to rename our newly created `src` folder and replace it with the source folder from the fresh new blog we created at the beginning of this post.
+The new Gatsby works differently enough that we want to blow away our old blog and copy the new blog on top of it. We're going to do this somewhat surgically. Luckily, there's a first step that's pretty easy. We should be able to rename our newly created `src` folder and replace it with the source folder from the fresh new blog we created at the beginning of this post.
 
 **Note:** If you haven't created that fresh copy (see above), do so now. We're going to be grabbing a bunch of files from it.
 
@@ -83,9 +83,9 @@ Now we need to reconcile the two `src` folders.
 - Note that the new blog doesn't have a `ReadNext` component anymore. You can choose to get the old one working. I'm choosing to follow along and drop the read next feature.
 
 ### Add `src/config.js`
-The new Gatsby relies on GraphQL to manage the config but this idea hasn't been fully ported over to the blog example. Whatever the reason, the new blog is using hard-coded values in `src/components/Bio.js` and `src/layouts/index.js`. As a temporary fix we're going to add a `src/config.js` file with the values we need.
+The new Gatsby relies on GraphQL to manage the configuration but this idea hasn't been fully ported over to the blog example. Whatever the reason, the new blog is using hardcoded values in `src/components/Bio.js` and `src/layouts/index.js`. As a temporary fix we're going to add a `src/config.js` file with the values we need.
 
-Eventually this should be replaced by GraphQL lookups. If you were trying to get ReadNext working this might be a good place to start. We're going to use the config to remove the hard-coded values. Eventually we should replace the config with GraphQL lookups but that can wait for another time.
+Eventually this should be replaced by GraphQL lookups. If you were trying to get ReadNext working this might be a good place to start. We're going to use the configuration to remove the hardcoded values. Eventually we should replace the configuration with GraphQL lookups but that can wait for another time.
 
 You should port over all of the values from your [`config.toml`](https://github.com/heygrady/blog/blob/df6d9cc3d52ee0aaac703b6b4511b016092909b8/config.toml) because we'll be deleting that in a later step.
 
@@ -99,8 +99,8 @@ export default {
 
 ### Fix `src/layouts/index.js`
 
-- Import the temporary config
-- Import the required [prism css](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-prismjs#include-css). I added the additional CSS in a [`src/css/prism.css`](https://github.com/heygrady/blog/blob/e51c732c980997043f25d3cc311c6654b073bb4f/src/css/prism.css) file.
+- Import the temporary configuration
+- Import the required [Prism CSS](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-prismjs#include-css). I added the additional CSS in a [`src/css/prism.css`](https://github.com/heygrady/blog/blob/e51c732c980997043f25d3cc311c6654b073bb4f/src/css/prism.css) file.
 - Replace instances of `Gatsby Starter Blog` with [`{config.blogTitle}`](https://github.com/heygrady/blog/blob/e51c732c980997043f25d3cc311c6654b073bb4f/src/layouts/index.js#L32)
 - Fix [PropTypes warnings](https://github.com/react-toolbox/react-toolbox/issues/1410)
 - Fix [ESLint errors](/enable-linting/)
@@ -117,7 +117,7 @@ import { rhythm, scale } from '../utils/typography'
 import 'prismjs/themes/prism-solarizedlight.css'
 import '../css/prism.css'
 
-// ... Replace the hard-coded blog title with a config variable
+// ... Replace the hardcoded blog title with a config variable
 
 Template.propTypes = {
   children: PropTypes.func,
@@ -129,9 +129,9 @@ export default Template
 
 ### Fix `src/components/Bio.js`
 
-- Import the temporary config
+- Import the temporary configuration
 - Replace instances of `Kyle Mathews` with `{config.author}`
-- Add back your customized bio
+- Add back your custom bio
 - Fix PropTypes warnings
 - Fix ESLint errors
 
@@ -155,7 +155,7 @@ export default Template
 - Update `build:prod` to use `--prefix-paths` instead of `--prefix-links`
 
 ### Copy over other important files
-We need to drop our `config.toml` and grab the bootstrap config files from the new blog.
+We need to drop our `config.toml` and grab the bootstrap configuration files from the new blog.
 
 ```
 rm config.toml && \
@@ -189,8 +189,8 @@ module.exports = {
 The new version of Gatsby has totally different dependencies. We need to blow away the `public` and `node_modules` folders and reinstall all of our packages. This will remove any files related to the old version of Gatsby.
 
 ```bash
-rm -drf public && \
-rm -drf node_modules && \
+rm -rf public && \
+rm -rf node_modules && \
 yarn install
 ```
 
@@ -204,7 +204,7 @@ yarn dev
 
 Load the site in your browser and see if everything looks correct.
 
-You also need to test the production build. Because we're building static files, we can easily test the build using [http-server](https://www.npmjs.com/package/http-server). This allows us to server the `public` folder locally to ensure the site is building correctly.
+You also need to test the production build. Because we're building static files, we can easily test the build using [http-server](https://www.npmjs.com/package/http-server). This allows us to serve the `public` folder locally to ensure the site is building correctly.
 
 ```bash
 yarn global add http-server
@@ -215,10 +215,10 @@ http-server -c-1
 ```
 
 ## Wrapping up
-If you customized your old blog more heavily than I did, you may need to fix up a few more things. In cases where the new graphql functionality isn't obvious, fall back on the `src/config.js` file and leave yourself a `TODO`. At the time of this writing the [graphql documentation is incomplete](https://github.com/gatsbyjs/gatsby/blob/e4457d155840f4e08c46397cba944abd38dc5934/docs/docs/querying-with-graphql.md) ([latest](https://www.gatsbyjs.org/docs/querying-with-graphql/)) and upgrading may be non-trivial.
+If you customized your old blog more heavily than I did, you may need to fix up a few more things. In cases where the new GraphQL functionality isn't obvious, fall back on the `src/config.js` file and leave yourself a `TODO`. At the time of this writing the [graphql documentation is incomplete](https://github.com/gatsbyjs/gatsby/blob/e4457d155840f4e08c46397cba944abd38dc5934/docs/docs/querying-with-graphql.md) ([latest](https://www.gatsbyjs.org/docs/querying-with-graphql/)) and upgrading may be non-trivial.
 
 ## Deploying
-Once you are happy with your upgrade, commit it to the `gatsby-upgrade` branch and push it to github.
+Once you are happy with your upgrade, commit it to the `gatsby-upgrade` branch and push it to GitHub.
 
 ```bash
 git add . && \
@@ -226,4 +226,4 @@ git commit -m "Upgrading to Gatsby 1.0" && \
 git push origin gatsby-upgrade
 ```
 
-On Github you will want to merge your feature branch using a [pull request](https://help.github.com/articles/about-pull-requests/). This should trigger the [travis deploy](/deploying-travis/). Be sure to check every link on your site before doing the final merge.
+On GitHub you will want to merge your feature branch using a [pull request](https://help.github.com/articles/about-pull-requests/). This should trigger the [Travis deploy](/deploying-travis/). Be sure to check every link on your site before doing the final merge.

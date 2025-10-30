@@ -20,9 +20,9 @@ A basic redirect looks like this (this would go in your `firebase.json`):
 }
 ```
 
-We need to create a redirect entry to cover for all of the pages of the old site. Some of the articles from the old blog were mildly popular and have many inbound links to them. The first step is to gather that list of pages.
+We need to create a redirect entry to cover all of the pages of the old site. Some of the articles from the old blog were mildly popular and have many inbound links to them. The first step is to gather that list of pages.
 
-Thankfully, the old site published all of the posts to the `blog/` folder. This means we can use a wildcard redirect to the old site for anything under "blog". This should redirect all of the links we care about. If people were deep linking to things besides my blog posts they will have to update their links manually.
+Thankfully, the old site published all of the posts to the `blog/` folder. This means we can use a wildcard redirect to the old site for anything under "blog". This should redirect all of the links we care about. If people were deep-linking to things besides my blog posts they will have to update their links manually.
 
 Eventually this may prove to be a short-sighted approach (what if I need the "blog" folder back?). I could just as easily generate specific redirects for every page in the old sitemap but that isn't necessary at this point. I will update this post when that day comes.
 
@@ -60,7 +60,7 @@ After reviewing the old Octopress site, I came up with the following "good enoug
 ```
 
 ### Deploy the updated `firebase.json`
-Now that we've updated our configuration it can be safely deployed.
+Now that we've updated our configuration, it can be safely deployed.
 
 ```bash
 yarn deploy
@@ -90,7 +90,7 @@ Once the DNS propagates and the certificates are issued, the site should *just w
 - In Firebase, connect `heygrady.com` and `www.heygrady.com` to the new site (`www` should redirect to `heygrady.com`)
 - Update Google Domains to point `@` and `www` A records to the Firebase IP addresses
 - Wait for everything to propagate
-- When everything is working, edit `new` to redirect to `heygrady.com` in Firebase console.
+- When everything is working, edit `new` to redirect to `heygrady.com` in the Firebase console.
 
 ## What's next?
-- [Automatically deploy when changes are pushed to master](/deploying-travis/)
+- [Automatically deploy when changes are pushed to `master`](/deploying-travis/)

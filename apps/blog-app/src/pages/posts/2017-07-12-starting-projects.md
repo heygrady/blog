@@ -6,11 +6,11 @@ pubDate: "2017-07-12T18:18:31Z"
 ---
 Becoming a better developer means trying out new things, but starting new things is painful. There's a lot of boilerplate configuration to learn (and it always seems to change). I've been trying to lower my personal barriers to starting new projects by practicing *getting started*. A prolific developer has mastered this important step.
 
-I recently [started a new blog](/new-blog/) because I wanted be able to practice the art of publishing often. I've already configured my blog to [deploy every time I push to Github](/deploying-travis/). Now I can easily write something down and publish it!
+I recently [started a new blog](/new-blog/) because I wanted to be able to practice the art of publishing often. I've already configured my blog to [deploy every time I push to GitHub](/deploying-travis/). Now I can easily write something down and publish it!
 
-This *always be publishing* mentality is vital for the node community, because node developers prefer [many small packages](https://www.wired.com/2015/04/npm-funding/). Although, sometimes this can [cause hassles](https://www.theregister.co.uk/2016/03/23/npm_left_pad_chaos/). In a very real sense, programming is the art of finding the best way to solve a problem and *writing it down*.
+This *always be publishing* mentality is vital for the node community, because node developers prefer [many small packages](https://www.wired.com/2015/04/npm-funding/). Although sometimes this can [cause hassles](https://www.theregister.co.uk/2016/03/23/npm_left_pad_chaos/). In a very real sense, programming is the art of finding the best way to solve a problem and *writing it down*.
 
-The hassle of setting up and maintaining boilerplate configuration code is why [many](https://github.com/facebookincubator/create-react-app/tree/master/packages) [maintainers](https://github.com/mozilla-neutrino/neutrino-dev/tree/master/packages) have decided to create [monorepos](https://staltz.com/setting-up-a-javascript-monorepo.html), where many packages live side-by-side and share boilerplate code for testing and building and documentation.
+The hassle of setting up and maintaining boilerplate configuration code is why [many](https://github.com/facebookincubator/create-react-app/tree/master/packages) [maintainers](https://github.com/mozilla-neutrino/neutrino-dev/tree/master/packages) have decided to create [monorepos](https://staltz.com/setting-up-a-javascript-monorepo.html), where many packages live side-by-side and share boilerplate code for testing, building, and for documentation.
 
 Here I'm going to outline getting started on a new web package.
 
@@ -18,26 +18,26 @@ Here I'm going to outline getting started on a new web package.
 
 There is a reason that the Node community encourages creating *small, focused* packages. Choosing small projects that can be completed quickly is a great way to build a personal learning momentum. If you can get the code finished in a few days then you can afford lavish amenities like documentation and tests.
 
-The downside of many small packages is that you have to start lots of projects. Node doesn't come with a standard CLI beyond npm / yarn ([why yarn?](https://circleci.com/blog/why-are-developers-moving-to-yarn/)), so it's hard to know exactly where to start. Even if you're just creating a simple Node package, the process of publishing a package requires boilerplate configuration. With the addition of Babel and Webpack it can feel like it's taking *too long* to get going.
+The downside of many small packages is that you have to start lots of projects. Node doesn't come with a standard CLI beyond npm/yarn ([why yarn?](https://circleci.com/blog/why-are-developers-moving-to-yarn/)), so it's hard to know exactly where to start. Even if you're just creating a simple Node package, the process of publishing a package requires boilerplate configuration. With the addition of Babel and Webpack it can feel like it's taking *too long* to get going.
 
-As a JavaScript enthusiast, I'm almost always starting new Node-based projects. Node is a perfect environment for react-redux (web application) development. Because I primarily do frontend development, I'm typically starting projects with the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) ([create-react-app](https://github.com/facebookincubator/create-react-app) is also very popular). Using a starter kit allows you to quickly bootstrap a new app with sensible defaults -- I'll probably write about that in a future post.
+As a JavaScript enthusiast, I'm almost always starting new Node-based projects. Node is a perfect environment for React-Redux (web application) development. Because I primarily do frontend development, I'm typically starting projects with the [React-Redux starter kit](https://github.com/davezuko/react-redux-starter-kit) ([create-react-app](https://github.com/facebookincubator/create-react-app) is also very popular). Using a starter kit allows you to quickly bootstrap a new app with sensible defaults -- I'll probably write about that in a future post.
 
-I find myself needing to create packages to reuse code across react-redux projects. These packages aren't web *apps*... they're web *packages*. I'm defining *web package* as, "an npm package that's intended to be imported into a (webpack / babel) web application." Below are the steps I take to start a new web package from scratch.
+I find myself needing to create packages to reuse code across React-Redux projects. These packages aren't web *apps*... they're web *packages*. I'm defining *web package* as, "an npm package that's intended to be imported into a (Webpack/Babel) web application." Below are the steps I take to start a new web package from scratch.
 
 Hopefully these notes will make it easier the next time I need to get started.
 
 ### A proper start
-In this post I will be merging the configuration files from the [react-redux-starter-kit](https://github.com/davezuko/react-redux-sarter-kit) (a web application) and [redux](https://github.com/reactjs/redux) (a web package). I'm using files from the starter-kit because I like their use of [Standard JS](https://standardjs.com/). Plus, it's what I use to build my applications so I prefer a common "look and feel." I'm using files from redux because it is a really popular web package that has a broad audience -- so they likely have a solid setup.
+In this post I will be merging the configuration files from the [React-Redux starter kit](https://github.com/davezuko/react-redux-starter-kit) (a web application) and [Redux](https://github.com/reactjs/redux) (a web package). I'm using files from the starter-kit because I like their use of [Standard JS](https://standardjs.com/). Plus, it's what I use to build my applications so I prefer a common "look and feel." I'm using files from Redux because it is a really popular web package that has a broad audience -- so they likely have a solid setup.
 
 **A boilerplate web package needs:**
 
-- Source control -- github
-- Lint -- eslint with standard
-- Test -- jest
-- Build -- babel, rollup
-- Deploy -- npm, travis, github pages
-- Docs -- gitbook
-- Tooling -- npm / yarn scripts
+- Source control -- GitHub
+- Lint -- ESLint with Standard
+- Test -- Jest
+- Build -- Babel, Rollup
+- Deploy -- NPM, Travis, GitHub Pages
+- Docs -- GitBook
+- Tooling -- NPM/Yarn scripts
 
 ## Starting from scratch
 
@@ -49,11 +49,11 @@ In this post I will be merging the configuration files from the [react-redux-sta
   cd new-project
   ```
 
-- **Initialize a Git repo and `package.json`.** Publishing to NPM is covered briefly near the end of this post. I'll probably cover publishing more in depth in a future post.
+- **Initialize a Git repository and `package.json`.** Publishing to NPM is covered briefly near the end of this post. I'll probably cover publishing more in-depth in a future post.
 
-  **Note:** Github Desktop is an easy way to [publish new repositories](https://guides.github.com/introduction/getting-your-project-on-github/) to Github. You can open your project with `github .` and publish it easily. (Of course, you should [learn git](https://www.learnenough.com/git-tutorial))
+  **Note:** GitHub Desktop is an easy way to [publish new repositories](https://guides.github.com/introduction/getting-your-project-on-github/) to GitHub. You can open your project with `github .` and publish it easily. (Of course, you should [learn Git](https://www.learnenough.com/git-tutorial))
 
-  **Note:** [Hub](https://hub.github.com/) is a git extension created by Github that makes it easier to work with Github over the command-line. You can [create](https://hub.github.com/hub.1.html) new Github projects using `hub` if you please.
+  **Note:** [Hub](https://hub.github.com/) is a Git extension created by GitHub that makes it easier to work with GitHub over the command-line. You can [create](https://hub.github.com/hub.1.html) new GitHub projects using `hub` if you please.
 
   **Note:** You might like to set up your [yarn config](https://yarnpkg.com/en/docs/cli/config) to provide your own [init defaults](https://yarnpkg.com/lang/en/docs/cli/init/#toc-setting-defaults-for-yarn-init).
 
@@ -72,7 +72,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
   hub create new-project
   ```
 
-- **Open the project in your editor.** I like to open the project in Atom because I use the [terminal plugin](https://atom.io/packages/termination) when I work on projects. It's good to keep your terminal as close to your code as possible. Atom is a great editor for JavaScript because of the excellent [linting](https://medium.freecodecamp.org/how-to-set-up-eslint-in-atom-to-contribute-to-freecodecamp-3467dee86e2c) integration. (I'm not hip enough to [vim](https://www.codementor.io/mattgoldspink/best-text-editor-atom-sublime-vim-visual-studio-code-du10872i7).)
+- **Open the project in your editor.** I like to open the project in Atom because I use the [terminal plugin](https://atom.io/packages/termination) when I work on projects. It's good to keep your terminal as close to your code as possible. Atom is a great editor for JavaScript because of the excellent [linting](https://medium.freecodecamp.org/how-to-set-up-eslint-in-atom-to-contribute-to-freecodecamp-3467dee86e2c) integration. (I'm not hip enough to use [Vim](https://www.codementor.io/mattgoldspink/best-text-editor-atom-sublime-vim-visual-studio-code-du10872i7).)
 
   ```bash
   atom .
@@ -80,7 +80,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
 
   **Note:** The best thing about using the terminal from within atom is that it automatically navigates you to your project directory. This makes it "free" (in an emotional sense) to open the terminal and run some commands for your project (i.e. you don't have to switch contexts and navigate to your project). And there's no pain in closing the terminal -- you never lose your place. When you're building apps it's easier to see errors as you make them. If you `babel --watch` your code in the atom terminal you can see if you're breaking the build in real time.
 
-- **Use a standard directory structure.** Redux places build-related files in a `build` folder. Redux calls it's "test" folder `test` while the react-redux-starter-it calls it `tests` (use your favorite).
+- **Use a standard directory structure.** Redux places build-related files in a `build` folder. Redux calls its "test" folder `test` while the react-redux-starter-kit calls it `tests` (use your favorite).
 
   ```bash
   mkdir build && \
@@ -97,7 +97,7 @@ In this post I will be merging the configuration files from the [react-redux-sta
 
 - **Ignore some standard files.** It's helpful to compare with examples from the starter-kit ([`.gitignore`](https://raw.githubusercontent.com/davezuko/react-redux-starter-kit/master/.gitignore)) and redux ([`.gitignore`](https://raw.githubusercontent.com/reactjs/redux/master/.gitignore)). Below is a merging of the two.
 
-  If you want an idea of more things you could/should ignore, look at the default Github file for Node ([`.gitignore`](https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore)) or compare to your favorite project's repo.
+  If you want an idea of more things you could/should ignore, look at the default GitHub file for Node ([`.gitignore`](https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore)) or compare to your favorite project's repository.
 
   ```bash
   echo '.DS_STORE
