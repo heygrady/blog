@@ -193,7 +193,7 @@ ES-Hyperneat, and the Population can adapt to the needs of these different
 algorithms. Most of the functionality is the same, but different traits enable
 different capabilities based on the context.
 
-Rust is really powerful. TypeScript is not. This led to many hours or tracing
+Rust is really powerful. TypeScript is not. This led to many hours of tracing
 the Rust code in circles to unpack what was really happening and making
 adjustments to the TypeScript classes to accommodate that. The most obvious side
 effect is that all of this dependency injection needed to be represented in
@@ -203,8 +203,8 @@ HUGE.
 #### Rust
 
 Rust is able to fill in the blanks because it is fully context-aware. The
-population might be a Genome of _any_ NEAT variants, and Rust can figure that
-out based on the context.
+population might be a Genome of _any_ NEAT variant, and Rust can figure that out
+based on the context.
 
 ```rust
 pub struct Population<G: Genome> {
