@@ -5,7 +5,7 @@ description: "I implemented eslint to show linting errors in my editor while I w
 pubDate: "2017-07-03T11:59:28Z"
 ---
 
-In the previous post about [automating deployments with Travis](/deploying-travis/) I noted that it's a good idea to lint your code before deploying it. In past React projects I've started with the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) which comes preconfigured to use [eslint](http://eslint.org/) with the [Standard JS](https://standardjs.com/) package. We need linting for this blog, so let's copy what the starter-kit is doing.
+In the previous post about [automating deployments with Travis](/posts/2017-07-02-deploying-travis/) I noted that it's a good idea to lint your code before deploying it. In past React projects I've started with the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) which comes preconfigured to use [eslint](http://eslint.org/) with the [Standard JS](https://standardjs.com/) package. We need linting for this blog, so let's copy what the starter-kit is doing.
 
 ## Grab the files from the starter-kit
 Probably the easiest way to grab our files is using `wget`. You might need to [install wget](http://brewformulas.org/Wget) on your system. You can always manually pull down these files.
