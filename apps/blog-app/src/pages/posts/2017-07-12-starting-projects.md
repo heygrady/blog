@@ -6,7 +6,7 @@ pubDate: "2017-07-12T18:18:31Z"
 ---
 Becoming a better developer means trying out new things, but starting new things is painful. There's a lot of boilerplate configuration to learn (and it always seems to change). I've been trying to lower my personal barriers to starting new projects by practicing *getting started*. A prolific developer has mastered this important step.
 
-I recently [started a new blog](/new-blog/) because I wanted to be able to practice the art of publishing often. I've already configured my blog to [deploy every time I push to GitHub](/deploying-travis/). Now I can easily write something down and publish it!
+I recently [started a new blog](/posts/2017-06-30-new-blog/) because I wanted to be able to practice the art of publishing often. I've already configured my blog to [deploy every time I push to GitHub](/posts/2017-07-02-deploying-travis/). Now I can easily write something down and publish it!
 
 This *always be publishing* mentality is vital for the node community, because node developers prefer [many small packages](https://www.wired.com/2015/04/npm-funding/). Although sometimes this can [cause hassles](https://www.theregister.co.uk/2016/03/23/npm_left_pad_chaos/). In a very real sense, programming is the art of finding the best way to solve a problem and *writing it down*.
 
@@ -301,7 +301,7 @@ echo "module.exports = function () {
     visitor: {
       ImportDeclaration (path) {
         const source = path.node.source
-        source.value = source.value.replace(/^lodash($|\/)/, 'lodash-es$1')
+        source.value = source.value.replace(/^lodash($|\/)/, 'lodash-es')
       }
     }
   }
@@ -735,3 +735,4 @@ I intentionally skipped the steps for `README.md`, `docs` and publishing docs wi
 
 ## Conclusion
 There are a lot of steps for setting up a new web package project. Hopefully this makes someone's life a little easier. It's worth keeping an eye on [Neutrino](https://neutrino.js.org/), as it tries to make this type of configuration much simpler. Currently Neutrino doesn't cover [use cases like redux](https://github.com/mozilla-neutrino/neutrino-dev/issues/84#issuecomment-283513669) very well. It's also worth watching [create-react-app](https://github.com/facebookincubator/create-react-app), which tries to make it dead-simple to get up and running with webpack (it's similar to the starter-kit). Also, keep an eye on [`yarn create`](https://yarnpkg.com/lang/en/docs/cli/create/) which promises to [make it easy to create](https://yarnpkg.com/blog/2017/05/12/introducing-yarn/) package bootstraps.
+
