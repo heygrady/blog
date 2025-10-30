@@ -3,7 +3,7 @@ layout: "../../layouts/BlogPost.astro"
 title: "Evolving Neural Networks in TypeScript"
 description: "Introducing @neat-evolution, a modular implementation of NEAT in TypeScript."
 pubDate: "2025-10-29T21:45:16.426Z"
-heroImage: "heygrady-neat.jpg"
+heroImage: "hero-neat.jpg"
 ---
 
 I've been sitting on this for quite a while. After months of development, I'm
