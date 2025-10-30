@@ -7,7 +7,7 @@ readNext: "/migrating-old-site/"
 path: "/first-launch/"
 ---
 
-I'm going to be using [Firebase](https://firebase.google.com/) to host my blog initially. The free tier on Firebase is perfect for a project like this -- I'm using Gatsby, which generates a single page React app. [Firebase Hosting](https://firebase.google.com/docs/hosting/) is tailor made for single page web apps.
+I'm going to be using [Firebase](https://firebase.google.com/) to host my blog initially. The free tier on Firebase is perfect for a project like this -- I'm using Gatsby, which generates a single page React app. [Firebase Hosting](https://firebase.google.com/docs/hosting/) is tailor-made for single page web apps.
 
 ##### Static site hosting competitors:
 
@@ -24,7 +24,7 @@ I already had an account. You can create one for yourself: https://firebase.goog
 
 - Create an account
 - Start a new project (I named mine "blog")
-- Make sure you have firebase tools installed
+- Make sure you have Firebase tools installed
 - Initialize your project
 
 ```bash
@@ -34,11 +34,11 @@ firebase login
 firebase init
 ```
 
-If you already have a project, firebase may cause you some troubles and throw errors because of existing files. I created an empty test folder, initialized my project, and then copied the `firebase.json` and `.firebaserc` files into my Gatsby root (where your `package.json` lives).
+If you already have a project, Firebase may cause you some troubles and throw errors because of existing files. I created an empty test folder, initialized my project, and then copied the `firebase.json` and `.firebaserc` files into my Gatsby root (where your `package.json` lives).
 
 ## firebase.json
 
-The ultimate goal is to create a firebase.json file.
+The ultimate goal is to create a `firebase.json` file.
 
 **Note:** I got stuck on `firebase init` (it just froze without any errors). Turned out that I needed to [update my Node](https://github.com/firebase/firebase-tools/issues/370) because of a regression.
 

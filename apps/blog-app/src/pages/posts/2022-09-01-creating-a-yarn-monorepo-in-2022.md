@@ -6,7 +6,7 @@ pubDate: "2022-09-01T06:58:32.817Z"
 heroImage: "hero-create-yarn-monorepo.jpg"
 ---
 
-The goal here is to create an new monorepo that is ready to start creating packages and apps. This is similar to the Turborepo starter but it doesn't use turbo to initialize the repo.
+The goal here is to create a new monorepo that is ready to start creating packages and apps. This is similar to the Turborepo starter but it doesn't use turbo to initialize the repository.
 
 ### Tooling
 
@@ -25,9 +25,9 @@ This document will focus on the tooling needed by the workspace root. The toolin
 
 # Initialize a Blank Repo
 
-This document is written in a way that should enable you cut and paste commands into a terminal. It was written on a Mac and should work with the factory defaults on any similar system.
+This document is written in a way that should enable you to cut and paste commands into a terminal. It was written on a Mac and should work with the factory defaults on any similar system.
 
-Here we want to start with a blank folder and bootstrap a git repo to hold our monorepo workspace.
+Here we want to start with a blank folder and bootstrap a git repository to hold our monorepo workspace.
 
 ```sh
 # Start with an empty folder.
@@ -41,7 +41,7 @@ git init
 # Initialize Gitignore
 curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
 
-# Open it in Vs Code (if you like VS Code).
+# Open it in VS Code (if you like VS Code).
 code .
 ```
 
@@ -68,7 +68,7 @@ We need to initialize and configure the tooling we use in the workspace root.
 - [Commitlint](https://github.com/conventional-changelog/commitlint#getting-started)
 - [Turborepo](https://turborepo.org/docs/getting-started#install-turbo)
 
-From here, we presume you are using the repo directory we created as your working directory.
+From here, we presume you are using the repository directory we created as your working directory.
 
 ```sh
 # repo root
@@ -77,9 +77,9 @@ cd ~/repos/my-repo
 
 ## Initialize Workspace Root
 
-Now that we have a blank repo and a current default version of Node on our system it's time to create our workspace root `package.json`.
+Now that we have a blank repository and a current default version of Node on our system it's time to create our workspace root `package.json`.
 
-This step will install Yarn Berry, create a `package.json` pre-configured for workspaces and configure Yarn Berry for the best mix of compatibility and portability.
+This step will install Yarn Berry, create a `package.json` preconfigured for workspaces and configure Yarn Berry for the best mix of compatibility and portability.
 
 - Optional: [Install Corepack](https://github.com/volta-cli/volta/issues/987#issuecomment-914502143)
 - [Install Yarn Berry](https://yarnpkg.com/getting-started/install)
@@ -125,7 +125,7 @@ I want to publish my packages to the Github Package Registry instead of NPM. Thi
 - [NPM Scopes](https://docs.npmjs.com/cli/v8/using-npm/scope)
 - [Yarn Config for `npmScopes`](https://yarnpkg.com/configuration/yarnrc#npmScopes)
 
-The Github Package Registry requires you to use scoped packages where the scope matches the repository owner, not the repo name. Github refers to these values as `@OWNER` and `@REPO`. In order to publish an NPM package to the Github Package Registry you need to have write permissions to a Github account or organization (`@OWNER`) with the same name as your package scope.
+The Github Package Registry requires you to use scoped packages where the scope matches the repository owner, not the repository name. Github refers to these values as `@OWNER` and `@REPO`. In order to publish an NPM package to the Github Package Registry you need to have write permissions to a Github account or organization (`@OWNER`) with the same name as your package scope.
 
 For instance, I manage the code for this blog at this URL https://github.com/heygrady/blog so I will need to prefix all of my package names with `@heygrady`.
 
@@ -149,7 +149,7 @@ echo "@heygrady:registry=https://npm.pkg.github.com" >> .npmrc
 
 Changesets is a spiritual successor to Lerna and it sheds much of the unnecessary weight and magic of Lerna. What's left is a tool focused on releasing workspace packages.
 
-We're going to configure our repo to use the Changesets Github Action to automate the release process. You should review the documentation for [automating changesets](https://github.com/changesets/changesets/blob/main/docs/automating-changesets.md).
+We're going to configure our repository to use the Changesets Github Action to automate the release process. You should review the documentation for [automating changesets](https://github.com/changesets/changesets/blob/main/docs/automating-changesets.md).
 
 - [Using Changesets](https://github.com/changesets/changesets/blob/main/docs/intro-to-using-changesets.md)
 - [Automating Changesets](https://github.com/changesets/changesets/blob/main/docs/automating-changesets.md)
@@ -241,7 +241,7 @@ Calling `build` before `changeset publish` ensures that all of our typescript an
 
 ## Initialize Husky
 
-Husky is the defacto tool for managing precommit hooks within a JavaScript repo. We use it for enforcing linting rules for commit messages (commitlint), package.json files (manypkg) and source files (eslint).
+Husky is the defacto tool for managing precommit hooks within a JavaScript repository. We use it for enforcing linting rules for commit messages (commitlint), package.json files (manypkg) and source files (eslint).
 
 - [Husky Automatic Installation](https://typicode.github.io/husky/#/?id=automatic-recommended)
 
@@ -259,7 +259,7 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 endmsg
 ```
 
-## Initailize Commitlint
+## Initialize Commitlint
 
 Commitlint enforces the rules of conventional commits. This makes it possible to use tools like changesets for automatically versioning packages and generating changelogs.
 
@@ -301,7 +301,7 @@ yarn husky set .husky/manypkg-check 'yarn manypkg check'
 
 ## Initialize Turborepo
 
-Turborepo speeds up the process of running commands in all workspace packages. This is very helpful for CI/CD workflows and for bootstrapping a repo after checkout. This document does not cover any of the advanced configuration where you can pay money to Vercel to maintain a shared workspace cache.
+Turborepo speeds up the process of running commands in all workspace packages. This is very helpful for CI/CD workflows and for bootstrapping a repository after checkout. This document does not cover any of the advanced configuration where you can pay money to Vercel to maintain a shared workspace cache.
 
 - [Configuring Turbo](https://turborepo.org/docs/getting-started#create-turbojson)
 
@@ -377,7 +377,7 @@ We expose some common commands that most of our workspace packages will expose. 
 
 ## Create App and Scripts Workspaces
 
-It's a common convention to have an `apps` folder separate from the `packages` folder to distinguish specialized application packages from standard library packages. We're going to also create a `scripts` folder for holding common script our repo needs. This may be covered in a future post.
+It's a common convention to have an `apps` folder separate from the `packages` folder to distinguish specialized application packages from standard library packages. We're going to also create a `scripts` folder for holding common scripts our repository needs. This may be covered in a future post.
 
 ```sh
 mkdir apps
