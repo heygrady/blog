@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.2.15
+
+### Patch Changes
+
+- d28950e: New post on NEAT plus fixes for typos and links in older posts
+
 ## 1.2.14
 
 ### Patch Changes
