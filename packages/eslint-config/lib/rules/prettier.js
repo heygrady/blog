@@ -1,7 +1,9 @@
-module.exports = {
+import prettierrc from '../../.prettierrc.mjs'
+
+export default {
   'prettier/prettier': [
     'error',
-    require('../../.prettierrc.js'),
+    prettierrc,
     {
       usePrettierrc: false,
     },

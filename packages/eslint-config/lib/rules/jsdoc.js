@@ -1,5 +1,5 @@
 // common jsdoc rules for all configs
-module.exports = {
+export default {
   'jsdoc/require-jsdoc': 'off',
   'jsdoc/check-tag-names': ['warn', { definedTags: ['jsx'] }],
 }

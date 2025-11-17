@@ -1,4 +1,4 @@
-const parserServicesRules = {
+export const parserServicesRules = {
   // disable typescript rules which require parser services
   // https://github.com/eslint/eslint-plugin-markdown/tree/main/examples/typescript#typescript-example
   // https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/TYPED_LINTING.md
@@ -49,8 +49,4 @@ const parserServicesRules = {
   '@typescript-eslint/no-unused-vars': 'off',
   '@typescript-eslint/require-await': 'off',
   '@typescript-eslint/return-await': 'off',
-}
-
-module.exports = {
-  parserServicesRules,
 }

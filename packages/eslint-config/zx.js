@@ -1,4 +1,4 @@
-require('@rushstack/eslint-patch/modern-module-resolution')
+import nodeConfig from './node.js'
 
 // zx globals
 // https://github.com/google/zx/blob/main/src/globals.ts
@@ -29,15 +29,19 @@ const zxGlobals = [
   return obj
 }, {})
 
-module.exports = {
-  extends: [require.resolve('./node')],
-  globals: {
-    ...zxGlobals,
+export default [
+  ...nodeConfig,
+  {
+    languageOptions: {
+      globals: {
+        ...zxGlobals,
+      },
+    },
+    settings: {
+      'import/core-modules': ['zx/globals'],
+    },
+    rules: {
+      'n/no-missing-import': ['error', { allowModules: ['zx'] }],
+    },
   },
-  settings: {
-    'import/core-modules': ['zx/globals'],
-  },
-  rules: {
-    'n/no-missing-import': ['error', { allowModules: ['zx'] }],
-  },
-}
+]

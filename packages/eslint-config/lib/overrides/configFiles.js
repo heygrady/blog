@@ -1,9 +1,11 @@
 // common config overrides for all configs
-module.exports = [
+export default [
   {
     files: ['*.config.{js,cjs,mjs,ts,cts,mts}', '*rc.{js,cjs,mjs,ts,cts,mts}'],
-    parserOptions: {
-      project: null,
+    languageOptions: {
+      parserOptions: {
+        project: null,
+      },
     },
     rules: {
       'import/no-default-export': 'off',

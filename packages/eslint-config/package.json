@@ -1,7 +1,7 @@
 {
   "name": "@heygrady/eslint-config",
   "version": "1.5.1",
-  "type": "commonjs",
+  "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -11,12 +11,13 @@
     "access": "public",
     "registry": "https://npm.pkg.github.com"
   },
-  "main": "./ts-node-esm.js",
+  "main": "./eslint.config.mjs",
   "files": [
     "lib/**/*",
-    ".prettierrc.js",
+    ".prettierrc.mjs",
     "node.js",
     "README.md",
+    "eslint.config.js",
     "ts-node-esm.js",
     "tsx-react-esm.js",
     "zx.js"
@@ -24,48 +25,43 @@
   "scripts": {
     "clean": "rimraf .turbo",
     "format": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}\" --fix",
-    "lint": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}\"",
+    "lint": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}\" --ignore-pattern \"package.json\"",
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@rushstack/eslint-patch": "^1.5.1",
-    "@testing-library/dom": "^9.3.3",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "eslint": "^8.53.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-config-standard": "17.1.0",
-    "eslint-config-standard-jsx": "^11.0.0",
-    "eslint-config-standard-react": "^13.0.0",
-    "eslint-config-standard-with-typescript": "^39.1.1",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-compat": "^4.2.0",
-    "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-jest": "^27.6.0",
-    "eslint-plugin-jest-dom": "^5.1.0",
-    "eslint-plugin-jsdoc": "^46.8.2",
-    "eslint-plugin-json": "^3.1.0",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-markdown": "^3.0.1",
-    "eslint-plugin-n": "16.3.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-storybook": "^0.6.15",
-    "eslint-plugin-testing-library": "^6.1.2",
-    "eslint-plugin-vitest": "^0.3.9",
-    "pkg-dir": "^5.0.0",
-    "prettier": "^3.0.3",
-    "prettier-config-standard": "^7.0.0",
-    "typescript": "^5.2.2",
-    "vitest": "^0.34.6"
+    "@eslint/markdown": "^7.5.1",
+    "@testing-library/dom": "latest",
+    "@typescript-eslint/eslint-plugin": "^8.46.4",
+    "@typescript-eslint/parser": "^8.46.4",
+    "eslint": "latest",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "latest",
+    "eslint-plugin-compat": "latest",
+    "eslint-plugin-eslint-comments": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-jest": "latest",
+    "eslint-plugin-jest-dom": "latest",
+    "eslint-plugin-jsdoc": "latest",
+    "eslint-plugin-json": "latest",
+    "eslint-plugin-jsx-a11y": "latest",
+    "eslint-plugin-n": "latest",
+    "eslint-plugin-prettier": "latest",
+    "eslint-plugin-promise": "latest",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "eslint-plugin-storybook": "latest",
+    "eslint-plugin-testing-library": "latest",
+    "eslint-plugin-vitest": "latest",
+    "package-directory": "^8.1.0",
+    "prettier": "latest",
+    "prettier-config-standard": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
   },
   "devDependencies": {
     "@types/rimraf": "^4",
-    "lint-staged": "^15.0.2",
-    "rimraf": "^5.0.5"
+    "lint-staged": "latest",
+    "rimraf": "latest"
   },
   "lint-staged": {
     "*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": [
@@ -73,10 +69,10 @@
     ]
   },
   "browserslist": [
-    "node 16.14.0"
+    "node 18.18.0"
   ],
   "engines": {
-    "node": ">=16.14.0"
+    "node": ">=18.18.0"
   },
   "volta": {
     "extends": "../../package.json"

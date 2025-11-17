@@ -1,50 +1,69 @@
-require('@rushstack/eslint-patch/modern-module-resolution')
+import js from '@eslint/js'
+import markdown from '@eslint/markdown'
+import ts from '@typescript-eslint/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
+import prettierConfig from 'eslint-config-prettier'
+import compat from 'eslint-plugin-compat'
+import eslintComments from 'eslint-plugin-eslint-comments'
+import importPlugin from 'eslint-plugin-import'
+import jsdoc from 'eslint-plugin-jsdoc'
+import n from 'eslint-plugin-n'
 
-const { allExtensions } = require('./lib/commonExtensions.js')
+import { allExtensions } from './lib/commonExtensions.js'
+import configFilesOverrides from './lib/overrides/configFiles.js'
+import jsonOverrides from './lib/overrides/json.js'
+import markdownOverrides from './lib/overrides/markdown.js'
+import typescriptOverrides from './lib/overrides/typescript.js'
+import vitestOverrides from './lib/overrides/vitest.js'
+import commonRules from './lib/rules/common.js'
+import importRules from './lib/rules/import.js'
+import jsdocRules from './lib/rules/jsdoc.js'
+import nodeRules from './lib/rules/node.js'
+import prettierRules from './lib/rules/prettier.js'
 
-module.exports = {
-  extends: [
-    'eslint:recommended',
-    'plugin:eslint-comments/recommended',
-    'plugin:compat/recommended',
-    'plugin:n/recommended',
-    'plugin:import/recommended',
-    'plugin:jsdoc/recommended',
-    'standard',
-    'plugin:prettier/recommended',
-  ],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'markdown'],
-  env: {
-    es2021: true,
-    node: true,
-  },
-  parserOptions: {
-    ecmaVersion: 2022,
-    sourceType: 'module',
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: allExtensions,
+export default [
+  {
+    ...js.configs.recommended,
+    plugins: {
+      'eslint-comments': eslintComments,
+      compat,
+      n,
+      import: importPlugin,
+      jsdoc,
+      markdown,
+      ts,
+    },
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: {
+        es2021: true,
+        node: true,
       },
     },
-    jsdoc: {
-      mode: 'typescript',
+    settings: {
+      'import/resolver': {
+        node: {
+          extensions: allExtensions,
+        },
+      },
+      jsdoc: {
+        mode: 'typescript',
+      },
+    },
+    rules: {
+      ...commonRules,
+      ...importRules,
+      ...jsdocRules,
+      ...nodeRules,
+      ...prettierRules,
     },
   },
-  rules: {
-    ...require('./lib/rules/common.js'),
-    ...require('./lib/rules/import.js'),
-    ...require('./lib/rules/jsdoc.js'),
-    ...require('./lib/rules/node.js'),
-    ...require('./lib/rules/prettier.js'),
-  },
-  overrides: [
-    ...require('./lib/overrides/typescript.js'),
-    ...require('./lib/overrides/configFiles.js'),
-    ...require('./lib/overrides/json.js'),
-    ...require('./lib/overrides/markdown.js'),
-    ...require('./lib/overrides/vitest.js'),
-  ],
-}
+  ...typescriptOverrides,
+  ...configFilesOverrides,
+  ...jsonOverrides,
+  ...markdownOverrides,
+  ...vitestOverrides,
+  prettierConfig,
+]
