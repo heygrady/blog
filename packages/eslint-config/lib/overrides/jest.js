@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     files: ['**/*.{spec,test}.{cjs,mjs,js,jsx,cts,mts,ts,tsx}'],
     plugins: ['jest'],

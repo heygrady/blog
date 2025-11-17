@@ -1,15 +1,25 @@
-const { parserServicesRules } = require('../parserServicesRules.js')
+import markdown from '@eslint/markdown'
+
+import { parserServicesRules } from '../parserServicesRules.js'
 
 // common md overrides for all configs
-module.exports = [
+export default [
   {
     files: ['**/*.md'],
-    extends: 'plugin:markdown/recommended',
+    plugins: {
+      markdown,
+    },
+    processor: 'markdown/markdown',
+    rules: {
+      ...markdown.configs.recommended.rules,
+    },
   },
   {
     files: ['**/*.md/**'],
-    parserOptions: {
-      project: null,
+    languageOptions: {
+      parserOptions: {
+        project: null,
+      },
     },
   },
   {
@@ -20,9 +30,11 @@ module.exports = [
       '**/*.md/*.ts',
       '**/*.md/*.tsx',
     ],
-    parserOptions: {
-      ecmaFeatures: {
-        impliedStrict: true,
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          impliedStrict: true,
+        },
       },
     },
     rules: {
@@ -46,6 +58,16 @@ module.exports = [
     rules: {
       'react/jsx-no-undef': 'off',
       'react-hooks/rules-of-hooks': 'off',
+    },
+  },
+  // Override for CommonJS code blocks in Markdown files
+  {
+    files: ['**/*.md/*.js', '**/*.md/*.cjs'],
+    languageOptions: {
+      sourceType: 'commonjs',
+    },
+    rules: {
+      'n/no-extraneous-require': 'off',
     },
   },
 ]

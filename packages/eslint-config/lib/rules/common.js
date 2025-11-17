@@ -1,5 +1,5 @@
 // common rules for all configs
-module.exports = {
+export default {
   'eslint-comments/no-unused-disable': 'error',
 
   'no-unused-vars': 'warn',

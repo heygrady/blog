@@ -1,6 +1,6 @@
 // common import rules for all configs
-module.exports = {
-  'import/no-default-export': 'warn',
+export default {
+  // 'import/no-default-export': 'warn',
   'import/order': [
     'error',
     {

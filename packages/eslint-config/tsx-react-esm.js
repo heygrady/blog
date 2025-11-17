@@ -1,68 +1,88 @@
-require('@rushstack/eslint-patch/modern-module-resolution')
+import js from '@eslint/js'
+import markdown from '@eslint/markdown'
+import ts from '@typescript-eslint/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
+import prettierConfig from 'eslint-config-prettier'
+import compat from 'eslint-plugin-compat'
+import eslintComments from 'eslint-plugin-eslint-comments'
+import importPlugin from 'eslint-plugin-import'
+import jsdoc from 'eslint-plugin-jsdoc'
+import jsxA11y from 'eslint-plugin-jsx-a11y'
+import n from 'eslint-plugin-n'
+import react from 'eslint-plugin-react'
+import reactHooks from 'eslint-plugin-react-hooks'
+import storybook from 'eslint-plugin-storybook'
 
-const { allExtensions } = require('./lib/commonExtensions.js')
+import { allExtensions } from './lib/commonExtensions.js'
+import configFilesOverrides from './lib/overrides/configFiles.js'
+import jestOverrides from './lib/overrides/jest.js'
+import jsonOverrides from './lib/overrides/json.js'
+import markdownOverrides from './lib/overrides/markdown.js'
+import storybookOverrides from './lib/overrides/storybook.js'
+import testingLibraryOverrides from './lib/overrides/testingLibrary.js'
+import typescriptOverrides from './lib/overrides/typescript.js'
+import commonRules from './lib/rules/common.js'
+import importRules from './lib/rules/import.js'
+import jsdocRules from './lib/rules/jsdoc.js'
+import nodeRules from './lib/rules/node.js'
+import prettierRules from './lib/rules/prettier.js'
 
-module.exports = {
-  extends: [
-    'eslint:recommended',
-    'plugin:eslint-comments/recommended',
-    'plugin:compat/recommended',
-    'plugin:n/recommended',
-    'plugin:import/recommended',
-    'plugin:jsdoc/recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:storybook/recommended',
-    'standard',
-    'standard-jsx',
-    'standard-react',
-    'plugin:prettier/recommended',
-  ],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'markdown'],
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
-  },
-  parserOptions: {
-    ecmaVersion: 2022,
-    sourceType: 'module',
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: allExtensions,
+export default [
+  {
+    ...js.configs.recommended,
+    plugins: {
+      'eslint-comments': eslintComments,
+      compat,
+      n,
+      import: importPlugin,
+      jsdoc,
+      react,
+      'react-hooks': reactHooks,
+      'jsx-a11y': jsxA11y,
+      storybook,
+      markdown,
+      ts,
+    },
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: {
+        browser: true,
+        es2021: true,
+        node: true,
       },
     },
-    jsdoc: {
-      mode: 'typescript',
+    settings: {
+      'import/resolver': {
+        node: {
+          extensions: allExtensions,
+        },
+      },
+      jsdoc: {
+        mode: 'typescript',
+      },
+    },
+    rules: {
+      ...commonRules,
+      ...importRules,
+      ...jsdocRules,
+      ...nodeRules,
+      ...prettierRules,
+      'n/no-unpublished-import': [
+        'error',
+        { allowModules: ['@testing-library/jest-dom'] },
+      ],
+      'react/jsx-uses-react': 'off',
+      'react/react-in-jsx-scope': 'off',
     },
   },
-  rules: {
-    ...require('./lib/rules/common.js'),
-    ...require('./lib/rules/import.js'),
-    ...require('./lib/rules/jsdoc.js'),
-    ...require('./lib/rules/node.js'),
-    ...require('./lib/rules/prettier.js'),
-
-    'n/no-unpublished-import': [
-      'error',
-      { allowModules: ['@testing-library/jest-dom'] },
-    ],
-
-    // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
-    'react/jsx-uses-react': 'off',
-    'react/react-in-jsx-scope': 'off',
-  },
-  overrides: [
-    ...require('./lib/overrides/configFiles.js'),
-    ...require('./lib/overrides/jest.js'),
-    ...require('./lib/overrides/json.js'),
-    ...require('./lib/overrides/markdown.js'),
-    ...require('./lib/overrides/storybook.js'),
-    ...require('./lib/overrides/testingLibrary.js'),
-    ...require('./lib/overrides/typescript.js'),
-  ],
-}
+  ...configFilesOverrides,
+  ...jestOverrides,
+  ...jsonOverrides,
+  ...markdownOverrides,
+  ...storybookOverrides,
+  ...testingLibraryOverrides,
+  ...typescriptOverrides,
+  prettierConfig,
+]

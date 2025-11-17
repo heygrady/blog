@@ -1,9 +1,3 @@
-const nodeExtensions = ['.cjs', '.mjs', '.js', 'jsx']
-const typescriptExtensions = ['.cts', '.mts', '.ts', '.tsx']
-const allExtensions = [...nodeExtensions, ...typescriptExtensions]
-
-module.exports = {
-  allExtensions,
-  nodeExtensions,
-  typescriptExtensions,
-}
+export const nodeExtensions = ['.cjs', '.mjs', '.js', 'jsx']
+export const typescriptExtensions = ['.cts', '.mts', '.ts', '.tsx']
+export const allExtensions = [...nodeExtensions, ...typescriptExtensions]

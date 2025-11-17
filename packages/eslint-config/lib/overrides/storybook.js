@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     files: [
       '*.stories.@(ts|tsx|mts|cts|js|jsx|mjs|cjs)',

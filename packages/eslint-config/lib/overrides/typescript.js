@@ -1,19 +1,15 @@
-const {
-  allExtensions,
-  typescriptExtensions,
-} = require('../commonExtensions.js')
-const { parserServicesRules } = require('../parserServicesRules.js')
+import { allExtensions, typescriptExtensions } from '../commonExtensions.js'
+import { parserServicesRules } from '../parserServicesRules.js'
+import prettierRules from '../rules/prettier.js'
 
-module.exports = [
+export default [
   {
     files: ['**/*.{cts,mts,ts,tsx}', '**/*.d.{cts,mts,ts}'],
-    extends: [
-      'plugin:import/typescript',
-      'standard-with-typescript',
-      'plugin:prettier/recommended',
-    ],
-    parserOptions: {
-      project: null,
+    extends: ['plugin:import/typescript', 'standard-with-typescript'],
+    languageOptions: {
+      parserOptions: {
+        project: null,
+      },
     },
     settings: {
       'import/extensions': allExtensions,
@@ -34,7 +30,7 @@ module.exports = [
     rules: {
       // turn off all rules that need parser services
       ...parserServicesRules,
-      ...require('../rules/prettier.js'),
+      ...prettierRules,
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/triple-slash-reference': 'off',
 
@@ -57,8 +53,10 @@ module.exports = [
       'plugin:prettier/recommended',
     ],
     parser: '@typescript-eslint/parser',
-    parserOptions: {
-      project: true,
+    languageOptions: {
+      parserOptions: {
+        project: true,
+      },
     },
     settings: {
       'import/extensions': allExtensions,
@@ -84,7 +82,7 @@ module.exports = [
       },
     },
     rules: {
-      ...require('../rules/prettier.js'),
+      ...prettierRules,
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/triple-slash-reference': 'off',
 
@@ -103,8 +101,10 @@ module.exports = [
     files: ['src/**/*.{js,jsx,cjs,mjs}'],
     extends: ['standard', 'plugin:prettier/recommended'],
     parser: '@typescript-eslint/parser',
-    parserOptions: {
-      project: true,
+    languageOptions: {
+      parserOptions: {
+        project: true,
+      },
     },
     settings: {
       'import/extensions': allExtensions,
@@ -128,7 +128,7 @@ module.exports = [
       },
     },
     rules: {
-      ...require('../rules/prettier.js'),
+      ...prettierRules,
       'import/extensions': 'off',
       // https://github.com/weiran-zsd/eslint-plugin-node/issues/47
       'n/no-missing-import': 'off',
@@ -142,8 +142,10 @@ module.exports = [
   // Fixes collision with markdown files
   {
     files: ['**/src/**/*.md/*.{js,jsx,ts,tsx}'],
-    parserOptions: {
-      project: null,
+    languageOptions: {
+      parserOptions: {
+        project: null,
+      },
     },
     rules: {
       ...parserServicesRules,
