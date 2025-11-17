@@ -132,3 +132,8 @@ dist
 !.yarn/sdks
 !.yarn/versions
 .turbo
+
+CLAUDE.md
+GEMINI.md
+.agile
+devlogs
