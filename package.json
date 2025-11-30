@@ -25,28 +25,28 @@
     "coverage:ci": "turbo run --concurrency=2 coverage -- --maxWorkers=2 --forceExit",
     "format": "turbo run --concurrency=4 format",
     "lint": "turbo run --concurrency=4 lint",
-    "postinstall": "husky install",
+    "prepare": "husky",
     "release": "yarn build && changeset publish",
     "start": "yarn workspace @heygrady/blog-app start",
     "test": "turbo run --concurrency=4 test",
     "test:ci": "turbo run --concurrency=2 test -- --maxWorkers=2 --forceExit",
     "version": "changeset version && yarn install"
   },
-  "dependencies": {
-    "@changesets/cli": "^2.26.2",
-    "@commitlint/cli": "^18.2.0",
-    "@commitlint/config-conventional": "^18.1.0",
-    "@commitlint/config-lerna-scopes": "^18.1.0",
-    "@heygrady/create-post": "1.0.9",
-    "@manypkg/cli": "^0.21.0",
-    "firebase-tools": "^12.8.1",
-    "husky": "^8.0.3",
-    "turbo": "^1.10.16"
-  },
   "packageManager": "yarn@3.6.4",
   "volta": {
     "node": "20.19.5",
     "npm": "11.6.2",
     "yarn": "3.6.4"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.8",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@commitlint/config-lerna-scopes": "^20.0.0",
+    "@heygrady/create-post": "1.0.9",
+    "@manypkg/cli": "^0.25.1",
+    "firebase-tools": "^14.26.0",
+    "husky": "^9.1.7",
+    "turbo": "^2.6.1"
   }
 }
