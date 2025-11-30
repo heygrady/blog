@@ -1,8 +1,16 @@
+import jestDom from 'eslint-plugin-jest-dom'
+import testingLibrary from 'eslint-plugin-testing-library'
+
 export default [
   {
     files: ['**/*.{spec,test}.{cjs,mjs,js,jsx,cts,mts,ts,tsx}'],
-    extends: ['plugin:jest-dom/recommended', 'plugin:testing-library/react'],
+    plugins: {
+      'jest-dom': jestDom,
+      'testing-library': testingLibrary,
+    },
     rules: {
+      ...jestDom.configs.recommended.rules,
+      ...testingLibrary.configs.react.rules,
       // https://github.com/facebook/create-react-app/blob/f34d88e30c7d8be7181f728d1abc4fd8d5cd07d3/packages/eslint-config-react-app/jest.js#L40-L58
       'testing-library/await-async-query': 'error',
       'testing-library/await-async-utils': 'error',

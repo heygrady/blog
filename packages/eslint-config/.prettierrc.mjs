@@ -1,4 +1,7 @@
-import prettierConfigStandard from './load-prettier-config.cjs'
+import { createRequire } from 'node:module'
+
+const require = createRequire(import.meta.url)
+const prettierConfigStandard = require('prettier-config-standard')
 
 export default {
   ...prettierConfigStandard,

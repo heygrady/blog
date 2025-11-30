@@ -1,136 +1,120 @@
+import tseslint from '@typescript-eslint/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
+import importPlugin from 'eslint-plugin-import'
+
 import { allExtensions, typescriptExtensions } from '../commonExtensions.js'
 import { parserServicesRules } from '../parserServicesRules.js'
 import prettierRules from '../rules/prettier.js'
 
+// Common TypeScript settings for import resolver
+const tsImportSettings = {
+  'import/extensions': allExtensions,
+  'import/parsers': {
+    '@typescript-eslint/parser': typescriptExtensions,
+  },
+  'import/resolver': {
+    typescript: {
+      alwaysTryTypes: true,
+      extensions: typescriptExtensions,
+    },
+    node: {
+      extensions: allExtensions,
+    },
+  },
+}
+
+// Common TypeScript settings with project paths for import resolver
+const tsImportSettingsWithProject = {
+  ...tsImportSettings,
+  'import/resolver': {
+    typescript: {
+      alwaysTryTypes: true,
+      extensions: typescriptExtensions,
+      project: [
+        'apps/*/tsconfig.json',
+        'packages/*/tsconfig.json',
+        'scripts/*/tsconfig.json',
+        'templates/*/tsconfig.json',
+      ],
+    },
+    node: {
+      extensions: allExtensions,
+    },
+  },
+}
+
+// Common TypeScript rules
+const commonTsRules = {
+  ...prettierRules,
+  '@typescript-eslint/explicit-function-return-type': 'off',
+  '@typescript-eslint/triple-slash-reference': 'off',
+  'import/extensions': 'off',
+  'n/no-unsupported-features/es-syntax': ['error', { ignores: ['modules'] }],
+}
+
 export default [
+  // TypeScript files without type-aware linting (outside src/)
   {
     files: ['**/*.{cts,mts,ts,tsx}', '**/*.d.{cts,mts,ts}'],
-    extends: ['plugin:import/typescript', 'standard-with-typescript'],
+    ignores: ['src/**/*'],
+    plugins: {
+      '@typescript-eslint': tseslint,
+      import: importPlugin,
+    },
     languageOptions: {
+      parser: tsParser,
       parserOptions: {
         project: null,
       },
     },
-    settings: {
-      'import/extensions': allExtensions,
-      'import/parsers': {
-        '@typescript-eslint/parser': typescriptExtensions,
-      },
-      'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-          extensions: typescriptExtensions,
-        },
-        node: {
-          extensions: allExtensions,
-        },
-      },
-    },
-    parser: '@typescript-eslint/parser',
+    settings: tsImportSettings,
     rules: {
-      // turn off all rules that need parser services
+      ...tseslint.configs.recommended.rules,
+      ...importPlugin.configs.typescript.rules,
       ...parserServicesRules,
-      ...prettierRules,
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/triple-slash-reference': 'off',
-
-      'import/extensions': 'off',
-      // https://github.com/weiran-zsd/eslint-plugin-node/issues/47
-      // 'n/no-missing-import': 'off',
-      'n/no-unsupported-features/es-syntax': [
-        'error',
-        { ignores: ['modules'] },
-      ],
+      ...commonTsRules,
     },
   },
 
-  // Add a project for ts files within a Typescript src folder
+  // TypeScript files with type-aware linting (inside src/)
   {
     files: ['src/**/*.{cts,mts,ts,tsx}'],
-    extends: [
-      'plugin:import/typescript',
-      'standard-with-typescript',
-      'plugin:prettier/recommended',
-    ],
-    parser: '@typescript-eslint/parser',
+    plugins: {
+      '@typescript-eslint': tseslint,
+      import: importPlugin,
+    },
     languageOptions: {
+      parser: tsParser,
       parserOptions: {
         project: true,
       },
     },
-    settings: {
-      'import/extensions': allExtensions,
-      'import/parsers': {
-        '@typescript-eslint/parser': typescriptExtensions,
-      },
-      'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-          extensions: typescriptExtensions,
-          // FIXME: this plugin should support true for the project field
-          // https://www.npmjs.com/package/eslint-import-resolver-typescript#configuration
-          project: [
-            'apps/*/tsconfig.json',
-            'packages/*/tsconfig.json',
-            'scripts/*/tsconfig.json',
-            'templates/*/tsconfig.json',
-          ],
-        },
-        node: {
-          extensions: allExtensions,
-        },
-      },
-    },
+    settings: tsImportSettingsWithProject,
     rules: {
-      ...prettierRules,
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/triple-slash-reference': 'off',
-
-      'import/extensions': 'off',
-      // https://github.com/weiran-zsd/eslint-plugin-node/issues/47
-      // 'n/no-missing-import': 'off',
-      'n/no-unsupported-features/es-syntax': [
-        'error',
-        { ignores: ['modules'] },
-      ],
+      ...tseslint.configs.recommended.rules,
+      ...importPlugin.configs.typescript.rules,
+      ...commonTsRules,
     },
   },
 
-  // Add a project for js files within a Typescript src folder
+  // JavaScript files inside src/ (can use TypeScript parser for better resolution)
   {
     files: ['src/**/*.{js,jsx,cjs,mjs}'],
-    extends: ['standard', 'plugin:prettier/recommended'],
-    parser: '@typescript-eslint/parser',
+    plugins: {
+      import: importPlugin,
+    },
     languageOptions: {
+      parser: tsParser,
       parserOptions: {
         project: true,
       },
     },
-    settings: {
-      'import/extensions': allExtensions,
-      'import/parsers': {
-        '@typescript-eslint/parser': typescriptExtensions,
-      },
-      'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-          extensions: typescriptExtensions,
-          project: [
-            'apps/*/tsconfig.json',
-            'packages/*/tsconfig.json',
-            'scripts/*/tsconfig.json',
-            'templates/*/tsconfig.json',
-          ],
-        },
-        node: {
-          extensions: allExtensions,
-        },
-      },
-    },
+    settings: tsImportSettingsWithProject,
     rules: {
       ...prettierRules,
       'import/extensions': 'off',
-      // https://github.com/weiran-zsd/eslint-plugin-node/issues/47
+      // n/no-missing-import doesn't support JS files importing TS files with .js extensions
+      // Rely on import/no-unresolved with eslint-import-resolver-typescript instead
       'n/no-missing-import': 'off',
       'n/no-unsupported-features/es-syntax': [
         'error',
@@ -139,7 +123,7 @@ export default [
     },
   },
 
-  // Fixes collision with markdown files
+  // Code blocks within markdown files in src/ - disable type-aware rules
   {
     files: ['**/src/**/*.md/*.{js,jsx,ts,tsx}'],
     languageOptions: {
@@ -153,7 +137,6 @@ export default [
       'no-unused-vars': 'warn',
       'import/named': 'off',
       'import/no-unresolved': 'off',
-      // 'n/no-missing-import': 'off',
     },
   },
 ]
