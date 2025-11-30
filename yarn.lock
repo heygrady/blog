@@ -1152,21 +1152,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-lerna-scopes@npm:^20.0.0":
-  version: 20.0.0
-  resolution: "@commitlint/config-lerna-scopes@npm:20.0.0"
-  dependencies:
-    "@commitlint/config-workspace-scopes": "npm:^20.0.0"
-    fast-glob: "npm:^3.3.3"
-  peerDependencies:
-    lerna: "*"
-  peerDependenciesMeta:
-    lerna:
-      optional: true
-  checksum: 10/f8279f1d44d9d3f4d8f9ad5e708fd3577f42cf0dc605033f1de11d22154e095a293539d8048abd4226b7d8f0d6cd9e205209a175fd538ebf77fc983b7d2c4d4b
-  languageName: node
-  linkType: hard
-
 "@commitlint/config-validator@npm:^20.0.0":
   version: 20.0.0
   resolution: "@commitlint/config-validator@npm:20.0.0"
@@ -2504,7 +2489,7 @@ __metadata:
     "@changesets/cli": "npm:^2.29.8"
     "@commitlint/cli": "npm:^20.1.0"
     "@commitlint/config-conventional": "npm:^20.0.0"
-    "@commitlint/config-lerna-scopes": "npm:^20.0.0"
+    "@commitlint/config-workspace-scopes": "npm:^20.0.0"
     "@heygrady/create-post": "npm:1.0.9"
     "@manypkg/cli": "npm:^0.25.1"
     firebase-tools: "npm:^14.26.0"
