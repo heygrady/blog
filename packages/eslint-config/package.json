@@ -84,5 +84,5 @@
   "volta": {
     "extends": "../../package.json"
   },
-  "packageManager": "yarn@3.2.2"
+  "packageManager": "yarn@4.12.0"
 }
