@@ -1,3 +1,5 @@
-export const nodeExtensions = ['.cjs', '.mjs', '.js', 'jsx']
+export const nodeExtensions = ['.cjs', '.mjs', '.js', '.jsx']
 export const typescriptExtensions = ['.cts', '.mts', '.ts', '.tsx']
+export const astroExtensions = ['.astro']
 export const allExtensions = [...nodeExtensions, ...typescriptExtensions]
+export const allExtensionsWithAstro = [...allExtensions, ...astroExtensions]

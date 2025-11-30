@@ -1,7 +1,10 @@
 // common config overrides for all configs
 export default [
   {
-    files: ['*.config.{js,cjs,mjs,ts,cts,mts}', '*rc.{js,cjs,mjs,ts,cts,mts}'],
+    files: [
+      '**/*.config.{js,cjs,mjs,ts,cts,mts}',
+      '**/*rc.{js,cjs,mjs,ts,cts,mts}',
+    ],
     languageOptions: {
       parserOptions: {
         project: null,

@@ -8,6 +8,7 @@ import jsdoc from 'eslint-plugin-jsdoc'
 import json from 'eslint-plugin-json'
 import n from 'eslint-plugin-n'
 import prettierPlugin from 'eslint-plugin-prettier'
+import globals from 'globals'
 
 import configFilesOverrides from './lib/overrides/configFiles.js'
 import jestOverrides from './lib/overrides/jest.js'
@@ -19,6 +20,9 @@ import importRules from './lib/rules/import.js'
 import jsdocRules from './lib/rules/jsdoc.js'
 import nodeRules from './lib/rules/node.js'
 import prettierRules from './lib/rules/prettier.js'
+import importSettings from './lib/settings/import.js'
+import jsdocSettings from './lib/settings/jsdoc.js'
+import nodeSettings from './lib/settings/node.js'
 
 export default [
   // Main configuration
@@ -37,20 +41,14 @@ export default [
       ecmaVersion: 2022,
       sourceType: 'module',
       globals: {
-        es2021: true,
-        node: true,
+        ...globals.es2021,
+        ...globals.node,
       },
     },
     settings: {
-      'import/resolver': {
-        typescript: true,
-        node: {
-          extensions: ['.cjs', '.mjs', '.js', 'jsx'], // from commonExtensions.js
-        },
-      },
-      jsdoc: {
-        mode: 'typescript',
-      },
+      ...nodeSettings,
+      ...importSettings,
+      ...jsdocSettings,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -81,18 +79,6 @@ export default [
     files: ['**/*.cjs'],
     languageOptions: {
       sourceType: 'commonjs',
-    },
-  },
-
-  // Override to allow importing @eslint/js
-  {
-    rules: {
-      'n/no-extraneous-import': [
-        'error',
-        {
-          allowModules: ['@eslint/js'],
-        },
-      ],
     },
   },
 ]

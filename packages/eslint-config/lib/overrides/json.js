@@ -1,13 +1,4 @@
 import json from 'eslint-plugin-json'
 
-export default [
-  {
-    files: ['**/*.json', '!package.json'],
-    plugins: {
-      json,
-    },
-    rules: {
-      ...json.configs.recommended.rules,
-    },
-  },
-]
+// Use the plugin's flat config which includes proper processor setup
+export default [json.configs.recommended]
