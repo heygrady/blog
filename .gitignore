@@ -133,7 +133,9 @@ dist
 !.yarn/versions
 .turbo
 
+.claude/
+.gemini/
 CLAUDE.md
 GEMINI.md
-.agile
-devlogs
+.agile/
+devlogs/
