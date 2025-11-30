@@ -1,7 +1,6 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "baseBranch": "origin/main",
-  "pipeline": {
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
     "build": {
       "inputs": ["src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx,css,scss,jpg,png,svg}", "package.json"],
       "outputs": ["dist/**"],
