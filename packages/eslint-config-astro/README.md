@@ -1,1 +1,0 @@
-# @heygrady/eslint-config-astro
