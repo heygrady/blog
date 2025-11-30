@@ -47,7 +47,7 @@
     "autoprefixer": "^10.4.16",
     "eslint": "^9.39.1",
     "postcss": "^8.4.31",
-    "prettier": "^3.0.3",
+    "prettier": "^3.7.3",
     "prettier-config-standard": "^7.0.0",
     "prettier-plugin-astro": "^0.12.1",
     "rimraf": "^5.0.5",
