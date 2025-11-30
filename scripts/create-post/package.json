@@ -23,21 +23,21 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@manypkg/find-root": "^2.2.1",
-    "@manypkg/get-packages": "^2.2.0",
-    "cosmiconfig": "^8.3.6",
+    "@manypkg/find-root": "^3.1.0",
+    "@manypkg/get-packages": "^3.1.0",
+    "cosmiconfig": "^9.0.0",
     "handlebars": "^4.7.8",
-    "param-case": "^3.0.4",
-    "superstruct": "^1.0.3",
-    "supports-color": "^9.4.0",
-    "yargs": "^17.7.2",
-    "zx": "^7.2.3"
+    "param-case": "^4.0.0",
+    "superstruct": "^2.0.2",
+    "supports-color": "^10.2.2",
+    "yargs": "^18.0.0",
+    "zx": "^8.8.5"
   },
   "devDependencies": {
     "@heygrady/eslint-config": "^1.5.1",
     "eslint": "^9.39.1",
-    "lint-staged": "^15.0.2",
-    "rimraf": "^5.0.5"
+    "lint-staged": "^16.2.7",
+    "rimraf": "^6.1.2"
   },
   "lint-staged": {
     "*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": [
@@ -45,10 +45,10 @@
     ]
   },
   "browserslist": [
-    "node 16.14.0"
+    "node 18.14.1"
   ],
   "engines": {
-    "node": ">=16.14.0"
+    "node": ">=18.14.1"
   },
   "volta": {
     "extends": "../../package.json"
