@@ -1,5 +1,5 @@
 ---
-import { Picture } from '@astrojs/image/components'
+import { Picture } from 'astro:assets'
 
 import BaseHead from '../components/BaseHead.astro'
 import Bio from '../components/Bio.astro'
@@ -11,7 +11,7 @@ import { styleToString } from '../utils/styleToString'
 import { typography } from '../utils/typography'
 
 export interface Props {
-  content: {
+  frontmatter: {
     title: string
     description: string
     pubDate?: string
@@ -21,11 +21,16 @@ export interface Props {
 }
 
 const {
-  content: { title, description, pubDate, updatedDate, heroImage },
+  frontmatter: { title, description, pubDate, updatedDate, heroImage },
 } = Astro.props
 
-const heroImageMetadata = heroImage
-  ? import(`../images/${heroImage.split('.')[0]}.${heroImage.split('.')[1]}`)
+// Import all images from the images folder
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '../images/*.{jpeg,jpg,png,gif,webp}'
+)
+
+const heroImageMetadata = heroImage && images[`../images/${heroImage}`]
+  ? (await images[`../images/${heroImage}`]()).default
   : undefined
 ---
 
@@ -71,12 +76,12 @@ const heroImageMetadata = heroImage
             {description}
           </h2>
           {
-            heroImage && (
+            heroImageMetadata && (
               <div class="BlogPost__hero">
                 <Picture
                   widths={[780, 1440]}
-                  sizes={'((max-width: 0) and (max-width: 720px)) 780px, (min-width: 720px) 1440px'}
-                  aspectRatio="2:1"
+                  sizes={'(max-width: 720px) 780px, 1440px'}
+                  formats={['avif', 'webp']}
                   quality={70}
                   src={heroImageMetadata}
                   alt=""

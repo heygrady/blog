@@ -1,5 +1,5 @@
 ---
-import { Image } from '@astrojs/image/components'
+import { Image } from 'astro:assets'
 
 import { data } from '../config'
 import profilePic from '../images/profile-pic.jpg'
@@ -16,7 +16,6 @@ import { typography } from '../utils/typography'
     src={profilePic}
     height={112}
     width={112}
-    aspectRatio='1:1'
     quality={70}
     alt={data.author}
     style={styleToString({
