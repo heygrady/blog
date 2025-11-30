@@ -133,12 +133,14 @@ pass the streaming output from, say, a worker pool that is processing every
 processing time.
 
 ```ts
-*genomeEntries(): IterableIterator<GenomeEntry<G>> {
-	for (const [speciesIndex, species] of this.species.entries()) {
-		for (const [organismIndex, { genome }] of species.organismEntries()) {
-			yield [speciesIndex, organismIndex, genome]
-		}
-	}
+class Population<G> {
+  *genomeEntries(): IterableIterator<GenomeEntry<G>> {
+    for (const [speciesIndex, species] of this.species.entries()) {
+      for (const [organismIndex, { genome }] of species.organismEntries()) {
+        yield [speciesIndex, organismIndex, genome]
+      }
+    }
+  }
 }
 ```
 
@@ -396,20 +398,18 @@ runNeatExample();
 
 ## Conclusion
 
-I've paused my work on this project and likely won't pick it up again. I was
-able to get it working on the most basic examples, but I was never quite
-convinced that I didn't make some minor mistake deep in the code somewhere that
-caused it to have trouble training. I spent many hours stepping through a
-running application with a debugger to double-check that the TypeScript version
-was working the same as the Rust version. Eventually, I decided that it's
-virtually impossible to verify given the random nature of the NEAT algorithm and
-the various differences in how Rust and TypeScript deal with numbers.
+I've paused my work on this project. I was able to get it working on the most
+basic examples, but I was never quite convinced that I didn't make some minor
+mistake deep in the code somewhere that caused it to have trouble training. I
+spent many hours stepping through a running application with a debugger to
+double-check that the TypeScript version was working the same as the Rust
+version. Eventually, I decided that it's virtually impossible to verify given
+the random nature of the NEAT algorithm and the various differences in how Rust
+and TypeScript deal with numbers.
 
 I had begun working on a Tic Tac Toe demo, and I was able to get it to train,
-even in the browser. However, it was objectively terrible at Tic Tac Toe and
-would make the same mistakes over and over, no matter how long it was allowed to
-train. This is quite possibly an error in my training methodology or an error
-deep in my implementation.
+even in the browser. However, due to an error in my training methodology it
+wasn't able to train effectively.
 
 It's also possible that there are errors in the source implementation that I
 have faithfully ported over to TypeScript. Even after all of this, I'm not
@@ -424,5 +424,5 @@ superior solution to hand-crafting a neural network using TensorFlow. Numerous
 times I'd started a weekend project to experiment with NEAT and hit roadblocks,
 such as the existing solutions not being very extensible or the best solutions
 all being in Python. Now I know for sure that NEAT is not a panacea and, while
-it's still a very cool concept, it's not something I need to think about any
-more.
+it's still a very cool concept, it's not something that will be practical in
+most enterprise usecases.
