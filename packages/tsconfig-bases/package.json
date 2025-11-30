@@ -18,10 +18,10 @@
     "@tsconfig/strictest": "^2.0.2"
   },
   "browserslist": [
-    "node 16.14.0"
+    "node 18.14.1"
   ],
   "engines": {
-    "node": ">=16.14.0"
+    "node": ">=18.14.1"
   },
   "volta": {
     "extends": "../../package.json"
