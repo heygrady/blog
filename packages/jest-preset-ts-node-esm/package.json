@@ -32,11 +32,10 @@
   },
   "devDependencies": {
     "@heygrady/eslint-config": "^1.5.1",
-    "@rushstack/eslint-patch": "^1.5.1",
-    "@types/eslint": "^8",
+    "@types/eslint": "^9",
     "@types/prettier": "^2",
     "@types/rimraf": "^4",
-    "eslint": "^8.53.0",
+    "eslint": "^9.39.1",
     "lint-staged": "^15.0.2"
   },
   "lint-staged": {
