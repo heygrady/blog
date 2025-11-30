@@ -8,7 +8,12 @@ import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 import { PAGE_SIZE, SITE_TITLE, SITE_DESCRIPTION } from '../config'
 
-const posts = (await Astro.glob('../pages/posts/*.{md,mdx}')).sort(
+const postModules = import.meta.glob<{
+  frontmatter: { pubDate: string; title: string; description: string }
+  url: string
+}>('./posts/*.{md,mdx}', { eager: true })
+
+const posts = Object.values(postModules).sort(
   (a, b) =>
     new Date(b.frontmatter.pubDate).valueOf() -
     new Date(a.frontmatter.pubDate).valueOf()
