@@ -21,7 +21,7 @@ export const desc = 'Create a new blog post'
 export const builder = {}
 
 export const handler = async () => {
-  const root = await findRoot()
+  const root = await findRoot(process.cwd())
   const packages = await getPackages(root.rootDir)
   const config = await getConfig(root.rootDir)
 

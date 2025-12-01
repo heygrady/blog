@@ -34,7 +34,7 @@
     "zx": "^8.8.5"
   },
   "devDependencies": {
-    "@heygrady/eslint-config": "^1.6.0",
+    "@heygrady/eslint-config": "workspace:^",
     "eslint": "^9.39.1",
     "lint-staged": "^16.2.7",
     "rimraf": "^6.1.2"
