@@ -130,4 +130,4 @@ my domain much simpler.
 Now my blog is live! But not on the final domain. I need to set up some
 redirects for the old site.
 
-- [Migrate the old site](/migrating-old-site)
+- [Migrate the old site](/posts/2017-06-30-migrating-old-site/)

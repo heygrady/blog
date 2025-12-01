@@ -20,7 +20,7 @@ If you are already working on a [react-redux](http://redux.js.org/docs/basics/Us
 1. A user clicks a button in a `component`
 2. This calls a function in a `container`, which will `dispatch` an `action`
 3. At this point, a middleware function (perhaps a `saga`) is called
-4. Within the middlware function, an asynchronous `fetch` call is made
+4. Within the middleware function, an asynchronous `fetch` call is made
 5. The action needs to be turned into a [request](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request)
 6. The resulting JSON is transformed into the data your application expects
 7. The middleware will `dispatch` the data, embedded in another `action`
@@ -32,11 +32,11 @@ If you are already working on a [react-redux](http://redux.js.org/docs/basics/Us
 ## How does fetch-actions work?
 In the same way that redux is concerned with managing the application state (with actions and reducers), fetch-actions is concerned with managing the fetch *request lifecycle*. In the sequence above, the `fetch` call is far more complex than it seems. *One does not simply call fetch.*
 
-Without fetch-actions, you will need to find a way to generate API queries from actions, transform the results, and dispatch the data into your app's reducers. This lifecycle can be cleanly separated into it's functional parts instead of embedding it within your middleware.
+Without fetch-actions, you will need to find a way to generate API queries from actions, transform the results, and dispatch the data into your app's reducers. This lifecycle can be cleanly separated into its functional parts instead of embedding it within your middleware.
 
 Let's dig into the process a little bit further to see how fetch-actions helps you manage your API calls.
 
-1. Your `fecthAction` function (we'll create that below) receives an `action`, *probably from your middleware*
+1. Your `fetchAction` function (we'll create that below) receives an `action`, *probably from your middleware*
 2. The action is used to create a [`request`](https://developer.mozilla.org/en-US/docs/Web/API/Request), using a `requestCreator` function
 3. This request is passed into [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch). **Note:** Optionally, you can intercept requests with a mock `responder` function
 4. Fetch returns a promise which resolves to a [`response`](https://developer.mozilla.org/en-US/docs/Web/API/Response)

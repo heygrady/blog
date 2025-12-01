@@ -10,7 +10,7 @@ In a previous post I installed [Gatsby 0.12.48](https://github.com/gatsbyjs/gats
 ## Big changes
 Gatsby has changed in some significant, disorienting ways since the pre-1.0 days. The big upgrade is that there's a new application framework designed around GraphQL. This new app-centric structure is more like what you'd find in a traditional React starter kit, like the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit#project-structure), except Gatsby has a focus on *pages* instead of *routes*. Gatsby is still *just* a static site generator -- but it's getting dressed up to work with data.
 
-The 1.0 version of Gatsby includes an upgrade to their [blog starter](https://github.com/gatsbyjs/gatsby-starter-blog/tree/ec2f17b6ac61b12a64c335f8facf1ed7590833b9).We're trying to make [our old site](https://github.com/heygrady/blog/tree/16fe1912b2ce87616ecd7922d8d6de38db41ef27) (based on the [old blog starter](https://github.com/gatsbyjs/gatsby-starter-blog/tree/f404f3a1bfddcb17aeb038b60a7cf2a025c44550)) work with the new version of Gatsby.
+The 1.0 version of Gatsby includes an upgrade to their [blog starter](https://github.com/gatsbyjs/gatsby-starter-blog/tree/ec2f17b6ac61b12a64c335f8facf1ed7590833b9). We're trying to make [our old site](https://github.com/heygrady/blog/tree/16fe1912b2ce87616ecd7922d8d6de38db41ef27) (based on the [old blog starter](https://github.com/gatsbyjs/gatsby-starter-blog/tree/f404f3a1bfddcb17aeb038b60a7cf2a025c44550)) work with the new version of Gatsby.
 
 Let's install a new blog as an example of what needs to change. This will give us a local example of an already-upgraded Gatsby site to work from.
 
