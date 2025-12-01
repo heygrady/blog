@@ -11,7 +11,6 @@ import globals from 'globals'
 
 import configFilesOverrides from '../overrides/configFiles.js'
 import jsonOverrides from '../overrides/json.js'
-import markdownOverrides from '../overrides/markdown.js'
 import commonRules from '../rules/common.js'
 import importRules from '../rules/import.js'
 import jsdocRules from '../rules/jsdoc.js'
@@ -66,7 +65,6 @@ export default [
   // Overrides
   ...configFilesOverrides,
   ...jsonOverrides,
-  ...markdownOverrides,
 
   // CJS files
   {

@@ -180,11 +180,8 @@ describe('node-base config shape', () => {
       })
     })
 
-    describe('markdown files', () => {
-      test('applies markdown rules to .md files', async () => {
-        const plugins = await getPluginsForFile(nodeBase, 'README.md')
-        expect(Object.keys(plugins)).toContain('markdown')
-      })
-    })
+    // Note: markdown overrides are now applied at the preset level (node.js, ts-node-esm.js, etc.)
+    // to ensure they come AFTER TypeScript rules and properly override them.
+    // See test/composition/node.test.ts for markdown tests.
   })
 })
