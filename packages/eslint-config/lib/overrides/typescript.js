@@ -144,6 +144,7 @@ export default [
     languageOptions: {
       parserOptions: {
         project: null,
+        projectService: false,
       },
     },
     rules: {
