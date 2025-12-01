@@ -1,5 +1,15 @@
 # @heygrady/eslint-config
 
+## 1.6.1
+
+### Patch Changes
+
+- b3b808f: Fix ESLint configuration issues:
+  - Disable n/no-missing-import for TypeScript files since it doesn't properly resolve external package subpaths
+  - Fix vitest overrides to properly register @typescript-eslint plugin for TypeScript test files
+  - Fix markdown overrides to separate JS and TS file handling, ensuring @typescript-eslint rules only apply when the plugin is registered
+  - Add projectService: false for markdown code blocks to prevent project service errors
+
 ## 1.6.0
 
 ### Minor Changes
