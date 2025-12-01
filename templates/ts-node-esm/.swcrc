@@ -1,10 +1,7 @@
 {
-  "$schema": "https://json.schemastore.org/swcrc",
+  "$schema": "https://swc.rs/schema.json",
   "env": {
-    "targets": [
-      "node >=16"
-    ],
-    "loose": true
+    "targets": ["node >=20"]
   },
   "jsc": {
     "externalHelpers": true,
@@ -12,11 +9,8 @@
     "parser": {
       "syntax": "typescript",
       "tsx": false,
-      "decorators": false,
-      "dynamicImport": true
+      "decorators": false
     }
-    // "target": "es2021"
   },
   "sourceMaps": true
 }
-  
