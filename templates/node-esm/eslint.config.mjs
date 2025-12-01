@@ -1,4 +1,4 @@
-import node from '@heygrady/eslint-config/node.js'
+import node from '@heygrady/eslint-config/jest/node.js'
 
 export default [
   // Global ignores
@@ -6,6 +6,6 @@ export default [
     ignores: ['.turbo/**', 'dist/**', 'coverage/**'],
   },
 
-  // Node config
+  // Node config (with Jest)
   ...node,
 ]
