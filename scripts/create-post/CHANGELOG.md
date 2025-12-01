@@ -1,5 +1,11 @@
 # @heygrady/create-post-command
 
+## 1.0.11
+
+### Patch Changes
+
+- 3e8f4ac: Fix `findRoot` function to use provided `cwd` parameter instead of always using `process.cwd()`
+
 ## 1.0.10
 
 ### Patch Changes
