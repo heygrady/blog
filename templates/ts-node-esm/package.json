@@ -42,7 +42,7 @@
     "lint": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\"",
     "prebuild:cjs": "mkdir -p dist/cjs && echo '{\"type\":\"commonjs\",\"main\":\"./index.js\"}' >> dist/cjs/package.json",
     "precommit": "lint-staged",
-    "test": "vitest"
+    "test": "vitest run"
   },
   "dependencies": {
     "@swc/helpers": "^0.5.17"

@@ -1,0 +1,98 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+
+jobs:
+  build-test-lint:
+    runs-on: ubuntu-latest
+    env:
+      # Yarn 4 reads auth token from this env var for npm scopes
+      YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'yarn'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@heygrady'
+
+      - name: Get yarn cache directory
+        run: echo "LOOKUP_YARN_CACHE_FOLDER=$(yarn config get cacheFolder)" >> $GITHUB_ENV
+
+      - name: Cache TurboRepo
+        uses: actions/cache@v4
+        with:
+          path: |
+            .turbo
+            ${{ env.LOOKUP_YARN_CACHE_FOLDER }}
+            node_modules
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build (all)
+        run: yarn build
+
+      - name: Lint (all)
+        run: yarn lint
+
+      - name: Test (all)
+        run: yarn test
+
+      - name: Check packages (manypkg)
+        run: yarn check:manypkg
+
+      - name: Check changesets (informational)
+        run: yarn check:changesets
+        continue-on-error: true
+
+  preview-deploy:
+    needs: build-test-lint
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    env:
+      YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'yarn'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@heygrady'
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .turbo
+            node_modules
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BLOG_7E7A6 }}
+          projectId: blog-7e7a6
