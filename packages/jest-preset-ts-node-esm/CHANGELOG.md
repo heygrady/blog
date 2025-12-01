@@ -1,5 +1,11 @@
 # @heygrady/jest-preset-ts-node-esm
 
+## 1.0.8
+
+### Patch Changes
+
+- c61c053: Update ESLint config to use flat config format
+
 ## 1.0.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @heygrady/node-esm
 
+## 1.0.8
+
+### Patch Changes
+
+- c61c053: Update to ESLint flat config format
+
 ## 1.0.7
 
 ### Patch Changes

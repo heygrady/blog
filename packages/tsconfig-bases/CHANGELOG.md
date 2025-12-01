@@ -1,5 +1,11 @@
 # @heygrady/tsconfig-bases
 
+## 1.0.7
+
+### Patch Changes
+
+- c61c053: Update engines to require Node >=18.14.1
+
 ## 1.0.6
 
 ### Patch Changes

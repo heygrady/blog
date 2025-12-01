@@ -1,5 +1,11 @@
 # @heygrady/eslint-config
 
+## 1.6.0
+
+### Minor Changes
+
+- c61c053: Upgrade to ESLint 9 flat config format with new entry points for different environments (node, ts-node-esm, tsx-react-esm, astro, zx)
+
 ## 1.5.1
 
 ### Patch Changes
