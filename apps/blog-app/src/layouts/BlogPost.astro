@@ -24,9 +24,10 @@ const {
   frontmatter: { title, description, pubDate, updatedDate, heroImage },
 } = Astro.props
 
-// Import all images from the images folder
+// Import all images from the images folder (excluding profile-pic which is statically imported elsewhere)
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  '../images/*.{jpeg,jpg,png,gif,webp}'
+  '../images/*.{jpeg,jpg,png,gif,webp}',
+  { ignore: ['../images/profile-pic.jpg'] }
 )
 
 const heroImageMetadata = heroImage && images[`../images/${heroImage}`]
