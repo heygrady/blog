@@ -7,6 +7,9 @@ jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
+    env:
+      # Yarn 4 reads auth token from this env var for the @heygrady scope
+      YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v6
       - name: Enable Corepack
@@ -17,13 +20,6 @@ jobs:
           cache: 'yarn'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@heygrady'
-      - name: Setup .yarnrc.yml
-        run: |
-          yarn config set npmScopes.heygrady.npmRegistryServer "https://npm.pkg.github.com"
-          yarn config set npmScopes.heygrady.npmAlwaysAuth true
-          yarn config set npmScopes.heygrady.npmAuthToken $NPM_AUTH_TOKEN
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Cache dependencies and Turbo
         uses: actions/cache@v4
         with:
