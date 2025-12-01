@@ -1,13 +1,11 @@
 import astroBase from '../lib/configs/astro-base.js'
-import react from '../lib/configs/react.js'
+import reactBase from '../lib/configs/react-base.js'
 import jestOverrides from '../lib/overrides/jest.js'
-import storybookOverrides from '../lib/overrides/storybook.js'
 import testingLibraryOverrides from '../lib/overrides/testingLibrary.js'
 
 export default [
-  ...astroBase,
-  ...react,
-  ...storybookOverrides,
+  ...astroBase, // astro-base already includes jsx-a11y
+  ...reactBase,
   ...testingLibraryOverrides,
   ...jestOverrides,
 ]
