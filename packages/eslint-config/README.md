@@ -106,7 +106,6 @@ lib/
 │   ├── jest.js
 │   ├── json.js
 │   ├── markdown.js
-│   ├── storybook.js
 │   ├── testingLibrary.js
 │   ├── typescript.js
 │   └── vitest.js
