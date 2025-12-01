@@ -61,6 +61,9 @@ const commonTsRules = {
   '@typescript-eslint/no-explicit-any': 'warn',
   'import/extensions': 'off',
   'n/no-unsupported-features/es-syntax': ['error', { ignores: ['modules'] }],
+  // n/no-missing-import doesn't properly resolve external package subpaths (e.g., @babylonjs/core/Maths/math.vector.js)
+  // Rely on import/no-unresolved with eslint-import-resolver-typescript instead
+  'n/no-missing-import': 'off',
 }
 
 export default [
