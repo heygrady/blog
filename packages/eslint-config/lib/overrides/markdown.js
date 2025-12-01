@@ -1,4 +1,6 @@
 import markdown from '@eslint/markdown'
+import tseslint from '@typescript-eslint/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
 
 import { parserServicesRules } from '../parserServicesRules.js'
 
@@ -39,8 +41,10 @@ export default [
     },
     rules: {
       ...parserServicesRules,
-      // Downgrade to warnings for docs - examples may reference uninstalled packages
+      // Downgrade to warnings for docs - examples may have incomplete code
       'no-undef': 'warn',
+      'no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
       'import/named': 'warn',
       'import/no-unresolved': 'warn',
       'n/no-missing-import': 'warn',
@@ -50,7 +54,19 @@ export default [
   },
   {
     files: ['**/*.md/*.ts', '**/*.md/*.tsx'],
-    rules: parserServicesRules,
+    plugins: {
+      '@typescript-eslint': tseslint,
+    },
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: null,
+      },
+    },
+    rules: {
+      ...parserServicesRules,
+      '@typescript-eslint/no-unused-vars': 'warn',
+    },
   },
   // https://github.com/eslint/eslint-plugin-markdown/blob/main/examples/react/.eslintrc.js
   {

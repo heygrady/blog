@@ -14,6 +14,8 @@ export default [
     rules: {
       ...vitest.configs.recommended.rules,
       'vitest/consistent-test-it': ['error', { fn: 'test' }],
+      // Relax strict typing in tests - test code often needs more flexibility
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ]

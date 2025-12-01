@@ -11,20 +11,19 @@ export default [
     rules: {
       ...jestDom.configs.recommended.rules,
       // Use DOM preset instead of React (Solid has no specific preset)
-      ...testingLibrary.configs.dom.rules,
-      // https://github.com/facebook/create-react-app/blob/f34d88e30c7d8be7181f728d1abc4fd8d5cd07d3/packages/eslint-config-react-app/jest.js#L40-L58
-      'testing-library/await-async-query': 'error',
+      ...testingLibrary.configs['flat/dom'].rules,
+      // Additional rules (updated for testing-library v7+)
+      'testing-library/await-async-queries': 'error',
       'testing-library/await-async-utils': 'error',
-      'testing-library/no-await-sync-query': 'error',
+      'testing-library/no-await-sync-queries': 'error',
       'testing-library/no-container': 'error',
       'testing-library/no-debugging-utils': 'error',
       // Use 'dom' instead of 'react' for Solid projects
       'testing-library/no-dom-import': 'off',
       'testing-library/no-node-access': 'error',
       'testing-library/no-promise-in-fire-event': 'error',
-      'testing-library/no-render-in-setup': 'error',
+      'testing-library/no-render-in-lifecycle': 'error',
       'testing-library/no-unnecessary-act': 'error',
-      'testing-library/no-wait-for-empty-callback': 'error',
       'testing-library/no-wait-for-multiple-assertions': 'error',
       'testing-library/no-wait-for-side-effects': 'error',
       'testing-library/no-wait-for-snapshot': 'error',

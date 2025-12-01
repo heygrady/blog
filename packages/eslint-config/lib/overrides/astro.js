@@ -3,15 +3,25 @@
 
 export default [
   {
-    // Define the configuration for `.astro` file.
+    // Define the configuration for `.astro` file (excludes code blocks in markdown)
     files: ['**/*.astro'],
+    ignores: ['**/*.md/*.astro'],
     languageOptions: {
       globals: {
         astroHTML: 'readonly',
+        // Astro provides ImageMetadata type globally in .astro files
+        ImageMetadata: 'readonly',
       },
+    },
+    settings: {
+      // Ignore Astro virtual modules for import resolution
+      'import/ignore': ['astro:.*'],
     },
     rules: {
       'import/extensions': 'off',
+
+      // Astro virtual modules (astro:assets, astro:content, etc.) can't be resolved
+      'import/no-unresolved': ['error', { ignore: ['^astro:'] }],
 
       // eslint-plugin-n can't resolve Astro imports properly
       'n/no-missing-import': 'off',
