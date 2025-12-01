@@ -66,6 +66,8 @@ export default [
       'no-undef': 'warn',
       'no-unused-vars': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
+      // TypeScript code examples often use `any` for brevity
+      '@typescript-eslint/no-explicit-any': 'warn',
       'import/named': 'warn',
       'import/no-unresolved': 'warn',
       'n/no-missing-import': 'warn',

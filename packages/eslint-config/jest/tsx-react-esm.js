@@ -3,6 +3,7 @@ import nodeBase from '../lib/configs/node-base.js'
 import reactBase from '../lib/configs/react-base.js'
 import typescript from '../lib/configs/typescript.js'
 import jestOverrides from '../lib/overrides/jest.js'
+import markdownOverrides from '../lib/overrides/markdown.js'
 import testingLibraryOverrides from '../lib/overrides/testingLibrary.js'
 
 export default [
@@ -12,4 +13,5 @@ export default [
   ...jsxA11y,
   ...testingLibraryOverrides,
   ...jestOverrides,
+  ...markdownOverrides,
 ]
