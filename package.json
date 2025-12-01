@@ -17,6 +17,9 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "check": "yarn check:changesets && yarn check:manypkg",
+    "check:changesets": "changeset status --verbose",
+    "check:manypkg": "manypkg check",
     "clean": "turbo run clean",
     "clean:hard": "turbo run clean --force && find . -name node_modules -type d -prune -exec rm -rf {} +",
     "claude": "yarn dlx @anthropic-ai/claude-code",
@@ -29,8 +32,8 @@
     "prepare": "husky",
     "release": "yarn build && changeset publish",
     "start": "yarn workspace @heygrady/blog-app start",
-    "test": "turbo run test -- --passWithNoTests --run",
-    "test:ci": "turbo run test --concurrency=2 -- --passWithNoTests --run",
+    "test": "turbo run test -- --passWithNoTests",
+    "test:ci": "turbo run test --concurrency=2 -- --passWithNoTests",
     "version": "changeset version && yarn install"
   },
   "packageManager": "yarn@4.12.0",
