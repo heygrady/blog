@@ -8,10 +8,10 @@ jobs:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: 'yarn'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@heygrady'
@@ -22,7 +22,7 @@ jobs:
           yarn config set npmScopes.heygrady.npmAuthToken $NPM_AUTH_TOKEN
         env:
           NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Cache node_modules and yarn cache
+      - name: Cache dependencies and Turbo
         uses: actions/cache@v4
         with:
           path: |
@@ -31,16 +31,12 @@ jobs:
             packages/*/node_modules
             scripts/*/node_modules
             .yarn/cache
-          key: root-node-modules-folder-v1
+            .turbo
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            root-node-modules-folder-
-      - name: TurboRepo local server
-        uses: felixmosh/turborepo-gh-artifacts@v2
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          server-token: ${{ secrets.TURBO_SERVER_TOKEN }}
+            ${{ runner.os }}-turbo-
       - run: yarn install
-      - run: yarn turbo run --concurrency=4 build --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}"
+      - run: yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
