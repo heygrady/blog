@@ -14,13 +14,17 @@
   "main": "./eslint.config.mjs",
   "files": [
     "lib/**/*",
+    "jest/**/*",
     ".prettierrc.mjs",
     "astro.js",
+    "astro-react.js",
+    "astro-solid.js",
     "node.js",
     "README.md",
     "eslint.config.js",
     "ts-node-esm.js",
     "tsx-react-esm.js",
+    "tsx-solid-esm.js",
     "zx.js"
   ],
   "scripts": {
@@ -51,6 +55,7 @@
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-solid": "^0.14.5",
     "eslint-plugin-storybook": "^10.1.2",
     "eslint-plugin-testing-library": "^7.13.5",
     "eslint-plugin-vitest": "^0.5.4",

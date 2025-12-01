@@ -1,15 +1,15 @@
 import nodeBase from './lib/configs/node-base.js'
-import react from './lib/configs/react.js'
+import solid from './lib/configs/solid.js'
 import typescript from './lib/configs/typescript.js'
 import storybookOverrides from './lib/overrides/storybook.js'
-import testingLibraryOverrides from './lib/overrides/testingLibrary.js'
+import testingLibraryDomOverrides from './lib/overrides/testingLibraryDom.js'
 import vitestOverrides from './lib/overrides/vitest.js'
 
 export default [
   ...nodeBase,
   ...typescript,
-  ...react,
+  ...solid,
   ...storybookOverrides,
-  ...testingLibraryOverrides,
+  ...testingLibraryDomOverrides,
   ...vitestOverrides,
 ]
