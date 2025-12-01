@@ -1,13 +1,11 @@
-import nodeBase from './lib/configs/node-base.js'
+import astroBase from './lib/configs/astro-base.js'
 import react from './lib/configs/react.js'
-import typescript from './lib/configs/typescript.js'
 import storybookOverrides from './lib/overrides/storybook.js'
 import testingLibraryOverrides from './lib/overrides/testingLibrary.js'
 import vitestOverrides from './lib/overrides/vitest.js'
 
 export default [
-  ...nodeBase,
-  ...typescript,
+  ...astroBase,
   ...react,
   ...storybookOverrides,
   ...testingLibraryOverrides,

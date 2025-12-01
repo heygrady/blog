@@ -1,33 +1,5 @@
-import tseslint from '@typescript-eslint/eslint-plugin'
-import tsParser from '@typescript-eslint/parser'
+import nodeBase from './lib/configs/node-base.js'
+import typescript from './lib/configs/typescript.js'
+import vitestOverrides from './lib/overrides/vitest.js'
 
-import typescriptOverrides from './lib/overrides/typescript.js'
-import nodeConfig from './node.js'
-
-export default [
-  // Start with the node.js config (includes import/resolver settings)
-  ...nodeConfig,
-
-  // Add TypeScript support for .ts/.tsx files
-  {
-    files: ['**/*.{cts,mts,ts,tsx}'],
-    plugins: {
-      '@typescript-eslint': tseslint,
-    },
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 2022,
-        sourceType: 'module',
-      },
-    },
-    rules: {
-      ...tseslint.configs.recommended.rules,
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/triple-slash-reference': 'off',
-    },
-  },
-
-  // TypeScript-specific overrides
-  ...typescriptOverrides,
-]
+export default [...nodeBase, ...typescript, ...vitestOverrides]
