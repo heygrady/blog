@@ -40,6 +40,8 @@ export default [
       'import/named': 'warn',
       'import/no-unresolved': 'warn',
       'n/no-missing-import': 'warn',
+      // Markdown examples may import packages not in package.json
+      'n/no-extraneous-import': 'off',
       // Browser examples in markdown may use APIs not available in Node
       'n/no-unsupported-features/node-builtins': 'warn',
     },
@@ -67,6 +69,8 @@ export default [
       'import/named': 'warn',
       'import/no-unresolved': 'warn',
       'n/no-missing-import': 'warn',
+      // Markdown examples may import packages not in package.json
+      'n/no-extraneous-import': 'off',
       // Browser examples in markdown may use APIs not available in Node
       'n/no-unsupported-features/node-builtins': 'warn',
     },
