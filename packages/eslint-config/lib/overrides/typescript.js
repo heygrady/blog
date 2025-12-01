@@ -64,6 +64,15 @@ const commonTsRules = {
   // n/no-missing-import doesn't properly resolve external package subpaths (e.g., @babylonjs/core/Maths/math.vector.js)
   // Rely on import/no-unresolved with eslint-import-resolver-typescript instead
   'n/no-missing-import': 'off',
+  // JSDoc type annotations are redundant in TypeScript - TS handles types
+  // Generic types like T[] appear as undefined to jsdoc
+  'jsdoc/no-undefined-types': 'off',
+  'jsdoc/reject-any-type': 'off',
+  // Allow empty interfaces - common pattern for extensible base types and marker interfaces
+  '@typescript-eslint/no-empty-object-type': [
+    'error',
+    { allowInterfaces: 'always' },
+  ],
 }
 
 export default [
