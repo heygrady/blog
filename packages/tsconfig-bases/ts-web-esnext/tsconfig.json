@@ -1,15 +1,20 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "allowJs": true,
     "checkJs": false,
     "declaration": false,
     "noEmit": true,
+    "esModuleInterop": true,
     "isolatedModules": true,
+    "skipLibCheck": true,
     "verbatimModuleSyntax": true
   },
-  "extends": ["@tsconfig/node24/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
+  "extends": ["@tsconfig/strictest/tsconfig.json"],
   "include": ["src", "test"],
   "exclude": ["node_modules", "dist"]
 }
-  

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
+  },
+  "extends": ["../ts-web-esnext/tsconfig.json"],
+  "include": ["src", "test"],
+  "exclude": ["node_modules", "dist"]
+}
