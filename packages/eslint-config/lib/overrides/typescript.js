@@ -48,6 +48,17 @@ const commonTsRules = {
   ...prettierRules,
   '@typescript-eslint/explicit-function-return-type': 'off',
   '@typescript-eslint/triple-slash-reference': 'off',
+  // Allow underscore-prefixed variables to be unused (common pattern for ignored params)
+  '@typescript-eslint/no-unused-vars': [
+    'error',
+    {
+      argsIgnorePattern: '^_',
+      varsIgnorePattern: '^_',
+      caughtErrorsIgnorePattern: '^_',
+    },
+  ],
+  // Relax to warning - explicit any is sometimes intentional for truly dynamic types
+  '@typescript-eslint/no-explicit-any': 'warn',
   'import/extensions': 'off',
   'n/no-unsupported-features/es-syntax': ['error', { ignores: ['modules'] }],
 }
@@ -56,7 +67,7 @@ export default [
   // TypeScript files without type-aware linting (outside src/)
   {
     files: ['**/*.{cts,mts,ts,tsx}', '**/*.d.{cts,mts,ts}'],
-    ignores: ['src/**/*'],
+    ignores: ['src/**/*', '**/*.md/*'],
     plugins: {
       '@typescript-eslint': tseslint,
       import: importPlugin,
@@ -79,6 +90,7 @@ export default [
   // TypeScript files with type-aware linting (inside src/)
   {
     files: ['src/**/*.{cts,mts,ts,tsx}'],
+    ignores: ['**/*.md/*'],
     plugins: {
       '@typescript-eslint': tseslint,
       import: importPlugin,
@@ -86,7 +98,7 @@ export default [
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        project: true,
+        projectService: true,
       },
     },
     settings: tsImportSettingsWithProject,
@@ -106,7 +118,7 @@ export default [
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        project: true,
+        projectService: true,
       },
     },
     settings: tsImportSettingsWithProject,

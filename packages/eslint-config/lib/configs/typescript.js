@@ -7,6 +7,7 @@ export default [
   // Add TypeScript support for .ts/.tsx files
   {
     files: ['**/*.{cts,mts,ts,tsx}'],
+    ignores: ['**/*.md/*'],
     plugins: {
       '@typescript-eslint': tseslint,
     },
