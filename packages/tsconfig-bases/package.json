@@ -27,7 +27,7 @@
     "node 24"
   ],
   "engines": {
-    "node": ">=24.0.0"
+    "node": ">=18.14.1"
   },
   "volta": {
     "extends": "../../package.json"
