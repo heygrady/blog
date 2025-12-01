@@ -44,7 +44,6 @@ These plugins provide custom rules for specific technologies or purposes.
 - **[eslint-plugin-jest-dom](https://github.com/testing-library/eslint-plugin-jest-dom)**: Rules for `@testing-library/jest-dom`.
 - **[eslint-plugin-testing-library](https://github.com/testing-library/eslint-plugin-testing-library)**: ESLint rules for Testing Library.
 - **[eslint-plugin-vitest](https://github.com/veritem/eslint-plugin-vitest)**: ESLint rules for Vitest.
-- **[eslint-plugin-storybook](https://github.com/storybookjs/eslint-plugin-storybook)**: Best practices for Storybook.
 
 ### Code Quality
 
