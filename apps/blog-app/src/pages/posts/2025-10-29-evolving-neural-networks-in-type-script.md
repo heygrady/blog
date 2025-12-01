@@ -20,9 +20,9 @@ flavors of the NEAT algorithm in a modular fashion. This inspired me to create a
 TypeScript version that could be easily integrated into web applications and
 other TypeScript projects.
 
-The resulting code appears to work well but it's not yet battle-tested. I have
-since moved on to other projects but I wanted to share this work to document it
-and make it available to others who might find it useful.
+The resulting code works quite well but it's not yet battle-tested. I wanted to
+share this work to document it and make it available to others who might find it
+useful.
 
 ## What is NEAT?
 
@@ -44,18 +44,35 @@ evolutionary algorithms and neural networks.
 I was originally interested in developing this library to play the
 Asteroids-style game, [Hexagonoids](/posts/2023-07-28-hexagonoids/), that I
 built a while back. My goal was to evolve neural networks that could effectively
-play the game using the NEAT algorithm. I never got around to it.
+play the game using the NEAT algorithm. This proved to be quite a lofty goal. I
+started with a tic-tac-toe experiment (which I will be sharing soon), which
+seemed like a manageable starting point but, of course, had many hidden
+complexities.
 
 I also pursued this project because I was not happy with the NEAT
 implementations available. I had read about more advanced implementations, like
 ES-Hyperneat, that had been developed by the inventor of NEAT but were not
-available in the existing JS implementations.
+available in the existing JS implementations. Most of the existing JS NEAT
+implementations are not set up for extensibility and don't include basic features
+like exporting and importing neural networks.
 
 This was also a good opportunity for me to explore good code management best
 practices, utilizing a Yarn Monorepo for managing the code as separate packages,
 and GitHub Actions for automatically versioning and publishing the code to the
 GitHub Package Registry. To that end, I implemented a fully automated package
 release workflow using [Beachball](https://github.com/microsoft/beachball).
+
+## Key features
+
+- **Modular architecture:** Easily swap out components like the evaluator,
+  reproducer, and environment.
+- **Multiple NEAT variants:** Supports NEAT, HyperNEAT, ES-HyperNEAT, and
+  DES-HyperNEAT.
+- **Cross-platform:** Works in both Node.js and browser environments.
+- **Worker threads:** Utilizes worker threads for parallel processing to improve
+  performance.
+- **Serialization:** Supports exporting and importing neural networks for easy
+  storage and transfer.
 
 ## Parallel Processing
 
@@ -74,7 +91,9 @@ package to transparently switch to the correct worker implementation using
 
 Interestingly, I noticed some parts of the Rust implementation that _could_ have
 been parallelized but weren't. The original implementation was intended for
-academic purposes and was never fully optimized.
+academic purposes and was never fully optimized. I implemented parallel
+processing for the evaluation _and_ the reproduction steps of the NEAT
+algorithm. Making reproduction parallel was especially helpful for performance.
 
 If you aren't aware, NEAT evolves a population of neural networks and then
 selects the best network after each generation. Most implementations use a
@@ -95,31 +114,37 @@ implementation kept a registry of each link in the neural network that had ever
 been created. This is part of the NEAT algorithm and is intended as a way to
 track "innovation" in the population of neural networks, where the links between
 nodes in the network function as the "genome". This was especially pronounced
-when running DES-Hyperneat, which is like a nested application of NEAT
-algorithms where each node is itself an independent NEAT network. This ended up
-ballooning the registry as many more connections were added, and the registry
-grew quite large.
+when running DES-Hyperneat, which is like a nesting doll of NEAT algorithms
+where each node is itself an independent NEAT network. This ended up ballooning
+the registry as many more connections were added, and the registry grew quite
+large.
+
+I believe the original intent of the registry was for observability, to be able
+to track how the networks evolved over time. However, in practice, I found that
+it was not strictly necessary for the algorithm to function correctly.
 
 I ended up replacing the registry altogether for a custom solution that used
-names on the nodes to solve the same issue. This was much faster but doesn't
-follow the original implementation of NEAT and might not perfectly match what
-the registry system was providing. My testing didn't uncover any noticeable
-differences. The result was _much_ faster performance and much lower memory
-overhead. This was particularly helpful with regards to using worker threads, as
-the registry context no longer needed to be shared between the main thread and
-all of the workers.
+names on the nodes to solve the same issue. This was much faster and solved
+issues of serializing the network for transfer to workers. My testing didn't
+uncover any noticeable differences. The result was _much_ faster performance and
+much lower memory overhead.
+
+This was particularly helpful with regards to using worker threads, as the
+registry context no longer needed to be shared between the main thread and all
+of the workers, which removed some complexity where the worker needed to keep
+its local registry in sync with the main thread.
 
 ## Other Performance Tweaks
 
 ### Use `for` Loops
 
 One of the biggest performance tweaks was avoiding built-in array looping
-functions like `Array.map` or `Array.some`. In a normal web application, it
+functions like `Array.map` or `Array.some`. In a normal web application it
 doesn't matter, but there is a tiny overhead involved in creating and executing
 an arrow function. In all cases where looping is required, using a traditional
 `for` loop is faster, if only by that tiny amount. In the case of NEAT, where we
-constantly are looping over an arrays of 100 neural networks and then looping
-over all of the nodes, that tiny difference is magnified, and this kind of
+constantly are looping over 100 neural networks and then looping over all of the
+nodes in those networks, that tiny difference is magnified and this kind of
 micro-optimization is worth the hassle.
 
 ### Use Generators
@@ -137,7 +162,7 @@ class Population<G> {
   *genomeEntries(): IterableIterator<GenomeEntry<G>> {
     for (const [speciesIndex, species] of this.species.entries()) {
       for (const [organismIndex, { genome }] of species.organismEntries()) {
-        yield [speciesIndex, organismIndex, genome]
+        yield [speciesIndex, organismIndex, genome];
       }
     }
   }
@@ -171,12 +196,15 @@ TypeScript. This was surprisingly effective but far from perfect. The final code
 in the project today is very different from what ChatGPT produced, but the
 initial translation was automated.
 
+I did the bulk of the translation work more than 2 years ago when ChatGPT was
+quite new and not as capable as it is today.
+
 Some things ported over quite well. Some things did not.
 
 In all cases, Rust is strongly typed, which is a great advantage as the code is
 easy to trace, and the resulting TypeScript code is also well typed. However, in
-all cases, TypeScript is loosely typed. TypeScript gives you plenty of escape
-hatches to mutate the types.
+all cases, TypeScript is loosely typed. TypeScript is simply not as robust as
+Rust.
 
 ### TypeScript classes are not simply Rust `struct` and `impl`
 
@@ -190,8 +218,8 @@ context-aware inheritance that is impossible to recreate in TypeScript.
 
 The original Rust source code used many clever techniques that allowed them to
 compose the various NEAT algorithms from the basic building blocks. For
-instance, the NEAT algorithm could be extended to support Hyperneat and
-ES-Hyperneat, and the Population can adapt to the needs of these different
+instance, the NEAT algorithm could be extended to support HyperNEAT and
+ES-HyperNEAT, and the Population can adapt to the needs of these different
 algorithms. Most of the functionality is the same, but different traits enable
 different capabilities based on the context.
 
@@ -303,6 +331,23 @@ export class Population<
 }
 ```
 
+#### Fixing with Contextual Typing
+
+I have on my todo list to replace this extensive generic typing using context
+types instead. This would allow TypeScript to infer the types based on the
+context, similar to how Rust does it, which would greatly simplify the type
+definitions.
+
+I have a parked branch where I've started this work, and the initial results are
+promising. Here's an example of how the `Population` class could be defined
+using contextual typing:
+
+```ts
+export class Population<Ctx extends AlgorithmContext> {
+  // ...
+}
+```
+
 ## Extensibility Versus Usability
 
 The original source code was designed to be extendible so that you could swap
@@ -396,33 +441,42 @@ async function runNeatExample() {
 runNeatExample();
 ```
 
+## Next Steps
+
+There is still a lot of work to be done. The forthcoming tic-tac-toe example
+uncovered several edges cases and bugs that needed to be addressed to get it
+working smoothly with build tools like vite. The type system needs to be
+overhauled to use contextual typing to make it easier to work with. I need to do
+a more thorough review of ES-HyperNEAT and DES-HyperNEAT to ensure that they are
+implemented correctly as those parts of the code were not tested as thoroughly.
+ES-HyperNEAT seems curiously slow.
+
+There is also an opportunity to simplify the boilerplate considerably by
+providing a `PopulationManager` that encapsulates much of the setup work. This
+would make it easier to get started with the library, choosing sensible defaults
+for most options and exposing an opportunity to override the parts that you
+need. In practice, most users would only want to provide a custom `Environment`
+and override some default option.
+
 ## Conclusion
 
-I've paused my work on this project. I was able to get it working on the most
-basic examples, but I was never quite convinced that I didn't make some minor
-mistake deep in the code somewhere that caused it to have trouble training. I
-spent many hours stepping through a running application with a debugger to
-double-check that the TypeScript version was working the same as the Rust
-version. Eventually, I decided that it's virtually impossible to verify given
-the random nature of the NEAT algorithm and the various differences in how Rust
-and TypeScript deal with numbers.
-
-I had begun working on a Tic Tac Toe demo, and I was able to get it to train,
-even in the browser. However, due to an error in my training methodology it
-wasn't able to train effectively.
-
-It's also possible that there are errors in the source implementation that I
-have faithfully ported over to TypeScript. Even after all of this, I'm not
-enough of an expert in NEAT to really know for sure. The original papers are
-pretty vague on the particulars. There is a
-[well-known Python implementation of NEAT](https://github.com/CodeReclaimers/neat-python)
-that could be used to comparison test, but I have not done this.
-
-That said, this was a really fun project and totally scratched an itch. For many
-years, I'd been thinking about the NEAT algorithm, as it seemed like a far
+This was a really fun project and totally scratched an itch for me. For many
+years I'd been thinking about the NEAT algorithm, as it seemed like a far
 superior solution to hand-crafting a neural network using TensorFlow. Numerous
 times I'd started a weekend project to experiment with NEAT and hit roadblocks,
 such as the existing solutions not being very extensible or the best solutions
-all being in Python. Now I know for sure that NEAT is not a panacea and, while
-it's still a very cool concept, it's not something that will be practical in
-most enterprise usecases.
+all being in Python.
+
+Genetic algorithms like NEAT are a bit of a honeypot for people who are new to
+neural networks. The promise of a self-building neural network that is optimized
+for the use case -- using the _power of evolution_ -- seems appealing compared
+to hand-crafting an arbitrary neural network architecture. Of course, the
+reality is that NEAT is not a silver bullet. It has its own set of challenges
+and limitations. For instance, NEAT can be computationally expensive, is prone
+to overfitting and is heavily reliant on your fitness function. Any imprecisions
+in the fitness function will lead to a network that doesn't train well.
+
+The more advanced NEAT variants, like HyperNEAT, ES-HyperNEAT and DES-HyperNEAT,
+are generally not much better than NEAT in most cases. They are focused on
+helping to train more complex and deeper networks but they are slower to train.
+For most examples, plain NEAT will train faster and achieve similar results.
