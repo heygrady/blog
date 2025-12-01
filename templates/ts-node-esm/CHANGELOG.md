@@ -1,5 +1,13 @@
 # @heygrady/ts-node-esm
 
+## 1.2.3
+
+### Patch Changes
+
+- 3e8f4ac: Fix test scripts to run once instead of in watch mode:
+  - `ts-node-esm`: Change `vitest` to `vitest run`
+  - `node-esm`: Add `--no-watch` flag to Jest command
+
 ## 1.2.2
 
 ### Patch Changes

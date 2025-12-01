@@ -1,5 +1,15 @@
 # @heygrady/blog-app
 
+## 1.3.0
+
+### Minor Changes
+
+- 3e8f4ac: - Add tic-tac-toe AI blog post
+  - Update wording in neural networks post
+  - Fix typos and broken link in blog posts
+  - Add explicit dimensions to hero image
+  - Add dev scripts and use workspace dependency
+
 ## 1.2.15
 
 ### Patch Changes
@@ -153,6 +163,5 @@
 - 53d71c4: Relaunch on Astro. Read about [relaunching on Astro](https://heygrady.com/posts/2022-08-29-relaunching-on-astro) on the blog.
 
   Previous posts:
-
   - [Updating my blog to Gatsby](https://heygrady.com/posts/2017-06-30-new-blog)
   - [Migrating the old site](https://heygrady.com/posts/2017-06-30-migrating-old-site)

@@ -1,5 +1,22 @@
 # @heygrady/eslint-config
 
+## 1.7.0
+
+### Minor Changes
+
+- bd9d87d: - Rename react.js to react-base.js and solid.js to solid-base.js (breaking: import paths changed)
+  - Presets now explicitly compose jsx-a11y where needed instead of bundling it
+  - Remove eslint-plugin-storybook entirely (unused legacy feature)
+  - Add comprehensive test suite with 380 tests covering all presets and compositions
+  - Add TypeScript type checking for test files via `yarn check`
+
+### Patch Changes
+
+- 00b4d7f: - Disable n/no-extraneous-import for markdown code blocks since examples often reference packages not in package.json
+  - Disable jsdoc/no-undefined-types and jsdoc/reject-any-type for TypeScript files (generics appear undefined, types redundant with TS)
+  - Allow empty interfaces with @typescript-eslint/no-empty-object-type (common pattern for extensible types)
+  - Add separate vitest config for .bench.\* benchmark files with vitest/consistent-test-it and vitest/expect-expect disabled (rule doesn't support bench())
+
 ## 1.6.1
 
 ### Patch Changes
