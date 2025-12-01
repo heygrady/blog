@@ -24,7 +24,7 @@
     "test": "yarn node --experimental-vm-modules $(yarn bin jest)"
   },
   "devDependencies": {
-    "@heygrady/eslint-config": "^1.6.0",
+    "@heygrady/eslint-config": "workspace:^",
     "eslint": "^9.39.1",
     "jest": "^30.2.0",
     "lint-staged": "^16.2.7",

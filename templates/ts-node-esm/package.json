@@ -48,8 +48,8 @@
     "@swc/helpers": "^0.5.17"
   },
   "devDependencies": {
-    "@heygrady/eslint-config": "^1.6.0",
-    "@heygrady/tsconfig-bases": "^1.0.7",
+    "@heygrady/eslint-config": "workspace:^",
+    "@heygrady/tsconfig-bases": "workspace:^",
     "@swc/cli": "^0.7.9",
     "@swc/core": "^1.15.3",
     "@types/eslint": "^9.6.1",
