@@ -25,13 +25,7 @@ export default [
     },
   },
   {
-    files: [
-      '**/*.md/*.astro',
-      '**/*.md/*.js',
-      '**/*.md/*.jsx',
-      '**/*.md/*.ts',
-      '**/*.md/*.tsx',
-    ],
+    files: ['**/*.md/*.astro', '**/*.md/*.js', '**/*.md/*.jsx'],
     languageOptions: {
       parserOptions: {
         ecmaFeatures: {
@@ -40,11 +34,9 @@ export default [
       },
     },
     rules: {
-      ...parserServicesRules,
       // Downgrade to warnings for docs - examples may have incomplete code
       'no-undef': 'warn',
       'no-unused-vars': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
       'import/named': 'warn',
       'import/no-unresolved': 'warn',
       'n/no-missing-import': 'warn',
@@ -60,12 +52,23 @@ export default [
     languageOptions: {
       parser: tsParser,
       parserOptions: {
+        ecmaFeatures: {
+          impliedStrict: true,
+        },
         project: null,
       },
     },
     rules: {
       ...parserServicesRules,
+      // Downgrade to warnings for docs - examples may have incomplete code
+      'no-undef': 'warn',
+      'no-unused-vars': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
+      'import/named': 'warn',
+      'import/no-unresolved': 'warn',
+      'n/no-missing-import': 'warn',
+      // Browser examples in markdown may use APIs not available in Node
+      'n/no-unsupported-features/node-builtins': 'warn',
     },
   },
   // https://github.com/eslint/eslint-plugin-markdown/blob/main/examples/react/.eslintrc.js
