@@ -1,5 +1,11 @@
 # @heygrady/create-post-command
 
+## 1.0.10
+
+### Patch Changes
+
+- c61c053: Update to ESLint flat config and bump dependencies
+
 ## 1.0.9
 
 ### Patch Changes

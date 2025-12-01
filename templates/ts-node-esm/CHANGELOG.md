@@ -1,5 +1,11 @@
 # @heygrady/ts-node-esm
 
+## 1.2.2
+
+### Patch Changes
+
+- c61c053: Update to ESLint flat config format
+
 ## 1.2.1
 
 ### Patch Changes

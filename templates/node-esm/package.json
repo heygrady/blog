@@ -1,6 +1,6 @@
 {
   "name": "@heygrady/node-esm",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "type": "module",
   "main": "./lib/index.js",
   "sideEffects": false,
@@ -24,7 +24,7 @@
     "test": "yarn node --experimental-vm-modules $(yarn bin jest)"
   },
   "devDependencies": {
-    "@heygrady/eslint-config": "^1.5.1",
+    "@heygrady/eslint-config": "^1.6.0",
     "eslint": "^9.39.1",
     "jest": "^30.2.0",
     "lint-staged": "^16.2.7",

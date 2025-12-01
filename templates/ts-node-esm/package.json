@@ -1,6 +1,6 @@
 {
   "name": "@heygrady/ts-node-esm",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "type": "module",
   "sideEffects": false,
   "license": "MIT",
@@ -48,8 +48,8 @@
     "@swc/helpers": "^0.5.17"
   },
   "devDependencies": {
-    "@heygrady/eslint-config": "^1.5.1",
-    "@heygrady/tsconfig-bases": "^1.0.6",
+    "@heygrady/eslint-config": "^1.6.0",
+    "@heygrady/tsconfig-bases": "^1.0.7",
     "@swc/cli": "^0.7.9",
     "@swc/core": "^1.15.3",
     "@types/eslint": "^9.6.1",
