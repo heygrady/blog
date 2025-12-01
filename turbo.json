@@ -1,32 +1,79 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "concurrency": "4",
   "tasks": {
     "build": {
-      "inputs": ["src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx,css,scss,jpg,png,svg}", "package.json"],
-      "outputs": ["dist/**"],
-      "dependsOn": ["^build"]
+      "inputs": [
+        "src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx,css,scss,md,mdx,jpg,png,svg}",
+        "*.config.{cjs,mjs,js,ts}",
+        "package.json"
+      ],
+      "outputs": [
+        "dist/**"
+      ],
+      "dependsOn": [
+        "^build"
+      ],
+      "cache": true
     },
-    "clean": {},
+    "dev": {
+      "dependsOn": [
+        "^build"
+      ],
+      "persistent": true,
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    },
     "coverage": {
-      "inputs": ["**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
-      "outputs": ["coverage/**"],
-      "dependsOn": ["^build"]
+      "inputs": [
+        "src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}",
+        "test/**/*.{cjs,mjs,js,jsx,cts,mts,ts,tsx}",
+        "package.json"
+      ],
+      "outputs": [
+        "coverage/**"
+      ],
+      "dependsOn": [
+        "^test"
+      ],
+      "cache": true
     },
     "format": {
-      "inputs": ["**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
-      "dependsOn": ["^build"]
+      "inputs": [
+        "src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}",
+        "test/**/*.{cjs,mjs,js,jsx,cts,mts,ts,tsx}",
+        "package.json"
+      ],
+      "cache": true
     },
     "lint": {
-      "inputs": ["**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
-      "dependsOn": ["^build"]
+      "inputs": [
+        "src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}",
+        "test/**/*.{cjs,mjs,js,jsx,cts,mts,ts,tsx}",
+        "package.json"
+      ],
+      "cache": true
     },
     "precommit": {
-      "inputs": ["**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
-      "dependsOn": ["^build"]
+      "inputs": [
+        "src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}",
+        "test/**/*.{cjs,mjs,js,jsx,cts,mts,ts,tsx}",
+        "package.json"
+      ],
+      "cache": false
     },
     "test": {
-      "inputs": ["**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "test/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}", "package.json"],
-      "dependsOn": ["^build"]
+      "inputs": [
+        "src/**/*.{astro,cjs,mjs,js,jsx,cts,mts,ts,tsx}",
+        "test/**/*.{cjs,mjs,js,jsx,cts,mts,ts,tsx}",
+        "package.json"
+      ],
+      "dependsOn": [
+        "^build"
+      ],
+      "cache": true
     }
   }
 }
