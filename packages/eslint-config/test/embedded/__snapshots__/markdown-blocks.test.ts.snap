@@ -1,0 +1,40 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`markdown code blocks > snapshots for markdown code blocks > snapshot for TypeScript code block config > parserOptions 1`] = `
+{
+  "ecmaFeatures": {
+    "impliedStrict": true,
+  },
+  "project": null,
+}
+`;
+
+exports[`markdown code blocks > snapshots for markdown code blocks > snapshot for TypeScript code block config > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`markdown code blocks > snapshots for markdown code blocks > snapshot for TypeScript code block config > relaxed-rules 1`] = `
+{
+  "import/no-unresolved": "warn",
+  "n/no-extraneous-import": "off",
+  "n/no-extraneous-require": "error",
+  "n/no-missing-import": "warn",
+  "no-undef": [
+    "warn",
+    {
+      "typeof": false,
+    },
+  ],
+  "no-unused-vars": "warn",
+}
+`;

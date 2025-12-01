@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`astro script blocks > snapshots for astro files > snapshot for astro file config > parser 1`] = `"astro-eslint-parser"`;
+
+exports[`astro script blocks > snapshots for astro files > snapshot for astro file config > plugins 1`] = `
+[
+  "@",
+  "astro",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`astro script blocks > snapshots for astro files > snapshot for astro script block config > parser 1`] = `"typescript-eslint/parser"`;
+
+exports[`astro script blocks > snapshots for astro files > snapshot for astro script block config > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "astro",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;

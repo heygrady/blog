@@ -1,5 +1,6 @@
+import jsxA11y from './lib/configs/jsx-a11y.js'
 import nodeBase from './lib/configs/node-base.js'
-import solid from './lib/configs/solid.js'
+import solidBase from './lib/configs/solid-base.js'
 import typescript from './lib/configs/typescript.js'
 import testingLibraryDomOverrides from './lib/overrides/testingLibraryDom.js'
 import vitestOverrides from './lib/overrides/vitest.js'
@@ -7,7 +8,8 @@ import vitestOverrides from './lib/overrides/vitest.js'
 export default [
   ...nodeBase,
   ...typescript,
-  ...solid,
+  ...solidBase,
+  ...jsxA11y,
   ...testingLibraryDomOverrides,
   ...vitestOverrides,
 ]

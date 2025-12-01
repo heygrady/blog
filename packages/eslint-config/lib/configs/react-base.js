@@ -1,15 +1,16 @@
 import compat from 'eslint-plugin-compat'
-import solid from 'eslint-plugin-solid'
+import react from 'eslint-plugin-react'
+import reactHooks from 'eslint-plugin-react-hooks'
 import globals from 'globals'
 
-import jsxA11yConfig from './jsx-a11y.js'
+import reactSettings from '../settings/react.js'
 
-// Base solid config without jsx-a11y (for use with astro which already includes it)
-export const solidBase = [
+export default [
   {
     files: ['**/*.{jsx,tsx}'],
     plugins: {
-      solid: solid,
+      react,
+      'react-hooks': reactHooks,
       compat,
     },
     languageOptions: {
@@ -22,9 +23,15 @@ export const solidBase = [
         },
       },
     },
+    settings: {
+      ...reactSettings,
+    },
     rules: {
-      // Use flat/typescript preset rules
-      ...solid.configs['flat/typescript'].rules,
+      ...react.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      // React 17+ doesn't need React in scope for JSX
+      'react/jsx-uses-react': 'off',
+      'react/react-in-jsx-scope': 'off',
       // Allow @testing-library/jest-dom as unpublished import in test files
       'n/no-unpublished-import': [
         'error',
@@ -33,6 +40,3 @@ export const solidBase = [
     },
   },
 ]
-
-// Full solid config including jsx-a11y (for standalone use without astro)
-export default [...solidBase, ...jsxA11yConfig]

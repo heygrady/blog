@@ -1,0 +1,890 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`config snapshots > astro preset (no UI framework) > computed config for src/Page.astro > parser 1`] = `"astro-eslint-parser"`;
+
+exports[`config snapshots > astro preset (no UI framework) > computed config for src/Page.astro > plugins 1`] = `
+[
+  "@",
+  "astro",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > astro preset (no UI framework) > computed config for src/index.ts > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "astro",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > astro-react preset > computed config for src/Component.test.tsx > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "astro",
+  "compat",
+  "eslint-comments",
+  "import",
+  "jest-dom",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+  "react",
+  "react-hooks",
+  "testing-library",
+  "vitest",
+]
+`;
+
+exports[`config snapshots > astro-react preset > computed config for src/Component.tsx > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "astro",
+  "compat",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+  "react",
+  "react-hooks",
+]
+`;
+
+exports[`config snapshots > astro-react preset > computed config for src/Page.astro > parser 1`] = `"astro-eslint-parser"`;
+
+exports[`config snapshots > astro-react preset > computed config for src/Page.astro > plugins 1`] = `
+[
+  "@",
+  "astro",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > astro-solid preset > computed config for src/Component.test.tsx > parserOptions 1`] = `
+{
+  "ecmaFeatures": {
+    "jsx": true,
+  },
+  "ecmaVersion": 2022,
+  "project": null,
+  "projectService": true,
+  "sourceType": "module",
+}
+`;
+
+exports[`config snapshots > astro-solid preset > computed config for src/Component.test.tsx > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "astro",
+  "compat",
+  "eslint-comments",
+  "import",
+  "jest-dom",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+  "solid",
+  "testing-library",
+  "vitest",
+]
+`;
+
+exports[`config snapshots > astro-solid preset > computed config for src/Component.tsx > browser-globals 1`] = `
+[
+  "document",
+  "navigator",
+  "window",
+]
+`;
+
+exports[`config snapshots > astro-solid preset > computed config for src/Component.tsx > parser 1`] = `"typescript-eslint/parser"`;
+
+exports[`config snapshots > astro-solid preset > computed config for src/Component.tsx > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "astro",
+  "compat",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+  "solid",
+]
+`;
+
+exports[`config snapshots > astro-solid preset > computed config for src/Page.astro > parser 1`] = `"astro-eslint-parser"`;
+
+exports[`config snapshots > astro-solid preset > computed config for src/Page.astro > plugins 1`] = `
+[
+  "@",
+  "astro",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > astro-solid preset > computed config for src/index.ts > parser 1`] = `"typescript-eslint/parser"`;
+
+exports[`config snapshots > astro-solid preset > computed config for src/index.ts > parserOptions 1`] = `
+{
+  "ecmaVersion": 2022,
+  "projectService": true,
+  "sourceType": "module",
+}
+`;
+
+exports[`config snapshots > astro-solid preset > computed config for src/index.ts > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "astro",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > astro-solid preset > computed config for test/example.bench.ts > parserOptions 1`] = `
+{
+  "ecmaVersion": 2022,
+  "project": null,
+  "sourceType": "module",
+}
+`;
+
+exports[`config snapshots > astro-solid preset > computed config for test/example.bench.ts > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "astro",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+  "vitest",
+]
+`;
+
+exports[`config snapshots > key rules snapshots > astro-solid > astro rules for src/Page.astro 1`] = `
+{
+  "astro/jsx-a11y/alt-text": "error",
+  "astro/jsx-a11y/anchor-ambiguous-text": "off",
+  "astro/jsx-a11y/anchor-has-content": "error",
+  "astro/jsx-a11y/anchor-is-valid": "error",
+  "astro/jsx-a11y/aria-activedescendant-has-tabindex": "error",
+  "astro/jsx-a11y/aria-props": "error",
+  "astro/jsx-a11y/aria-proptypes": "error",
+  "astro/jsx-a11y/aria-role": "error",
+  "astro/jsx-a11y/aria-unsupported-elements": "error",
+  "astro/jsx-a11y/autocomplete-valid": "error",
+  "astro/jsx-a11y/click-events-have-key-events": "error",
+  "astro/jsx-a11y/control-has-associated-label": [
+    "off",
+    {
+      "ignoreElements": [
+        "audio",
+        "canvas",
+        "embed",
+        "input",
+        "textarea",
+        "tr",
+        "video",
+      ],
+      "ignoreRoles": [
+        "grid",
+        "listbox",
+        "menu",
+        "menubar",
+        "radiogroup",
+        "row",
+        "tablist",
+        "toolbar",
+        "tree",
+        "treegrid",
+      ],
+      "includeRoles": [
+        "alert",
+        "dialog",
+      ],
+    },
+  ],
+  "astro/jsx-a11y/heading-has-content": "error",
+  "astro/jsx-a11y/html-has-lang": "error",
+  "astro/jsx-a11y/iframe-has-title": "error",
+  "astro/jsx-a11y/img-redundant-alt": "error",
+  "astro/jsx-a11y/interactive-supports-focus": [
+    "error",
+    {
+      "tabbable": [
+        "button",
+        "checkbox",
+        "link",
+        "searchbox",
+        "spinbutton",
+        "switch",
+        "textbox",
+      ],
+    },
+  ],
+  "astro/jsx-a11y/label-has-associated-control": "error",
+  "astro/jsx-a11y/label-has-for": "off",
+  "astro/jsx-a11y/media-has-caption": "error",
+  "astro/jsx-a11y/mouse-events-have-key-events": "error",
+  "astro/jsx-a11y/no-access-key": "error",
+  "astro/jsx-a11y/no-autofocus": "error",
+  "astro/jsx-a11y/no-distracting-elements": "error",
+  "astro/jsx-a11y/no-interactive-element-to-noninteractive-role": [
+    "error",
+    {
+      "canvas": [
+        "img",
+      ],
+      "tr": [
+        "none",
+        "presentation",
+      ],
+    },
+  ],
+  "astro/jsx-a11y/no-noninteractive-element-interactions": [
+    "error",
+    {
+      "alert": [
+        "onKeyUp",
+        "onKeyDown",
+        "onKeyPress",
+      ],
+      "body": [
+        "onError",
+        "onLoad",
+      ],
+      "dialog": [
+        "onKeyUp",
+        "onKeyDown",
+        "onKeyPress",
+      ],
+      "handlers": [
+        "onClick",
+        "onError",
+        "onLoad",
+        "onMouseDown",
+        "onMouseUp",
+        "onKeyPress",
+        "onKeyDown",
+        "onKeyUp",
+      ],
+      "iframe": [
+        "onError",
+        "onLoad",
+      ],
+      "img": [
+        "onError",
+        "onLoad",
+      ],
+    },
+  ],
+  "astro/jsx-a11y/no-noninteractive-element-to-interactive-role": [
+    "error",
+    {
+      "fieldset": [
+        "radiogroup",
+        "presentation",
+      ],
+      "li": [
+        "menuitem",
+        "menuitemradio",
+        "menuitemcheckbox",
+        "option",
+        "row",
+        "tab",
+        "treeitem",
+      ],
+      "ol": [
+        "listbox",
+        "menu",
+        "menubar",
+        "radiogroup",
+        "tablist",
+        "tree",
+        "treegrid",
+      ],
+      "table": [
+        "grid",
+      ],
+      "td": [
+        "gridcell",
+      ],
+      "ul": [
+        "listbox",
+        "menu",
+        "menubar",
+        "radiogroup",
+        "tablist",
+        "tree",
+        "treegrid",
+      ],
+    },
+  ],
+  "astro/jsx-a11y/no-noninteractive-tabindex": [
+    "error",
+    {
+      "allowExpressionValues": true,
+      "roles": [
+        "tabpanel",
+      ],
+      "tags": [],
+    },
+  ],
+  "astro/jsx-a11y/no-redundant-roles": "error",
+  "astro/jsx-a11y/no-static-element-interactions": [
+    "error",
+    {
+      "allowExpressionValues": true,
+      "handlers": [
+        "onClick",
+        "onMouseDown",
+        "onMouseUp",
+        "onKeyPress",
+        "onKeyDown",
+        "onKeyUp",
+      ],
+    },
+  ],
+  "astro/jsx-a11y/role-has-required-aria-props": "error",
+  "astro/jsx-a11y/role-supports-aria-props": "error",
+  "astro/jsx-a11y/scope": "error",
+  "astro/jsx-a11y/tabindex-no-positive": "error",
+  "astro/missing-client-only-directive-value": "error",
+  "astro/no-conflict-set-directives": "error",
+  "astro/no-deprecated-astro-canonicalurl": "error",
+  "astro/no-deprecated-astro-fetchcontent": "error",
+  "astro/no-deprecated-astro-resolve": "error",
+  "astro/no-deprecated-getentrybyslug": "error",
+  "astro/no-unused-define-vars-in-style": "error",
+  "astro/valid-compile": "error",
+}
+`;
+
+exports[`config snapshots > key rules snapshots > astro-solid > solid rules for src/Component.tsx 1`] = `
+{
+  "solid/components-return-once": "warn",
+  "solid/event-handlers": "warn",
+  "solid/imports": "warn",
+  "solid/jsx-no-duplicate-props": "error",
+  "solid/jsx-no-script-url": "error",
+  "solid/jsx-no-undef": [
+    "error",
+    {
+      "allowGlobals": false,
+      "autoImport": true,
+      "typescriptEnabled": true,
+    },
+  ],
+  "solid/jsx-uses-vars": "error",
+  "solid/no-array-handlers": "off",
+  "solid/no-destructure": "error",
+  "solid/no-innerhtml": "error",
+  "solid/no-proxy-apis": "off",
+  "solid/no-react-deps": "warn",
+  "solid/no-react-specific-props": "warn",
+  "solid/no-unknown-namespaces": "off",
+  "solid/prefer-classlist": "off",
+  "solid/prefer-for": "error",
+  "solid/prefer-show": "off",
+  "solid/reactivity": "warn",
+  "solid/self-closing-comp": "warn",
+  "solid/style-prop": "warn",
+}
+`;
+
+exports[`config snapshots > key rules snapshots > astro-solid > testing-library rules for src/Component.test.tsx 1`] = `
+{
+  "testing-library/await-async-events": [
+    "error",
+    {
+      "eventModule": "userEvent",
+    },
+  ],
+  "testing-library/await-async-queries": "error",
+  "testing-library/await-async-utils": "error",
+  "testing-library/no-await-sync-events": [
+    "error",
+    {
+      "eventModules": [
+        "fire-event",
+      ],
+    },
+  ],
+  "testing-library/no-await-sync-queries": "error",
+  "testing-library/no-container": "error",
+  "testing-library/no-debugging-utils": "error",
+  "testing-library/no-dom-import": "off",
+  "testing-library/no-global-regexp-flag-in-query": "error",
+  "testing-library/no-node-access": "error",
+  "testing-library/no-promise-in-fire-event": "error",
+  "testing-library/no-render-in-lifecycle": "error",
+  "testing-library/no-unnecessary-act": "error",
+  "testing-library/no-wait-for-multiple-assertions": "error",
+  "testing-library/no-wait-for-side-effects": "error",
+  "testing-library/no-wait-for-snapshot": "error",
+  "testing-library/prefer-find-by": "error",
+  "testing-library/prefer-presence-queries": "error",
+  "testing-library/prefer-query-by-disappearance": "error",
+  "testing-library/prefer-screen-queries": "error",
+  "testing-library/render-result-naming-convention": "error",
+}
+`;
+
+exports[`config snapshots > key rules snapshots > ts-node-esm > TypeScript rules for src/index.ts 1`] = `
+{
+  "@typescript-eslint/ban-ts-comment": "error",
+  "@typescript-eslint/block-spacing": "off",
+  "@typescript-eslint/brace-style": "off",
+  "@typescript-eslint/comma-dangle": "off",
+  "@typescript-eslint/comma-spacing": "off",
+  "@typescript-eslint/explicit-function-return-type": "off",
+  "@typescript-eslint/func-call-spacing": "off",
+  "@typescript-eslint/indent": "off",
+  "@typescript-eslint/key-spacing": "off",
+  "@typescript-eslint/keyword-spacing": "off",
+  "@typescript-eslint/lines-around-comment": "off",
+  "@typescript-eslint/member-delimiter-style": "off",
+  "@typescript-eslint/no-array-constructor": "error",
+  "@typescript-eslint/no-duplicate-enum-values": "error",
+  "@typescript-eslint/no-empty-object-type": [
+    "error",
+    {
+      "allowInterfaces": "always",
+    },
+  ],
+  "@typescript-eslint/no-explicit-any": "warn",
+  "@typescript-eslint/no-extra-non-null-assertion": "error",
+  "@typescript-eslint/no-extra-parens": "off",
+  "@typescript-eslint/no-extra-semi": "off",
+  "@typescript-eslint/no-misused-new": "error",
+  "@typescript-eslint/no-namespace": "error",
+  "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+  "@typescript-eslint/no-require-imports": "error",
+  "@typescript-eslint/no-this-alias": "error",
+  "@typescript-eslint/no-unnecessary-type-constraint": "error",
+  "@typescript-eslint/no-unsafe-declaration-merging": "error",
+  "@typescript-eslint/no-unsafe-function-type": "error",
+  "@typescript-eslint/no-unused-expressions": [
+    "error",
+    {
+      "allowShortCircuit": false,
+      "allowTaggedTemplates": false,
+      "allowTernary": false,
+    },
+  ],
+  "@typescript-eslint/no-unused-vars": [
+    "error",
+    {
+      "argsIgnorePattern": "^_",
+      "caughtErrorsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_",
+    },
+  ],
+  "@typescript-eslint/no-wrapper-object-types": "error",
+  "@typescript-eslint/object-curly-spacing": "off",
+  "@typescript-eslint/prefer-as-const": "error",
+  "@typescript-eslint/prefer-namespace-keyword": "error",
+  "@typescript-eslint/quotes": "off",
+  "@typescript-eslint/semi": "off",
+  "@typescript-eslint/space-before-blocks": "off",
+  "@typescript-eslint/space-before-function-paren": "off",
+  "@typescript-eslint/space-infix-ops": "off",
+  "@typescript-eslint/triple-slash-reference": "off",
+  "@typescript-eslint/type-annotation-spacing": "off",
+}
+`;
+
+exports[`config snapshots > key rules snapshots > ts-node-esm > import rules for src/index.ts 1`] = `
+{
+  "import/default": "error",
+  "import/export": "error",
+  "import/extensions": "off",
+  "import/named": "off",
+  "import/namespace": "error",
+  "import/no-duplicates": "warn",
+  "import/no-named-as-default": "warn",
+  "import/no-named-as-default-member": "warn",
+  "import/no-unresolved": "error",
+  "import/order": [
+    "error",
+    {
+      "alphabetize": {
+        "caseInsensitive": true,
+        "order": "asc",
+        "orderImportKind": "ignore",
+      },
+      "distinctGroup": true,
+      "groups": [
+        "builtin",
+        "external",
+        "internal",
+        [
+          "parent",
+          "unknown",
+        ],
+        "sibling",
+        "index",
+      ],
+      "named": false,
+      "newlines-between": "always",
+      "pathGroups": [
+        {
+          "group": "parent",
+          "pattern": "..",
+        },
+        {
+          "group": "sibling",
+          "pattern": ".",
+        },
+        {
+          "group": "index",
+          "pattern": "{**,.,..}/*.{css,less,scss,gif,jpg,png,svg}",
+          "position": "after",
+        },
+      ],
+      "sortTypesGroup": false,
+      "warnOnUnassignedImports": false,
+    },
+  ],
+}
+`;
+
+exports[`config snapshots > key rules snapshots > ts-node-esm > vitest rules for test/example.test.ts 1`] = `
+{
+  "vitest/consistent-test-it": [
+    "error",
+    {
+      "fn": "test",
+    },
+  ],
+  "vitest/expect-expect": "error",
+  "vitest/no-commented-out-tests": "error",
+  "vitest/no-identical-title": "error",
+  "vitest/no-import-node-test": "error",
+  "vitest/require-local-test-context-for-concurrent-snapshots": "error",
+  "vitest/valid-describe-callback": "error",
+  "vitest/valid-expect": "error",
+  "vitest/valid-title": "error",
+}
+`;
+
+exports[`config snapshots > node preset > computed config for src/index.js > plugins 1`] = `
+[
+  "@",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > node preset > computed config for src/index.test.js > plugins 1`] = `
+[
+  "@",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "markdown",
+  "n",
+  "prettier",
+  "vitest",
+]
+`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for README.md > plugins 1`] = `
+[
+  "@",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for eslint.config.mjs > parserOptions 1`] = `
+{
+  "project": null,
+  "sourceType": "module",
+}
+`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for eslint.config.mjs > plugins 1`] = `
+[
+  "@",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for package.json > plugins 1`] = `
+[
+  "@",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for src/index.js > parser 1`] = `"typescript-eslint/parser"`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for src/index.js > plugins 1`] = `
+[
+  "@",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for src/index.ts > parser 1`] = `"typescript-eslint/parser"`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for src/index.ts > parserOptions 1`] = `
+{
+  "ecmaVersion": 2022,
+  "projectService": true,
+  "sourceType": "module",
+}
+`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for src/index.ts > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for test/example.test.ts > parser 1`] = `"typescript-eslint/parser"`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for test/example.test.ts > parserOptions 1`] = `
+{
+  "ecmaVersion": 2022,
+  "project": null,
+  "sourceType": "module",
+}
+`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for test/example.test.ts > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "markdown",
+  "n",
+  "prettier",
+  "vitest",
+]
+`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for vitest.config.ts > parserOptions 1`] = `
+{
+  "ecmaVersion": 2022,
+  "project": null,
+  "sourceType": "module",
+}
+`;
+
+exports[`config snapshots > ts-node-esm preset > computed config for vitest.config.ts > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > tsx-react-esm preset > computed config for src/Component.test.tsx > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "compat",
+  "eslint-comments",
+  "import",
+  "jest-dom",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+  "react",
+  "react-hooks",
+  "testing-library",
+  "vitest",
+]
+`;
+
+exports[`config snapshots > tsx-react-esm preset > computed config for src/Component.tsx > parser 1`] = `"typescript-eslint/parser"`;
+
+exports[`config snapshots > tsx-react-esm preset > computed config for src/Component.tsx > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "compat",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+  "react",
+  "react-hooks",
+]
+`;
+
+exports[`config snapshots > tsx-solid-esm preset > computed config for src/Component.test.tsx > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "compat",
+  "eslint-comments",
+  "import",
+  "jest-dom",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+  "solid",
+  "testing-library",
+  "vitest",
+]
+`;
+
+exports[`config snapshots > tsx-solid-esm preset > computed config for src/Component.tsx > parser 1`] = `"typescript-eslint/parser"`;
+
+exports[`config snapshots > tsx-solid-esm preset > computed config for src/Component.tsx > plugins 1`] = `
+[
+  "@",
+  "@typescript-eslint",
+  "compat",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "jsx-a11y",
+  "markdown",
+  "n",
+  "prettier",
+  "solid",
+]
+`;
+
+exports[`config snapshots > zx preset > computed config for scripts/build.mjs > plugins 1`] = `
+[
+  "@",
+  "eslint-comments",
+  "import",
+  "jsdoc",
+  "json",
+  "markdown",
+  "n",
+  "prettier",
+]
+`;
+
+exports[`config snapshots > zx preset > computed config for scripts/build.mjs > zx-globals 1`] = `
+[
+  "$",
+  "cd",
+  "chalk",
+  "fs",
+  "path",
+]
+`;
