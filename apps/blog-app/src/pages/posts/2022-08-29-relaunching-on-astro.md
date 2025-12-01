@@ -90,7 +90,7 @@ repos/
     apps/
       blog/ <-- Astro Blog
     packages/
-      esling-config/ <-- support packages
+      eslint-config/ <-- support packages
 ```
 
 ### Initialize Astro Blog
@@ -292,7 +292,7 @@ import { typography } from '../utils/typography'
 
 # Wrapping Up
 
-After a few attempts I had a perfectly working Atom blog that looked virtually identical to my previous blog. The fonts were actually improved by all of the upgrading and this is one of the most noticeable differences.
+After a few attempts I had a perfectly working Astro blog that looked virtually identical to my previous blog. The fonts were actually improved by all of the upgrading and this is one of the most noticeable differences.
 
 It seems that the Gatsby theme inherits some default styling from the Gatsby core (somewhere) because it was not easy to identify where all of the styles were coming from.
 
@@ -302,7 +302,7 @@ I was amazed by how easy it was to integrate Firebase with GitHub Actions.
 
 I was equally amazed by how quickly I was able to adopt `.astro` syntax. It was very familiar to me coming from a strong React background.
 
-The biggest struggle I had was with fonts. At one point the fonts were not showing up in the Firbease preview and I tracked it down to a base URL issue. I ended up disabling asset inlining in Vite to avoid the issue.
+The biggest struggle I had was with fonts. At one point the fonts were not showing up in the Firebase preview and I tracked it down to a base URL issue. I ended up disabling asset inlining in Vite to avoid the issue.
 
 Disappointingly, I ended up dropping the line highlighting feature from the code blocks. This was a somewhat unique feature that Gatsby offers. The [Astro documentation provides a similar feature](https://github.com/withastro/docs/blob/67eab8e50e8138d6b80fe279a71b2105ab60e6a8/integrations/astro-code-snippets.ts) but it is not portable so I decided not to pursue it further.
 
