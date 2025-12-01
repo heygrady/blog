@@ -4,12 +4,9 @@
     "allowJs": true,
     "checkJs": false,
     "declaration": false,
-    "noEmit": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true
+    "isolatedModules": true
   },
-  "extends": ["@tsconfig/node24/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
+  "extends": ["@tsconfig/vite-react/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
   "include": ["src", "test"],
   "exclude": ["node_modules", "dist"]
 }
-  
