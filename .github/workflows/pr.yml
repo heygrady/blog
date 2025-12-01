@@ -52,10 +52,6 @@ jobs:
       - name: Check packages (manypkg)
         run: yarn check:manypkg
 
-      - name: Check changesets (informational)
-        run: yarn check:changesets
-        continue-on-error: true
-
   preview-deploy:
     needs: build-test-lint
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
