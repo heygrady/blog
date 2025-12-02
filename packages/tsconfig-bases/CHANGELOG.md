@@ -1,5 +1,11 @@
 # @heygrady/tsconfig-bases
 
+## 1.0.8
+
+### Patch Changes
+
+- e5f5c0d: Improve README documentation with installation instructions, usage examples, and Yarn/npm configuration for GitHub Packages
+
 ## 1.0.7
 
 ### Patch Changes
