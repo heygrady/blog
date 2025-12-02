@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.3.1
+
+### Patch Changes
+
+- b7117f2: Update blog posts for evolving neural networks and tic-tac-toe AI articles
+
 ## 1.3.0
 
 ### Minor Changes
