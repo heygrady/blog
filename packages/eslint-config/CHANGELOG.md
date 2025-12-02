@@ -1,5 +1,11 @@
 # @heygrady/eslint-config
 
+## 1.7.1
+
+### Patch Changes
+
+- e5f5c0d: Improve README documentation with installation instructions, usage examples, and Yarn/npm configuration for GitHub Packages
+
 ## 1.7.0
 
 ### Minor Changes

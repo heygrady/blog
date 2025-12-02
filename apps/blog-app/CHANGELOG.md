@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.3.2
+
+### Patch Changes
+
+- e5f5c0d: Improve README documentation with installation instructions, usage examples, and Yarn/npm configuration for GitHub Packages
+
 ## 1.3.1
 
 ### Patch Changes
