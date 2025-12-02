@@ -45,16 +45,17 @@ I was originally interested in developing this library to play the
 Asteroids-style game, [Hexagonoids](/posts/2023-07-28-hexagonoids/), that I
 built a while back. My goal was to evolve neural networks that could effectively
 play the game using the NEAT algorithm. This proved to be quite a lofty goal. I
-started with a tic-tac-toe experiment (which I will be sharing soon), which
-seemed like a manageable starting point but, of course, had many hidden
+started with a
+[Tic Tac Toe experiment](/posts/2025-12-01-evolving-a-tic-tac-toe-ai-in-your-browser/),
+which seemed like a manageable starting point but, of course, had many hidden
 complexities.
 
 I also pursued this project because I was not happy with the NEAT
 implementations available. I had read about more advanced implementations, like
 ES-Hyperneat, that had been developed by the inventor of NEAT but were not
 available in the existing JS implementations. Most of the existing JS NEAT
-implementations are not set up for extensibility and don't include basic features
-like exporting and importing neural networks.
+implementations are not set up for extensibility and don't include basic
+features like exporting and importing neural networks.
 
 This was also a good opportunity for me to explore good code management best
 practices, utilizing a Yarn Monorepo for managing the code as separate packages,
@@ -64,13 +65,17 @@ release workflow using [Beachball](https://github.com/microsoft/beachball).
 
 ## Key features
 
-- **Modular architecture:** Easily swap out components like the evaluator,
-  reproducer, and environment.
+- **Modular architecture:** Easily swap out components like the
+  [evaluator](https://github.com/neat-evolution/neat-js/tree/main/packages/evaluator),
+  [reproducer](https://github.com/neat-evolution/neat-js/tree/main/packages/evolution),
+  and
+  [environment](https://github.com/neat-evolution/neat-js/tree/main/packages/dataset-environment).
 - **Multiple NEAT variants:** Supports NEAT, HyperNEAT, ES-HyperNEAT, and
   DES-HyperNEAT.
 - **Cross-platform:** Works in both Node.js and browser environments.
-- **Worker threads:** Utilizes worker threads for parallel processing to improve
-  performance.
+- **Worker threads:** Utilizes
+  [worker threads](https://github.com/neat-evolution/neat-js/tree/main/packages/worker-threads)
+  for parallel processing to improve performance.
 - **Serialization:** Supports exporting and importing neural networks for easy
   storage and transfer.
 
@@ -102,37 +107,50 @@ computationally expensive as you need to evaluate 100 neural networks at each
 training step. By contrast, training a neural network with something like
 TensorFlow evaluates only _one_ network at a time.
 
-I was able to move all of the evaluation _and_ reproduction steps into workers,
-which ended up making my implementation quite fast as it can use all of the CPU
-cores available, even in the browser.
+I was able to move all of the
+[evaluation](https://github.com/neat-evolution/neat-js/tree/main/packages/worker-evaluator)
+_and_
+[reproduction](https://github.com/neat-evolution/neat-js/tree/main/packages/worker-reproducer)
+steps into workers, which ended up making my implementation quite fast as it can
+use all of the CPU cores available, even in the browser.
 
-## Memory Leaks
+## Stateless Innovation Tracking
 
 Once I had the full library implemented, I noticed it was not able to run for
 very long without crashing. Upon inspection, it was because the original
-implementation kept a registry of each link in the neural network that had ever
-been created. This is part of the NEAT algorithm and is intended as a way to
-track "innovation" in the population of neural networks, where the links between
-nodes in the network function as the "genome". This was especially pronounced
-when running DES-Hyperneat, which is like a nesting doll of NEAT algorithms
-where each node is itself an independent NEAT network. This ended up ballooning
-the registry as many more connections were added, and the registry grew quite
-large.
+implementation kept a registry of every structural mutation that had ever
+occurred. This is part of the NEAT algorithm — the original paper by Kenneth
+Stanley establishes that "whenever a new gene appears (through structural
+mutation), a global innovation number is incremented and assigned to that gene."
+This registry enables meaningful crossover between genomes with different
+structures by providing a historical record of how each gene was introduced.
 
-I believe the original intent of the registry was for observability, to be able
-to track how the networks evolved over time. However, in practice, I found that
-it was not strictly necessary for the algorithm to function correctly.
+The original Rust implementation used a centralized `InnovationLog` with
+multiple hash maps tracking innovations. This approach causes unbounded memory
+growth as evolution progresses. The problem was especially pronounced when
+running DES-HyperNEAT, which is like a nesting doll of NEAT algorithms where
+each node is itself an independent NEAT network. The nested registries ballooned
+quickly.
 
-I ended up replacing the registry altogether for a custom solution that used
-names on the nodes to solve the same issue. This was much faster and solved
-issues of serializing the network for transfer to workers. My testing didn't
-uncover any noticeable differences. The result was _much_ faster performance and
-much lower memory overhead.
+I replaced the registry entirely with deterministic hashing. Instead of looking
+up innovations in a mutable registry, the library computes them on-demand.
 
-This was particularly helpful with regards to using worker threads, as the
-registry context no longer needed to be shared between the main thread and all
-of the workers, which removed some complexity where the worker needed to keep
-its local registry in sync with the main thread.
+### Benefits
+
+The hash-based approach provides significant engineering advantages:
+
+1. **Worker-friendly**: No synchronization needed; each worker computes
+   innovations independently
+2. **Bounded memory**: No registry growth; only a small LRU cache for
+   performance
+3. **Reproducibility**: Deterministic across runs (registry-based approaches
+   produce different IDs based on random mutation order)
+4. **Debugging**: Human-readable innovation keys (e.g., `"i0:h3c2f:o1"`)
+5. **Serialization**: String keys serialize naturally without preserving counter
+   state
+
+The result is much faster performance, much lower memory overhead, and
+dramatically simpler worker coordination.
 
 ## Other Performance Tweaks
 
@@ -454,9 +472,9 @@ ES-HyperNEAT seems curiously slow.
 There is also an opportunity to simplify the boilerplate considerably by
 providing a `PopulationManager` that encapsulates much of the setup work. This
 would make it easier to get started with the library, choosing sensible defaults
-for most options and exposing an opportunity to override the parts that you
-need. In practice, most users would only want to provide a custom `Environment`
-and override some default option.
+for most options and allowing users to override the parts that they need. In
+practice, most users would only want to provide a custom `Environment` and
+override some default options.
 
 ## Conclusion
 

@@ -7,12 +7,11 @@ heroImage: "hero-tictactoe.jpg"
 ---
 
 I recently completed an experiment to evolve a Tic Tac Toe AI using the
-[@neat-evolution](https://github.com/neat-evolution/neat-js) library in a web
-browser. The goal was to see how well a neural network could learn to play Tic
-Tac Toe using the NEAT (NeuroEvolution of Augmenting Topologies) algorithm. See
+[@neat-evolution](https://github.com/neat-evolution/neat-js) library. The goal
+was to see if the NEAT (NeuroEvolution of Augmenting Topologies) algorithm could
+effectively learn Tic Tac Toe. For background on the library powering this, see
 my previous post on
-[evolving neural networks in TypeScript](/posts/2025-10-29-evolving-neural-networks-in-type-script/)
-for more background on the @neat-evolution library.
+[evolving neural networks in TypeScript](/posts/2025-10-29-evolving-neural-networks-in-type-script/).
 
 ## Try it out
 
@@ -32,20 +31,27 @@ The source code is available on Github: https://github.com/heygrady/hexagonoids/
   like NEAT, HyperNEAT, ES-HyperNEAT, and DES-HyperNEAT.
 - **Modern frontend stack**: Built with SolidJS and nanostores for lightweight
   state management.
-- **Thrilling tic-tac-toe action!**
+- **Thrilling Tic Tac Toe action!**
 
 ## Game play
 
 The game is a standard Tic Tac Toe game where you play against an AI opponent.
 The AI starts off as a completely untrained neural network and trains in the
-background as you play. After each match the AI will evolve for a few more
-generations and choose the best performing network as your next opponent. As you
-play you should see the AI improve steadily. Usually it only takes a few dozen
-matches before the AI is playing at a competent level and within 200 generations
-it should force a tie for nearly every game. You will likely see the same "best"
-opponent for many generations with occasional breakthroughs that lead to rapid
-improvement. After 500 or more generations it should max out its fitness and
-further evolution will only degrade performance.
+background as you play. After each match, the AI evolves for a few more
+generations and selects the best performing network as your next opponent. You
+should see the AI improve steadily as you play. Usually it only takes a few
+dozen matches before the AI is playing at a competent level and within 200
+generations it should force a tie for nearly every game. You will likely see the
+same "best" opponent for many generations with occasional breakthroughs that
+lead to rapid improvement. After 500 or more generations it should max out its
+fitness and further evolution will only degrade performance.
+
+The game also updates your
+[Glicko-2 rating](https://en.wikipedia.org/wiki/Glicko_rating_system) as you
+play against the AI, so you can see how well you stack up against the evolving
+networks.
+
+### Settings
 
 There are some settings you can tweak, such as choosing how many generations the
 AI trains after each match, and which NEAT variant to use. My 7-year-old
@@ -73,61 +79,74 @@ confirmed.
 
 Persistence relies on
 [`idb-keyval`](https://github.com/jakearchibald/idb-keyval) for IndexedDB
-storage. The app maintains three separate stores: user settings, player Glicko2
+storage. The app maintains three separate stores: user settings, player Glicko-2
 ratings and match history, and evolved populations (which can grow to several
 megabytes as networks evolve). If the stored populations grow too large they are
 pruned to save space.
 
 ## Fitness
 
-The greatest challenge was devising a fitness function that would allow the AI
-to learn effectively. In Tic Tac Toe, there are only three possible outcomes:
-win, lose, or draw. This makes it difficult for the AI to learn from its
-mistakes, as a loss does not provide much information about what went wrong.
-After many iterations I settled on a tournament environment using swiss
-tournaments and using glicko2 ratings to evaluate the networks. In order to bake
-in the glicko2 ratings, the AI needs to play a number of games. So, prior to the
-tournament I run the networks through a gauntlet of games against a fixed
-opponent (a minimax solver that makes random opening moves). This way, the
-tournament is seeded with networks that have a baseline rating that is
-consistent across generations.
+Devising an effective fitness function was the greatest challenge. Tic Tac Toe
+has only three outcomes: win, lose, or draw. This makes it difficult for the AI
+to learn from its mistakes; a loss provides little information about _what_ went
+wrong. After many iterations I settled on a tournament environment using swiss
+tournaments and using Glicko-2 ratings to evaluate the networks.
 
-For fun, the game updates your glicko2 rating as you play against the AI, so you
-can see how well you stack up against the evolving networks.
+To establish accurate Glicko-2 ratings, the AI needs to play a substantial
+number of games. Prior to the tournament, I run the networks through a gauntlet
+against a fixed set of opponents:
 
-Because it's not possible to dominate tictactoe (a perfect player will always
-force a draw), the fitness maxes out around 0.8 to 0.9. The final fitness score
-is somewhat arbitrary based on estimates of min/max glicko2 ratings and also the
-maximum game score from the gauntlet games. The glicko2 rating score and the
-gauntlet score are combined into the final fitness score. These weights are
-somewhat arbitrary and can be tuned (but not in the UI).
+- a
+  [Minimax AI](https://github.com/heygrady/hexagonoids/blob/main/packages/tictactoe-game/src/players/minimaxAI.ts)
+  that plays perfect games
+- a
+  [Sleeper AI](https://github.com/heygrady/hexagonoids/blob/main/packages/tictactoe-game/src/players/sleeperAI.ts)
+  that makes random opening moves and switches to the Minimax AI to finish the
+  game.
+
+This seeds the tournament with a consistent baseline rating for all the
+networks.
+
+A perfect player will always force a draw. It's not possible to dominate Tic Tac
+Toe and so the fitness maxes out around 0.8 to 0.9. The final fitness score is
+based on min/max Glicko-2 ratings and also the average match score from the
+gauntlet games. The Glicko-2 rating score and the gauntlet score are combined
+into the final fitness score; these weights can be tuned (but not in the UI,
+yet). I have it set to favor the Glicko-2 score to ensure we're choosing the
+strongest network of each generation.
 
 ## Tournament Strategy, and Tic Tac Toe Environment
 
 One key feature of the neat-evolution library is the ability to create custom
-environments for training. In this case, I created a Tic Tac Toe environment
+environments for training. In this case, I created a
+[Tic Tac Toe environment](https://github.com/heygrady/hexagonoids/tree/main/packages/tictactoe-environment)
 that will conduct a match between two networks or against a gauntlet of fixed AI
 opponents. The environment handles the game logic, scoring, and fitness
 evaluation of those matches.
 
-To make this work with the built-in worker-evaluator, I added the ability to
-provide an evaluation-strategy, which in this case is responsible for running
-the tournament and calculating the final fitness scores from the gauntlet and
-Glicko2 scores.
+To make this work with the built-in
+[worker-evaluator](https://github.com/neat-evolution/neat-js/tree/main/packages/worker-evaluator),
+I added the ability to provide an
+[evaluation-strategy](https://github.com/neat-evolution/neat-js/tree/main/packages/evaluation-strategy),
+which in this case is responsible for running the tournament and calculating the
+final fitness scores from the gauntlet and Glicko2 scores.
 
 ## Bundling with Vite
 
-The tictactoe demo is part of an astrojs app, which is built with vite. Because
-the neat-evolution library uses web workers, I had to configure vite to handle
-the worker files correctly. One complication was that the workers are
-initialized deep within the neat-evolution library, which is not the happy path
-for vite. The documentation for using workers with vite is very thin and not
-very clear. There were three tricks I had to use to get this working:
+The Tic Tac Toe demo is part of an Astro app built with Vite. Because the
+neat-evolution library uses web workers, I configured Vite to handle the worker
+files correctly. One complication was that the workers are initialized deep
+within the neat-evolution library, which is not the happy path for Vite. The
+official documentation on
+[Vite's worker features](https://vitejs.dev/guide/features.html#web-workers) is
+comprehensive, but integrating workers initialized outside the standard patterns
+required some additional investigation. There were three tricks I used to get
+this working:
 
-1. glob imports
-2. using `?worker&url` to get the worker URL
-3. manual chunking to ensure the code the worker imports isn't bundled with the
-   main thread code
+1. [glob imports](https://github.com/heygrady/hexagonoids/blob/main/apps/hexagonoids/src/components/tictactoe/createGame.ts)
+2. using the `?worker&url` suffix to get the worker URL
+3. [manual chunking](https://github.com/heygrady/hexagonoids/blob/main/apps/hexagonoids/astro.config.js)
+   to ensure the code the worker imports isn't bundled with the main thread code
 
 The `?worker&url` suffix tells Vite to process the file as a worker and return
 its URL rather than the module itself:
@@ -136,21 +155,21 @@ its URL rather than the module itself:
 import workerEvaluatorScriptUrl from "@neat-evolution/worker-evaluator/workerEvaluatorScript?worker&url";
 ```
 
-I had to modify the neat-evolution library code slightly to use these
-techniques, allowing for paths to be passed in from the outside. This was
-challenging to debug. Without manual chunking the app would throw cryptic errors
-like `a is undefined`, which was caused by solid-js (which accesses the window
-object) being added to the same chunk as some code the worker imported — workers
-don't have a `window` object, so the minified code failed. After some trial and
-error with Rollup's `manualChunks` configuration, I was able to isolate the
-worker code into separate chunks.
+I modified the neat-evolution library to use these techniques, allowing for
+paths to be passed in from the outside. This was challenging to debug. Without
+manual chunking the app would throw cryptic errors like `a is undefined`, which
+was caused by SolidJS (which accesses the window object) being added to the same
+chunk as some code the worker imported — workers don't have a `window` object,
+so the minified code failed. After some trial and error with Rollup's
+`manualChunks` configuration, I was able to isolate the worker code into
+separate chunks.
 
 ## Effective training
 
-A great deal of work went into how to encode the tictactoe board for the neural
-network inputs and outputs. The board is represented as a flat array of 18
-one-hot encoded inputs with each input representing a cell on the board, 9 for
-the AI's pieces and 9 for the opponents pieces. There are 9 outputs, one for
+A great deal of work went into how to encode the Tic Tac Toe board for the
+neural network inputs and outputs. The board is represented as a flat array of
+18 one-hot encoded inputs with each input representing a cell on the board, 9
+for the AI's pieces and 9 for the opponents pieces. There are 9 outputs, one for
 each cell on the board, representing the AI's confidence in placing a piece in
 that cell. The highest output value is chosen as the AI's move.
 
@@ -212,27 +231,33 @@ the network choose more consistent opening moves.
 
 ## Gauntlet Opponent
 
-This was another area of significant trial and error. Tictactoe is a solved game
-and you can create a perfect player using the minimax algorithm. However, this
-creates a bottleneck for learning as the minimax AI crushes the untrained
-networks every time. To address this I created a second gauntlet opponent that
-plays random moves for the first two turns, then plays perfectly thereafter.
-This exposes the networks to a wider variety of board states and allows them to
-learn more effectively. The random opening moves create more diverse board
-states, which avoids overfitting to a narrow set of scenarios.
+This was another area of significant trial and error. Tic Tac Toe is a solved
+game. You can create a perfect player using the Minimax algorithm. However, a
+perfect Minimax AI crushes untrained networks every time, creating a learning
+bottleneck. To address this, I created a
+[Sleeper AI](https://github.com/heygrady/hexagonoids/blob/main/packages/tictactoe-game/src/players/sleeperAI.ts)
+that plays random moves for the first two turns before switching to perfect
+play. This exposes the networks to a wider variety of board states and allows
+them to learn more effectively. The random opening moves create more diverse
+board states, avoiding overfitting to a narrow set of scenarios.
 
-I created a stable of ai opponents that I ended up not using as the minimax +
-random openings opponent worked best.
+I experimented with a stable of AI opponents but the Minimax AI with random
+openings worked best.
 
 ## Worker Pools and Worker Actions
 
-As part of this work I extracted a reusable worker pool and worker action system
-that can be used to run arbitrary tasks in web workers. This is now part of the
-neat-evolution library as the `@neat-evolution/worker-pool` and
-`@neat-evolution/worker-actions` modules. This really simplified the code for
-`@neat-evolution/worker-evaluator` and `@neat-evolution/worker-reproducer`,
-allowing them to focus on their core responsibilities while delegating the
-worker management to the worker pool.
+I extracted a reusable worker pool and worker action system that can run
+arbitrary tasks in web workers. These are now part of the neat-evolution library
+as the
+[`@neat-evolution/worker-pool`](https://github.com/neat-evolution/neat-js/tree/main/packages/worker-pool)
+and
+[`@neat-evolution/worker-actions`](https://github.com/neat-evolution/neat-js/tree/main/packages/worker-actions)
+modules. This simplified the code for
+[`@neat-evolution/worker-evaluator`](https://github.com/neat-evolution/neat-js/tree/main/packages/worker-evaluator)
+and
+[`@neat-evolution/worker-reproducer`](https://github.com/neat-evolution/neat-js/tree/main/packages/worker-reproducer),
+allowing them to focus on their core responsibilities while delegating worker
+management to the pool.
 
 The architecture has two layers: `WorkerPool` manages thread lifecycle using
 semaphore-based concurrency control (via
@@ -245,9 +270,10 @@ can queue more tasks than you have threads.
 
 The action system is inspired by
 [redux-actions](https://github.com/redux-utilities/redux-actions) and the Flux
-Standard Action pattern. The `createAction` function returns action creators
-with a nice trick: `toString()` returns the action type, so action creators can
-be used directly as object keys:
+Standard Action pattern. The
+[`createAction`](https://github.com/neat-evolution/neat-js/blob/main/packages/worker-actions/src/utils/actions.ts)
+function returns action creators with a nice trick: `toString()` returns the
+action type, so action creators can be used directly as object keys:
 
 ```ts
 export function createAction<P = any>(
@@ -278,13 +304,13 @@ class Dispatcher {
   private _onMessage(message: any, worker: Worker) {
     // 1. Handle RPC responses (correlate request → response)
     if (this.requestManager.handleResponse(action)) {
-      return
+      return;
     }
     // 2. Handle spontaneous events from worker
-    const listeners = this.eventListeners.get(action.type)
+    const listeners = this.eventListeners.get(action.type);
     if (listeners != null) {
       for (const listener of listeners) {
-        listener(action, context)
+        listener(action, context);
       }
     }
   }
@@ -296,17 +322,6 @@ A few other details I'm pleased with: workers signal readiness via a
 signal if the developer forgets to call `handler.ready()`. The system also
 supports `Transferable` objects for zero-copy passing of ArrayBuffers between
 threads.
-
-## Next Steps
-
-It would be possible to expand the settings to expose many more of the arbitrary
-parameters, such as the weights for the fitness function or the number of
-gauntlet games, etc. As part of getting this all working I ended up creating an
-`EvolutionManager` class that abstracted away much of the boilerplate around
-managing the NEAT instance, the evaluator, the reproducer, and the training
-loop. This could be further abstracted to allow for more flexible configurations
-as it currently bakes in the specific configuration needed for the tictactoe
-demo.
 
 ## A Little Help From My Friends
 
@@ -331,6 +346,17 @@ developer, but they can be a force multiplier for one. Even if you don't trust
 the code they write, I will never go back to committing and releasing code the
 old fashioned way.
 
+## Next Steps
+
+It would be possible to expand the settings to expose many more of the arbitrary
+parameters, such as the weights for the fitness function or the number of
+gauntlet games, etc. As part of getting this all working I ended up creating an
+`EvolutionManager` class that abstracted away much of the boilerplate around
+managing the NEAT instance, the evaluator, the reproducer, and the training
+loop. This could be further abstracted to allow for more flexible configurations
+as it currently bakes in the specific configuration needed for the Tic Tac Toe
+demo.
+
 ## Conclusion
 
 This project pushed me to learn far more about Tic Tac Toe than I ever expected.
@@ -344,6 +370,8 @@ persists across page reloads, algorithms can be hot-swapped without losing
 progress, and it runs smoothly on mobile devices. The persistence layer makes it
 feel like a real application rather than a throwaway demo.
 
-If you want to see a neural network learn in real-time, give it a try. Watch the
-fitness climb from 0.3 to 0.8 over a few dozen generations, and see if you can
-still beat it once it's had a chance to evolve.
+If you want to see a neural network learn in real-time,
+[give it a try](https://hexagonoids.heygrady.com/experiments/tictactoe/). Watch
+the fitness climb from 0.5 to 0.8 over a few dozen generations, and see if you
+can still beat it once it's had a chance to evolve (you will be able to, for
+certain).
