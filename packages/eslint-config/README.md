@@ -6,19 +6,32 @@ My personal, shared [ESLint](https://eslint.org/) configuration for ESLint 9+ wi
 
 This package is hosted on [GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry). You'll need to configure your package manager to use the GitHub Packages registry for the `@heygrady` scope.
 
-Create a `.npmrc` file in your project root with the following content:
+### Yarn (v2+)
 
-```
-@heygrady:registry=https://npm.pkg.github.com
+Add to your `.yarnrc.yml`:
+
+```yaml
+npmScopes:
+  heygrady:
+    npmAlwaysAuth: true
+    npmRegistryServer: "https://npm.pkg.github.com"
 ```
 
-Then, install the package:
+Then install:
 
 ```bash
 yarn add -D eslint @heygrady/eslint-config
 ```
 
-or with npm:
+### npm
+
+Create a `.npmrc` file in your project root:
+
+```
+@heygrady:registry=https://npm.pkg.github.com
+```
+
+Then install:
 
 ```bash
 npm install --save-dev eslint @heygrady/eslint-config
@@ -77,6 +90,45 @@ import astro from '@heygrady/eslint-config/astro'
 
 export default [
   ...astro,
+]
+```
+
+### Astro + React
+
+For Astro projects using React components.
+
+```js
+// eslint.config.mjs
+import astroReact from '@heygrady/eslint-config/astro-react'
+
+export default [
+  ...astroReact,
+]
+```
+
+### Astro + Solid
+
+For Astro projects using SolidJS components.
+
+```js
+// eslint.config.mjs
+import astroSolid from '@heygrady/eslint-config/astro-solid'
+
+export default [
+  ...astroSolid,
+]
+```
+
+### TypeScript + Solid
+
+For TypeScript projects using SolidJS (ES Modules).
+
+```js
+// eslint.config.mjs
+import tsxSolidEsm from '@heygrady/eslint-config/tsx-solid-esm'
+
+export default [
+  ...tsxSolidEsm,
 ]
 ```
 
