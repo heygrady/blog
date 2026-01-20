@@ -17,8 +17,8 @@
     "jest-preset.js"
   ],
   "scripts": {
-    "format": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\" --fix",
-    "lint": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}\"",
+    "format": "biome check --write",
+    "lint": "biome lint",
     "precommit": "lint-staged"
   },
   "dependencies": {
@@ -31,16 +31,12 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@heygrady/eslint-config": "workspace:^",
-    "@types/eslint": "^9.6.1",
-    "@types/prettier": "^2.7.3",
-    "@types/rimraf": "^4.0.5",
-    "eslint": "^9.39.1",
+    "@biomejs/biome": "2.3.11",
     "lint-staged": "^16.2.7"
   },
   "lint-staged": {
-    "*.{md,cjs,mjs,js,jsx,cts,.ts,ts,tsx,json}": [
-      "eslint --fix"
+    "*": [
+      "biome check --write --no-errors-on-unmatched"
     ]
   },
   "browserslist": [
