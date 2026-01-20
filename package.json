@@ -17,7 +17,8 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "check": "yarn check:changesets && yarn check:manypkg",
+    "check": "yarn check:changesets && yarn check:manypkg && yarn check:biome",
+    "check:biome": "biome ci",
     "check:changesets": "changeset status --verbose",
     "check:manypkg": "manypkg check",
     "clean": "turbo run clean",
@@ -43,12 +44,14 @@
     "yarn": "4.12.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.11",
     "@changesets/cli": "^2.29.8",
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@commitlint/config-workspace-scopes": "^20.0.0",
     "@heygrady/create-post": "workspace:*",
     "@manypkg/cli": "^0.25.1",
+    "@typescript/native-preview": "7.0.0-dev.20260120.1",
     "firebase-tools": "^14.26.0",
     "husky": "^9.1.7",
     "turbo": "^2.6.1"
