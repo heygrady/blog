@@ -87,7 +87,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/compiler@npm:^2.10.3, @astrojs/compiler@npm:^2.13.0, @astrojs/compiler@npm:^2.9.1":
+"@astrojs/compiler@npm:^2.10.3, @astrojs/compiler@npm:^2.13.0":
   version: 2.13.0
   resolution: "@astrojs/compiler@npm:2.13.0"
   checksum: 10/4efb31cd363d928650d361d5beb363f9e601795ed227deca071effcbd6cde239f12a0dc597d5c22a60e9bbd8d43b122ef639b96066bbc009101fe7b15a58c0f0
@@ -2546,24 +2546,17 @@ __metadata:
     "@astrojs/mdx": "npm:^4.3.12"
     "@astrojs/rss": "npm:^4.0.14"
     "@astrojs/sitemap": "npm:^3.6.0"
+    "@biomejs/biome": "npm:2.3.11"
     "@fontsource/inconsolata": "npm:^5.2.8"
     "@fontsource/merriweather": "npm:^5.2.11"
     "@fontsource/montserrat": "npm:^5.2.8"
-    "@heygrady/eslint-config": "workspace:^"
-    "@types/eslint": "npm:^9.6.1"
     "@types/node": "npm:^22.15.29"
-    "@types/prettier": "npm:^2.7.3"
-    "@types/rimraf": "npm:^4.0.5"
     "@types/typography": "npm:^0.16.8"
     astro: "npm:^5.16.3"
     autoprefixer: "npm:^10.4.22"
     date-fns: "npm:^4.1.0"
-    eslint: "npm:^9.39.1"
     firebase: "npm:^12.6.0"
     postcss: "npm:^8.5.6"
-    prettier: "npm:^3.7.3"
-    prettier-config-standard: "npm:^7.0.0"
-    prettier-plugin-astro: "npm:^0.14.1"
     rimraf: "npm:^6.1.2"
     sharp: "npm:^0.34.5"
     ts-node: "npm:^10.9.2"
@@ -2612,7 +2605,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@heygrady/eslint-config@workspace:^, @heygrady/eslint-config@workspace:packages/eslint-config":
+"@heygrady/eslint-config@workspace:packages/eslint-config":
   version: 0.0.0-use.local
   resolution: "@heygrady/eslint-config@workspace:packages/eslint-config"
   dependencies:
@@ -5041,16 +5034,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:^9.6.1":
-  version: 9.6.1
-  resolution: "@types/eslint@npm:9.6.1"
-  dependencies:
-    "@types/estree": "npm:*"
-    "@types/json-schema": "npm:*"
-  checksum: 10/719fcd255760168a43d0e306ef87548e1e15bffe361d5f4022b0f266575637acc0ecb85604ac97879ee8ae83c6a6d0613b0ed31d0209ddf22a0fe6d608fc56fe
-  languageName: node
-  linkType: hard
-
 "@types/estree-jsx@npm:^1.0.0":
   version: 1.0.0
   resolution: "@types/estree-jsx@npm:1.0.0"
@@ -5159,17 +5142,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.6":
-  version: 7.0.12
-  resolution: "@types/json-schema@npm:7.0.12"
-  checksum: 10/7a72ba9cb7d2b45d7bb032e063c9eeb1ce4102d62551761e84c91f99f8273ba5aaffd34be835869456ec7c40761b4389009d9e777c0020a7227ca0f5e3238e94
-  languageName: node
-  linkType: hard
-
 "@types/json-schema@npm:^7.0.15":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
   checksum: 10/1a3c3e06236e4c4aab89499c428d585527ce50c24fe8259e8b3926d3df4cfbbbcf306cfc73ddfb66cbafc973116efd15967020b0f738f63e09e64c7d260519e7
+  languageName: node
+  linkType: hard
+
+"@types/json-schema@npm:^7.0.6":
+  version: 7.0.12
+  resolution: "@types/json-schema@npm:7.0.12"
+  checksum: 10/7a72ba9cb7d2b45d7bb032e063c9eeb1ce4102d62551761e84c91f99f8273ba5aaffd34be835869456ec7c40761b4389009d9e777c0020a7227ca0f5e3238e94
   languageName: node
   linkType: hard
 
@@ -5239,13 +5222,6 @@ __metadata:
   dependencies:
     undici-types: "npm:~6.21.0"
   checksum: 10/40d5368faa6d9be6c27ebca2362734bc9e035a742e0b5cafee40ba3b355d7cfcaedbc93618c76465451e53f1af0c811b4b85ee9b85e2e942f34a4c5310fa047b
-  languageName: node
-  linkType: hard
-
-"@types/prettier@npm:^2.7.3":
-  version: 2.7.3
-  resolution: "@types/prettier@npm:2.7.3"
-  checksum: 10/cda84c19acc3bf327545b1ce71114a7d08efbd67b5030b9e8277b347fa57b05178045f70debe1d363ff7efdae62f237260713aafc2d7217e06fc99b048a88497
   languageName: node
   linkType: hard
 
@@ -17447,32 +17423,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-astro@npm:^0.14.1":
-  version: 0.14.1
-  resolution: "prettier-plugin-astro@npm:0.14.1"
-  dependencies:
-    "@astrojs/compiler": "npm:^2.9.1"
-    prettier: "npm:^3.0.0"
-    sass-formatter: "npm:^0.7.6"
-  checksum: 10/b814fab0303fec49a64889019dfefa44e0ed44f3da746994ba746478d3aa40e7c1b418e4493fa87501c453badf16c17ae1bfe6139e13e80c55aa90fe4354ae04
-  languageName: node
-  linkType: hard
-
 "prettier@npm:^2.7.1":
   version: 2.8.8
   resolution: "prettier@npm:2.8.8"
   bin:
     prettier: bin-prettier.js
   checksum: 10/00cdb6ab0281f98306cd1847425c24cbaaa48a5ff03633945ab4c701901b8e96ad558eb0777364ffc312f437af9b5a07d0f45346266e8245beaf6247b9c62b24
-  languageName: node
-  linkType: hard
-
-"prettier@npm:^3.0.0":
-  version: 3.0.3
-  resolution: "prettier@npm:3.0.3"
-  bin:
-    prettier: bin/prettier.cjs
-  checksum: 10/ccf1ead9794b017be6b42d0873f459070beef2069eb393c8b4c0d11aa3430acefc54f6d5f44a5b7ce9af05ad8daf694b912f0aa2808d1c22dfa86e61e9d563f8
   languageName: node
   linkType: hard
 
@@ -18800,13 +18756,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"s.color@npm:0.0.15":
-  version: 0.0.15
-  resolution: "s.color@npm:0.0.15"
-  checksum: 10/8ddfeb4d92fc92fadce3968f9c99001e4b59812d677d46073c96a6b1d87e2842d259e07b3de56487f4a7acf3927496afee4cd89587cc21e57693e2d3644140e1
-  languageName: node
-  linkType: hard
-
 "safe-array-concat@npm:^1.0.0":
   version: 1.0.0
   resolution: "safe-array-concat@npm:1.0.0"
@@ -18889,15 +18838,6 @@ __metadata:
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: 10/7eaf7a0cf37cc27b42fb3ef6a9b1df6e93a1c6d98c6c6702b02fe262d5fcbd89db63320793b99b21cb5348097d0a53de81bd5f4e8b86e20cc9412e3f1cfb4e83
-  languageName: node
-  linkType: hard
-
-"sass-formatter@npm:^0.7.6":
-  version: 0.7.6
-  resolution: "sass-formatter@npm:0.7.6"
-  dependencies:
-    suf-log: "npm:^2.5.3"
-  checksum: 10/b93be578f1069f6c7bfc831cf3ccc7a505c69a78aa7a2122a4b6708e77aaac9fc788df877cbc185b4ef267986f38fafadd6955c9a6b8cdf0ade3755cabd82dd6
   languageName: node
   linkType: hard
 
@@ -19986,15 +19926,6 @@ __metadata:
   dependencies:
     inline-style-parser: "npm:0.2.7"
   checksum: 10/06b86a5cf435dafac908d19082842983f9052d8cf3682915b1bd9251e3fe9b8065dbd2aef060dc5dfa0fa2ee24d717b587a5205f571513a10f30e3947f9d28ff
-  languageName: node
-  linkType: hard
-
-"suf-log@npm:^2.5.3":
-  version: 2.5.3
-  resolution: "suf-log@npm:2.5.3"
-  dependencies:
-    s.color: "npm:0.0.15"
-  checksum: 10/fefcc75753cb5b2af7f7521fb8a79bf19a57580a2c96df49e6154630934123a740cf51abc5fddf8066c3f335ae95efa1c8b3ef969f9653fbd1ac0cc58e718005
   languageName: node
   linkType: hard
 
