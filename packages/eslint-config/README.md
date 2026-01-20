@@ -1,5 +1,10 @@
 # @heygrady/eslint-config
 
+> [!WARNING]
+> **This package is deprecated.** The `@heygrady/blog` monorepo has migrated to [Biome](https://biomejs.dev/) for linting and formatting. This package will remain functional but is no longer actively maintained.
+>
+> Consider using Biome for new projects.
+
 My personal, shared [ESLint](https://eslint.org/) configuration for ESLint 9+ with flat config.
 
 ## Installation
