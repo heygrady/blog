@@ -2595,11 +2595,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@heygrady/create-post@workspace:scripts/create-post"
   dependencies:
-    "@heygrady/eslint-config": "workspace:^"
+    "@biomejs/biome": "npm:2.3.11"
     "@manypkg/find-root": "npm:^3.1.0"
     "@manypkg/get-packages": "npm:^3.1.0"
     cosmiconfig: "npm:^9.0.0"
-    eslint: "npm:^9.39.1"
     handlebars: "npm:^4.7.8"
     lint-staged: "npm:^16.2.7"
     param-case: "npm:^4.0.0"

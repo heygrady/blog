@@ -18,8 +18,8 @@
   "bin": "./index.js",
   "scripts": {
     "clean": "rimraf .turbo",
-    "format": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}\" --fix",
-    "lint": "eslint \"**/*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}\"",
+    "format": "biome check --write",
+    "lint": "biome lint",
     "precommit": "lint-staged"
   },
   "dependencies": {
@@ -34,14 +34,13 @@
     "zx": "^8.8.5"
   },
   "devDependencies": {
-    "@heygrady/eslint-config": "workspace:^",
-    "eslint": "^9.39.1",
+    "@biomejs/biome": "2.3.11",
     "lint-staged": "^16.2.7",
     "rimraf": "^6.1.2"
   },
   "lint-staged": {
-    "*.{md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": [
-      "eslint --fix"
+    "*": [
+      "biome check --write --no-errors-on-unmatched"
     ]
   },
   "browserslist": [
