@@ -1,9 +1,19 @@
 ---
 import BlogCard from '../components/BlogCard.astro'
 
-export interface Props {
-  posts: any[]
+interface Post {
+  frontmatter: {
+    title: string
+    description: string
+    pubDate: string
+  }
+  url: string
 }
+
+export interface Props {
+  posts: Post[]
+}
+
 const { posts } = Astro.props
 ---
 
