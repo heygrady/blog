@@ -17,9 +17,8 @@
     "start": "astro dev",
     "build": "astro build",
     "check": "astro check",
-    "format": "eslint \"**/*.{astro,md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}\" --fix",
-    "format:prettier": "prettier \"src/**/*.astro\" --write",
-    "lint": "eslint \"**/*.{astro,md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}\"",
+    "format": "biome check --write",
+    "lint": "biome lint",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -38,26 +37,19 @@
     "@astrojs/mdx": "^4.3.12",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
-    "@heygrady/eslint-config": "workspace:^",
-    "@types/eslint": "^9.6.1",
+    "@biomejs/biome": "2.3.11",
     "@types/node": "^22.15.29",
-    "@types/prettier": "^2.7.3",
-    "@types/rimraf": "^4.0.5",
     "@types/typography": "^0.16.8",
     "astro": "^5.16.3",
     "autoprefixer": "^10.4.22",
-    "eslint": "^9.39.1",
     "postcss": "^8.5.6",
-    "prettier": "^3.7.3",
-    "prettier-config-standard": "^7.0.0",
-    "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
   "lint-staged": {
-    "*.{astro,md,cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": [
-      "eslint --fix"
+    "*": [
+      "biome check --write --no-errors-on-unmatched"
     ]
   },
   "browserslist": [
