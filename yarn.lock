@@ -2681,8 +2681,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@heygrady/node-esm@workspace:templates/node-esm"
   dependencies:
-    "@heygrady/eslint-config": "workspace:^"
-    eslint: "npm:^9.39.1"
+    "@biomejs/biome": "npm:2.3.11"
     jest: "npm:^30.2.0"
     lint-staged: "npm:^16.2.7"
     rimraf: "npm:^6.1.2"
