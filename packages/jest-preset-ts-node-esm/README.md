@@ -1,5 +1,10 @@
 # @heygrady/jest-preset-ts-node-esm
 
+> [!WARNING]
+> **This package is deprecated.** I've moved to [Vitest](https://vitest.dev/) for all projects. This package will remain functional but is no longer actively maintained.
+>
+> Consider using Vitest for new projects.
+
 A Jest preset for TypeScript projects using ES Modules.
 
 ## Installation
