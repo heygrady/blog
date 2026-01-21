@@ -2577,7 +2577,6 @@ __metadata:
     "@commitlint/config-workspace-scopes": "npm:^20.0.0"
     "@heygrady/create-post": "workspace:*"
     "@manypkg/cli": "npm:^0.25.1"
-    "@typescript/native-preview": "npm:7.0.0-dev.20260120.1"
     firebase-tools: "npm:^14.26.0"
     husky: "npm:^9.1.7"
     turbo: "npm:^2.6.1"

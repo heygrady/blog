@@ -6,7 +6,10 @@
     "declaration": false,
     "isolatedModules": true
   },
-  "extends": ["@tsconfig/vite-react/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
+  "extends": [
+    "@tsconfig/vite-react/tsconfig.json",
+    "@tsconfig/strictest/tsconfig.json"
+  ],
   "include": ["src", "test"],
   "exclude": ["node_modules", "dist"]
 }

@@ -8,18 +8,12 @@
         "*.config.{cjs,mjs,js,ts}",
         "package.json"
       ],
-      "outputs": [
-        "dist/**"
-      ],
-      "dependsOn": [
-        "^build"
-      ],
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"],
       "cache": true
     },
     "dev": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "persistent": true,
       "cache": false
     },
@@ -32,12 +26,8 @@
         "test/**/*.{cjs,mjs,js,jsx,cts,mts,ts,tsx}",
         "package.json"
       ],
-      "outputs": [
-        "coverage/**"
-      ],
-      "dependsOn": [
-        "^test"
-      ],
+      "outputs": ["coverage/**"],
+      "dependsOn": ["^test"],
       "cache": true
     },
     "format": {
@@ -70,9 +60,7 @@
         "test/**/*.{cjs,mjs,js,jsx,cts,mts,ts,tsx}",
         "package.json"
       ],
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "cache": true
     }
   }

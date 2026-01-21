@@ -1,4 +1,7 @@
 ---
+
+
+
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
 import BaseHead from '../components/BaseHead.astro'
 import Bio from '../components/Bio.astro'
@@ -7,7 +10,7 @@ import BlogPagination from '../components/BlogPagination.astro'
 import Body from '../components/Body.astro'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
-import { PAGE_SIZE, SITE_TITLE, SITE_DESCRIPTION } from '../config'
+import { PAGE_SIZE, SITE_DESCRIPTION, SITE_TITLE } from '../config'
 
 export const getStaticPaths = (async ({ paginate }) => {
   const postModules = import.meta.glob<{

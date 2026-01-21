@@ -1,4 +1,7 @@
 ---
+
+
+
 import BaseHead from '../components/BaseHead.astro'
 import Bio from '../components/Bio.astro'
 import BlogList from '../components/BlogList.astro'
@@ -6,7 +9,7 @@ import BlogPagination from '../components/BlogPagination.astro'
 import Body from '../components/Body.astro'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
-import { PAGE_SIZE, SITE_TITLE, SITE_DESCRIPTION } from '../config'
+import { PAGE_SIZE, SITE_DESCRIPTION, SITE_TITLE } from '../config'
 
 const postModules = import.meta.glob<{
   frontmatter: { pubDate: string; title: string; description: string }

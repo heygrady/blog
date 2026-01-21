@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss'
 
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config.js'
+import { SITE_DESCRIPTION, SITE_TITLE } from '../config.js'
 
 export function GET(context) {
   const postModules = import.meta.glob('./posts/*.{md,mdx}', { eager: true })
