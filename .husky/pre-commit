@@ -8,4 +8,4 @@ if [ "$branch" = "main" ]; then
   exit 1
 fi
 
-yarn biome check --staged
+yarn biome check --staged --no-errors-on-unmatched
