@@ -135,7 +135,7 @@ dist
 
 .claude/
 .gemini/
-CLAUDE.md
 GEMINI.md
 .agile/
+.devnotes/
 devlogs/
