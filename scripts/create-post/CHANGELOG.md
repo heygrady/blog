@@ -1,5 +1,11 @@
 # @heygrady/create-post-command
 
+## 1.0.12
+
+### Patch Changes
+
+- 2044376: Migrate from ESLint/Prettier to Biome for linting and formatting
+
 ## 1.0.11
 
 ### Patch Changes

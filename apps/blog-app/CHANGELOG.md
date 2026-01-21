@@ -1,5 +1,11 @@
 # @heygrady/blog-app
 
+## 1.3.3
+
+### Patch Changes
+
+- 2044376: Migrate from ESLint/Prettier to Biome for linting and formatting
+
 ## 1.3.2
 
 ### Patch Changes

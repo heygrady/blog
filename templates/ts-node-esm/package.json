@@ -1,6 +1,6 @@
 {
   "name": "@heygrady/ts-node-esm",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "type": "module",
   "sideEffects": false,
   "license": "MIT",

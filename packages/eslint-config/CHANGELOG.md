@@ -1,5 +1,15 @@
 # @heygrady/eslint-config
 
+## 1.8.0
+
+### Minor Changes
+
+- 2044376: Mark packages as deprecated in favor of Biome and Vitest
+
+### Patch Changes
+
+- 2044376: Migrate from ESLint/Prettier to Biome for linting and formatting
+
 ## 1.7.1
 
 ### Patch Changes
