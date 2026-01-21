@@ -1,5 +1,15 @@
 # @heygrady/jest-preset-ts-node-esm
 
+## 1.1.0
+
+### Minor Changes
+
+- 2044376: Mark packages as deprecated in favor of Biome and Vitest
+
+### Patch Changes
+
+- 2044376: Migrate from ESLint/Prettier to Biome for linting and formatting
+
 ## 1.0.9
 
 ### Patch Changes

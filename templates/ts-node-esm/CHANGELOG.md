@@ -1,5 +1,11 @@
 # @heygrady/ts-node-esm
 
+## 1.2.4
+
+### Patch Changes
+
+- 2044376: Migrate from ESLint/Prettier to Biome for linting and formatting
+
 ## 1.2.3
 
 ### Patch Changes
