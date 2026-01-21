@@ -1,47 +1,48 @@
 .anchor {
-	text-decoration: none;
-	color: transparent;
+  text-decoration: none;
+  color: transparent;
 }
 
-:not(pre)>code {
-	font-size: 0.9em;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	white-space: pre;
-	white-space: pre-wrap;
-	white-space: pre-line;
-	white-space: -pre-wrap;
-	white-space: -o-pre-wrap;
-	white-space: -moz-pre-wrap;
-	white-space: -hp-pre-wrap;
-	word-wrap: break-word;
-	background: #eeeeee;
-	/*border: 1px solid #e1e1e1;*/
-	display: inline;
-	font-family: Inconsolata, monospace, serif;
-	max-width: 100%;
-	overflow: auto;
-	padding: 0 0.1625rem;
+:not(pre) > code {
+  font-size: 0.9em;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: pre-line;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -hp-pre-wrap;
+  word-wrap: break-word;
+  background: #eeeeee;
+  /*border: 1px solid #e1e1e1;*/
+  display: inline;
+  font-family: Inconsolata, monospace, serif;
+  max-width: 100%;
+  overflow: auto;
+  padding: 0 0.1625rem;
 }
 
-h1>code,
-h2>code,
-h3>code,
-h4>code {
-	font-size: 0.9em;
-	border: none;
-	background: none;
+h1 > code,
+h2 > code,
+h3 > code,
+h4 > code {
+  font-size: 0.9em;
+  border: none;
+  background: none;
 }
 
-a>code {
-	border-bottom-width: 0;
+a > code {
+  border-bottom-width: 0;
 }
 
-a:hover>code {
-	border-bottom-width: 1px;
+a:hover > code {
+  border-bottom-width: 1px;
 }
 
-ul, ol {
-	margin-left: 1.75rem;
+ul,
+ol {
+  margin-left: 1.75rem;
 }

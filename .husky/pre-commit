@@ -8,4 +8,4 @@ if [ "$branch" = "main" ]; then
   exit 1
 fi
 
-# yarn turbo run --concurrency=1 --force --no-cache --filter=[HEAD^1] precommit
+yarn biome check --staged
