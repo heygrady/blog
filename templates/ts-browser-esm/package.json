@@ -1,0 +1,79 @@
+{
+  "name": "@heygrady/ts-browser-esm",
+  "version": "0.1.1",
+  "type": "module",
+  "sideEffects": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heygrady/blog.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist/**/*",
+    "src/**/*"
+  ],
+  "scripts": {
+    "build": "yarn clean && concurrently --timings --prefix --names \"cjs,esm,tsc\" \"yarn build:cjs\" \"yarn build:esm\" \"yarn build:types\"",
+    "build:cjs": "yarn prebuild:cjs && swc src -d dist/cjs --strip-leading-paths --source-maps --copy-files -C module.type=commonjs",
+    "build:esm": "swc src -d dist/esm --strip-leading-paths --source-maps --copy-files -C module.type=es6",
+    "build:types": "tsgo --declaration --emitDeclarationOnly --project tsconfig.types.json --outDir dist/types",
+    "check": "tsgo --noEmit",
+    "clean": "rimraf dist coverage",
+    "coverage": "vitest --coverage",
+    "debug": "yarn build && nodemon --exec 'node --inspect=0.0.0.0:9229 ./dist/esm/index.js'",
+    "dev": "concurrently --timings --prefix --names \"cjs,esm,tsc\" \"yarn dev:cjs\" \"yarn dev:esm\" \"yarn dev:types\"",
+    "dev:cjs": "yarn prebuild:cjs && swc --watch src -d dist/cjs --strip-leading-paths --source-maps --copy-files -C module.type=commonjs",
+    "dev:esm": "swc --watch src -d dist/esm --strip-leading-paths --source-maps --copy-files -C module.type=es6",
+    "dev:types": "tsc --watch --declaration --emitDeclarationOnly --project tsconfig.types.json --outDir dist/types",
+    "format": "biome check --write",
+    "lint": "biome lint",
+    "prebuild:cjs": "mkdir -p dist/cjs && echo '{\"type\":\"commonjs\",\"main\":\"./index.js\"}' >> dist/cjs/package.json",
+    "precommit": "lint-staged",
+    "test": "vitest run",
+    "test:dev": "vitest"
+  },
+  "dependencies": {
+    "@swc/helpers": "^0.5.17"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.4",
+    "@heygrady/tsconfig-bases": "workspace:^",
+    "@swc/cli": "^0.7.9",
+    "@swc/core": "^1.15.3",
+    "@typescript/native-preview": "7.0.0-dev.20260220.1",
+    "@vitest/coverage-v8": "^4.0.14",
+    "concurrently": "^9.2.1",
+    "lint-staged": "^16.2.7",
+    "nodemon": "^3.1.11",
+    "rimraf": "^6.1.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.14"
+  },
+  "lint-staged": {
+    "*": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ],
+  "volta": {
+    "extends": "../../package.json"
+  },
+  "packageManager": "yarn@4.12.0"
+}

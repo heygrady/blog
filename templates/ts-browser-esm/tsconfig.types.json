@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "rootDir": "src",
+    "noPropertyAccessFromIndexSignature": false
+  },
+  "extends": "./tsconfig.json",
+  "include": ["src"]
+}

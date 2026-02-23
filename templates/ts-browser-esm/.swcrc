@@ -1,0 +1,16 @@
+{
+  "$schema": "https://swc.rs/schema.json",
+  "env": {
+    "targets": "defaults and supports es6-module"
+  },
+  "jsc": {
+    "externalHelpers": true,
+    "loose": true,
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "decorators": false
+    }
+  },
+  "sourceMaps": true
+}

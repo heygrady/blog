@@ -1,0 +1,7 @@
+{
+  "extends": "@heygrady/tsconfig-bases/ts-web-esnext/tsconfig.json",
+  "include": ["src", "test"],
+  "compilerOptions": {
+    "noPropertyAccessFromIndexSignature": false
+  }
+}
