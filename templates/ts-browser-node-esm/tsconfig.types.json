@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "rootDir": "src",
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "WebWorker"]
+  },
+  "extends": "./tsconfig.json",
+  "include": ["src"]
+}
