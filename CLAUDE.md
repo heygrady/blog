@@ -6,6 +6,13 @@ This file provides guidance to Claude Code when working with this repository.
 
 Personal blog (heygrady.com) built with Astro, organized as a Yarn 4 monorepo using Turborepo for task orchestration.
 
+## Toolchain
+
+Node is pinned in `.node-version` (also in each `templates/*`) and Yarn in `packageManager`; both are
+managed by the Vite+ global CLI (`vp env`), not Volta. Set up with
+`curl -fsSL https://vite.plus | VP_NODE_MANAGER=yes VP_YARN_MANAGER=yes bash`, check with
+`vp env current`, and install global tools with `vp install -g <pkg>`.
+
 ## Commands
 
 ```bash

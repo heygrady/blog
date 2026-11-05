@@ -29,8 +29,15 @@ templates/
 
 ### Prerequisites
 
-- Node.js 20+ (managed via [Volta](https://volta.sh/))
-- Yarn 4
+- Node.js 24 and Yarn 4, pinned by `.node-version` and `packageManager` and managed with [Vite+](https://viteplus.dev/) (`vp env`)
+
+Install Vite+ once per machine (it replaces Volta), then check the pins in the repo:
+
+```bash
+curl -fsSL https://vite.plus | VP_NODE_MANAGER=yes VP_YARN_MANAGER=yes bash
+vp env current   # Node from .node-version, Yarn from packageManager
+vp install -g <pkg>   # global tools
+```
 
 ### Installation
 
